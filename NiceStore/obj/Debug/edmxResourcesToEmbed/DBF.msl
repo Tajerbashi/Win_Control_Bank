@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NiceStoreDBModelStoreContainer" CdmEntityContainer="NiceStoreDBEntities">
+    <EntitySetMapping Name="CartTBs">
+      <EntityTypeMapping TypeName="NiceStoreDBModel.CartTB">
+        <MappingFragment StoreEntitySet="CartTB">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CodeCart" ColumnName="CodeCart" />
+          <ScalarProperty Name="DateNow" ColumnName="DateNow" />
+          <ScalarProperty Name="FactorId" ColumnName="FactorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerTBs">
+      <EntityTypeMapping TypeName="NiceStoreDBModel.CustomerTB">
+        <MappingFragment StoreEntitySet="CustomerTB">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="CartID" ColumnName="CartID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FactorTBs">
+      <EntityTypeMapping TypeName="NiceStoreDBModel.FactorTB">
+        <MappingFragment StoreEntitySet="FactorTB">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="SCPID" ColumnName="SCPID" />
+          <ScalarProperty Name="DataNow" ColumnName="DataNow" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhoneTBs">
+      <EntityTypeMapping TypeName="NiceStoreDBModel.PhoneTB">
+        <MappingFragment StoreEntitySet="PhoneTB">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Mojod" ColumnName="Mojod" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="CPU" ColumnName="CPU" />
+          <ScalarProperty Name="ScreenSize" ColumnName="ScreenSize" />
+          <ScalarProperty Name="RAM" ColumnName="RAM" />
+          <ScalarProperty Name="CartID" ColumnName="CartID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SCPs">
+      <EntityTypeMapping TypeName="NiceStoreDBModel.SCP">
+        <MappingFragment StoreEntitySet="SCP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CartID" ColumnName="CartID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ToolsTBs">
+      <EntityTypeMapping TypeName="NiceStoreDBModel.ToolsTB">
+        <MappingFragment StoreEntitySet="ToolsTB">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Mojodi" ColumnName="Mojodi" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="CartID" ColumnName="CartID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

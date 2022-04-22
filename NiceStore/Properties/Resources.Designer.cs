@@ -63,6 +63,16 @@ namespace NiceStore.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap emblemweb_93503 {
+            get {
+                object obj = ResourceManager.GetObject("emblemweb_93503", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Everaldo_Crystal_Clear_Action_delete__1_ {
             get {
                 object obj = ResourceManager.GetObject("Everaldo-Crystal-Clear-Action-delete (1)", resourceCulture);
@@ -123,9 +133,39 @@ namespace NiceStore.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_social_media_applications_3instagram_4102579_113804 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder-social-media-applications-3instagram-4102579_113804", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Iconshock_Real_Vista_Data_Database {
             get {
                 object obj = ResourceManager.GetObject("Iconshock-Real-Vista-Data-Database", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap minimize_icon {
+            get {
+                object obj = ResourceManager.GetObject("minimize-icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sortascend256_25201 {
+            get {
+                object obj = ResourceManager.GetObject("sortascend256_25201", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

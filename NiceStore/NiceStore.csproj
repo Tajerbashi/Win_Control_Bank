@@ -47,6 +47,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,6 +60,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CartTB.cs">
+      <DependentUpon>DBF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CRUD.cs" />
+    <Compile Include="CustomerTB.cs">
+      <DependentUpon>DBF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBF.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBF.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBF.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBF.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBF.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="FactorTB.cs">
+      <DependentUpon>DBF.tt</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,11 +97,22 @@
     <Compile Include="CustomerPanel.Designer.cs">
       <DependentUpon>CustomerPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="NiceStoreDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NiceStoreDBDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PhoneTB.cs">
+      <DependentUpon>DBF.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ProductPanel.Designer.cs">
       <DependentUpon>ProductPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SCP.cs">
+      <DependentUpon>DBF.tt</DependentUpon>
     </Compile>
     <Compile Include="StoreManagmentPanel.cs">
       <SubType>UserControl</SubType>
@@ -89,6 +127,9 @@
     </Compile>
     <Compile Include="SplashForm.Designer.cs">
       <DependentUpon>SplashForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolsTB.cs">
+      <DependentUpon>DBF.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -115,7 +156,26 @@
     <EmbeddedResource Include="SplashForm.resx">
       <DependentUpon>SplashForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EntityDeploy Include="DBF.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBF.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DBF.edmx.diagram">
+      <DependentUpon>DBF.edmx</DependentUpon>
+    </None>
+    <None Include="NiceStoreDBDataSet.xsc">
+      <DependentUpon>NiceStoreDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="NiceStoreDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NiceStoreDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NiceStoreDBDataSet.xss">
+      <DependentUpon>NiceStoreDBDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\CustomerTB.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -149,6 +209,25 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Iconshock-Real-Vista-Data-Database.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DBF.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBF.edmx</DependentUpon>
+      <LastGenOutput>DBF.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DBF.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBF.edmx</DependentUpon>
+      <LastGenOutput>DBF.cs</LastGenOutput>
+    </Content>
+    <None Include="ico\iconfinder-social-media-applications-3instagram-4102579_113804.ico" />
+    <None Include="ico\emblemweb_93503.ico" />
+    <None Include="ico\minimize-icon.png" />
+    <None Include="ico\sortascend256_25201.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

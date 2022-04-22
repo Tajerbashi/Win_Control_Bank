@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NiceStoreDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CartTB">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodeCart" Type="int" Nullable="false" />
+    <Property Name="DateNow" Type="datetime2" Precision="7" />
+    <Property Name="FactorId" Type="int" />
+  </EntityType>
+  <EntityType Name="CustomerTB">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
+    <Property Name="CartID" Type="int" />
+  </EntityType>
+  <EntityType Name="FactorTB">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="SCPID" Type="int" Nullable="false" />
+    <Property Name="DataNow" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="PhoneTB">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Barcode" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
+    <Property Name="Mojod" Type="int" Nullable="false" />
+    <Property Name="Brand" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPU" Type="smallint" Nullable="false" />
+    <Property Name="ScreenSize" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="RAM" Type="smallint" Nullable="false" />
+    <Property Name="CartID" Type="int" />
+  </EntityType>
+  <EntityType Name="SCP">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CartID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ToolsTB">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Barcode" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Price" Type="int" Nullable="false" />
+    <Property Name="Mojodi" Type="int" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CartID" Type="int" />
+  </EntityType>
+  <Association Name="FK_CartTB_FactorTB">
+    <End Role="FactorTB" Type="Self.FactorTB" Multiplicity="0..1" />
+    <End Role="CartTB" Type="Self.CartTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FactorTB">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CartTB">
+        <PropertyRef Name="FactorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerTB_CartTB">
+    <End Role="CartTB" Type="Self.CartTB" Multiplicity="0..1" />
+    <End Role="CustomerTB" Type="Self.CustomerTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CartTB">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CustomerTB">
+        <PropertyRef Name="CartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FactorTB_SCP">
+    <End Role="SCP" Type="Self.SCP" Multiplicity="1" />
+    <End Role="FactorTB" Type="Self.FactorTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SCP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FactorTB">
+        <PropertyRef Name="SCPID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhoneTB_CartTB">
+    <End Role="CartTB" Type="Self.CartTB" Multiplicity="0..1" />
+    <End Role="PhoneTB" Type="Self.PhoneTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CartTB">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PhoneTB">
+        <PropertyRef Name="CartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SCP_CartTB">
+    <End Role="CartTB" Type="Self.CartTB" Multiplicity="1" />
+    <End Role="SCP" Type="Self.SCP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CartTB">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SCP">
+        <PropertyRef Name="CartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SCP_PhoneTB">
+    <End Role="PhoneTB" Type="Self.PhoneTB" Multiplicity="1" />
+    <End Role="SCP" Type="Self.SCP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhoneTB">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SCP">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SCP_SCP">
+    <End Role="SCP" Type="Self.SCP" Multiplicity="1" />
+    <End Role="SCP1" Type="Self.SCP" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="SCP">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SCP1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SCP_ToolsTB">
+    <End Role="ToolsTB" Type="Self.ToolsTB" Multiplicity="1" />
+    <End Role="SCP" Type="Self.SCP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ToolsTB">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SCP">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ToolsTB_CartTB">
+    <End Role="CartTB" Type="Self.CartTB" Multiplicity="0..1" />
+    <End Role="ToolsTB" Type="Self.ToolsTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CartTB">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ToolsTB">
+        <PropertyRef Name="CartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NiceStoreDBModelStoreContainer">
+    <EntitySet Name="CartTB" EntityType="Self.CartTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerTB" EntityType="Self.CustomerTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FactorTB" EntityType="Self.FactorTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhoneTB" EntityType="Self.PhoneTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SCP" EntityType="Self.SCP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ToolsTB" EntityType="Self.ToolsTB" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CartTB_FactorTB" Association="Self.FK_CartTB_FactorTB">
+      <End Role="FactorTB" EntitySet="FactorTB" />
+      <End Role="CartTB" EntitySet="CartTB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerTB_CartTB" Association="Self.FK_CustomerTB_CartTB">
+      <End Role="CartTB" EntitySet="CartTB" />
+      <End Role="CustomerTB" EntitySet="CustomerTB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FactorTB_SCP" Association="Self.FK_FactorTB_SCP">
+      <End Role="SCP" EntitySet="SCP" />
+      <End Role="FactorTB" EntitySet="FactorTB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhoneTB_CartTB" Association="Self.FK_PhoneTB_CartTB">
+      <End Role="CartTB" EntitySet="CartTB" />
+      <End Role="PhoneTB" EntitySet="PhoneTB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SCP_CartTB" Association="Self.FK_SCP_CartTB">
+      <End Role="CartTB" EntitySet="CartTB" />
+      <End Role="SCP" EntitySet="SCP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SCP_PhoneTB" Association="Self.FK_SCP_PhoneTB">
+      <End Role="PhoneTB" EntitySet="PhoneTB" />
+      <End Role="SCP" EntitySet="SCP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SCP_SCP" Association="Self.FK_SCP_SCP">
+      <End Role="SCP" EntitySet="SCP" />
+      <End Role="SCP1" EntitySet="SCP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SCP_ToolsTB" Association="Self.FK_SCP_ToolsTB">
+      <End Role="ToolsTB" EntitySet="ToolsTB" />
+      <End Role="SCP" EntitySet="SCP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ToolsTB_CartTB" Association="Self.FK_ToolsTB_CartTB">
+      <End Role="CartTB" EntitySet="CartTB" />
+      <End Role="ToolsTB" EntitySet="ToolsTB" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
