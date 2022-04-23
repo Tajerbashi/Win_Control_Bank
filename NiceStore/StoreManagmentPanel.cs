@@ -16,5 +16,10 @@ namespace NiceStore
         {
             InitializeComponent();
         }
+
+        private void StoreManagmentPanel_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

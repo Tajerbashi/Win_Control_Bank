@@ -237,6 +237,7 @@
             this.Name = "StoreManagmentPanel";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Size = new System.Drawing.Size(704, 657);
+            this.Load += new System.EventHandler(this.StoreManagmentPanel_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.AddProductbtn = new System.Windows.Forms.Button();
@@ -74,6 +74,7 @@
             this.comboItem6 = new DevComponents.Editors.ComboItem();
             this.comboItem7 = new DevComponents.Editors.ComboItem();
             this.comboItem8 = new DevComponents.Editors.ComboItem();
+            this.comboItem25 = new DevComponents.Editors.ComboItem();
             this.RAM = new System.Windows.Forms.NumericUpDown();
             this.cpu = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.comboItem16 = new DevComponents.Editors.ComboItem();
@@ -112,7 +113,6 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ویرایشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.حذفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboItem25 = new DevComponents.Editors.ComboItem();
             this.groupBox1.SuspendLayout();
             this.ToolsBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mojodi)).BeginInit();
@@ -658,6 +658,13 @@
             this.comboItem8.TextAlignment = System.Drawing.StringAlignment.Center;
             this.comboItem8.TextLineAlignment = System.Drawing.StringAlignment.Center;
             // 
+            // comboItem25
+            // 
+            this.comboItem25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
+            this.comboItem25.Text = "نوکیا";
+            this.comboItem25.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.comboItem25.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            // 
             // RAM
             // 
             this.RAM.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -924,7 +931,7 @@
             // ScreenLabel
             // 
             this.ScreenLabel.AutoSize = true;
-            this.ScreenLabel.Location = new System.Drawing.Point(308, 42);
+            this.ScreenLabel.Location = new System.Drawing.Point(235, 44);
             this.ScreenLabel.Name = "ScreenLabel";
             this.ScreenLabel.Size = new System.Drawing.Size(33, 20);
             this.ScreenLabel.TabIndex = 5;
@@ -944,7 +951,7 @@
             // BrandLable
             // 
             this.BrandLable.AutoSize = true;
-            this.BrandLable.Location = new System.Drawing.Point(294, 9);
+            this.BrandLable.Location = new System.Drawing.Point(235, 11);
             this.BrandLable.Name = "BrandLable";
             this.BrandLable.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.BrandLable.Size = new System.Drawing.Size(33, 20);
@@ -992,14 +999,14 @@
             this.DGV2.AllowUserToResizeColumns = false;
             this.DGV2.AllowUserToResizeRows = false;
             this.DGV2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(213)))), ((int)(((byte)(184)))));
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGV2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -1008,14 +1015,14 @@
             this.Column4,
             this.Column5,
             this.Column6});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(213)))), ((int)(((byte)(184)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV2.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(213)))), ((int)(((byte)(184)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV2.DefaultCellStyle = dataGridViewCellStyle2;
             this.DGV2.EnableHeadersVisualStyles = false;
             this.DGV2.Location = new System.Drawing.Point(3, 15);
             this.DGV2.Name = "DGV2";
@@ -1070,23 +1077,16 @@
             // ویرایشToolStripMenuItem
             // 
             this.ویرایشToolStripMenuItem.Name = "ویرایشToolStripMenuItem";
-            this.ویرایشToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ویرایشToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.ویرایشToolStripMenuItem.Text = "ویرایش";
             this.ویرایشToolStripMenuItem.Click += new System.EventHandler(this.ویرایشToolStripMenuItem_Click);
             // 
             // حذفToolStripMenuItem
             // 
             this.حذفToolStripMenuItem.Name = "حذفToolStripMenuItem";
-            this.حذفToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.حذفToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.حذفToolStripMenuItem.Text = "حذف";
             this.حذفToolStripMenuItem.Click += new System.EventHandler(this.حذفToolStripMenuItem_Click);
-            // 
-            // comboItem25
-            // 
-            this.comboItem25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
-            this.comboItem25.Text = "نوکیا";
-            this.comboItem25.TextAlignment = System.Drawing.StringAlignment.Center;
-            this.comboItem25.TextLineAlignment = System.Drawing.StringAlignment.Center;
             // 
             // ProductPanel
             // 
