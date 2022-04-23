@@ -17,10 +17,12 @@ namespace NiceStore
             InitializeComponent();
         }
         CRUD crud = new CRUD();
-        MainForm M = new MainForm();
+        Function Fun = new Function();
         NiceStoreDBEntities DB = new NiceStoreDBEntities();
         int ID = -1;
         bool SW = true;
+
+
         public void PrintDGV1()
         {
             DGV1.Rows.Clear();
@@ -48,7 +50,8 @@ namespace NiceStore
                 DGV1.Rows.Add(item.id, item.Name, item.Phone);
             }
         }
-        
+
+
         private void AddCuBtn_Click(object sender, EventArgs e)
         {
             if ( CuNametxt.Text.Trim().Length == 0 )
@@ -66,7 +69,7 @@ namespace NiceStore
                 CustomerTB customer = new CustomerTB();
                 customer.id = ID;
                 customer.Name =  CuNametxt.Text;
-                customer.Phone = M.ChangeToEnglishNumber(CuPhonetxt.Text);
+                customer.Phone = Fun.ChangeToEnglishNumber(CuPhonetxt.Text);
 
                 if (SW)
                 {
@@ -74,7 +77,7 @@ namespace NiceStore
                     {
                         MessageBox.Show("ثبت نام با موفقیت انجام شد");
                         PrintDGV1();
-                        M.ClearTextBoxes(this.Controls);
+                        Fun.ClearTextBoxes(this.Controls);
                     }
                     else
                     {
@@ -89,7 +92,7 @@ namespace NiceStore
                         this.Refresh();
                         MessageBox.Show("ویرایش شد");
                         PrintDGV1();
-                        M.ClearTextBoxes(this.Controls);
+                        Fun.ClearTextBoxes(this.Controls);
                         AddCuBtn.Text = "ذخیره";
                         SW = true;
                     }

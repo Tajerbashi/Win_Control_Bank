@@ -50,7 +50,7 @@ namespace NiceStore
         {
             foreach (var item in DB.PhoneTBs)
             {
-                if (item.Name == phone.Name && item.Barcode == phone.Barcode && item.Brand==phone.Brand)
+                if ( item.Name == phone.Name && item.Barcode == phone.Barcode )
                 {
                     return false;
                 }
@@ -69,7 +69,6 @@ namespace NiceStore
                 }
             }
             PhoneTB phones = DB.PhoneTBs.Where(c => c.ID == phone.ID).FirstOrDefault();
-            phones.Barcode = phone.Barcode;
             phones.Name = phone.Name;
             phones.Price = phone.Price;
             phones.Mojod = phone.Mojod;
@@ -85,6 +84,10 @@ namespace NiceStore
             PhoneTB phone = (DB.PhoneTBs.Where(c => c.ID == id).FirstOrDefault());
             DB.PhoneTBs.Remove(phone);
             DB.SaveChanges();
+        }
+        public PhoneTB GetPhone(int ID)
+        {
+            return (DB.PhoneTBs.Where(c => c.ID == ID).FirstOrDefault());
         }
 
         public bool CreatTools(ToolsTB tool)
@@ -110,7 +113,6 @@ namespace NiceStore
                 }
             }
             ToolsTB tools = DB.ToolsTBs.Where(c => c.ID == tool.ID).FirstOrDefault();
-            tools.Barcode = tool.Barcode;
             tools.Name = tool.Name;
             tools.Price = tool.Price;
             tools.Mojodi = tool.Mojodi;
@@ -124,7 +126,10 @@ namespace NiceStore
             DB.ToolsTBs.Remove(tools);
             DB.SaveChanges();
         }
-
+        public ToolsTB GetTools(int ID)
+        {
+            return (DB.ToolsTBs.Where(c => c.ID == ID).FirstOrDefault());
+        }
 
 
     }
