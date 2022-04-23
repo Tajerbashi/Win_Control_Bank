@@ -113,6 +113,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ویرایشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.حذفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comboItem26 = new DevComponents.Editors.ComboItem();
+            this.comboItem27 = new DevComponents.Editors.ComboItem();
             this.groupBox1.SuspendLayout();
             this.ToolsBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mojodi)).BeginInit();
@@ -496,7 +498,9 @@
             this.comboItem32,
             this.comboItem33,
             this.comboItem34,
-            this.comboItem35});
+            this.comboItem35,
+            this.comboItem26,
+            this.comboItem27});
             this.screensize.Location = new System.Drawing.Point(5, 97);
             this.screensize.Name = "screensize";
             this.screensize.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -506,25 +510,29 @@
             // 
             // comboItem32
             // 
+            this.comboItem32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
             this.comboItem32.Text = "مینی";
             this.comboItem32.TextAlignment = System.Drawing.StringAlignment.Center;
             this.comboItem32.TextLineAlignment = System.Drawing.StringAlignment.Center;
             // 
             // comboItem33
             // 
+            this.comboItem33.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
             this.comboItem33.Text = "نرمال";
             this.comboItem33.TextAlignment = System.Drawing.StringAlignment.Center;
             this.comboItem33.TextLineAlignment = System.Drawing.StringAlignment.Center;
             // 
             // comboItem34
             // 
+            this.comboItem34.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
             this.comboItem34.Text = "پرو";
             this.comboItem34.TextAlignment = System.Drawing.StringAlignment.Center;
             this.comboItem34.TextLineAlignment = System.Drawing.StringAlignment.Center;
             // 
             // comboItem35
             // 
-            this.comboItem35.Text = "مکث / یولترا / پلاس";
+            this.comboItem35.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
+            this.comboItem35.Text = "مکس";
             this.comboItem35.TextAlignment = System.Drawing.StringAlignment.Center;
             this.comboItem35.TextLineAlignment = System.Drawing.StringAlignment.Center;
             // 
@@ -1088,6 +1096,20 @@
             this.حذفToolStripMenuItem.Text = "حذف";
             this.حذفToolStripMenuItem.Click += new System.EventHandler(this.حذفToolStripMenuItem_Click);
             // 
+            // comboItem26
+            // 
+            this.comboItem26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
+            this.comboItem26.Text = "یولترا";
+            this.comboItem26.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.comboItem26.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // comboItem27
+            // 
+            this.comboItem27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
+            this.comboItem27.Text = "پلاس";
+            this.comboItem27.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.comboItem27.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            // 
             // ProductPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1198,5 +1220,7 @@
         private System.Windows.Forms.ToolStripMenuItem ویرایشToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem حذفToolStripMenuItem;
         private DevComponents.Editors.ComboItem comboItem25;
+        private DevComponents.Editors.ComboItem comboItem26;
+        private DevComponents.Editors.ComboItem comboItem27;
     }
 }

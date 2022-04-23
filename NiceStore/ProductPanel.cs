@@ -29,7 +29,7 @@ namespace NiceStore
             var DB = from i in DBC.PhoneTBs select i;
             foreach (var item in DB)
             {
-                DGV2.Rows.Add(item.ID,item.Barcode,item.Name,item.Price,item.Mojod,item.Brand);
+                DGV2.Rows.Add(item.ID, item.Barcode, item.Name, item.Price, item.Mojod, item.Brand);
             }
         }
         public void ShowTools()
@@ -44,7 +44,7 @@ namespace NiceStore
         public void ShowResultSearchPhone(String Word)
         {
             DGV2.Rows.Clear();
-            var Result = from i in DBC.PhoneTBs where (i.Name).Contains(Word) || (i.Brand).Contains(Word) || ((i.CPU).ToString()).Contains( Word) || ((i.Barcode).ToString()).Contains(Word) select i;
+            var Result = from i in DBC.PhoneTBs where (i.Name).Contains(Word) || (i.Brand).Contains(Word) || ((i.CPU).ToString()).Contains(Word) || ((i.Barcode).ToString()).Contains(Word) select i;
             foreach (var item in Result)
             {
                 DGV2.Rows.Add(item.ID, item.Barcode, item.Name, item.Price, item.Mojod, item.Brand);
@@ -53,13 +53,13 @@ namespace NiceStore
         public void ShowResultSearchTools(String Word)
         {
             DGV2.Rows.Clear();
-            var Result = from i in DBC.ToolsTBs where (i.Name).Contains( Word ) || (i.Type).Contains( Word) || ((i.Barcode).ToString()).Contains(Word) select i;
+            var Result = from i in DBC.ToolsTBs where (i.Name).Contains(Word) || (i.Type).Contains(Word) || ((i.Barcode).ToString()).Contains(Word) select i;
             foreach (var item in Result)
             {
                 DGV2.Rows.Add(item.ID, item.Barcode, item.Name, item.Price, item.Mojodi, item.Type);
             }
         }
-        
+
         private void comboBoxEx1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Status.Text = "یک گزینه را انتخاب کنید برای نمایش اطلاعات کالا";
@@ -81,120 +81,126 @@ namespace NiceStore
 
         private void AddProductbtn_Click(object sender, EventArgs e)
         {
-            if (SW)
+            try
             {
-                if (PhoneBox.Enabled)
+                if (SW)
                 {
-                    PhoneTB phone = new PhoneTB();
-                    phone.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
-                    phone.Name = name.Text;
-                    phone.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
-                    phone.Mojod = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
-                    phone.Brand = brand.Text;
-                    phone.CPU = Int16.Parse(Fun.ChangeToEnglishNumber(cpu.Text));
-                    phone.ScreenSize = screensize.Text;
-                    phone.RAM = Int16.Parse(Fun.ChangeToEnglishNumber(RAM.Value.ToString()));
-                    if (crud.CreatPhone(phone))
+                    if (PhoneBox.Enabled)
                     {
-                        MessageBox.Show("مبایل اضافه شده است");
-                        Barcode = (int.Parse(barcode.Text) + 1);
-                        ShowPhone();
-                        Fun.ClearTextBoxes(this.Controls);
-                        barcode.Text = Barcode.ToString();
+                        PhoneTB phone = new PhoneTB();
+                        phone.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
+                        phone.Name = name.Text;
+                        phone.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
+                        phone.Mojod = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
+                        phone.Brand = brand.Text;
+                        phone.CPU = Int16.Parse(Fun.ChangeToEnglishNumber(cpu.Text));
+                        phone.ScreenSize = screensize.Text;
+                        phone.RAM = Int16.Parse(Fun.ChangeToEnglishNumber(RAM.Value.ToString()));
+                        if (crud.CreatPhone(phone))
+                        {
+                            Status.Text = "مبایل اضافه شده است";
+                            Barcode = (int.Parse(barcode.Text) + 1);
+                            ShowPhone();
+                            Fun.ClearTextBoxes(this.Controls);
+                            barcode.Text = Barcode.ToString();
+                        }
+                        else
+                        {
+                            Status.Text = "اطلاعات تکراری می باشد";
+                        }
+                    }
+                    else if (ToolsBox.Enabled)
+                    {
+                        ToolsTB tool = new ToolsTB();
+                        tool.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
+                        tool.Name = name.Text;
+                        tool.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
+                        tool.Mojodi = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
+                        tool.Type = Type.Text;
+                        if (crud.CreatTools(tool))
+                        {
+                            Status.Text = "کالا اضافه شده است";
+                            Barcode = (int.Parse(barcode.Text) + 1);
+                            Fun.ClearTextBoxes(this.Controls);
+                            barcode.Text = Barcode.ToString();
+                            ShowTools();
+                        }
+                        else
+                        {
+                            Status.Text = "کالا تکراری می باشد";
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("اطلاعات تکراری می باشد");
+                        Status.Text = "یک نوع کالا را انتخاب کنید";
                     }
                 }
-                else if (ToolsBox.Enabled)
+                else if (!SW)
                 {
-                    ToolsTB tool = new ToolsTB();
-                    tool.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
-                    tool.Name = name.Text;
-                    tool.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
-                    tool.Mojodi = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
-                    tool.Type = Type.Text;
-                    if (crud.CreatTools(tool))
+                    if (R2.Checked || comboBoxEx1.SelectedIndex == 0)
                     {
-                        MessageBox.Show("کالا اضافه شده است");
-                        Barcode = (int.Parse(barcode.Text) + 1);
-                        Fun.ClearTextBoxes(this.Controls);
-                        barcode.Text = Barcode.ToString();
-                        ShowTools();
+                        PhoneTB phone = new PhoneTB();
+                        phone.ID = ID;
+                        phone.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
+                        phone.Name = name.Text;
+                        phone.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
+                        phone.Mojod = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
+                        phone.Brand = brand.Text;
+                        phone.CPU = Int16.Parse(Fun.ChangeToEnglishNumber(cpu.Text));
+                        phone.ScreenSize = screensize.Text;
+                        phone.RAM = Int16.Parse(Fun.ChangeToEnglishNumber(RAM.Value.ToString()));
+                        if (crud.EditPhone(phone))
+                        {
+                            Status.Text = "مبایل ویرایش شده است";
+                            Barcode = (int.Parse(barcode.Text) + 1);
+                            ShowPhone();
+                            Fun.ClearTextBoxes(this.Controls);
+                            barcode.Text = Barcode.ToString();
+                            AddProductbtn.Text = "افزودن کالا";
+                        }
+                        else
+                        {
+                            Status.Text="اطلاعات تکراری می باشد";
+                        }
+
                     }
-                    else
+                    else if (R1.Checked || comboBoxEx1.SelectedIndex == 1)
                     {
-                        MessageBox.Show("کالا تکراری می باشد");
+                        ToolsTB tool = new ToolsTB();
+                        tool.ID = ID;
+                        tool.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
+                        tool.Name = name.Text;
+                        tool.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
+                        tool.Mojodi = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
+                        tool.Type = Type.Text;
+                        if (crud.EditTools(tool))
+                        {
+                            Status.Text = "کالا ویرایش شده است";
+                            Barcode = (int.Parse(barcode.Text) + 1);
+                            Fun.ClearTextBoxes(this.Controls);
+                            barcode.Text = Barcode.ToString();
+                            ShowTools();
+                            AddProductbtn.Text = "افزودن کالا";
+                        }
+                        else
+                        {
+                            Status.Text = "کالا تکراری می باشد";
+                        }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("یک نوع کالا را انتخاب کنید");
+                    Status.Text = "یک نوع کالا را انتخاب کنید";
                 }
+
             }
-            else if(!SW)
+            catch
             {
-                if (R2.Checked || comboBoxEx1.SelectedIndex == 0)
-                {
-                    PhoneTB phone = new PhoneTB();
-                    phone.ID = ID;
-                    phone.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
-                    phone.Name = name.Text;
-                    phone.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
-                    phone.Mojod = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
-                    phone.Brand = brand.Text;
-                    phone.CPU = Int16.Parse(Fun.ChangeToEnglishNumber(cpu.Text));
-                    phone.ScreenSize = screensize.Text;
-                    phone.RAM = Int16.Parse(Fun.ChangeToEnglishNumber(RAM.Value.ToString()));
-                    if (crud.EditPhone(phone))
-                    {
-                        MessageBox.Show("مبایل ویرایش شده است");
-                        Barcode = (int.Parse(barcode.Text) + 1);
-                        ShowPhone();
-                        Fun.ClearTextBoxes(this.Controls);
-                        barcode.Text = Barcode.ToString();
-                        AddProductbtn.Text = "افزودن کالا";
-                    }
-                    else
-                    {
-                        MessageBox.Show("اطلاعات تکراری می باشد");
-                    }
 
-                } else if (R1.Checked || comboBoxEx1.SelectedIndex == 1)
-                {
-                    ToolsTB tool = new ToolsTB();
-                    tool.ID = ID;
-                    tool.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
-                    tool.Name = name.Text;
-                    tool.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
-                    tool.Mojodi = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
-                    tool.Type = Type.Text;
-                    if (crud.EditTools(tool))
-                    {
-                        MessageBox.Show("کالا ویرایش شده است");
-                        Barcode = (int.Parse(barcode.Text) + 1);
-                        Fun.ClearTextBoxes(this.Controls);
-                        barcode.Text = Barcode.ToString();
-                        ShowTools();
-                        AddProductbtn.Text = "افزودن کالا";
-                    }
-                    else
-                    {
-                        MessageBox.Show("کالا تکراری می باشد");
-                    }
-                }
             }
-            else
-            {
-                MessageBox.Show("یک نوع کالا را انتخاب کنید");
-            }
-        }
 
-        private void ProductPanel_Load(object sender, EventArgs e)
-        {
-        }
 
+        }
         private void R1_Click(object sender, EventArgs e)
         {
             if (R1.Checked)
@@ -311,6 +317,11 @@ namespace NiceStore
             {
                 ShowResultSearchPhone(searchtxt.Text);
             }
+        }
+
+        private void ProductPanel_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
