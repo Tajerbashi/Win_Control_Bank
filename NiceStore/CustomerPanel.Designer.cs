@@ -39,6 +39,9 @@
             this.CuSearchtxt = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.label3 = new System.Windows.Forms.Label();
             this.DGV1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerTBBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CuSearchbtn = new DevComponents.DotNetBar.ButtonX();
             this.niceStoreDBDataSet = new NiceStore.NiceStoreDBDataSet();
@@ -49,9 +52,6 @@
             this.حذفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGV1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerTBBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.niceStoreDBDataSet)).BeginInit();
@@ -179,6 +179,24 @@
             this.DGV1.TabIndex = 7;
             this.DGV1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DGV1_MouseClick);
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "ID";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 5;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "نام";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 370;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "تلفن";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 300;
+            // 
             // customerTBBindingSource1
             // 
             this.customerTBBindingSource1.DataSource = typeof(NiceStore.CustomerTB);
@@ -256,24 +274,6 @@
             this.pictureBox5.TabIndex = 10;
             this.pictureBox5.TabStop = false;
             this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "ID";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 5;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "نام";
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 370;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "تلفن";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 300;
             // 
             // CustomerPanel
             // 

@@ -85,6 +85,7 @@
     <Compile Include="FactorTB.cs">
       <DependentUpon>DBF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Function.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

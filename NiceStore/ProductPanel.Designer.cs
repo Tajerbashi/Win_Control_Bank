@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.AddProductbtn = new System.Windows.Forms.Button();
@@ -41,6 +44,7 @@
             this.comboItem13 = new DevComponents.Editors.ComboItem();
             this.comboItem14 = new DevComponents.Editors.ComboItem();
             this.comboItem15 = new DevComponents.Editors.ComboItem();
+            this.comboItem24 = new DevComponents.Editors.ComboItem();
             this.comboBoxEx1 = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.comboItem1 = new DevComponents.Editors.ComboItem();
             this.comboItem2 = new DevComponents.Editors.ComboItem();
@@ -54,6 +58,11 @@
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.PhoneBox = new System.Windows.Forms.GroupBox();
+            this.screensize = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.comboItem32 = new DevComponents.Editors.ComboItem();
+            this.comboItem33 = new DevComponents.Editors.ComboItem();
+            this.comboItem34 = new DevComponents.Editors.ComboItem();
+            this.comboItem35 = new DevComponents.Editors.ComboItem();
             this.labelX9 = new DevComponents.DotNetBar.LabelX();
             this.labelX8 = new DevComponents.DotNetBar.LabelX();
             this.labelX7 = new DevComponents.DotNetBar.LabelX();
@@ -66,7 +75,6 @@
             this.comboItem7 = new DevComponents.Editors.ComboItem();
             this.comboItem8 = new DevComponents.Editors.ComboItem();
             this.RAM = new System.Windows.Forms.NumericUpDown();
-            this.screensize = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.cpu = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.comboItem16 = new DevComponents.Editors.ComboItem();
             this.comboItem17 = new DevComponents.Editors.ComboItem();
@@ -77,6 +85,7 @@
             this.comboItem22 = new DevComponents.Editors.ComboItem();
             this.comboItem23 = new DevComponents.Editors.ComboItem();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.Status = new System.Windows.Forms.Label();
             this.searchBtn = new DevComponents.DotNetBar.ButtonX();
             this.labelX14 = new DevComponents.DotNetBar.LabelX();
             this.searchtxt = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -84,7 +93,26 @@
             this.R2 = new System.Windows.Forms.RadioButton();
             this.R1 = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Details = new System.Windows.Forms.Panel();
+            this.RamLable = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.ScreenLabel = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.BrandLable = new System.Windows.Forms.Label();
+            this.CpuLable = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.DGV2 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ویرایشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.حذفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comboItem25 = new DevComponents.Editors.ComboItem();
             this.groupBox1.SuspendLayout();
             this.ToolsBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mojodi)).BeginInit();
@@ -92,7 +120,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.RAM)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.Details.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV2)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -113,9 +143,9 @@
             this.groupBox1.Controls.Add(this.PhoneBox);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
-            this.groupBox1.Location = new System.Drawing.Point(363, 4);
+            this.groupBox1.Location = new System.Drawing.Point(458, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(338, 644);
+            this.groupBox1.Size = new System.Drawing.Size(239, 644);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "افزودن کالا :";
@@ -125,21 +155,22 @@
             this.buttonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonX1.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.buttonX1.Location = new System.Drawing.Point(14, 592);
+            this.buttonX1.Location = new System.Drawing.Point(11, 592);
             this.buttonX1.Name = "buttonX1";
             this.buttonX1.Size = new System.Drawing.Size(37, 38);
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX1.TabIndex = 18;
             this.buttonX1.Text = "X";
+            this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
             // 
             // AddProductbtn
             // 
             this.AddProductbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(165)))), ((int)(((byte)(0)))));
             this.AddProductbtn.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.AddProductbtn.ForeColor = System.Drawing.Color.White;
-            this.AddProductbtn.Location = new System.Drawing.Point(61, 592);
+            this.AddProductbtn.Location = new System.Drawing.Point(58, 592);
             this.AddProductbtn.Name = "AddProductbtn";
-            this.AddProductbtn.Size = new System.Drawing.Size(262, 38);
+            this.AddProductbtn.Size = new System.Drawing.Size(170, 38);
             this.AddProductbtn.TabIndex = 17;
             this.AddProductbtn.Text = "افزودن کالا";
             this.AddProductbtn.UseVisualStyleBackColor = false;
@@ -152,9 +183,9 @@
             this.ToolsBox.Enabled = false;
             this.ToolsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ToolsBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
-            this.ToolsBox.Location = new System.Drawing.Point(6, 461);
+            this.ToolsBox.Location = new System.Drawing.Point(5, 458);
             this.ToolsBox.Name = "ToolsBox";
-            this.ToolsBox.Size = new System.Drawing.Size(326, 111);
+            this.ToolsBox.Size = new System.Drawing.Size(229, 100);
             this.ToolsBox.TabIndex = 16;
             this.ToolsBox.TabStop = false;
             this.ToolsBox.Text = "لوازم جانبی :";
@@ -165,11 +196,11 @@
             // 
             // 
             this.labelX10.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX10.Font = new System.Drawing.Font("MRT_Mitra_4", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.labelX10.Font = new System.Drawing.Font("MRT_Mitra_4", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.labelX10.ForeColor = System.Drawing.Color.Black;
-            this.labelX10.Location = new System.Drawing.Point(156, 32);
+            this.labelX10.Location = new System.Drawing.Point(90, 25);
             this.labelX10.Name = "labelX10";
-            this.labelX10.Size = new System.Drawing.Size(159, 23);
+            this.labelX10.Size = new System.Drawing.Size(130, 23);
             this.labelX10.TabIndex = 23;
             this.labelX10.Text = "دسته بندی لوازم جانبی";
             this.labelX10.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -190,11 +221,12 @@
             this.comboItem12,
             this.comboItem13,
             this.comboItem14,
-            this.comboItem15});
-            this.Type.Location = new System.Drawing.Point(10, 61);
+            this.comboItem15,
+            this.comboItem24});
+            this.Type.Location = new System.Drawing.Point(9, 54);
             this.Type.Name = "Type";
             this.Type.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Type.Size = new System.Drawing.Size(303, 28);
+            this.Type.Size = new System.Drawing.Size(214, 28);
             this.Type.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.Type.TabIndex = 9;
             // 
@@ -247,6 +279,13 @@
             this.comboItem15.TextAlignment = System.Drawing.StringAlignment.Center;
             this.comboItem15.TextLineAlignment = System.Drawing.StringAlignment.Center;
             // 
+            // comboItem24
+            // 
+            this.comboItem24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
+            this.comboItem24.Text = "متفرقه";
+            this.comboItem24.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.comboItem24.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            // 
             // comboBoxEx1
             // 
             this.comboBoxEx1.DisplayMember = "Text";
@@ -259,10 +298,10 @@
             this.comboBoxEx1.Items.AddRange(new object[] {
             this.comboItem1,
             this.comboItem2});
-            this.comboBoxEx1.Location = new System.Drawing.Point(9, 46);
+            this.comboBoxEx1.Location = new System.Drawing.Point(11, 27);
             this.comboBoxEx1.Name = "comboBoxEx1";
             this.comboBoxEx1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboBoxEx1.Size = new System.Drawing.Size(245, 28);
+            this.comboBoxEx1.Size = new System.Drawing.Size(163, 28);
             this.comboBoxEx1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.comboBoxEx1.TabIndex = 0;
             this.comboBoxEx1.SelectedIndexChanged += new System.EventHandler(this.comboBoxEx1_SelectedIndexChanged);
@@ -290,12 +329,14 @@
             this.price.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.price.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.price.ForeColor = System.Drawing.Color.Black;
-            this.price.Location = new System.Drawing.Point(9, 148);
+            this.price.Location = new System.Drawing.Point(11, 165);
+            this.price.MaxLength = 10;
             this.price.Name = "price";
             this.price.PreventEnterBeep = true;
-            this.price.Size = new System.Drawing.Size(245, 27);
+            this.price.Size = new System.Drawing.Size(168, 27);
             this.price.TabIndex = 3;
             this.price.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.price.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.price_KeyPress);
             // 
             // name
             // 
@@ -306,10 +347,11 @@
             this.name.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.name.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.name.ForeColor = System.Drawing.Color.Black;
-            this.name.Location = new System.Drawing.Point(9, 114);
+            this.name.Location = new System.Drawing.Point(11, 131);
+            this.name.MaxLength = 20;
             this.name.Name = "name";
             this.name.PreventEnterBeep = true;
-            this.name.Size = new System.Drawing.Size(245, 27);
+            this.name.Size = new System.Drawing.Size(168, 27);
             this.name.TabIndex = 2;
             this.name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -322,20 +364,22 @@
             this.barcode.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.barcode.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.barcode.ForeColor = System.Drawing.Color.Black;
-            this.barcode.Location = new System.Drawing.Point(9, 80);
+            this.barcode.Location = new System.Drawing.Point(11, 97);
+            this.barcode.MaxLength = 10;
             this.barcode.Name = "barcode";
             this.barcode.PreventEnterBeep = true;
-            this.barcode.Size = new System.Drawing.Size(245, 27);
+            this.barcode.Size = new System.Drawing.Size(168, 27);
             this.barcode.TabIndex = 1;
             this.barcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.barcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.price_KeyPress);
             // 
             // mojodi
             // 
             this.mojodi.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.mojodi.ForeColor = System.Drawing.Color.Black;
-            this.mojodi.Location = new System.Drawing.Point(9, 182);
+            this.mojodi.Location = new System.Drawing.Point(11, 199);
             this.mojodi.Name = "mojodi";
-            this.mojodi.Size = new System.Drawing.Size(245, 27);
+            this.mojodi.Size = new System.Drawing.Size(168, 27);
             this.mojodi.TabIndex = 4;
             this.mojodi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -345,11 +389,11 @@
             // 
             // 
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX5.Font = new System.Drawing.Font("MRT_Mitra_4", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.labelX5.Font = new System.Drawing.Font("MRT_Mitra_4", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.labelX5.ForeColor = System.Drawing.Color.Black;
-            this.labelX5.Location = new System.Drawing.Point(261, 184);
+            this.labelX5.Location = new System.Drawing.Point(182, 199);
             this.labelX5.Name = "labelX5";
-            this.labelX5.Size = new System.Drawing.Size(75, 23);
+            this.labelX5.Size = new System.Drawing.Size(54, 23);
             this.labelX5.TabIndex = 14;
             this.labelX5.Text = "موجودی :";
             this.labelX5.TextAlignment = System.Drawing.StringAlignment.Far;
@@ -361,11 +405,11 @@
             // 
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Font = new System.Drawing.Font("MRT_Mitra_4", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.labelX4.Font = new System.Drawing.Font("MRT_Mitra_4", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.labelX4.ForeColor = System.Drawing.Color.Black;
-            this.labelX4.Location = new System.Drawing.Point(261, 151);
+            this.labelX4.Location = new System.Drawing.Point(182, 166);
             this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(75, 23);
+            this.labelX4.Size = new System.Drawing.Size(54, 23);
             this.labelX4.TabIndex = 13;
             this.labelX4.Text = "قیمت کالا :";
             this.labelX4.TextAlignment = System.Drawing.StringAlignment.Far;
@@ -377,11 +421,11 @@
             // 
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX3.Font = new System.Drawing.Font("MRT_Mitra_4", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.labelX3.Font = new System.Drawing.Font("MRT_Mitra_4", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.labelX3.ForeColor = System.Drawing.Color.Black;
-            this.labelX3.Location = new System.Drawing.Point(261, 116);
+            this.labelX3.Location = new System.Drawing.Point(181, 132);
             this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(75, 23);
+            this.labelX3.Size = new System.Drawing.Size(54, 23);
             this.labelX3.TabIndex = 12;
             this.labelX3.Text = "نام کالا :";
             this.labelX3.TextAlignment = System.Drawing.StringAlignment.Far;
@@ -393,11 +437,11 @@
             // 
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Font = new System.Drawing.Font("MRT_Mitra_4", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.labelX2.Font = new System.Drawing.Font("MRT_Mitra_4", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.labelX2.ForeColor = System.Drawing.Color.Black;
-            this.labelX2.Location = new System.Drawing.Point(261, 82);
+            this.labelX2.Location = new System.Drawing.Point(183, 96);
             this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(75, 23);
+            this.labelX2.Size = new System.Drawing.Size(54, 23);
             this.labelX2.TabIndex = 11;
             this.labelX2.Text = "بارکد :";
             this.labelX2.TextAlignment = System.Drawing.StringAlignment.Far;
@@ -409,11 +453,11 @@
             // 
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Font = new System.Drawing.Font("MRT_Mitra_4", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.labelX1.Font = new System.Drawing.Font("MRT_Mitra_4", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.labelX1.ForeColor = System.Drawing.Color.Black;
-            this.labelX1.Location = new System.Drawing.Point(261, 47);
+            this.labelX1.Location = new System.Drawing.Point(175, 27);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(75, 23);
+            this.labelX1.Size = new System.Drawing.Size(65, 23);
             this.labelX1.TabIndex = 10;
             this.labelX1.Text = "دسته بندی :";
             this.labelX1.TextAlignment = System.Drawing.StringAlignment.Far;
@@ -421,23 +465,68 @@
             // 
             // PhoneBox
             // 
+            this.PhoneBox.Controls.Add(this.screensize);
             this.PhoneBox.Controls.Add(this.labelX9);
             this.PhoneBox.Controls.Add(this.labelX8);
             this.PhoneBox.Controls.Add(this.labelX7);
             this.PhoneBox.Controls.Add(this.labelX6);
             this.PhoneBox.Controls.Add(this.brand);
             this.PhoneBox.Controls.Add(this.RAM);
-            this.PhoneBox.Controls.Add(this.screensize);
             this.PhoneBox.Controls.Add(this.cpu);
             this.PhoneBox.Enabled = false;
             this.PhoneBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PhoneBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
-            this.PhoneBox.Location = new System.Drawing.Point(6, 258);
+            this.PhoneBox.Location = new System.Drawing.Point(5, 268);
             this.PhoneBox.Name = "PhoneBox";
-            this.PhoneBox.Size = new System.Drawing.Size(326, 181);
+            this.PhoneBox.Size = new System.Drawing.Size(229, 181);
             this.PhoneBox.TabIndex = 5;
             this.PhoneBox.TabStop = false;
             this.PhoneBox.Text = "تلفن همراه :";
+            // 
+            // screensize
+            // 
+            this.screensize.DisplayMember = "Text";
+            this.screensize.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.screensize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.screensize.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.screensize.ForeColor = System.Drawing.Color.Black;
+            this.screensize.FormattingEnabled = true;
+            this.screensize.ItemHeight = 22;
+            this.screensize.Items.AddRange(new object[] {
+            this.comboItem32,
+            this.comboItem33,
+            this.comboItem34,
+            this.comboItem35});
+            this.screensize.Location = new System.Drawing.Point(5, 97);
+            this.screensize.Name = "screensize";
+            this.screensize.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.screensize.Size = new System.Drawing.Size(155, 28);
+            this.screensize.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.screensize.TabIndex = 7;
+            // 
+            // comboItem32
+            // 
+            this.comboItem32.Text = "مینی";
+            this.comboItem32.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.comboItem32.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // comboItem33
+            // 
+            this.comboItem33.Text = "نرمال";
+            this.comboItem33.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.comboItem33.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // comboItem34
+            // 
+            this.comboItem34.Text = "پرو";
+            this.comboItem34.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.comboItem34.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // comboItem35
+            // 
+            this.comboItem35.Text = "مکث / یولترا / پلاس";
+            this.comboItem35.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.comboItem35.TextLineAlignment = System.Drawing.StringAlignment.Center;
             // 
             // labelX9
             // 
@@ -445,9 +534,9 @@
             // 
             // 
             this.labelX9.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX9.Font = new System.Drawing.Font("MRT_Mitra_4", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.labelX9.Font = new System.Drawing.Font("MRT_Mitra_4", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.labelX9.ForeColor = System.Drawing.Color.Black;
-            this.labelX9.Location = new System.Drawing.Point(243, 136);
+            this.labelX9.Location = new System.Drawing.Point(165, 132);
             this.labelX9.Name = "labelX9";
             this.labelX9.Size = new System.Drawing.Size(63, 23);
             this.labelX9.TabIndex = 18;
@@ -461,11 +550,11 @@
             // 
             // 
             this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX8.Font = new System.Drawing.Font("MRT_Mitra_4", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.labelX8.Font = new System.Drawing.Font("MRT_Mitra_4", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.labelX8.ForeColor = System.Drawing.Color.Black;
-            this.labelX8.Location = new System.Drawing.Point(244, 102);
+            this.labelX8.Location = new System.Drawing.Point(167, 98);
             this.labelX8.Name = "labelX8";
-            this.labelX8.Size = new System.Drawing.Size(75, 23);
+            this.labelX8.Size = new System.Drawing.Size(61, 23);
             this.labelX8.TabIndex = 17;
             this.labelX8.Text = "سایز صفحه :";
             this.labelX8.TextAlignment = System.Drawing.StringAlignment.Far;
@@ -477,11 +566,11 @@
             // 
             // 
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX7.Font = new System.Drawing.Font("MRT_Mitra_4", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.labelX7.Font = new System.Drawing.Font("MRT_Mitra_4", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.labelX7.ForeColor = System.Drawing.Color.Black;
-            this.labelX7.Location = new System.Drawing.Point(243, 66);
+            this.labelX7.Location = new System.Drawing.Point(167, 62);
             this.labelX7.Name = "labelX7";
-            this.labelX7.Size = new System.Drawing.Size(63, 23);
+            this.labelX7.Size = new System.Drawing.Size(38, 23);
             this.labelX7.TabIndex = 16;
             this.labelX7.Text = "CPU :";
             this.labelX7.TextAlignment = System.Drawing.StringAlignment.Far;
@@ -493,11 +582,11 @@
             // 
             // 
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX6.Font = new System.Drawing.Font("MRT_Mitra_4", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.labelX6.Font = new System.Drawing.Font("MRT_Mitra_4", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.labelX6.ForeColor = System.Drawing.Color.Black;
-            this.labelX6.Location = new System.Drawing.Point(244, 31);
+            this.labelX6.Location = new System.Drawing.Point(166, 27);
             this.labelX6.Name = "labelX6";
-            this.labelX6.Size = new System.Drawing.Size(63, 23);
+            this.labelX6.Size = new System.Drawing.Size(47, 23);
             this.labelX6.TabIndex = 15;
             this.labelX6.Text = "برند کالا :";
             this.labelX6.TextAlignment = System.Drawing.StringAlignment.Far;
@@ -518,11 +607,12 @@
             this.comboItem5,
             this.comboItem6,
             this.comboItem7,
-            this.comboItem8});
-            this.brand.Location = new System.Drawing.Point(17, 31);
+            this.comboItem8,
+            this.comboItem25});
+            this.brand.Location = new System.Drawing.Point(5, 27);
             this.brand.Name = "brand";
             this.brand.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.brand.Size = new System.Drawing.Size(219, 28);
+            this.brand.Size = new System.Drawing.Size(155, 28);
             this.brand.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.brand.TabIndex = 5;
             // 
@@ -572,7 +662,7 @@
             // 
             this.RAM.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.RAM.ForeColor = System.Drawing.Color.Black;
-            this.RAM.Location = new System.Drawing.Point(17, 135);
+            this.RAM.Location = new System.Drawing.Point(5, 131);
             this.RAM.Maximum = new decimal(new int[] {
             10,
             0,
@@ -584,7 +674,7 @@
             0,
             0});
             this.RAM.Name = "RAM";
-            this.RAM.Size = new System.Drawing.Size(219, 27);
+            this.RAM.Size = new System.Drawing.Size(155, 27);
             this.RAM.TabIndex = 8;
             this.RAM.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.RAM.Value = new decimal(new int[] {
@@ -592,22 +682,6 @@
             0,
             0,
             0});
-            // 
-            // screensize
-            // 
-            // 
-            // 
-            // 
-            this.screensize.Border.Class = "TextBoxBorder";
-            this.screensize.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.screensize.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.screensize.ForeColor = System.Drawing.Color.Black;
-            this.screensize.Location = new System.Drawing.Point(17, 101);
-            this.screensize.Name = "screensize";
-            this.screensize.PreventEnterBeep = true;
-            this.screensize.Size = new System.Drawing.Size(219, 27);
-            this.screensize.TabIndex = 7;
-            this.screensize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cpu
             // 
@@ -627,10 +701,10 @@
             this.comboItem21,
             this.comboItem22,
             this.comboItem23});
-            this.cpu.Location = new System.Drawing.Point(17, 66);
+            this.cpu.Location = new System.Drawing.Point(5, 62);
             this.cpu.Name = "cpu";
             this.cpu.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cpu.Size = new System.Drawing.Size(219, 28);
+            this.cpu.Size = new System.Drawing.Size(155, 28);
             this.cpu.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cpu.TabIndex = 6;
             // 
@@ -692,6 +766,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.Status);
             this.groupBox3.Controls.Add(this.searchBtn);
             this.groupBox3.Controls.Add(this.labelX14);
             this.groupBox3.Controls.Add(this.searchtxt);
@@ -702,20 +777,32 @@
             this.groupBox3.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.groupBox3.Location = new System.Drawing.Point(4, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(354, 645);
+            this.groupBox3.Size = new System.Drawing.Size(448, 645);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
+            // 
+            // Status
+            // 
+            this.Status.AutoSize = true;
+            this.Status.Location = new System.Drawing.Point(181, 130);
+            this.Status.Name = "Status";
+            this.Status.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Status.Size = new System.Drawing.Size(86, 20);
+            this.Status.TabIndex = 16;
+            this.Status.Text = "نمایش اطلاعات";
+            this.Status.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // searchBtn
             // 
             this.searchBtn.AccessibleRole = System.Windows.Forms.AccessibleRole.SplitButton;
             this.searchBtn.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.searchBtn.Location = new System.Drawing.Point(14, 109);
+            this.searchBtn.Location = new System.Drawing.Point(19, 93);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Shape = new DevComponents.DotNetBar.EllipticalShapeDescriptor();
             this.searchBtn.Size = new System.Drawing.Size(27, 27);
             this.searchBtn.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.searchBtn.TabIndex = 15;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
             // 
             // labelX14
             // 
@@ -724,7 +811,7 @@
             // 
             this.labelX14.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX14.Font = new System.Drawing.Font("MRT_Mitra_4", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.labelX14.Location = new System.Drawing.Point(270, 72);
+            this.labelX14.Location = new System.Drawing.Point(345, 56);
             this.labelX14.Name = "labelX14";
             this.labelX14.Size = new System.Drawing.Size(75, 35);
             this.labelX14.TabIndex = 13;
@@ -738,10 +825,11 @@
             this.searchtxt.Border.Class = "TextBoxBorder";
             this.searchtxt.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.searchtxt.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.searchtxt.Location = new System.Drawing.Point(52, 109);
+            this.searchtxt.Location = new System.Drawing.Point(56, 93);
+            this.searchtxt.MaxLength = 50;
             this.searchtxt.Name = "searchtxt";
             this.searchtxt.PreventEnterBeep = true;
-            this.searchtxt.Size = new System.Drawing.Size(296, 27);
+            this.searchtxt.Size = new System.Drawing.Size(367, 27);
             this.searchtxt.TabIndex = 14;
             // 
             // labelX11
@@ -751,7 +839,7 @@
             // 
             this.labelX11.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX11.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.labelX11.Location = new System.Drawing.Point(223, 16);
+            this.labelX11.Location = new System.Drawing.Point(297, 16);
             this.labelX11.Name = "labelX11";
             this.labelX11.Size = new System.Drawing.Size(123, 23);
             this.labelX11.TabIndex = 11;
@@ -761,44 +849,244 @@
             // 
             this.R2.AutoSize = true;
             this.R2.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.R2.Location = new System.Drawing.Point(23, 16);
+            this.R2.Location = new System.Drawing.Point(212, 15);
             this.R2.Name = "R2";
             this.R2.Size = new System.Drawing.Size(79, 24);
             this.R2.TabIndex = 13;
             this.R2.TabStop = true;
             this.R2.Text = "تلفن همراه";
             this.R2.UseVisualStyleBackColor = true;
+            this.R2.Click += new System.EventHandler(this.R1_Click);
             // 
             // R1
             // 
             this.R1.AutoSize = true;
             this.R1.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.R1.Location = new System.Drawing.Point(134, 16);
+            this.R1.Location = new System.Drawing.Point(123, 15);
             this.R1.Name = "R1";
             this.R1.Size = new System.Drawing.Size(83, 24);
             this.R1.TabIndex = 12;
             this.R1.TabStop = true;
             this.R1.Text = "لوازم جانبی";
             this.R1.UseVisualStyleBackColor = true;
+            this.R1.Click += new System.EventHandler(this.R1_Click);
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.dataGridView1);
+            this.groupBox4.Controls.Add(this.Details);
+            this.groupBox4.Controls.Add(this.DGV2);
             this.groupBox4.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.groupBox4.Location = new System.Drawing.Point(6, 147);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(342, 492);
+            this.groupBox4.Size = new System.Drawing.Size(442, 492);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             // 
-            // dataGridView1
+            // Details
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(213)))), ((int)(((byte)(184)))));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(336, 484);
-            this.dataGridView1.TabIndex = 0;
+            this.Details.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.Details.Controls.Add(this.RamLable);
+            this.Details.Controls.Add(this.label8);
+            this.Details.Controls.Add(this.ScreenLabel);
+            this.Details.Controls.Add(this.label6);
+            this.Details.Controls.Add(this.BrandLable);
+            this.Details.Controls.Add(this.CpuLable);
+            this.Details.Controls.Add(this.label2);
+            this.Details.Controls.Add(this.label1);
+            this.Details.Location = new System.Drawing.Point(6, 413);
+            this.Details.Name = "Details";
+            this.Details.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.Details.Size = new System.Drawing.Size(430, 79);
+            this.Details.TabIndex = 1;
+            // 
+            // RamLable
+            // 
+            this.RamLable.AutoSize = true;
+            this.RamLable.Location = new System.Drawing.Point(52, 42);
+            this.RamLable.Name = "RamLable";
+            this.RamLable.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.RamLable.Size = new System.Drawing.Size(33, 20);
+            this.RamLable.TabIndex = 7;
+            this.RamLable.Text = "----";
+            this.RamLable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 42);
+            this.label8.Name = "label8";
+            this.label8.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label8.Size = new System.Drawing.Size(48, 20);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "RAM :";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ScreenLabel
+            // 
+            this.ScreenLabel.AutoSize = true;
+            this.ScreenLabel.Location = new System.Drawing.Point(308, 42);
+            this.ScreenLabel.Name = "ScreenLabel";
+            this.ScreenLabel.Size = new System.Drawing.Size(33, 20);
+            this.ScreenLabel.TabIndex = 5;
+            this.ScreenLabel.Text = "----";
+            this.ScreenLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(340, 42);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 20);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "ابعاد تصویر :";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // BrandLable
+            // 
+            this.BrandLable.AutoSize = true;
+            this.BrandLable.Location = new System.Drawing.Point(294, 9);
+            this.BrandLable.Name = "BrandLable";
+            this.BrandLable.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.BrandLable.Size = new System.Drawing.Size(33, 20);
+            this.BrandLable.TabIndex = 3;
+            this.BrandLable.Text = "----";
+            this.BrandLable.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // CpuLable
+            // 
+            this.CpuLable.AutoSize = true;
+            this.CpuLable.Location = new System.Drawing.Point(52, 9);
+            this.CpuLable.Name = "CpuLable";
+            this.CpuLable.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.CpuLable.Size = new System.Drawing.Size(33, 20);
+            this.CpuLable.TabIndex = 2;
+            this.CpuLable.Text = "----";
+            this.CpuLable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 9);
+            this.label2.Name = "label2";
+            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label2.Size = new System.Drawing.Size(46, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "CPU :";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(376, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "برند :";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // DGV2
+            // 
+            this.DGV2.AllowUserToAddRows = false;
+            this.DGV2.AllowUserToDeleteRows = false;
+            this.DGV2.AllowUserToOrderColumns = true;
+            this.DGV2.AllowUserToResizeColumns = false;
+            this.DGV2.AllowUserToResizeRows = false;
+            this.DGV2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(213)))), ((int)(((byte)(184)))));
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.DGV2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6});
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(213)))), ((int)(((byte)(184)))));
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("MRT_Mitra_4", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV2.DefaultCellStyle = dataGridViewCellStyle14;
+            this.DGV2.EnableHeadersVisualStyles = false;
+            this.DGV2.Location = new System.Drawing.Point(3, 15);
+            this.DGV2.Name = "DGV2";
+            this.DGV2.RowHeadersVisible = false;
+            this.DGV2.Size = new System.Drawing.Size(433, 392);
+            this.DGV2.TabIndex = 0;
+            this.DGV2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV2_CellClick);
+            this.DGV2.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGV2_CellMouseClick);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "ID";
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 5;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "بارکد";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 70;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "نام";
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 80;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "قیمت";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "تعداد";
+            this.Column5.Name = "Column5";
+            this.Column5.Width = 50;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "نوع";
+            this.Column6.Name = "Column6";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ویرایشToolStripMenuItem,
+            this.حذفToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(111, 48);
+            // 
+            // ویرایشToolStripMenuItem
+            // 
+            this.ویرایشToolStripMenuItem.Name = "ویرایشToolStripMenuItem";
+            this.ویرایشToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ویرایشToolStripMenuItem.Text = "ویرایش";
+            this.ویرایشToolStripMenuItem.Click += new System.EventHandler(this.ویرایشToolStripMenuItem_Click);
+            // 
+            // حذفToolStripMenuItem
+            // 
+            this.حذفToolStripMenuItem.Name = "حذفToolStripMenuItem";
+            this.حذفToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.حذفToolStripMenuItem.Text = "حذف";
+            this.حذفToolStripMenuItem.Click += new System.EventHandler(this.حذفToolStripMenuItem_Click);
+            // 
+            // comboItem25
+            // 
+            this.comboItem25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(88)))), ((int)(((byte)(38)))));
+            this.comboItem25.Text = "نوکیا";
+            this.comboItem25.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.comboItem25.TextLineAlignment = System.Drawing.StringAlignment.Center;
             // 
             // ProductPanel
             // 
@@ -809,6 +1097,7 @@
             this.Name = "ProductPanel";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Size = new System.Drawing.Size(704, 657);
+            this.Load += new System.EventHandler(this.ProductPanel_Load);
             this.groupBox1.ResumeLayout(false);
             this.ToolsBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mojodi)).EndInit();
@@ -817,7 +1106,10 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Details.ResumeLayout(false);
+            this.Details.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV2)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -835,7 +1127,6 @@
         private DevComponents.DotNetBar.Controls.TextBoxX name;
         private DevComponents.DotNetBar.Controls.ComboBoxEx brand;
         private System.Windows.Forms.NumericUpDown RAM;
-        private DevComponents.DotNetBar.Controls.TextBoxX screensize;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cpu;
         private DevComponents.DotNetBar.LabelX labelX5;
         private DevComponents.DotNetBar.LabelX labelX4;
@@ -854,8 +1145,6 @@
         private DevComponents.DotNetBar.ButtonX searchBtn;
         private System.Windows.Forms.GroupBox ToolsBox;
         private DevComponents.DotNetBar.LabelX labelX10;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx Type;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private DevComponents.DotNetBar.ButtonX buttonX1;
         private System.Windows.Forms.Button AddProductbtn;
         private DevComponents.Editors.ComboItem comboItem1;
@@ -881,5 +1170,33 @@
         private DevComponents.Editors.ComboItem comboItem21;
         private DevComponents.Editors.ComboItem comboItem22;
         private DevComponents.Editors.ComboItem comboItem23;
+        private System.Windows.Forms.DataGridView DGV2;
+        private System.Windows.Forms.Panel Details;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.Label RamLable;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label ScreenLabel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label BrandLable;
+        private System.Windows.Forms.Label CpuLable;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx screensize;
+        private DevComponents.Editors.ComboItem comboItem32;
+        private DevComponents.Editors.ComboItem comboItem33;
+        private DevComponents.Editors.ComboItem comboItem34;
+        private DevComponents.Editors.ComboItem comboItem35;
+        private System.Windows.Forms.Label Status;
+        private DevComponents.Editors.ComboItem comboItem24;
+        public DevComponents.DotNetBar.Controls.ComboBoxEx Type;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem ویرایشToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem حذفToolStripMenuItem;
+        private DevComponents.Editors.ComboItem comboItem25;
     }
 }

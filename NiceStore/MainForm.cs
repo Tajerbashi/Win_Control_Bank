@@ -31,34 +31,7 @@ namespace NiceStore
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRecRgn(0,0,Width,Height,15,15));
         }
-        #region Functions
-        public void ClearTextBoxes(Control.ControlCollection ctrlCollection)
-        {
-            foreach (Control ctrl in ctrlCollection)
-            {
-                if (ctrl is TextBoxBase)
-                {
-                    ctrl.Text = String.Empty;
-                }
-                else
-                {
-                    ClearTextBoxes(ctrl.Controls);
-                }
-            }
-        }
-        public String ChangeToEnglishNumber(String text)
-        {
-            var englishNumbers = String.Empty;
-            for (var i = 0; i < text.Length; i++)
-            {
-                if (char.IsNumber(text[i])) englishNumbers += char.GetNumericValue(text, i);
-                else englishNumbers += text[i];
-            }
-
-            return englishNumbers;
-        }
-        #endregion
-        NiceStoreDBEntities DB = new NiceStoreDBEntities();
+        
         private void MainForm_Load(object sender, EventArgs e)
         {
             CustomerPanel panel = new CustomerPanel();
