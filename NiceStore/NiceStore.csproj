@@ -161,6 +161,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DBF.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="DBF.edmx.diagram">
       <DependentUpon>DBF.edmx</DependentUpon>
     </None>
@@ -222,6 +225,16 @@
       <DependentUpon>DBF.edmx</DependentUpon>
       <LastGenOutput>DBF.cs</LastGenOutput>
     </Content>
+    <None Include="ico\ok-icon.png" />
+    <None Include="ico\check-icon.png" />
+    <None Include="ico\math-add-icon.png" />
+    <None Include="ico\Add-item-icon.png" />
+    <None Include="ico\Search-icon %283%29.png" />
+    <None Include="ico\search-icon %281%29.png" />
+    <None Include="ico\symbol-delete-icon.png" />
+    <None Include="ico\blue-document-cross-icon.png" />
+    <None Include="ico\next-icon.png" />
+    <None Include="ico\close-icon.png" />
     <None Include="ico\iconfinder-social-media-applications-3instagram-4102579_113804.ico" />
     <None Include="ico\emblemweb_93503.ico" />
     <None Include="ico\minimize-icon.png" />

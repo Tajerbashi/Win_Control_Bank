@@ -65,6 +65,7 @@ namespace NiceStore
             Status.Text = "یک گزینه را انتخاب کنید برای نمایش اطلاعات کالا";
             if (comboBoxEx1.SelectedIndex == 0)
             {
+                R2.Checked = true;
                 ToolsBox.Enabled = false;
                 PhoneBox.Enabled = true;
                 ShowPhone();
@@ -72,6 +73,7 @@ namespace NiceStore
             }
             else
             {
+                R1.Checked = true;
                 ToolsBox.Enabled = true;
                 PhoneBox.Enabled = false;
                 ShowTools();
@@ -261,7 +263,7 @@ namespace NiceStore
         {
             if (DialogResult.Yes == MessageBox.Show("اطلاعات مورد نظر را میخواهید ویرایش کنید؟؟؟","تایید درخواست",MessageBoxButtons.YesNo,MessageBoxIcon.Question))
             {
-                if (comboBoxEx1.SelectedIndex == 0 || R2.Checked)
+                if ((comboBoxEx1.SelectedIndex == 0 || R2.Checked) && (comboBoxEx1.SelectedIndex != 1 || !R1.Checked))
                 {
                     PhoneTB phone = crud.GetPhone(ID);
                     barcode.Text = phone.Barcode.ToString();
@@ -273,7 +275,7 @@ namespace NiceStore
                     screensize.Text = phone.ScreenSize;
                     RAM.Value = phone.RAM;
                 }
-                else if (comboBoxEx1.SelectedIndex == 1 || R1.Checked)
+                else if ((comboBoxEx1.SelectedIndex == 1 || R1.Checked)&& (comboBoxEx1.SelectedIndex != 0 || !R2.Checked))
                 {
                     ToolsTB tool = crud.GetTools(ID);
                     barcode.Text = tool.Barcode.ToString();

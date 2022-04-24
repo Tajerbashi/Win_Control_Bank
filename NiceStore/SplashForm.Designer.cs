@@ -32,14 +32,18 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -62,17 +66,15 @@
             this.panel2.Size = new System.Drawing.Size(465, 257);
             this.panel2.TabIndex = 1;
             // 
-            // label1
+            // panel4
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Script MT Bold", 72F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(-21, -24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(296, 115);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "NICE";
+            this.panel4.BackColor = System.Drawing.Color.Chocolate;
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Location = new System.Drawing.Point(0, 98);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(465, 68);
+            this.panel4.TabIndex = 4;
             // 
             // label2
             // 
@@ -86,15 +88,17 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Store";
             // 
-            // panel4
+            // label1
             // 
-            this.panel4.BackColor = System.Drawing.Color.Chocolate;
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Location = new System.Drawing.Point(0, 98);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(465, 68);
-            this.panel4.TabIndex = 4;
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Script MT Bold", 72F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.label1.Location = new System.Drawing.Point(-21, -24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(296, 115);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "NICE";
             // 
             // label3
             // 
@@ -111,6 +115,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Chocolate;
+            this.panel3.Controls.Add(this.panel8);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Location = new System.Drawing.Point(12, 309);
             this.panel3.Name = "panel3";
@@ -143,17 +148,52 @@
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.Sienna;
+            this.panel6.Location = new System.Drawing.Point(614, -5);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(14, 377);
+            this.panel6.TabIndex = 6;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.SaddleBrown;
+            this.panel7.Location = new System.Drawing.Point(588, -6);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(14, 377);
+            this.panel7.TabIndex = 7;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.SaddleBrown;
+            this.panel8.Location = new System.Drawing.Point(576, -3);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(14, 97);
+            this.panel8.TabIndex = 8;
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.Chocolate;
+            this.panel9.Location = new System.Drawing.Point(614, 227);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(14, 42);
+            this.panel9.TabIndex = 7;
+            // 
             // SplashForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(682, 363);
+            this.Controls.Add(this.panel9);
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.panel7);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(165)))), ((int)(((byte)(0)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -183,5 +223,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel9;
     }
 }
