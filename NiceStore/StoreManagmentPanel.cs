@@ -19,7 +19,7 @@ namespace NiceStore
         CRUD crud = new CRUD();
         NiceStoreDBEntities DB = new NiceStoreDBEntities();
         Function Fun = new Function();
-        int ID = -1;
+        bool sw = true;
 
         public void CustomerNameF()
         {
@@ -32,11 +32,7 @@ namespace NiceStore
         public void ProductNameF()
         {
             ProductName.Items.Clear();
-            foreach (var item in DB.PhoneTBs)
-            {
-                ProductName.Items.Add(item.Name);
-            }
-            foreach (var item in DB.ToolsTBs)
+            foreach (var item in DB.ProductTBs)
             {
                 ProductName.Items.Add(item.Name);
             }
@@ -45,6 +41,7 @@ namespace NiceStore
         {
             CustomerNameF();
             ProductNameF();
+            cartcode.Text = Fun.GetLastOrderListCode().ToString();
         }
         private void CustomerName_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -53,27 +50,17 @@ namespace NiceStore
         private void ProductName_SelectedValueChanged(object sender, EventArgs e)
         {
             var Phone= crud.GetPhoneProduct(ProductName.Text);
-            var tool= crud.GetToolsProduct(ProductName.Text);
             if (Phone != null)
             {
-                StatusProduct.Text = "تلفن همراه موجود است";
-
-            }
-            else if (tool != null)
-            {
                 StatusProduct.Text = "کالا موجود است";
-
             }
         }
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            int inputNumber = int.Parse( Fun.ChangeToEnglishNumber(TDD.Text));
-            int index = 0, dtNumber = 0, dbNumber = 0 ;
-            int totalPrice = 0;
-            bool SWAdd = true;
             try
             {
                 #region code
+
                 if (CustomerName.Text.Trim().Length == 0)
                 {
                     MessageBox.Show("نام مشتری را انتخاب کنید");
@@ -92,27 +79,19 @@ namespace NiceStore
                 else
                 {
                     #region Code
-
-                    var Phone = crud.GetPhoneProduct(ProductName.Text);
-                    var tool = crud.GetToolsProduct(ProductName.Text);
+                    int inputNumber = int.Parse(Fun.ChangeToEnglishNumber(TDD.Text));
+                    int index = 0, dtNumber = 0;
+                    int totalPrice = 0;
+                    bool SWAdd = true;
+                    var product = crud.GetPhoneProduct(ProductName.Text);
 
                     foreach (DataGridViewRow row in DGV1.Rows)
                     {
                         foreach (DataGridViewCell cell in row.Cells)
                         {
-                            if (Phone != null)
+                            if (product != null)
                             {
-                                if ( cell.ColumnIndex == 1 && Phone.Barcode.ToString() == cell.Value.ToString() )
-                                {
-                                    index = cell.RowIndex;
-                                    dtNumber = int.Parse(DGV1.Rows[index].Cells[6].Value.ToString()) + inputNumber;
-                                    SWAdd = false;
-                                }
-                            }
-                            else 
-                            if(tool != null)
-                            {
-                                if (cell.ColumnIndex == 1 && tool.Barcode.ToString() == cell.Value.ToString())
+                                if ( cell.ColumnIndex == 1 && product.Barcode.ToString() == cell.Value.ToString() )
                                 {
                                     index = cell.RowIndex;
                                     dtNumber = int.Parse(DGV1.Rows[index].Cells[6].Value.ToString()) + inputNumber;
@@ -124,11 +103,11 @@ namespace NiceStore
 
                     if (SWAdd)
                     {
-                        if (Phone != null)
+                        if (product != null)
                         {
-                            foreach (var item in DB.PhoneTBs)
+                            foreach (var item in DB.ProductTBs)
                             {
-                                if (item.ID == Phone.ID)
+                                if (item.ID == product.ID)
                                 {
                                     if (item.Mojod < dtNumber)
                                     {
@@ -145,35 +124,14 @@ namespace NiceStore
                                 }
                             }
                         }
-                        else if (tool != null)
-                        {
-                            foreach (var item in DB.ToolsTBs)
-                            {
-                                if (item.ID == tool.ID)
-                                {
-                                    if (item.Mojodi < dtNumber)
-                                    {
-                                        String Note1 = "تعداد موجود در انبار کافی نیست";
-                                        String Note2 = "تعداد موجود : ";
-                                        MessageBox.Show(Note1 + "\n" + Note2 + item.Mojodi);
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        totalPrice = inputNumber * item.Price;
-                                        DGV1.Rows.Add(item.ID, item.Barcode, item.Type, item.Name, item.Mojodi, item.Price, inputNumber, totalPrice);
-                                    }
-                                }
-                            }
-                        }
                     }
                     else
                     {
-                        if (Phone != null)
+                        if (product != null)
                         {
-                            foreach (var item in DB.PhoneTBs)
+                            foreach (var item in DB.ProductTBs)
                             {
-                                if (item.ID == Phone.ID)
+                                if (item.ID == product.ID)
                                 {
                                     if (item.Mojod < dtNumber)
                                     {
@@ -185,30 +143,8 @@ namespace NiceStore
                                     else
                                     {
                                         DGV1.Rows.RemoveAt(index);
-                                        totalPrice = (inputNumber + dtNumber) * item.Price;
+                                        totalPrice = (dtNumber) * item.Price;
                                         DGV1.Rows.Add(item.ID, item.Barcode, item.Brand, item.Name, item.Mojod, item.Price, dtNumber, totalPrice);
-                                    }
-                                }
-                            }
-                        }
-                        else if (tool != null)
-                        {
-                            foreach (var item in DB.ToolsTBs)
-                            {
-                                if (item.ID == tool.ID)
-                                {
-                                    if (item.Mojodi < dtNumber)
-                                    {
-                                        String Note1 = "تعداد موجود در انبار کافی نیست";
-                                        String Note2 = "تعداد موجود : ";
-                                        MessageBox.Show(Note1 + "\n" + Note2 + item.Mojodi);
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        DGV1.Rows.RemoveAt(index);
-                                        totalPrice = (inputNumber + dtNumber) * item.Price;
-                                        DGV1.Rows.Add(item.ID, item.Barcode, item.Type, item.Name, item.Mojodi, item.Price, dtNumber, totalPrice);
                                     }
                                 }
                             }
@@ -257,46 +193,116 @@ namespace NiceStore
 
         private void buttonX1_Click(object sender, EventArgs e)
         {
+            int total = 0;
             try
             {
                 if (DialogResult.Yes == MessageBox.Show("آیا تمام کالا های موجود را میخرید؟", "تایید درخواست", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 {
-                    foreach (DataGridViewRow selRow in DGV1.Rows.OfType<DataGridViewRow>().ToArray())
+                    if (sw)
                     {
-                        DGV1.Rows.Remove(selRow);
-                        DGV2.Rows.Add(selRow);
+                        foreach (DataGridViewRow selRow in DGV1.Rows.OfType<DataGridViewRow>().ToArray())
+                        {
+                            DGV1.Rows.Remove(selRow);
+                            DGV2.Rows.Add(selRow);
+                        }
+                        for (int i=0;i<DGV2.Rows.Count;i++)
+                        {
+                            total += int.Parse(DGV2.Rows[i].Cells[7].Value.ToString());
+                        }
+                        TotalFactor.Text = total.ToString();
                     }
+                    else
+                    {
+                        MessageBox.Show("سبد خرید قفل شده است برای اضافه کردن پاک کنید دوباره سبد خرید را پرکنید","خطا",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    }
+                    sw = false;
                 }
             }
             catch
             {
                 MessageBox.Show("از اطلاعات وارد شده مطمیین شوید");
             }
-            
-            
         }
 
         private void DGV1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right || e.Button == MouseButtons.Left)
+            try
             {
-                ID = int.Parse(DGV1.CurrentRow.Cells[0].Value.ToString());
-                DGV1.CurrentRow.Selected = (DGV1.CurrentRow.Selected) ? false : true;
+                if (e.Button == MouseButtons.Right || e.Button == MouseButtons.Left)
+                {
+                    DGV1.CurrentRow.Selected = (DGV1.CurrentRow.Selected) ? false : true;
+                }
+
+            }
+            catch
+            {
+
             }
         }
 
         private void DGV2_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right || e.Button == MouseButtons.Left)
+            try
             {
-                ID = int.Parse(DGV1.CurrentRow.Cells[0].Value.ToString());
-                DGV2.CurrentRow.Selected = (DGV2.CurrentRow.Selected) ? false : true;
+                if (e.Button == MouseButtons.Right || e.Button == MouseButtons.Left)
+                {
+                    DGV2.CurrentRow.Selected = (DGV2.CurrentRow.Selected) ? false : true;
+                }
+            }catch
+            {
+
             }
+            
         }
 
         private void TDD_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void buttonX2_Click(object sender, EventArgs e)
+        {
+            DGV2.Rows.Clear();
+            sw = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DGV1.Rows.Clear();
+            DGV2.Rows.Clear();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CustomerTB customer = crud.GetCustomer(CustomerName.Text);
+            for (int i=0;i<DGV2.RowCount;i++)
+            {
+                OrderItemTB item = new OrderItemTB();
+                int IDD = int.Parse(DGV2.Rows[i].Cells[0].Value.ToString());
+                ProductTB Product= crud.GetProduct(IDD);
+                item.ProductID = Product.ID;
+                item.BuyCount= int.Parse(DGV2.Rows[i].Cells[6].Value.ToString());
+                item.SellPrice= int.Parse(DGV2.Rows[i].Cells[5].Value.ToString());
+                item.TotalPrice= int.Parse(DGV2.Rows[i].Cells[7].Value.ToString());
+                item.Code = int.Parse(cartcode.Text);
+                crud.CreatOdertItem(item);
+
+                OrderItemTB order = crud.GetOrderItem(item.Code);
+
+                OrderListTB list = new OrderListTB();
+                list.OrderItemID = order.ID;
+                list.CustomerID = customer.ID;
+                list.Date = Convert.ToDateTime(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"));
+                list.Code= int.Parse(cartcode.Text);
+                crud.CreatOrderList(list);
+            }
+            DGV2.Rows.Clear();
+            cartcode.Text = (int.Parse(cartcode.Text) + 1).ToString();
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -27,12 +27,12 @@ namespace NiceStore
         {
             foreach (var item in DB.CustomerTBs)
             {
-                if(item.id != customer.id && item.Name==customer.Name && item.Phone == customer.Phone)
+                if(item.ID != customer.ID && item.Name==customer.Name && item.Phone == customer.Phone)
                 {
                     return false;
                 }
             }
-            CustomerTB Customer = DB.CustomerTBs.Where(c => c.id == customer.id).FirstOrDefault();
+            CustomerTB Customer = DB.CustomerTBs.Where(c => c.ID == customer.ID).FirstOrDefault();
             Customer.Name = customer.Name;
             Customer.Phone = customer.Phone;
             DB.SaveChanges();
@@ -40,54 +40,68 @@ namespace NiceStore
         }
         public void DeleteCustomer(int id)
         {
-            CustomerTB customer = (DB.CustomerTBs.Where(c => c.id == id).FirstOrDefault());
+            CustomerTB customer = (DB.CustomerTBs.Where(c => c.ID == id).FirstOrDefault());
             DB.CustomerTBs.Remove(customer);
             DB.SaveChanges();
         }
-
-
-        public bool CreatPhone(PhoneTB phone)
+        public int GetCustomerID(String Name)
         {
-            foreach (var item in DB.PhoneTBs)
+            foreach (var item in DB.CustomerTBs)
             {
-                if ( item.Name == phone.Name && item.Barcode == phone.Barcode )
+                if (item.Name==Name)
+                {
+                    return item.ID;
+                }
+            }
+            return 0;
+        }
+
+        public CustomerTB GetCustomer(String Name)
+        {
+            return (DB.CustomerTBs.Where(c => c.Name==Name).FirstOrDefault());
+        }
+        public bool CreateProduct(ProductTB product)
+        {
+            foreach (var item in DB.ProductTBs)
+            {
+                if ( item.Name == product.Name && item.Barcode == product.Barcode )
                 {
                     return false;
                 }
             }
-            DB.PhoneTBs.Add(phone);
+            DB.ProductTBs.Add(product);
             DB.SaveChanges();
             return true;
         }
-        public bool EditPhone(PhoneTB phone)
+        public bool EditProducr(ProductTB product)
         {
-            foreach (var item in DB.PhoneTBs)
+            foreach (var item in DB.ProductTBs)
             {
-                if (item.ID != phone.ID && item.Name == phone.Name && item.Barcode == phone.Barcode)
+                if (item.ID != product.ID && item.Name == product.Name && item.Barcode == product.Barcode)
                 {
                     return false;
                 }
             }
-            PhoneTB phones = DB.PhoneTBs.Where(c => c.ID == phone.ID).FirstOrDefault();
-            phones.Name = phone.Name;
-            phones.Price = phone.Price;
-            phones.Mojod = phone.Mojod;
-            phones.Brand = phone.Brand;
-            phones.CPU = phone.CPU;
-            phones.ScreenSize = phone.ScreenSize;
-            phones.RAM = phone.RAM;
+            ProductTB products = DB.ProductTBs.Where(c => c.ID == product.ID).FirstOrDefault();
+            products.Name = product.Name;
+            products.Price = product.Price;
+            products.Mojod = product.Mojod;
+            products.Brand = product.Brand;
+            products.CPU = product.CPU;
+            products.ScreenSize = product.ScreenSize;
+            products.Ram = product.Ram;
             DB.SaveChanges();
             return true;
         }
-        public void DeletePhone(int id)
+        public void DeleteProduct(int id)
         {
-            PhoneTB phone = (DB.PhoneTBs.Where(c => c.ID == id).FirstOrDefault());
-            DB.PhoneTBs.Remove(phone);
+            ProductTB product = (DB.ProductTBs.Where(c => c.ID == id).FirstOrDefault());
+            DB.ProductTBs.Remove(product);
             DB.SaveChanges();
         }
-        public PhoneTB GetPhone(int ID)
+        public ProductTB GetProduct(int ID)
         {
-            return (DB.PhoneTBs.Where(c => c.ID == ID).FirstOrDefault());
+            return (DB.ProductTBs.Where(c => c.ID == ID).FirstOrDefault());
         }
         public String GetPhoneNumber(String Name)
         {
@@ -98,57 +112,32 @@ namespace NiceStore
             }
             return null;
         }
-        public PhoneTB GetPhoneProduct(String Name)
+        public ProductTB GetPhoneProduct(String Name)
         {
-            return (DB.PhoneTBs.Where(c => c.Name == Name).FirstOrDefault());
+            return (DB.ProductTBs.Where(c => c.Name == Name).FirstOrDefault());
         }
 
 
-        public bool CreatTools(ToolsTB tool)
+        public void CreatOrderList(OrderListTB orderList)
         {
-            foreach (var item in DB.ToolsTBs)
-            {
-                if (item.Name == tool.Name && item.Barcode == tool.Barcode )
-                {
-                    return false;
-                }
-            }
-            DB.ToolsTBs.Add(tool);
-            DB.SaveChanges();
-            return true;
-        }
-        public bool EditTools(ToolsTB tool)
-        {
-            foreach (var item in DB.ToolsTBs)
-            {
-                if ( item.ID  != tool.ID && item.Barcode == tool.Barcode )
-                {
-                    return false;
-                }
-            }
-            ToolsTB tools = DB.ToolsTBs.Where(c => c.ID == tool.ID).FirstOrDefault();
-            tools.Name = tool.Name;
-            tools.Price = tool.Price;
-            tools.Mojodi = tool.Mojodi;
-            tools.Type = tool.Type;
-            DB.SaveChanges();
-            return true;
-        }
-        public void DeleteTools(int id)
-        {
-            ToolsTB tools = (DB.ToolsTBs.Where(c => c.ID == id).FirstOrDefault());
-            DB.ToolsTBs.Remove(tools);
+            DB.OrderListTBs.Add(orderList);
             DB.SaveChanges();
         }
-        public ToolsTB GetTools(int ID)
+        public void CreatOdertItem(OrderItemTB items)
         {
-            return (DB.ToolsTBs.Where(c => c.ID == ID).FirstOrDefault());
+            DB.OrderItemTBs.Add(items);
+            DB.SaveChanges();
         }
-        public ToolsTB GetToolsProduct(String Name)
+        
+        public OrderItemTB GetOrderItem(int Code)
         {
-            return (DB.ToolsTBs.Where(c => c.Name == Name).FirstOrDefault());
+            int ID = ((from i in DB.OrderItemTBs select i.ID).Max());
+            return (DB.OrderItemTBs.Where(c => c.ID==ID).FirstOrDefault());
         }
 
-
+        public List<OrderListTB> GetListOrder(int ID)
+        {
+            return (from i in DB.OrderListTBs where i.CustomerID==ID select i).ToList();
+        }
     }
 }

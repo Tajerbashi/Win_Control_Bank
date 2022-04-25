@@ -26,40 +26,55 @@ namespace NiceStore
         public void ShowPhone()
         {
             DGV2.Rows.Clear();
-            var DB = from i in DBC.PhoneTBs select i;
+            var DB = from i in DBC.ProductTBs select i;
             foreach (var item in DB)
             {
-                DGV2.Rows.Add(item.ID, item.Barcode, item.Name, item.Price, item.Mojod, item.Brand);
+                if (item.Type==1)
+                {
+                    DGV2.Rows.Add(item.ID, item.Barcode, item.Name, item.Price, item.Mojod, item.Brand);
+                }
             }
         }
         public void ShowTools()
         {
             DGV2.Rows.Clear();
-            var DB = from i in DBC.ToolsTBs select i;
+            var DB = from i in DBC.ProductTBs select i;
             foreach (var item in DB)
             {
-                DGV2.Rows.Add(item.ID, item.Barcode, item.Name, item.Price, item.Mojodi, item.Type);
+                if (item.Type == 2)
+                {
+                    DGV2.Rows.Add(item.ID, item.Barcode, item.Name, item.Price, item.Mojod, item.Brand);
+                }
             }
         }
-        public void ShowResultSearchPhone(String Word)
+        public void ShowResultSearchPhone(String Word,int Type)
         {
             DGV2.Rows.Clear();
-            var Result = from i in DBC.PhoneTBs where (i.Name).Contains(Word) || (i.Brand).Contains(Word) || ((i.CPU).ToString()).Contains(Word) || ((i.Barcode).ToString()).Contains(Word) select i;
+            var Result = from i in DBC.ProductTBs where (i.Name).Contains(Word) || (i.Brand).Contains(Word) || ((i.CPU).ToString()).Contains(Word) || ((i.Barcode).ToString()).Contains(Word) select i;
             foreach (var item in Result)
             {
-                DGV2.Rows.Add(item.ID, item.Barcode, item.Name, item.Price, item.Mojod, item.Brand);
+                if (item.Type == Type)
+                {
+                    DGV2.Rows.Add(item.ID, item.Barcode, item.Name, item.Price, item.Mojod, item.Brand);
+                }
             }
         }
-        public void ShowResultSearchTools(String Word)
+        public void ShowResultSearchTools(String Word,int Type)
         {
             DGV2.Rows.Clear();
-            var Result = from i in DBC.ToolsTBs where (i.Name).Contains(Word) || (i.Type).Contains(Word) || ((i.Barcode).ToString()).Contains(Word) select i;
+            var Result = from i in DBC.ProductTBs where (i.Name).Contains(Word) || (i.Brand).Contains(Word) || ((i.Barcode).ToString()).Contains(Word) select i;
             foreach (var item in Result)
             {
-                DGV2.Rows.Add(item.ID, item.Barcode, item.Name, item.Price, item.Mojodi, item.Type);
+                if (item.Type == 1 && Type == 1)
+                {
+                    DGV2.Rows.Add(item.ID, item.Barcode, item.Name, item.Price, item.Mojod, item.Type);
+                }
+                else
+                {
+                    DGV2.Rows.Add(item.ID, item.Barcode, item.Name, item.Price, item.Mojod, item.Type);
+                }
             }
         }
-
         private void comboBoxEx1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Status.Text = "یک گزینه را انتخاب کنید برای نمایش اطلاعات کالا";
@@ -69,7 +84,6 @@ namespace NiceStore
                 ToolsBox.Enabled = false;
                 PhoneBox.Enabled = true;
                 ShowPhone();
-                barcode.Text = Fun.getPhoneBarcode().ToString();
             }
             else
             {
@@ -77,10 +91,10 @@ namespace NiceStore
                 ToolsBox.Enabled = true;
                 PhoneBox.Enabled = false;
                 ShowTools();
-                barcode.Text = Fun.getToolsBarcode().ToString();
             }
-        }
+            barcode.Text = Fun.GetProductBarcode().ToString();
 
+        }
         private void AddProductbtn_Click(object sender, EventArgs e)
         {
             try
@@ -89,16 +103,17 @@ namespace NiceStore
                 {
                     if (PhoneBox.Enabled)
                     {
-                        PhoneTB phone = new PhoneTB();
-                        phone.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
-                        phone.Name = name.Text;
-                        phone.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
-                        phone.Mojod = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
-                        phone.Brand = brand.Text;
-                        phone.CPU = Int16.Parse(Fun.ChangeToEnglishNumber(cpu.Text));
-                        phone.ScreenSize = screensize.Text;
-                        phone.RAM = Int16.Parse(Fun.ChangeToEnglishNumber(RAM.Value.ToString()));
-                        if (crud.CreatPhone(phone))
+                        ProductTB product = new ProductTB();
+                        product.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
+                        product.Name = name.Text;
+                        product.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
+                        product.Mojod = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
+                        product.Brand = brand.Text;
+                        product.CPU = Int16.Parse(Fun.ChangeToEnglishNumber(cpu.Text));
+                        product.ScreenSize = screensize.Text;
+                        product.Ram = Int16.Parse(Fun.ChangeToEnglishNumber(RAM.Value.ToString()));
+                        product.Type = 1;
+                        if (crud.CreateProduct(product))
                         {
                             Status.Text = "مبایل اضافه شده است";
                             Barcode = (int.Parse(barcode.Text) + 1);
@@ -113,13 +128,14 @@ namespace NiceStore
                     }
                     else if (ToolsBox.Enabled)
                     {
-                        ToolsTB tool = new ToolsTB();
-                        tool.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
-                        tool.Name = name.Text;
-                        tool.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
-                        tool.Mojodi = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
-                        tool.Type = Type.Text;
-                        if (crud.CreatTools(tool))
+                        ProductTB product = new ProductTB();
+                        product.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
+                        product.Name = name.Text;
+                        product.Brand = Type.Text;
+                        product.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
+                        product.Mojod = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
+                        product.Type = 2;
+                        if (crud.CreateProduct(product))
                         {
                             Status.Text = "کالا اضافه شده است";
                             Barcode = (int.Parse(barcode.Text) + 1);
@@ -141,17 +157,16 @@ namespace NiceStore
                 {
                     if (R2.Checked || comboBoxEx1.SelectedIndex == 0)
                     {
-                        PhoneTB phone = new PhoneTB();
-                        phone.ID = ID;
-                        phone.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
-                        phone.Name = name.Text;
-                        phone.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
-                        phone.Mojod = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
-                        phone.Brand = brand.Text;
-                        phone.CPU = Int16.Parse(Fun.ChangeToEnglishNumber(cpu.Text));
-                        phone.ScreenSize = screensize.Text;
-                        phone.RAM = Int16.Parse(Fun.ChangeToEnglishNumber(RAM.Value.ToString()));
-                        if (crud.EditPhone(phone))
+                        ProductTB product = new ProductTB();
+                        product.ID = ID;
+                        product.Name = name.Text;
+                        product.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
+                        product.Mojod = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
+                        product.Brand = brand.Text;
+                        product.CPU = Int16.Parse(Fun.ChangeToEnglishNumber(cpu.Text));
+                        product.ScreenSize = screensize.Text;
+                        product.Ram = Int16.Parse(Fun.ChangeToEnglishNumber(RAM.Value.ToString()));
+                        if (crud.EditProducr(product))
                         {
                             Status.Text = "مبایل ویرایش شده است";
                             Barcode = (int.Parse(barcode.Text) + 1);
@@ -168,14 +183,14 @@ namespace NiceStore
                     }
                     else if (R1.Checked || comboBoxEx1.SelectedIndex == 1)
                     {
-                        ToolsTB tool = new ToolsTB();
-                        tool.ID = ID;
-                        tool.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
-                        tool.Name = name.Text;
-                        tool.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
-                        tool.Mojodi = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
-                        tool.Type = Type.Text;
-                        if (crud.EditTools(tool))
+                        ProductTB product = new ProductTB();
+                        product.ID = ID;
+                        product.Barcode = int.Parse(Fun.ChangeToEnglishNumber(barcode.Text));
+                        product.Name = name.Text;
+                        product.Brand = Type.Text;
+                        product.Price = int.Parse(Fun.ChangeToEnglishNumber(price.Text));
+                        product.Mojod = int.Parse(Fun.ChangeToEnglishNumber(mojodi.Value.ToString()));
+                        if (crud.EditProducr(product))
                         {
                             Status.Text = "کالا ویرایش شده است";
                             Barcode = (int.Parse(barcode.Text) + 1);
@@ -215,7 +230,6 @@ namespace NiceStore
                 ShowPhone();
             }
         }
-
         private void DGV2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ID = int.Parse(DGV2.CurrentRow.Cells[0].Value.ToString());
@@ -239,18 +253,14 @@ namespace NiceStore
                 Status.Text = "یک گزینه را انتخاب کنید برای نمایش اطلاعات کالا";
             }
         }
-
         private void price_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
-
-
         private void buttonX1_Click(object sender, EventArgs e)
         {
             Fun.ClearTextBoxes(this.Controls);
         }
-
         private void DGV2_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -258,14 +268,13 @@ namespace NiceStore
                 contextMenuStrip1.Show(Cursor.Position.X,Cursor.Position.Y);
             }
         }
-
         private void ویرایشToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("اطلاعات مورد نظر را میخواهید ویرایش کنید؟؟؟","تایید درخواست",MessageBoxButtons.YesNo,MessageBoxIcon.Question))
             {
                 if ((comboBoxEx1.SelectedIndex == 0 || R2.Checked) && (comboBoxEx1.SelectedIndex != 1 || !R1.Checked))
                 {
-                    PhoneTB phone = crud.GetPhone(ID);
+                    ProductTB phone = crud.GetProduct(ID);
                     barcode.Text = phone.Barcode.ToString();
                     name.Text = phone.Name;
                     price.Text = phone.Price.ToString();
@@ -273,16 +282,16 @@ namespace NiceStore
                     brand.Text = phone.Brand;
                     cpu.Text = phone.CPU.ToString();
                     screensize.Text = phone.ScreenSize;
-                    RAM.Value = phone.RAM;
+                    RAM.Value = Convert.ToDecimal(phone.Ram);
                 }
                 else if ((comboBoxEx1.SelectedIndex == 1 || R1.Checked)&& (comboBoxEx1.SelectedIndex != 0 || !R2.Checked))
                 {
-                    ToolsTB tool = crud.GetTools(ID);
+                    ProductTB tool = crud.GetProduct(ID);
                     barcode.Text = tool.Barcode.ToString();
                     name.Text = tool.Name;
                     price.Text = tool.Price.ToString();
-                    mojodi.Value = tool.Mojodi;
-                    Type.Text = tool.Type;
+                    mojodi.Value = tool.Mojod;
+                    Type.Text = tool.Type.ToString();
                 }
                 SW = false;
                 AddProductbtn.Text = "بروزرسانی";
@@ -296,13 +305,13 @@ namespace NiceStore
             {
                 if (comboBoxEx1.SelectedIndex == 0 || R2.Checked)
                 {
-                    crud.DeletePhone(ID);
+                    crud.DeleteProduct(ID);
                     Status.Text = "اطلاعات تلفن همراه حذف شده است";
                     ShowPhone();
                 }
                 else if (comboBoxEx1.SelectedIndex == 1 || R1.Checked)
                 {
-                    crud.DeleteTools(ID);
+                    crud.DeleteProduct(ID);
                     Status.Text = "اطلاعات کالای مورد نظر حذف شده است";
                     ShowTools();
                 }
@@ -313,11 +322,11 @@ namespace NiceStore
         {
             if(R1.Checked || comboBoxEx1.SelectedIndex == 1)
             {
-                ShowResultSearchTools(searchtxt.Text);
+                ShowResultSearchTools(searchtxt.Text,2);
             }
             else if(R2.Checked || comboBoxEx1.SelectedIndex==0)
             {
-                ShowResultSearchPhone(searchtxt.Text);
+                ShowResultSearchPhone(searchtxt.Text,1);
             }
         }
 

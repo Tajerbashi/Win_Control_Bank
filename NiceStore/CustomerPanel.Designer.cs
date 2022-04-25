@@ -44,9 +44,7 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerTBBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.CuSearchbtn = new DevComponents.DotNetBar.ButtonX();
-            this.niceStoreDBDataSet = new NiceStore.NiceStoreDBDataSet();
             this.customerTBBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.customerTBTableAdapter = new NiceStore.NiceStoreDBDataSetTableAdapters.CustomerTBTableAdapter();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ویرایشToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.حذفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +52,6 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGV1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerTBBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.niceStoreDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerTBBindingSource)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -88,6 +85,7 @@
             this.CuPhonetxt.PreventEnterBeep = true;
             this.CuPhonetxt.Size = new System.Drawing.Size(242, 20);
             this.CuPhonetxt.TabIndex = 1;
+            this.CuPhonetxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CuPhonetxt_KeyPress);
             // 
             // AddCuBtn
             // 
@@ -213,19 +211,9 @@
             this.CuSearchbtn.TabIndex = 8;
             this.CuSearchbtn.Click += new System.EventHandler(this.CuSearchbtn_Click);
             // 
-            // niceStoreDBDataSet
-            // 
-            this.niceStoreDBDataSet.DataSetName = "NiceStoreDBDataSet";
-            this.niceStoreDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // customerTBBindingSource
             // 
             this.customerTBBindingSource.DataMember = "CustomerTB";
-            this.customerTBBindingSource.DataSource = this.niceStoreDBDataSet;
-            // 
-            // customerTBTableAdapter
-            // 
-            this.customerTBTableAdapter.ClearBeforeFill = true;
             // 
             // contextMenuStrip1
             // 
@@ -296,7 +284,6 @@
             this.Load += new System.EventHandler(this.CustomerPanel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGV1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerTBBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.niceStoreDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerTBBindingSource)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -318,8 +305,6 @@
         private System.Windows.Forms.DataGridView DGV1;
         private DevComponents.DotNetBar.ButtonX CuSearchbtn;
         private System.Windows.Forms.BindingSource customerTBBindingSource;
-        private NiceStoreDBDataSet niceStoreDBDataSet;
-        private NiceStoreDBDataSetTableAdapters.CustomerTBTableAdapter customerTBTableAdapter;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ویرایشToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem حذفToolStripMenuItem;

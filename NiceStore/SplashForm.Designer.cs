@@ -37,16 +37,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -122,6 +123,14 @@
             this.panel3.Size = new System.Drawing.Size(658, 42);
             this.panel3.TabIndex = 5;
             // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.SaddleBrown;
+            this.panel8.Location = new System.Drawing.Point(576, -3);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(14, 97);
+            this.panel8.TabIndex = 8;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -151,6 +160,7 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.Sienna;
+            this.panel6.Controls.Add(this.panel9);
             this.panel6.Location = new System.Drawing.Point(614, -5);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(14, 377);
@@ -164,18 +174,10 @@
             this.panel7.Size = new System.Drawing.Size(14, 377);
             this.panel7.TabIndex = 7;
             // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.SaddleBrown;
-            this.panel8.Location = new System.Drawing.Point(576, -3);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(14, 97);
-            this.panel8.TabIndex = 8;
-            // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.Chocolate;
-            this.panel9.Location = new System.Drawing.Point(614, 227);
+            this.panel9.Location = new System.Drawing.Point(0, 314);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(14, 42);
             this.panel9.TabIndex = 7;
@@ -186,7 +188,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(682, 363);
-            this.Controls.Add(this.panel9);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
@@ -206,6 +207,7 @@
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

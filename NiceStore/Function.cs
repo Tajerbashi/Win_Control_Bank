@@ -8,14 +8,13 @@ namespace NiceStore
 {
     public class Function
     {
-        NiceStoreDBEntities DB = new NiceStoreDBEntities();
         #region Functions
-
-        public int getPhoneBarcode()
+        NiceStoreDBEntities DB = new NiceStoreDBEntities();
+        public int GetProductBarcode()
         {
             try
             {
-                int Barcode = ((from i in DB.PhoneTBs select i.Barcode).Max() + 1);
+                int Barcode = ((from i in DB.ProductTBs select i.Barcode).Max() + 1);
                 return Barcode;
             }
             catch
@@ -24,22 +23,21 @@ namespace NiceStore
             }
             
         }
-        public int getToolsBarcode()
+        public int GetLastOrderListCode()
         {
             try
             {
-                int Barcode = ((from i in DB.ToolsTBs select i.Barcode).Max() + 1);
-                return Barcode;
+                int cartCode = ((from i in DB.OrderListTBs select i.Code).Max() + 1);
+                return cartCode;
             }
             catch
             {
-                return 1001;
+                return 20001;
             }
         }
-
         public String GetBrand(int ID)
         {
-            var B =(from i in DB.PhoneTBs where i.ID==ID select i);
+            var B =(from i in DB.ProductTBs where i.ID==ID select i);
             foreach (var item in B)
             {
                 return item.Brand;
@@ -48,7 +46,7 @@ namespace NiceStore
         }
         public String GetCPU(int ID)
         {
-            var B = (from i in DB.PhoneTBs where i.ID == ID select i);
+            var B = (from i in DB.ProductTBs where i.ID == ID select i);
             foreach (var item in B)
             {
                 return ((item.CPU).ToString());
@@ -57,16 +55,16 @@ namespace NiceStore
         }
         public String GetRAM(int ID)
         {
-            var B = (from i in DB.PhoneTBs where i.ID == ID select i);
+            var B = (from i in DB.ProductTBs where i.ID == ID select i);
             foreach (var item in B)
             {
-                return ((item.RAM).ToString()); ;
+                return ((item.Ram).ToString()); ;
             }
             return "موجود نیست";
         }
         public String GetScreen(int ID)
         {
-            var B = (from i in DB.PhoneTBs where i.ID == ID select i);
+            var B = (from i in DB.ProductTBs where i.ID == ID select i);
             foreach (var item in B)
             {
                 return item.ScreenSize;

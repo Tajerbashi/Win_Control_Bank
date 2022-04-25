@@ -84,5 +84,15 @@ namespace NiceStore
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Loginformation panel = new Loginformation();
+            if (panel2.Controls.Count > 0)
+            {
+                panel2.Controls[0].Dispose();
+            }
+            panel2.Controls.Add(panel);
+        }
     }
 }

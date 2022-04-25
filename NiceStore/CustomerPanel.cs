@@ -29,7 +29,7 @@ namespace NiceStore
             var db = (from i in DB.CustomerTBs select i);
             foreach (var item in db)
             {
-                DGV1.Rows.Add(item.id,item.Name,item.Phone);
+                DGV1.Rows.Add(item.ID,item.Name,item.Phone);
             }
         }
         public void ShowResultSearch(String Word)
@@ -38,7 +38,7 @@ namespace NiceStore
             var db = (from i in DB.CustomerTBs orderby i.Name ascending where (i.Name).Contains(Word) || (i.Phone).Contains(Word) select i).ToList();
             foreach (var item in db)
             {
-                DGV1.Rows.Add(item.id, item.Name, item.Phone);
+                DGV1.Rows.Add(item.ID, item.Name, item.Phone);
             }
         }
         public void ShowAcsSort()
@@ -47,7 +47,7 @@ namespace NiceStore
             var db = (from i in DB.CustomerTBs orderby i.Name ascending select i);
             foreach (var item in db)
             {
-                DGV1.Rows.Add(item.id, item.Name, item.Phone);
+                DGV1.Rows.Add(item.ID, item.Name, item.Phone);
             }
         }
 
@@ -67,7 +67,7 @@ namespace NiceStore
             else
             {
                 CustomerTB customer = new CustomerTB();
-                customer.id = ID;
+                customer.ID = ID;
                 customer.Name =  CuNametxt.Text;
                 customer.Phone = Fun.ChangeToEnglishNumber(CuPhonetxt.Text);
 
@@ -155,6 +155,11 @@ namespace NiceStore
         private void pictureBox5_Click(object sender, EventArgs e)
         {
             PrintDGV1();
+        }
+
+        private void CuPhonetxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }

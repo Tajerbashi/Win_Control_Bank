@@ -11,11 +11,11 @@
   </EntityType>
   <EntityType Name="CustomerTB">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
-    <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Phone" Type="char" MaxLength="11" Nullable="false" />
     <Property Name="CartID" Type="int" />
   </EntityType>
   <EntityType Name="FactorTB">
@@ -23,9 +23,11 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FactorCode" Type="int" Nullable="false" />
+    <Property Name="DataNow" Type="datetime2" Precision="7" />
     <Property Name="CustomerID" Type="int" Nullable="false" />
     <Property Name="SCPID" Type="int" Nullable="false" />
-    <Property Name="DataNow" Type="datetime2" Precision="7" />
+    <Property Name="PriceTotal" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PhoneTB">
     <Key>
@@ -38,7 +40,7 @@
     <Property Name="Mojod" Type="int" Nullable="false" />
     <Property Name="Brand" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="CPU" Type="smallint" Nullable="false" />
-    <Property Name="ScreenSize" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ScreenSize" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="RAM" Type="smallint" Nullable="false" />
     <Property Name="CartID" Type="int" />
   </EntityType>

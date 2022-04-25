@@ -60,32 +60,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CartTB.cs">
-      <DependentUpon>DBF.tt</DependentUpon>
-    </Compile>
     <Compile Include="CRUD.cs" />
     <Compile Include="CustomerTB.cs">
-      <DependentUpon>DBF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBF.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBF.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBF.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBF.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DBF.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBF.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="FactorTB.cs">
-      <DependentUpon>DBF.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Function.cs" />
+    <Compile Include="Loginformation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Loginformation.Designer.cs">
+      <DependentUpon>Loginformation.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,13 +83,26 @@
     <Compile Include="CustomerPanel.Designer.cs">
       <DependentUpon>CustomerPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="NiceStoreDBDataSet.Designer.cs">
+    <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>NiceStoreDBDataSet.xsd</DependentUpon>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="PhoneTB.cs">
-      <DependentUpon>DBF.tt</DependentUpon>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="OrderItemTB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderListTB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductPanel.cs">
       <SubType>UserControl</SubType>
@@ -112,8 +110,8 @@
     <Compile Include="ProductPanel.Designer.cs">
       <DependentUpon>ProductPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="SCP.cs">
-      <DependentUpon>DBF.tt</DependentUpon>
+    <Compile Include="ProductTB.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="StoreManagmentPanel.cs">
       <SubType>UserControl</SubType>
@@ -129,9 +127,9 @@
     <Compile Include="SplashForm.Designer.cs">
       <DependentUpon>SplashForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ToolsTB.cs">
-      <DependentUpon>DBF.tt</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="Loginformation.resx">
+      <DependentUpon>Loginformation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,29 +155,17 @@
     <EmbeddedResource Include="SplashForm.resx">
       <DependentUpon>SplashForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="DBF.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBF.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
-    <None Include="DBF.edmx.diagram">
-      <DependentUpon>DBF.edmx</DependentUpon>
-    </None>
-    <None Include="NiceStoreDBDataSet.xsc">
-      <DependentUpon>NiceStoreDBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="NiceStoreDBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>NiceStoreDBDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="NiceStoreDBDataSet.xss">
-      <DependentUpon>NiceStoreDBDataSet.xsd</DependentUpon>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\CustomerTB.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -215,16 +201,6 @@
     <None Include="Resources\Iconshock-Real-Vista-Data-Database.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBF.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBF.edmx</DependentUpon>
-      <LastGenOutput>DBF.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DBF.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBF.edmx</DependentUpon>
-      <LastGenOutput>DBF.cs</LastGenOutput>
-    </Content>
     <None Include="ico\ok-icon.png" />
     <None Include="ico\check-icon.png" />
     <None Include="ico\math-add-icon.png" />
@@ -242,6 +218,21 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
