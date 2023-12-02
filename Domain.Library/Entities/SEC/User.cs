@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Library.Bases;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Library.Entities.SEC
 {
-    public class User
+    [Table("Users", Schema = "SEC")]
+    public class User : BaseEntity
     {
     }
 }
