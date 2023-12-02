@@ -9,11 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application.Library\Infrastructure.Library.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Extentions\" />
+    <ProjectReference Include="..\Application.Library\Infrastructure.Library.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,7 +26,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
-
+  
   <ItemGroup>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

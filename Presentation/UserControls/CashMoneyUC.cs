@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Presentation.UserControls
 {
-    public partial class UserUC : UserControl
+    public partial class CashMoneyUC : UserControl
     {
-        public UserUC()
+        public CashMoneyUC()
         {
             InitializeComponent();
         }

@@ -9,7 +9,22 @@
     <Compile Update="MainFRM.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UserControls\UserUC.cs">
+    <Compile Update="UserControls\CalculateUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\CartUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\CashMoneyUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\OnlineExchangeUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\ReportUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\UserUS.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
