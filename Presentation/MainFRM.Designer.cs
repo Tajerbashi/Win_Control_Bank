@@ -28,10 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            SuspendLayout();
+            // 
+            // MainFRM
+            // 
+            AutoScaleDimensions = new SizeF(9F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources._19201080__10_;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(1420, 780);
+            Font = new Font("IRANSansWeb", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(4, 5, 4, 5);
+            Name = "MainFRM";
+            RightToLeft = RightToLeft.Yes;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "MainFORM";
+            Load += MainFRM_Load;
+            ResumeLayout(false);
         }
 
         #endregion

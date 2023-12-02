@@ -6,5 +6,10 @@ namespace Presentation
         {
             InitializeComponent();
         }
+
+        private void MainFRM_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
