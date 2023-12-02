@@ -11,6 +11,10 @@ namespace Infrastructure.Library.ApplicationContext.EF
         public ContextDbApplication(DbContextOptions<ContextDbApplication> option) : base(option)
         {
         }
+        public ContextDbApplication()
+        {
+            
+        }
         public DbSet<User> Users { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<UserLog> UserLogs { get; set; }
@@ -20,7 +24,7 @@ namespace Infrastructure.Library.ApplicationContext.EF
         {
             //optionsBuilder.UseSqlServer("Data Source=172.20.1.20\\DEV;Initial Catalog=RG_TaskWorkDB; User ID=sa; Password=soft157703ware;");
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source=TAJERBASHI;Initial Catalog=Accounting_Db; User ID=sa; Password=123123;");
+            optionsBuilder.UseSqlServer("Data Source=TAJERBASHI;Initial Catalog=Accounting_Db; User ID=sa; Password=123123;TrustServerCertificate=True;");
         }
     }
 }
