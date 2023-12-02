@@ -1,0 +1,9 @@
+.vs
+Domain.Library/bin
+Domain.Library/obj
+
+Application.Library/bin
+Application.Library/obj
+
+Presentation/bin
+Presentation/obj
