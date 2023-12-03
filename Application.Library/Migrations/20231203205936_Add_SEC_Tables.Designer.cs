@@ -4,6 +4,7 @@ using Infrastructure.Library.ApplicationContext.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Library.Migrations
 {
     [DbContext(typeof(ContextDbApplication))]
-    partial class ContextDbApplicationModelSnapshot : ModelSnapshot
+    [Migration("20231203205936_Add_SEC_Tables")]
+    partial class Add_SEC_Tables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -324,9 +327,6 @@ namespace Infrastructure.Library.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
 
-                    b.Property<long>("BlanceID")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("CreateBy")
                         .HasColumnType("bigint");
 
@@ -355,8 +355,6 @@ namespace Infrastructure.Library.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("BlanceID");
 
                     b.ToTable("BlanceLogs", "LOG");
                 });
@@ -369,9 +367,6 @@ namespace Infrastructure.Library.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
 
-                    b.Property<long>("CartID")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("CreateBy")
                         .HasColumnType("bigint");
 
@@ -400,8 +395,6 @@ namespace Infrastructure.Library.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("CartID");
 
                     b.ToTable("CartLogs", "LOG");
                 });
@@ -435,9 +428,6 @@ namespace Infrastructure.Library.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("TransactionID")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
@@ -445,8 +435,6 @@ namespace Infrastructure.Library.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("TransactionID");
 
                     b.ToTable("TransactionLogs", "LOG");
                 });
@@ -486,12 +474,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("UserID")
-                        .HasColumnType("bigint");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("UserID");
 
                     b.ToTable("UserLogs", "LOG");
                 });
@@ -504,9 +487,6 @@ namespace Infrastructure.Library.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
 
-                    b.Property<long>("BankID")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("CreateBy")
                         .HasColumnType("bigint");
 
@@ -535,8 +515,6 @@ namespace Infrastructure.Library.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("BankID");
 
                     b.ToTable("BankReports", "RPT");
                 });
@@ -549,9 +527,6 @@ namespace Infrastructure.Library.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
 
-                    b.Property<long>("CartID")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("CreateBy")
                         .HasColumnType("bigint");
 
@@ -580,8 +555,6 @@ namespace Infrastructure.Library.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("CartID");
 
                     b.ToTable("CartReports", "RPT");
                 });
@@ -615,9 +588,6 @@ namespace Infrastructure.Library.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("TransactionID")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
@@ -625,8 +595,6 @@ namespace Infrastructure.Library.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("TransactionID");
 
                     b.ToTable("TransactionReports", "RPT");
                 });
@@ -955,83 +923,6 @@ namespace Infrastructure.Library.Migrations
                     b.Navigation("Transaction");
                 });
 
-            modelBuilder.Entity("Domain.Library.Entities.LOG.BlanceLog", b =>
-                {
-                    b.HasOne("Domain.Library.Entities.BUS.Blance", "Blance")
-                        .WithMany("BlanceLogs")
-                        .HasForeignKey("BlanceID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Blance");
-                });
-
-            modelBuilder.Entity("Domain.Library.Entities.LOG.CartLog", b =>
-                {
-                    b.HasOne("Domain.Library.Entities.BUS.Cart", "Cart")
-                        .WithMany("CartLogs")
-                        .HasForeignKey("CartID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cart");
-                });
-
-            modelBuilder.Entity("Domain.Library.Entities.LOG.TransactionLog", b =>
-                {
-                    b.HasOne("Domain.Library.Entities.BUS.Transaction", "Transaction")
-                        .WithMany()
-                        .HasForeignKey("TransactionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Transaction");
-                });
-
-            modelBuilder.Entity("Domain.Library.Entities.LOG.UserLog", b =>
-                {
-                    b.HasOne("Domain.Library.Entities.SEC.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Domain.Library.Entities.RPT.BankReport", b =>
-                {
-                    b.HasOne("Domain.Library.Entities.BUS.Bank", "Bank")
-                        .WithMany("BankReports")
-                        .HasForeignKey("BankID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Bank");
-                });
-
-            modelBuilder.Entity("Domain.Library.Entities.RPT.CartReport", b =>
-                {
-                    b.HasOne("Domain.Library.Entities.BUS.Cart", "Cart")
-                        .WithMany("CartReports")
-                        .HasForeignKey("CartID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cart");
-                });
-
-            modelBuilder.Entity("Domain.Library.Entities.RPT.TransactionReport", b =>
-                {
-                    b.HasOne("Domain.Library.Entities.BUS.Transaction", "Transaction")
-                        .WithMany("TransactionReports")
-                        .HasForeignKey("TransactionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Transaction");
-                });
-
             modelBuilder.Entity("Domain.Library.Entities.SEC.GroupUser", b =>
                 {
                     b.HasOne("Domain.Library.Entities.SEC.Group", "Group")
@@ -1072,14 +963,7 @@ namespace Infrastructure.Library.Migrations
 
             modelBuilder.Entity("Domain.Library.Entities.BUS.Bank", b =>
                 {
-                    b.Navigation("BankReports");
-
                     b.Navigation("Carts");
-                });
-
-            modelBuilder.Entity("Domain.Library.Entities.BUS.Blance", b =>
-                {
-                    b.Navigation("BlanceLogs");
                 });
 
             modelBuilder.Entity("Domain.Library.Entities.BUS.Cart", b =>
@@ -1087,10 +971,6 @@ namespace Infrastructure.Library.Migrations
                     b.Navigation("Blances");
 
                     b.Navigation("CartHitories");
-
-                    b.Navigation("CartLogs");
-
-                    b.Navigation("CartReports");
 
                     b.Navigation("CartTransactions");
                 });
@@ -1103,8 +983,6 @@ namespace Infrastructure.Library.Migrations
             modelBuilder.Entity("Domain.Library.Entities.BUS.Transaction", b =>
                 {
                     b.Navigation("CartTransactions");
-
-                    b.Navigation("TransactionReports");
                 });
 
             modelBuilder.Entity("Domain.Library.Entities.SEC.Group", b =>

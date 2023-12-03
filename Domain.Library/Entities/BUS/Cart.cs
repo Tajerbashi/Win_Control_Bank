@@ -1,4 +1,6 @@
 ﻿using Domain.Library.Bases;
+using Domain.Library.Entities.LOG;
+using Domain.Library.Entities.RPT;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -27,8 +29,11 @@ namespace Domain.Library.Entities.BUS
         public virtual Customer Customer { get; set; }
 
         public virtual List<CartHitory> CartHitories { get; set; }
-        public virtual List<Transaction> Transactions { get; set; }
+        public virtual List<CartTransaction> CartTransactions { get; set; }
+
         public virtual List<Blance> Blances { get; set; }
+        public virtual List<CartLog> CartLogs { get; set; }
+        public virtual List<CartReport> CartReports { get; set; }
 
     }
 }

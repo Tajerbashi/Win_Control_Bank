@@ -1,4 +1,5 @@
 ﻿using Domain.Library.Bases;
+using Domain.Library.Entities.LOG;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -16,5 +17,8 @@ namespace Domain.Library.Entities.BUS
         [ForeignKey("Cart")]
         public long CartID { get; set; }
         public virtual Cart Cart { get; set; }
+
+        public virtual List<BlanceLog> BlanceLogs { get; set; }
+
     }
 }
