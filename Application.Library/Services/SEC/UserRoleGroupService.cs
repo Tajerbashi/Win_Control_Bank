@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Library.Services.SEC
 {
-    public class UserService : UserRepository
+    public class UserRoleGroupService : UserRoleGroupRepository
     {
     }
 
