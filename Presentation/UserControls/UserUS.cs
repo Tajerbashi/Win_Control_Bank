@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Infrastructure.Library.Services.SEC;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,17 @@ namespace Presentation.UserControls
         public UserUS()
         {
             InitializeComponent();
+        }
+        protected void ShowDataGrid()
+        {
+            UserService userService = new UserService();
+            var users = userService.GetAll();
+            GridData.DataSource = users;
+        }
+
+        private void UserUS_Load(object sender, EventArgs e)
+        {
+            ShowDataGrid();
         }
     }
 }

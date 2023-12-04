@@ -31,13 +31,13 @@
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
             PageLbl = new Label();
-            dataGridView1 = new DataGridView();
             NextBtn = new Button();
             PrevBtn = new Button();
             SearchBtn = new Button();
             SearchTxt = new TextBox();
+            GridData = new DataGridView();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -50,8 +50,8 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(GridData);
             groupBox2.Controls.Add(PageLbl);
-            groupBox2.Controls.Add(dataGridView1);
             groupBox2.Controls.Add(NextBtn);
             groupBox2.Controls.Add(PrevBtn);
             groupBox2.Controls.Add(SearchBtn);
@@ -71,15 +71,6 @@
             PageLbl.TabIndex = 11;
             PageLbl.Text = "ساعت";
             PageLbl.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.BackgroundColor = Color.White;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(6, 59);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1114, 544);
-            dataGridView1.TabIndex = 4;
             // 
             // NextBtn
             // 
@@ -135,6 +126,24 @@
             SearchTxt.Size = new Size(262, 32);
             SearchTxt.TabIndex = 0;
             // 
+            // GridData
+            // 
+            GridData.AllowUserToAddRows = false;
+            GridData.AllowUserToOrderColumns = true;
+            GridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            GridData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            GridData.BackgroundColor = Color.White;
+            GridData.BorderStyle = BorderStyle.Fixed3D;
+            GridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            GridData.EditMode = DataGridViewEditMode.EditProgrammatically;
+            GridData.GridColor = Color.FromArgb(255, 224, 192);
+            GridData.Location = new Point(6, 62);
+            GridData.Name = "GridData";
+            GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            GridData.Size = new Size(1114, 544);
+            GridData.TabIndex = 12;
+            // 
             // CartUC
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
@@ -148,7 +157,7 @@
             Size = new Size(1132, 741);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)GridData).EndInit();
             ResumeLayout(false);
         }
 
@@ -157,10 +166,10 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private TextBox SearchTxt;
-        private DataGridView dataGridView1;
         private Button NextBtn;
         private Button PrevBtn;
         private Button SearchBtn;
         private Label PageLbl;
+        private DataGridView GridData;
     }
 }

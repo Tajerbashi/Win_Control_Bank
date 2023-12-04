@@ -43,6 +43,12 @@ namespace Presentation
         #endregion
         private void MainFRM_Load(object sender, EventArgs e)
         {
+            OnlineExchangeUC panel = new OnlineExchangeUC();
+            if (MainPanel.Controls.Count > 0)
+            {
+                MainPanel.Controls[0].Dispose();
+            }
+            MainPanel.Controls.Add(panel);
         }
 
 
