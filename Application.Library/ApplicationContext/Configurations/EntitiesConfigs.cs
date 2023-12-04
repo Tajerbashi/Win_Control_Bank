@@ -40,12 +40,12 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
                  .HasForeignKey(f => f.ID);
         }
     }
-    public class CartHitoryConfiguration : IEntityTypeConfiguration<CartHitory>
+    public class CartHistoryConfiguration : IEntityTypeConfiguration<CartHistory>
     {
-        public void Configure(EntityTypeBuilder<CartHitory> builder)
+        public void Configure(EntityTypeBuilder<CartHistory> builder)
         {
             builder.HasOne(B => B.Cart)
-                 .WithMany(C => C.CartHitories)
+                 .WithMany(C => C.CartHistories)
                  .HasForeignKey(f => f.ID);
         }
     }

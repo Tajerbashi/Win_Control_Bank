@@ -26,7 +26,7 @@ namespace Infrastructure.Library.ApplicationContext.EF
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<CartHitory> CartHitories { get; set; }
+        public DbSet<CartHistory> CartHistories { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<CartTransaction> CartTransactions { get; set; }
         public DbSet<Bank> Banks { get; set; }
@@ -60,7 +60,7 @@ namespace Infrastructure.Library.ApplicationContext.EF
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
             modelBuilder.ApplyConfiguration(new CartConfiguration());
             modelBuilder.ApplyConfiguration(new BlanceConfiguration());
-            modelBuilder.ApplyConfiguration(new CartHitoryConfiguration());
+            modelBuilder.ApplyConfiguration(new CartHistoryConfiguration());
         }
         
 
