@@ -28,7 +28,7 @@ namespace Domain.Library.Entities.BUS
         public long CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
 
-        public virtual List<CartHitory> CartHitories { get; set; }
+        public virtual List<CartHistory> CartHistories { get; set; }
         public virtual List<CartTransaction> CartTransactions { get; set; }
 
         public virtual List<Blance> Blances { get; set; }

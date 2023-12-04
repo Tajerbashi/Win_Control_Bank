@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Library.Entities.BUS
 {
-    [Table("CartHitories", Schema = "BUS")]
-    public class CartHitory : BaseEntity
+    [Table("CartHistories", Schema = "BUS")]
+    public class CartHistory : BaseEntity
     {
         [ForeignKey("Cart")]
         public long CartID { get; set; }
