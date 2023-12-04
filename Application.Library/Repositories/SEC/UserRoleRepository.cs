@@ -3,7 +3,7 @@ using Infrastructure.Library.BaseService;
 
 namespace Infrastructure.Library.Repositories.SEC
 {
-    public abstract class UserRepository : GenericRepository<User>
+    public abstract class UserRoleRepository : GenericRepository<UserRole>
     {
 
     }
