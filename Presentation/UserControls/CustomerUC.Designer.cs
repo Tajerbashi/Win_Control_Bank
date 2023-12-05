@@ -1,6 +1,6 @@
 ﻿namespace Presentation.UserControls
 {
-    partial class UserUS
+    partial class CustomerUS
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             groupBox2 = new GroupBox();
-            button1 = new Button();
+            AddBtn = new Button();
             PageLbl = new Label();
             GridData = new DataGridView();
             NextBtn = new Button();
@@ -43,7 +43,7 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.Transparent;
-            groupBox2.Controls.Add(button1);
+            groupBox2.Controls.Add(AddBtn);
             groupBox2.Controls.Add(PageLbl);
             groupBox2.Controls.Add(GridData);
             groupBox2.Controls.Add(NextBtn);
@@ -56,21 +56,22 @@
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             // 
-            // button1
+            // AddBtn
             // 
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderColor = Color.FromArgb(192, 255, 192);
-            button1.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            button1.FlatAppearance.MouseDownBackColor = Color.Green;
-            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(999, 24);
-            button1.Name = "button1";
-            button1.Size = new Size(121, 32);
-            button1.TabIndex = 12;
-            button1.Text = "جدید";
-            button1.UseVisualStyleBackColor = true;
+            AddBtn.Cursor = Cursors.Hand;
+            AddBtn.FlatAppearance.BorderColor = Color.FromArgb(192, 255, 192);
+            AddBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            AddBtn.FlatAppearance.MouseDownBackColor = Color.Green;
+            AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            AddBtn.FlatStyle = FlatStyle.Flat;
+            AddBtn.ForeColor = Color.White;
+            AddBtn.Location = new Point(999, 24);
+            AddBtn.Name = "AddBtn";
+            AddBtn.Size = new Size(121, 32);
+            AddBtn.TabIndex = 12;
+            AddBtn.Text = "جدید";
+            AddBtn.UseVisualStyleBackColor = true;
+            AddBtn.Click += AddBtn_Click;
             // 
             // PageLbl
             // 
@@ -146,6 +147,7 @@
             SearchBtn.TabIndex = 1;
             SearchBtn.Text = "جستجو";
             SearchBtn.UseVisualStyleBackColor = true;
+            SearchBtn.Click += SearchBtn_Click;
             // 
             // SearchTxt
             // 
@@ -179,6 +181,6 @@
         private Button PrevBtn;
         private Button SearchBtn;
         private TextBox SearchTxt;
-        private Button button1;
+        private Button AddBtn;
     }
 }

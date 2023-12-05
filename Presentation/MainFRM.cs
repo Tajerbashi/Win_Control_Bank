@@ -94,7 +94,7 @@ namespace Presentation
 
         private void UserBtn_Click(object sender, EventArgs e)
         {
-            UserUS panel = new UserUS();
+            CustomerUS panel = new CustomerUS();
             if (MainPanel.Controls.Count > 0)
             {
                 MainPanel.Controls[0].Dispose();

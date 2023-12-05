@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Library.Models.DTOs.SEC
 {
-    internal class UserDTO
+    public class UserDTO
     {
     }
 }

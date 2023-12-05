@@ -10,10 +10,10 @@
         public T ID { get; set; }
         public DateTime CreateDate { get; set; }
         public T CreateBy { get; set; }
-        public DateTime UpdateDate { get; set; }
-        public T UpdateBy { get; set; }
-        public DateTime DeleteDate { get; set; }
-        public T DeleteBy { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public T? UpdateBy { get; set; }
+        public DateTime? DeleteDate { get; set; }
+        public T? DeleteBy { get; set; }
 
 
         public bool IsDeleted { get; set; }

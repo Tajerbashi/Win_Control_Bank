@@ -1,6 +1,10 @@
-﻿using Infrastructure.Library.ApplicationContext.DapperService;
+﻿using AutoMapper;
+using Domain.Library.Bases;
+using Infrastructure.Library.ApplicationContext.AutoMapper;
+using Infrastructure.Library.ApplicationContext.DapperService;
 using Infrastructure.Library.ApplicationContext.EF;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Infrastructure.Library.BaseService
 {
@@ -11,13 +15,16 @@ namespace Infrastructure.Library.BaseService
         void Insert(T obj);
         void Update(T obj);
         void Delete(object id);
+        void Delete(Guid guid);
+        void DisActive(Guid guid);
+        void Active(Guid guid);
         void Save();
     }
     //The following GenericRepository class Implement the IGenericRepository Interface
     //And Here T is going to be a class
     //While Creating an Instance of the GenericRepository type, we need to specify the Class Name
     //That is we need to specify the actual class name of the type T
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         //The following variable is going to hold the ContextDbApplication instance
         private ContextDbApplication _context = null;
@@ -57,12 +64,27 @@ namespace Infrastructure.Library.BaseService
         public void Insert(T obj)
         {
             //It will mark the Entity state as Added State
+            obj.Guid = Guid.NewGuid();
+
+            obj.CreateBy = 0;
+            obj.CreateDate = DateTime.Now;
+
+            obj.UpdateBy = 0;
+            obj.UpdateDate = null;
+
+            obj.DeleteBy = 0;
+            obj.DeleteDate = null;
+
+            obj.IsDeleted = false;
+            obj.IsActive = true;
             table.Add(obj);
         }
         //This method is going to update the record in the table
         //It will receive the object as an argument
         public void Update(T obj)
         {
+            obj.UpdateDate = DateTime.Now;
+            obj.DeleteBy = 0;
             //First attach the object to the table
             table.Attach(obj);
             //Then set the state of the Entity as Modified
@@ -75,14 +97,38 @@ namespace Infrastructure.Library.BaseService
             //First, fetch the record from the table
             T existing = table.Find(id);
             //This will mark the Entity State as Deleted
-            table.Remove(existing);
+            existing.DeleteDate = DateTime.Now;
+            existing.IsDeleted = true;
+            existing.IsActive = false;
+            //table.Remove(existing);
         }
-        //This method will make the changes permanent in the database
-        //That means once we call Insert, Update, and Delete Methods, 
-        //Then we need to call the Save method to make the changes permanent in the database
+        public void Delete(Guid guid)
+        {
+            //First, fetch the record from the table
+            T existing = table.Where(x => x.Guid.Equals(guid)).Single();
+            existing.DeleteDate = DateTime.Now;
+            existing.IsDeleted = true;
+            existing.IsActive = false;
+            //This will mark the Entity State as Deleted
+            //table.Remove(existing);
+        }
         public void Save()
         {
             _context.SaveChanges();
+        }
+
+        public void DisActive(Guid guid)
+        {
+            T existing = table.Where(x => x.Guid.Equals(guid)).Single();
+            existing.UpdateDate = DateTime.Now;
+            existing.IsActive = false;
+        }
+
+        public void Active(Guid guid)
+        { 
+            T existing = table.Where(x => x.Guid.Equals(guid)).Single();
+            existing.UpdateDate = DateTime.Now;
+            existing.IsActive = true;
         }
     }
 

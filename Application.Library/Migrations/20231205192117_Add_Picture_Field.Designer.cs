@@ -4,6 +4,7 @@ using Infrastructure.Library.ApplicationContext.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Library.Migrations
 {
     [DbContext(typeof(ContextDbApplication))]
-    partial class ContextDbApplicationModelSnapshot : ModelSnapshot
+    [Migration("20231205192117_Add_Picture_Field")]
+    partial class Add_Picture_Field
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +45,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -63,7 +66,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -91,7 +94,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
@@ -109,7 +112,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -143,7 +146,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("ExpireDate")
@@ -167,7 +170,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -199,7 +202,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -235,7 +238,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -263,7 +266,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
@@ -281,7 +284,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -310,7 +313,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -340,7 +343,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -368,7 +371,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
@@ -386,7 +389,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -414,7 +417,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -435,7 +438,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -465,7 +468,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -486,7 +489,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -513,7 +516,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -537,7 +540,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -564,7 +567,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -585,7 +588,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("UserID")
@@ -618,7 +621,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -639,7 +642,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -669,7 +672,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -690,7 +693,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -717,7 +720,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -741,7 +744,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -768,7 +771,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -789,7 +792,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -814,7 +817,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
@@ -829,7 +832,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -854,7 +857,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("GroupID")
@@ -872,7 +875,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("UserID")
@@ -904,7 +907,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
@@ -919,7 +922,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -944,7 +947,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
@@ -962,7 +965,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -987,7 +990,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
@@ -1005,7 +1008,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("UserID")
@@ -1037,7 +1040,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
@@ -1052,7 +1055,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("UpdateDate")
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
