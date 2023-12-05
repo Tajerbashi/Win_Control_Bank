@@ -20,7 +20,7 @@ namespace Presentation.UserControls
         protected void ShowDataGrid()
         {
             UserService userService = new UserService();
-            var users = userService.GetAll();
+            var users = userService.GetList();
             GridData.DataSource = users;
         }
 

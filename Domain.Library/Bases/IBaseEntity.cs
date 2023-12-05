@@ -14,6 +14,10 @@
         public T UpdateBy { get; set; }
         public DateTime DeleteDate { get; set; }
         public T DeleteBy { get; set; }
+
+
+        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
     }
     public abstract class BaseEntity : BaseEntity<long>
     {
