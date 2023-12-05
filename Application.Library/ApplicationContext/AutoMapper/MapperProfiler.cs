@@ -1,0 +1,18 @@
+﻿using AutoMapper;
+using Domain.Library.Entities.SEC;
+using Infrastructure.Library.Models.DTOs.SEC;
+using Infrastructure.Library.Models.Views.SEC;
+using static System.Net.Mime.MediaTypeNames;
+
+namespace Infrastructure.Library.ApplicationContext.AutoMapper
+{
+    public class MapperProfiler : Profile
+    {
+        public override string ProfileName => base.ProfileName;
+        public MapperProfiler()
+        {
+            CreateMap<User, UserDTO>().ReverseMap();
+            CreateMap<User, UserView>().ReverseMap();
+        }
+    }
+}
