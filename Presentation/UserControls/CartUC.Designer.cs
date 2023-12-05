@@ -30,12 +30,12 @@
         {
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
+            GridData = new DataGridView();
             PageLbl = new Label();
             NextBtn = new Button();
             PrevBtn = new Button();
             SearchBtn = new Button();
             SearchTxt = new TextBox();
-            GridData = new DataGridView();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
             SuspendLayout();
@@ -61,6 +61,24 @@
             groupBox2.Size = new Size(1126, 647);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
+            // 
+            // GridData
+            // 
+            GridData.AllowUserToAddRows = false;
+            GridData.AllowUserToOrderColumns = true;
+            GridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            GridData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            GridData.BackgroundColor = Color.White;
+            GridData.BorderStyle = BorderStyle.Fixed3D;
+            GridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            GridData.EditMode = DataGridViewEditMode.EditProgrammatically;
+            GridData.GridColor = Color.FromArgb(255, 224, 192);
+            GridData.Location = new Point(6, 62);
+            GridData.Name = "GridData";
+            GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            GridData.Size = new Size(1114, 544);
+            GridData.TabIndex = 12;
             // 
             // PageLbl
             // 
@@ -126,24 +144,6 @@
             SearchTxt.Size = new Size(262, 32);
             SearchTxt.TabIndex = 0;
             // 
-            // GridData
-            // 
-            GridData.AllowUserToAddRows = false;
-            GridData.AllowUserToOrderColumns = true;
-            GridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            GridData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            GridData.BackgroundColor = Color.White;
-            GridData.BorderStyle = BorderStyle.Fixed3D;
-            GridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            GridData.EditMode = DataGridViewEditMode.EditProgrammatically;
-            GridData.GridColor = Color.FromArgb(255, 224, 192);
-            GridData.Location = new Point(6, 62);
-            GridData.Name = "GridData";
-            GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridData.Size = new Size(1114, 544);
-            GridData.TabIndex = 12;
-            // 
             // CartUC
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
@@ -154,7 +154,7 @@
             Margin = new Padding(4, 5, 4, 5);
             Name = "CartUC";
             RightToLeft = RightToLeft.Yes;
-            Size = new Size(1132, 741);
+            Size = new Size(1132, 743);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).EndInit();

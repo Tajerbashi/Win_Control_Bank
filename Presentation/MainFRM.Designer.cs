@@ -70,9 +70,9 @@
             groupBox1.Controls.Add(UserBtn);
             groupBox1.Controls.Add(CartBtn);
             groupBox1.FlatStyle = FlatStyle.Flat;
-            groupBox1.Location = new Point(1162, 12);
+            groupBox1.Location = new Point(1162, 5);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(246, 756);
+            groupBox1.Size = new Size(246, 763);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "مدیریت";
@@ -338,29 +338,30 @@
             groupBox2.BackColor = Color.Transparent;
             groupBox2.Controls.Add(MainPanel);
             groupBox2.FlatStyle = FlatStyle.Flat;
-            groupBox2.Location = new Point(12, 12);
+            groupBox2.Location = new Point(12, 5);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1144, 756);
+            groupBox2.Size = new Size(1144, 770);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             // 
             // MainPanel
             // 
-            MainPanel.Location = new Point(6, 8);
+            MainPanel.Location = new Point(6, 20);
             MainPanel.Name = "MainPanel";
-            MainPanel.Size = new Size(1132, 741);
+            MainPanel.Size = new Size(1132, 743);
             MainPanel.TabIndex = 0;
             // 
             // MainFRM
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources._19201080__10_;
+            BackColor = Color.FromArgb(255, 128, 0);
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1420, 780);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Font = new Font("IRANSansWeb", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ForeColor = Color.Black;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 5, 4, 5);
             Name = "MainFRM";

@@ -29,35 +29,53 @@
         private void InitializeComponent()
         {
             groupBox2 = new GroupBox();
+            button1 = new Button();
             PageLbl = new Label();
             GridData = new DataGridView();
             NextBtn = new Button();
             PrevBtn = new Button();
             SearchBtn = new Button();
             SearchTxt = new TextBox();
-            groupBox1 = new GroupBox();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
             SuspendLayout();
             // 
             // groupBox2
             // 
+            groupBox2.BackColor = Color.Transparent;
+            groupBox2.Controls.Add(button1);
             groupBox2.Controls.Add(PageLbl);
             groupBox2.Controls.Add(GridData);
             groupBox2.Controls.Add(NextBtn);
             groupBox2.Controls.Add(PrevBtn);
             groupBox2.Controls.Add(SearchBtn);
             groupBox2.Controls.Add(SearchTxt);
-            groupBox2.Location = new Point(3, 91);
+            groupBox2.Location = new Point(3, 3);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1126, 647);
+            groupBox2.Size = new Size(1126, 737);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
+            // 
+            // button1
+            // 
+            button1.Cursor = Cursors.Hand;
+            button1.FlatAppearance.BorderColor = Color.FromArgb(192, 255, 192);
+            button1.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            button1.FlatAppearance.MouseDownBackColor = Color.Green;
+            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(999, 24);
+            button1.Name = "button1";
+            button1.Size = new Size(121, 32);
+            button1.TabIndex = 12;
+            button1.Text = "جدید";
+            button1.UseVisualStyleBackColor = true;
             // 
             // PageLbl
             // 
             PageLbl.ForeColor = Color.White;
-            PageLbl.Location = new Point(188, 609);
+            PageLbl.Location = new Point(188, 702);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(751, 32);
             PageLbl.TabIndex = 11;
@@ -79,7 +97,7 @@
             GridData.Name = "GridData";
             GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridData.Size = new Size(1114, 544);
+            GridData.Size = new Size(1114, 632);
             GridData.TabIndex = 4;
             // 
             // NextBtn
@@ -91,7 +109,7 @@
             NextBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             NextBtn.FlatStyle = FlatStyle.Flat;
             NextBtn.ForeColor = Color.White;
-            NextBtn.Location = new Point(6, 609);
+            NextBtn.Location = new Point(6, 699);
             NextBtn.Name = "NextBtn";
             NextBtn.Size = new Size(56, 32);
             NextBtn.TabIndex = 3;
@@ -107,7 +125,7 @@
             PrevBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             PrevBtn.FlatStyle = FlatStyle.Flat;
             PrevBtn.ForeColor = Color.White;
-            PrevBtn.Location = new Point(1064, 609);
+            PrevBtn.Location = new Point(1064, 699);
             PrevBtn.Name = "PrevBtn";
             PrevBtn.Size = new Size(56, 32);
             PrevBtn.TabIndex = 2;
@@ -122,7 +140,7 @@
             SearchBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             SearchBtn.FlatStyle = FlatStyle.Flat;
             SearchBtn.ForeColor = Color.White;
-            SearchBtn.Location = new Point(6, 21);
+            SearchBtn.Location = new Point(6, 24);
             SearchBtn.Name = "SearchBtn";
             SearchBtn.Size = new Size(75, 32);
             SearchBtn.TabIndex = 1;
@@ -131,29 +149,20 @@
             // 
             // SearchTxt
             // 
-            SearchTxt.Location = new Point(87, 21);
+            SearchTxt.Location = new Point(87, 24);
             SearchTxt.Name = "SearchTxt";
             SearchTxt.Size = new Size(262, 32);
             SearchTxt.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
-            groupBox1.Location = new Point(3, 3);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1126, 82);
-            groupBox1.TabIndex = 2;
-            groupBox1.TabStop = false;
             // 
             // UserUS
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(groupBox2);
-            Controls.Add(groupBox1);
             Font = new Font("IRANSansWeb", 11.25F);
             Margin = new Padding(4, 5, 4, 5);
             Name = "UserUS";
-            Size = new Size(1132, 741);
+            Size = new Size(1132, 743);
             Load += UserUS_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
@@ -170,6 +179,6 @@
         private Button PrevBtn;
         private Button SearchBtn;
         private TextBox SearchTxt;
-        private GroupBox groupBox1;
+        private Button button1;
     }
 }

@@ -4,10 +4,14 @@ namespace Domain.Library.Enums
 {
     public enum TransactionType : byte
     {
-        [Description("خرید")]
-        Buy = 0,
+        /// <summary>
+        /// واریز
+        /// </summary>
         [Description("واریز")]
         Settlemant = 1,
+        /// <summary>
+        /// برداشت
+        /// </summary>
         [Description("برداشت")]
         Harvesting = 2,
 
