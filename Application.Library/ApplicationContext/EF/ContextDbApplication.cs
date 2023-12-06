@@ -35,6 +35,7 @@ namespace Infrastructure.Library.ApplicationContext.EF
 
         public DbSet<UserLog> UserLogs { get; set; }
         public DbSet<CartLog> CartLogs { get; set; }
+        public DbSet<CustomerLog> CustomerLogs { get; set; }
         public DbSet<BlanceLog> BlanceLogs { get; set; }
         public DbSet<TransactionLog> TransactionLogs { get; set; }
 

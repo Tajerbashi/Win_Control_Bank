@@ -1,4 +1,5 @@
 ﻿using Domain.Library.Entities.BUS;
+using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Services.BUS;
 using System;
 using System.Collections.Generic;
@@ -27,9 +28,8 @@ namespace Presentation.Forms
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            Customer customer = new Customer();
+            CustomerDTO customer = new CustomerDTO();
             customer.FullName = FullNameTxt.Text;
-            customer.Guid = Guid.NewGuid();
             customer.Title = TitleTxt.Text;
             customer.Description = DescriptionTxt.Text;
             CustomerService customerService = new CustomerService();
