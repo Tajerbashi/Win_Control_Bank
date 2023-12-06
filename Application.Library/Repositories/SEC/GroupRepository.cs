@@ -5,8 +5,26 @@ using Infrastructure.Library.Models.Views.SEC;
 
 namespace Infrastructure.Library.Repositories.SEC
 {
-    public abstract class GroupRepository : GenericRepository<Group, GroupDTO, GroupView>
+    public abstract class GroupRepository : GenericRepository<Group, GroupDTO, GroupView>, IGenericQueries
     {
+        public string GetCount()
+        {
+            throw new NotImplementedException();
+        }
 
+        public string Search(string value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ShowAll(string paging)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ShowFromTo(string from, string to)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

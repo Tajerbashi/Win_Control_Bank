@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using Domain.Library.Bases;
 using Infrastructure.Library.ApplicationContext.AutoMapper;
+using Infrastructure.Library.ApplicationContext.Configurations;
 using Infrastructure.Library.ApplicationContext.DapperService;
 using Infrastructure.Library.ApplicationContext.EF;
+using Infrastructure.Library.ApplicationContext.GridDataConnection;
 using Infrastructure.Library.BaseModels;
+using Infrastructure.Library.Extentions;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -27,17 +30,24 @@ namespace Infrastructure.Library.BaseService
         where TDTO : BaseDTO
         where TView : BaseView
     {
+        protected readonly IBaseQuery _gridQuery;
         private MapperConfiguration mapper;
+        private DbSet<TEntity> table;
+        protected readonly Paging _paging;
         protected IMapper _mapper;
         protected ContextDbApplication _context;
         protected DapperServices _query;
-        private DbSet<TEntity> table;
+
         public GenericRepository()
         {
+            _gridQuery = new BaseQuery();
+            _paging = new Paging();
+            AutoMapperProfile profile = new AutoMapperProfile();
             mapper = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<TEntity, TDTO>();
                 cfg.CreateMap<TEntity, TView>();
+                cfg.AddProfile(new MapperProfiler());
             });
             _mapper = mapper.CreateMapper();
             _query = new DapperServices();

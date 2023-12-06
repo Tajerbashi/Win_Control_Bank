@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Library.Extentions
 {
-    internal class DateConverter
+    public static class DateConverter
     {
     }
 }

@@ -40,8 +40,7 @@ namespace Presentation.Forms
             Timer.Start();
             MSG.Visible = true;
             MSG.Text = "عملیات با موفقیت انجام شد";
-            
-
+            this.Close();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

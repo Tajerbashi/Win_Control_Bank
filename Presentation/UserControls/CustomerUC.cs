@@ -35,6 +35,7 @@ namespace Presentation.UserControls
         {
             NewUserForm form = new NewUserForm();
             form.ShowDialog();
+            ShowDataGrid();
         }
 
         private void SearchBtn_Click(object sender, EventArgs e)

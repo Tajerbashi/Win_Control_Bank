@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using Domain.Library.Entities.BUS;
 using Domain.Library.Entities.SEC;
+using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.DTOs.SEC;
+using Infrastructure.Library.Models.Views.BUS;
 using Infrastructure.Library.Models.Views.SEC;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -13,6 +16,12 @@ namespace Infrastructure.Library.ApplicationContext.AutoMapper
         {
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<User, UserView>().ReverseMap();
+
+
+            CreateMap<Customer, CustomerDTO>().ReverseMap();
+            CreateMap<Customer, CustomerView>().ReverseMap();
+
+
         }
     }
 }
