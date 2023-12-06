@@ -1,9 +1,11 @@
 ﻿using Domain.Library.Entities.LOG;
 using Infrastructure.Library.BaseService;
+using Infrastructure.Library.Models.DTOs.LOG;
+using Infrastructure.Library.Models.Views.LOG;
 
 namespace Infrastructure.Library.Repositories.LOG
 {
-    public abstract class BlanceLogRepository : GenericRepository<BlanceLog>
+    public abstract class BlanceLogRepository : GenericRepository<BlanceLog, BlanceLogDTO, BlanceLogView>
     {
     }
 }

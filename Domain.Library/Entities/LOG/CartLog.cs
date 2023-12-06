@@ -1,6 +1,5 @@
 ﻿using Domain.Library.Bases;
 using Domain.Library.Entities.BUS;
-using Domain.Library.Entities.SEC;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Library.Entities.LOG

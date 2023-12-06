@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Infrastructure.Library.BaseModels;
 
 namespace Infrastructure.Library.Models.Views.SEC
 {
-    internal class UserView
+    public class UserView : BaseView
     {
     }
+    
 }

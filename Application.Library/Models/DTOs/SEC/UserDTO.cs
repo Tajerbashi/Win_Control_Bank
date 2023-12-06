@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Infrastructure.Library.BaseModels;
 
 namespace Infrastructure.Library.Models.DTOs.SEC
 {
-    public class UserDTO
+    public class UserDTO : BaseDTO
     {
     }
 }
