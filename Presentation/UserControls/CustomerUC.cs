@@ -1,4 +1,5 @@
-﻿using Infrastructure.Library.Services.BUS;
+﻿using Dapper;
+using Infrastructure.Library.Services.BUS;
 using Infrastructure.Library.Services.SEC;
 using Presentation.Forms;
 using System;
@@ -23,6 +24,7 @@ namespace Presentation.UserControls
         {
             CustomerService customerService = new CustomerService();
             var users = customerService.ExecuteQuery(customerService.ShowAll(customerService.paging.Order(customerService.paging.Page)));
+            var ss = customerService.Dapper.Execute.Query<int>("SELECT  COUNT(*) AS [Count] FROM BUS.Customers");
             GridData.DataSource = users;
         }
 

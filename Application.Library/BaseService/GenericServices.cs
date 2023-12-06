@@ -24,6 +24,7 @@ namespace Infrastructure.Library.BaseService
         void DisActive(Guid guid);
         void Active(Guid guid);
         void Save();
+        DapperServices Dapper { get; }
     }
 
     public abstract class GenericRepository<TEntity, TDTO, TView> : IGenericRepository<TDTO>
@@ -38,7 +39,8 @@ namespace Infrastructure.Library.BaseService
         protected IBaseQuery GridQuery { get => _gridQuery = _gridQuery ?? new BaseQuery(); }
         protected IMapper _mapper;
         protected ContextDbApplication _context;
-        protected DapperServices _query;
+        private DapperServices _dapper;
+        public DapperServices Dapper { get => _dapper = _dapper ?? new DapperServices(); }
 
         public GenericRepository()
         {
@@ -50,7 +52,6 @@ namespace Infrastructure.Library.BaseService
                 cfg.AddProfile(new MapperProfiler());
             });
             _mapper = mapper.CreateMapper();
-            _query = new DapperServices();
             this._context = new ContextDbApplication();
             table = _context.Set<TEntity>();
         }
