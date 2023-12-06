@@ -22,7 +22,7 @@ namespace Presentation.UserControls
         private void ShowDataGrid()
         {
             CustomerService customerService = new CustomerService();
-            var users = customerService.GetAll();
+            var users = customerService.ExecuteQuery(customerService.ShowAll(customerService.paging.Order(customerService.paging.Page)));
             GridData.DataSource = users;
         }
 

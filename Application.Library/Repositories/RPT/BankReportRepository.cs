@@ -8,26 +8,24 @@ namespace Infrastructure.Library.Repositories.RPT
 {
     public abstract class BankReportRepository : GenericRepository<BankReport, BankReportDTO, BankReportView>, IGenericQueries
     {
-        
-
         public string GetCount()
         {
-            throw new NotImplementedException();
+            return (@"");
         }
 
         public string Search(string value)
         {
-            throw new NotImplementedException();
+            return (@"");
         }
 
         public string ShowAll(string paging)
         {
-            throw new NotImplementedException();
+            return (@"");
         }
 
         public string ShowFromTo(string from, string to)
         {
-            throw new NotImplementedException();
+            return (@"");
         }
     }
 }

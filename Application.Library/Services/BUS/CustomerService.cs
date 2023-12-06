@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Library.Repositories.BUS;
+using System.Data;
 
 namespace Infrastructure.Library.Services.BUS
 {
@@ -7,5 +8,6 @@ namespace Infrastructure.Library.Services.BUS
         public CustomerService()
         {
         }
+        
     }
 }

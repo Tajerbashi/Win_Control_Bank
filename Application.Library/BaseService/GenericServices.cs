@@ -9,6 +9,7 @@ using Infrastructure.Library.BaseModels;
 using Infrastructure.Library.Extentions;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Data;
 
 namespace Infrastructure.Library.BaseService
 {
@@ -30,18 +31,17 @@ namespace Infrastructure.Library.BaseService
         where TDTO : BaseDTO
         where TView : BaseView
     {
-        protected readonly IBaseQuery _gridQuery;
+        public readonly Paging paging = new Paging();
         private MapperConfiguration mapper;
         private DbSet<TEntity> table;
-        protected readonly Paging _paging;
+        private IBaseQuery _gridQuery;
+        protected IBaseQuery GridQuery { get => _gridQuery = _gridQuery ?? new BaseQuery(); }
         protected IMapper _mapper;
         protected ContextDbApplication _context;
         protected DapperServices _query;
 
         public GenericRepository()
         {
-            _gridQuery = new BaseQuery();
-            _paging = new Paging();
             AutoMapperProfile profile = new AutoMapperProfile();
             mapper = new MapperConfiguration(cfg =>
             {
@@ -125,6 +125,10 @@ namespace Infrastructure.Library.BaseService
             TEntity existing = table.Where(x => x.Guid.Equals(guid)).Single();
             existing.UpdateDate = DateTime.Now;
             existing.IsActive = true;
+        }
+        public DataTable ExecuteQuery(string query)
+        {
+            return GridQuery.Execute(query);
         }
     }
 

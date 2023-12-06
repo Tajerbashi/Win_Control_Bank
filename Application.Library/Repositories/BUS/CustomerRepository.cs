@@ -2,7 +2,6 @@
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.Views.BUS;
-using System.Runtime.CompilerServices;
 
 namespace Infrastructure.Library.Repositories.BUS
 {
@@ -20,7 +19,10 @@ namespace Infrastructure.Library.Repositories.BUS
 
         public string ShowAll(string paging)
         {
-            throw new NotImplementedException();
+            return (@"
+SELECT        ID AS آیدی, FullName AS [نام کامل], [Key] AS [کلید اختصاصی], Guid AS [کد اختصاصی], CreateDate AS [تاریخ ثبت], UpdateDate AS [آخرین ویرایش], IsActive AS وضعیت, Description AS توضیحات, Title AS عنوان, Picture AS نصویر
+FROM            BUS.Customers
+");
         }
 
         public string ShowFromTo(string from, string to)
