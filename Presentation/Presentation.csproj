@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application.Library\Infrastructure.Library.csproj" />
+    <ProjectReference Include="..\Common.Library\Common.Library.csproj" />
   </ItemGroup>
 
   <ItemGroup>

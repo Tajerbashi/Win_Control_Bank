@@ -1,6 +1,6 @@
 ﻿namespace Presentation.UserControls
 {
-    partial class CartUC
+    partial class BankUC
     {
         /// <summary> 
         /// Required designer variable.
@@ -52,8 +52,8 @@
             groupBox2.Controls.Add(SearchTxt);
             groupBox2.Location = new Point(3, 44);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1126, 694);
-            groupBox2.TabIndex = 1;
+            groupBox2.Size = new Size(1126, 695);
+            groupBox2.TabIndex = 5;
             groupBox2.TabStop = false;
             // 
             // AddBtn
@@ -65,10 +65,10 @@
             AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             AddBtn.FlatStyle = FlatStyle.Flat;
             AddBtn.ForeColor = Color.White;
-            AddBtn.Location = new Point(999, 20);
+            AddBtn.Location = new Point(999, 24);
             AddBtn.Name = "AddBtn";
             AddBtn.Size = new Size(121, 32);
-            AddBtn.TabIndex = 15;
+            AddBtn.TabIndex = 14;
             AddBtn.Text = "جدید";
             AddBtn.UseVisualStyleBackColor = true;
             AddBtn.Click += AddBtn_Click;
@@ -88,13 +88,13 @@
             GridData.Name = "GridData";
             GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridData.Size = new Size(1114, 588);
+            GridData.Size = new Size(1114, 589);
             GridData.TabIndex = 12;
             // 
             // PageLbl
             // 
             PageLbl.ForeColor = Color.White;
-            PageLbl.Location = new Point(188, 656);
+            PageLbl.Location = new Point(188, 657);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(751, 32);
             PageLbl.TabIndex = 11;
@@ -110,7 +110,7 @@
             NextBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             NextBtn.FlatStyle = FlatStyle.Flat;
             NextBtn.ForeColor = Color.White;
-            NextBtn.Location = new Point(6, 656);
+            NextBtn.Location = new Point(6, 657);
             NextBtn.Name = "NextBtn";
             NextBtn.Size = new Size(56, 32);
             NextBtn.TabIndex = 3;
@@ -126,7 +126,7 @@
             PrevBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             PrevBtn.FlatStyle = FlatStyle.Flat;
             PrevBtn.ForeColor = Color.White;
-            PrevBtn.Location = new Point(1064, 656);
+            PrevBtn.Location = new Point(1064, 657);
             PrevBtn.Name = "PrevBtn";
             PrevBtn.Size = new Size(56, 32);
             PrevBtn.TabIndex = 2;
@@ -161,11 +161,11 @@
             label1.Location = new Point(9, 9);
             label1.Name = "label1";
             label1.Size = new Size(1114, 32);
-            label1.TabIndex = 13;
-            label1.Text = "اطلاعات کارتی";
+            label1.TabIndex = 12;
+            label1.Text = "اطلاعات بانکی";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // CartUC
+            // BankUC
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -173,9 +173,9 @@
             Controls.Add(groupBox2);
             Font = new Font("IRANSansWeb", 11.25F);
             Margin = new Padding(4, 5, 4, 5);
-            Name = "CartUC";
-            RightToLeft = RightToLeft.Yes;
+            Name = "BankUC";
             Size = new Size(1132, 743);
+            Load += BankUC_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).EndInit();
@@ -183,14 +183,15 @@
         }
 
         #endregion
+
         private GroupBox groupBox2;
-        private TextBox SearchTxt;
+        private DataGridView GridData;
+        private Label PageLbl;
         private Button NextBtn;
         private Button PrevBtn;
         private Button SearchBtn;
-        private Label PageLbl;
-        private DataGridView GridData;
-        private Label label1;
+        private TextBox SearchTxt;
         private Button AddBtn;
+        private Label label1;
     }
 }

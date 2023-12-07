@@ -154,6 +154,7 @@
             Margin = new Padding(4, 5, 4, 5);
             Name = "CalculateUC";
             Size = new Size(1132, 743);
+            Load += CalculateUC_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).EndInit();

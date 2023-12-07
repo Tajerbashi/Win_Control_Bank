@@ -3,14 +3,23 @@
   <PropertyGroup />
   <ItemGroup />
   <ItemGroup>
+    <Compile Update="Forms\BankNewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\CartNewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\ModalFRM.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\NewUserForm.cs">
+    <Compile Update="Forms\UserNewForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="MainFRM.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UserControls\BankUC.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControls\CalculateUC.cs">
       <SubType>UserControl</SubType>

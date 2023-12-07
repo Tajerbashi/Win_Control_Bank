@@ -1,6 +1,6 @@
 ﻿namespace Presentation.Forms
 {
-    partial class NewUserForm
+    partial class BankNewForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,93 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            CloseBtn = new Button();
-            SaveBtn = new Button();
+            label3 = new Label();
             groupBox1 = new GroupBox();
             MSG = new Label();
             DescriptionTxt = new RichTextBox();
-            UserPicture = new PictureBox();
             label2 = new Label();
             label1 = new Label();
             PageLbl = new Label();
             TitleTxt = new TextBox();
-            FullNameTxt = new TextBox();
-            timer1 = new System.Windows.Forms.Timer(components);
+            BankNameTxt = new TextBox();
+            CloseBtn = new Button();
+            SaveBtn = new Button();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)UserPicture).BeginInit();
             SuspendLayout();
             // 
-            // CloseBtn
+            // label3
             // 
-            CloseBtn.BackColor = Color.FromArgb(255, 128, 128);
-            CloseBtn.Cursor = Cursors.Hand;
-            CloseBtn.FlatAppearance.BorderColor = Color.Red;
-            CloseBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            CloseBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 0, 0);
-            CloseBtn.FlatAppearance.MouseOverBackColor = Color.Maroon;
-            CloseBtn.FlatStyle = FlatStyle.Flat;
-            CloseBtn.ForeColor = Color.White;
-            CloseBtn.Location = new Point(161, 288);
-            CloseBtn.Margin = new Padding(4, 5, 4, 5);
-            CloseBtn.Name = "CloseBtn";
-            CloseBtn.Size = new Size(121, 32);
-            CloseBtn.TabIndex = 13;
-            CloseBtn.Text = "لفو عملیات";
-            CloseBtn.UseVisualStyleBackColor = false;
-            CloseBtn.Click += CloseBtn_Click;
-            // 
-            // SaveBtn
-            // 
-            SaveBtn.BackColor = Color.LimeGreen;
-            SaveBtn.Cursor = Cursors.Hand;
-            SaveBtn.FlatAppearance.BorderColor = Color.Green;
-            SaveBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            SaveBtn.FlatAppearance.MouseDownBackColor = Color.Green;
-            SaveBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
-            SaveBtn.FlatStyle = FlatStyle.Flat;
-            SaveBtn.ForeColor = Color.White;
-            SaveBtn.Location = new Point(434, 288);
-            SaveBtn.Name = "SaveBtn";
-            SaveBtn.Size = new Size(121, 32);
-            SaveBtn.TabIndex = 14;
-            SaveBtn.Text = "ذخیره اطلاعات";
-            SaveBtn.UseVisualStyleBackColor = false;
-            SaveBtn.Click += SaveBtn_Click;
+            label3.BackColor = Color.DeepSkyBlue;
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(11, 10);
+            label3.Name = "label3";
+            label3.Size = new Size(718, 35);
+            label3.TabIndex = 27;
+            label3.Text = "فرم ثبت اطلاعات بانک";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
             groupBox1.Controls.Add(MSG);
             groupBox1.Controls.Add(DescriptionTxt);
-            groupBox1.Controls.Add(UserPicture);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(PageLbl);
             groupBox1.Controls.Add(TitleTxt);
-            groupBox1.Controls.Add(FullNameTxt);
+            groupBox1.Controls.Add(BankNameTxt);
             groupBox1.Controls.Add(CloseBtn);
             groupBox1.Controls.Add(SaveBtn);
             groupBox1.FlatStyle = FlatStyle.Popup;
-            groupBox1.Location = new Point(12, -3);
+            groupBox1.Location = new Point(12, 48);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(717, 328);
-            groupBox1.TabIndex = 15;
+            groupBox1.Size = new Size(717, 346);
+            groupBox1.TabIndex = 26;
             groupBox1.TabStop = false;
             // 
             // MSG
             // 
             MSG.ForeColor = Color.Black;
-            MSG.Location = new Point(179, 22);
+            MSG.Location = new Point(159, 22);
             MSG.Name = "MSG";
-            MSG.Size = new Size(431, 32);
+            MSG.Size = new Size(398, 32);
             MSG.TabIndex = 23;
             MSG.TextAlign = ContentAlignment.MiddleCenter;
             MSG.Visible = false;
             // 
             // DescriptionTxt
             // 
-            DescriptionTxt.BackColor = Color.FromArgb(192, 255, 192);
+            DescriptionTxt.BackColor = Color.White;
             DescriptionTxt.BorderStyle = BorderStyle.FixedSingle;
             DescriptionTxt.Location = new Point(9, 195);
             DescriptionTxt.MaxLength = 5000;
@@ -123,16 +93,6 @@
             DescriptionTxt.Size = new Size(698, 87);
             DescriptionTxt.TabIndex = 22;
             DescriptionTxt.Text = "";
-            // 
-            // UserPicture
-            // 
-            UserPicture.BorderStyle = BorderStyle.FixedSingle;
-            UserPicture.Cursor = Cursors.Hand;
-            UserPicture.Location = new Point(6, 22);
-            UserPicture.Name = "UserPicture";
-            UserPicture.Size = new Size(167, 167);
-            UserPicture.TabIndex = 21;
-            UserPicture.TabStop = false;
             // 
             // label2
             // 
@@ -161,67 +121,97 @@
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(95, 32);
             PageLbl.TabIndex = 17;
-            PageLbl.Text = "نام کامل";
+            PageLbl.Text = "نام بانک";
             PageLbl.TextAlign = ContentAlignment.MiddleRight;
             // 
             // TitleTxt
             // 
-            TitleTxt.BackColor = Color.FromArgb(192, 255, 192);
+            TitleTxt.BackColor = Color.White;
             TitleTxt.BorderStyle = BorderStyle.FixedSingle;
-            TitleTxt.Location = new Point(212, 125);
+            TitleTxt.Location = new Point(9, 125);
             TitleTxt.Name = "TitleTxt";
-            TitleTxt.Size = new Size(492, 32);
+            TitleTxt.Size = new Size(695, 32);
             TitleTxt.TabIndex = 16;
             TitleTxt.TextAlign = HorizontalAlignment.Center;
             // 
-            // FullNameTxt
+            // BankNameTxt
             // 
-            FullNameTxt.BackColor = Color.FromArgb(192, 255, 192);
-            FullNameTxt.BorderStyle = BorderStyle.FixedSingle;
-            FullNameTxt.Location = new Point(212, 57);
-            FullNameTxt.Name = "FullNameTxt";
-            FullNameTxt.Size = new Size(492, 32);
-            FullNameTxt.TabIndex = 15;
-            FullNameTxt.TextAlign = HorizontalAlignment.Center;
+            BankNameTxt.BackColor = Color.White;
+            BankNameTxt.BorderStyle = BorderStyle.FixedSingle;
+            BankNameTxt.Location = new Point(9, 57);
+            BankNameTxt.Name = "BankNameTxt";
+            BankNameTxt.Size = new Size(695, 32);
+            BankNameTxt.TabIndex = 15;
+            BankNameTxt.TextAlign = HorizontalAlignment.Center;
             // 
-            // timer1
+            // CloseBtn
             // 
-            timer1.Interval = 3000;
-            timer1.Tick += timer1_Tick;
+            CloseBtn.BackColor = Color.FromArgb(255, 128, 128);
+            CloseBtn.Cursor = Cursors.Hand;
+            CloseBtn.FlatAppearance.BorderColor = Color.Red;
+            CloseBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            CloseBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 0, 0);
+            CloseBtn.FlatAppearance.MouseOverBackColor = Color.Maroon;
+            CloseBtn.FlatStyle = FlatStyle.Flat;
+            CloseBtn.ForeColor = Color.White;
+            CloseBtn.Location = new Point(158, 306);
+            CloseBtn.Margin = new Padding(4, 5, 4, 5);
+            CloseBtn.Name = "CloseBtn";
+            CloseBtn.Size = new Size(121, 32);
+            CloseBtn.TabIndex = 13;
+            CloseBtn.Text = "لفو عملیات";
+            CloseBtn.UseVisualStyleBackColor = false;
             // 
-            // NewUserForm
+            // SaveBtn
+            // 
+            SaveBtn.BackColor = Color.LimeGreen;
+            SaveBtn.Cursor = Cursors.Hand;
+            SaveBtn.FlatAppearance.BorderColor = Color.Green;
+            SaveBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            SaveBtn.FlatAppearance.MouseDownBackColor = Color.Green;
+            SaveBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            SaveBtn.FlatStyle = FlatStyle.Flat;
+            SaveBtn.ForeColor = Color.White;
+            SaveBtn.Location = new Point(437, 306);
+            SaveBtn.Name = "SaveBtn";
+            SaveBtn.Size = new Size(121, 32);
+            SaveBtn.TabIndex = 14;
+            SaveBtn.Text = "ذخیره اطلاعات";
+            SaveBtn.UseVisualStyleBackColor = false;
+            SaveBtn.Click += SaveBtn_Click;
+            // 
+            // BankNewForm
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(192, 255, 192);
-            ClientSize = new Size(741, 337);
+            BackColor = Color.Azure;
+            ClientSize = new Size(741, 405);
+            Controls.Add(label3);
             Controls.Add(groupBox1);
             Font = new Font("IRANSansWeb", 11.25F);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 5, 4, 5);
-            Name = "NewUserForm";
-            RightToLeftLayout = true;
+            Name = "BankNewForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "NewUserForm";
+            Text = "BankNewForm";
+            Load += BankNewForm_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)UserPicture).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button CloseBtn;
-        private Button SaveBtn;
+        private Label label3;
         private GroupBox groupBox1;
-        private TextBox FullNameTxt;
-        private TextBox TitleTxt;
+        private Label MSG;
+        private RichTextBox DescriptionTxt;
         private Label label2;
         private Label label1;
         private Label PageLbl;
-        private PictureBox UserPicture;
-        private RichTextBox DescriptionTxt;
-        private Label MSG;
-        private System.Windows.Forms.Timer timer1;
+        private TextBox TitleTxt;
+        private TextBox BankNameTxt;
+        private Button CloseBtn;
+        private Button SaveBtn;
     }
 }

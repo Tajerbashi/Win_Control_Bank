@@ -1,21 +1,12 @@
-﻿using Domain.Library.Entities.BUS;
-using Infrastructure.Library.Models.DTOs.BUS;
-using Infrastructure.Library.Services.BUS;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Infrastructure.Library.Models.DTOs.BUS;
+using Infrastructure.Library.Patterns;
 
 namespace Presentation.Forms
 {
-    public partial class NewUserForm : Form
+    public partial class UserNewForm : Form
     {
-        public NewUserForm()
+        private readonly IUnitOfWork _unitOfWork = new UnitOfWork();
+        public UserNewForm()
         {
             InitializeComponent();
         }
@@ -32,9 +23,9 @@ namespace Presentation.Forms
             customer.FullName = FullNameTxt.Text;
             customer.Title = TitleTxt.Text;
             customer.Description = DescriptionTxt.Text;
-            CustomerService customerService = new CustomerService();
-            customerService.Insert(customer);
-            customerService.Save();
+            customer.Key = Guid.NewGuid();
+            _unitOfWork.CustomerService.Insert(customer);
+            _unitOfWork.CustomerService.Save();
             Timer.Tick += new EventHandler(timer1_Tick);
             Timer.Interval = 3000;
             Timer.Start();

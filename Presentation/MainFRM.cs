@@ -39,7 +39,7 @@ namespace Presentation
         {
             ClockLbl.Text = DateUtilities.PersianDate();//zaman ro mide
         }
-        
+
         #endregion
         private void MainFRM_Load(object sender, EventArgs e)
         {
@@ -155,6 +155,16 @@ namespace Presentation
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        private void BankBtn_Click(object sender, EventArgs e)
+        {
+            BankUC panel = new BankUC();
+            if (MainPanel.Controls.Count > 0)
+            {
+                MainPanel.Controls[0].Dispose();
+            }
+            MainPanel.Controls.Add(panel);
         }
     }
 }

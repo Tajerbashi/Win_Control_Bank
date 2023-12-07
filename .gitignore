@@ -1,4 +1,7 @@
 .vs
+Common.Library/bin
+Common.Library/obj
+
 Domain.Library/bin
 Domain.Library/obj
 
