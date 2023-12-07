@@ -2,7 +2,11 @@
 
 namespace Infrastructure.Library.Models.DTOs.BUS
 {
-    public class BankDTO : BaseDTO
+    public class BankDTO : GeneralBaseDTO
     {
+        /// <summary>
+        /// BankName
+        /// </summary>
+        public string BankName { get; set; }
     }
 }
