@@ -1,8 +1,12 @@
-﻿using Infrastructure.Library.Repositories.RPT;
+﻿using AutoMapper;
+using Infrastructure.Library.Repositories.RPT;
 
 namespace Infrastructure.Library.Services.RPT
 {
-    public abstract class TransferReportService : TransferReportRepository
+    public class TransferReportService : TransferReportRepository
     {
+        public TransferReportService(IMapper mapper) : base(mapper)
+        {
+        }
     }
 }

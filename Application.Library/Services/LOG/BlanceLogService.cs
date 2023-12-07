@@ -1,8 +1,12 @@
-﻿using Infrastructure.Library.Repositories.LOG;
+﻿using AutoMapper;
+using Infrastructure.Library.Repositories.LOG;
 
 namespace Infrastructure.Library.Services.LOG
 {
-    public abstract class BlanceLogService : BlanceLogRepository
+    public class BlanceLogService : BlanceLogRepository
     {
+        public BlanceLogService(IMapper mapper) : base(mapper)
+        {
+        }
     }
 }

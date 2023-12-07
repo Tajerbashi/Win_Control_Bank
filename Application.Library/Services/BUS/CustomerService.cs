@@ -1,13 +1,9 @@
-﻿using Infrastructure.Library.Repositories.BUS;
-using System.Data;
-
+﻿using AutoMapper;
+using Infrastructure.Library.Repositories.BUS;
 namespace Infrastructure.Library.Services.BUS
 {
     public class CustomerService : CustomerRepository
     {
-        public CustomerService()
-        {
-        }
-        
+        public CustomerService(IMapper mapper) : base(mapper) { }
     }
 }

@@ -1,8 +1,12 @@
-﻿using Infrastructure.Library.Repositories.LOG;
+﻿using AutoMapper;
+using Infrastructure.Library.Repositories.LOG;
 
 namespace Infrastructure.Library.Services.LOG
 {
-    public abstract class UserLogService : UserLogRepository
+    public class UserLogService : UserLogRepository
     {
+        public UserLogService(IMapper mapper) : base(mapper)
+        {
+        }
     }
 }

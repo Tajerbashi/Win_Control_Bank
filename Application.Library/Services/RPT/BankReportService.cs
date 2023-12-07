@@ -1,8 +1,12 @@
-﻿using Infrastructure.Library.Repositories.RPT;
+﻿using AutoMapper;
+using Infrastructure.Library.Repositories.RPT;
 
 namespace Infrastructure.Library.Services.RPT
 {
-    public abstract class BankReportService : BankReportRepository
+    public class BankReportService : BankReportRepository
     {
+        protected BankReportService(IMapper mapper) : base(mapper)
+        {
+        }
     }
 }

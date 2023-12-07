@@ -1,8 +1,12 @@
-﻿using Infrastructure.Library.Repositories.RPT;
+﻿using AutoMapper;
+using Infrastructure.Library.Repositories.RPT;
 
 namespace Infrastructure.Library.Services.RPT
 {
-    public abstract class CartReportService : CartReportRepository
+    public class CartReportService : CartReportRepository
     {
+        protected CartReportService(IMapper mapper) : base(mapper)
+        {
+        }
     }
 }
