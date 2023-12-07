@@ -33,25 +33,17 @@ namespace Infrastructure.Library.BaseService
         where TView : BaseView
     {
         public readonly Paging paging = new Paging();
-        private MapperConfiguration mapper;
         private DbSet<TEntity> table;
         private IBaseQuery _gridQuery;
         protected IBaseQuery GridQuery { get => _gridQuery = _gridQuery ?? new BaseQuery(); }
-        protected IMapper _mapper;
+        protected IMapper Mapper { get; }
         protected ContextDbApplication _context;
         private DapperServices _dapper;
         public DapperServices Dapper { get => _dapper = _dapper ?? new DapperServices(); }
 
-        public GenericRepository()
+        public GenericRepository(IMapper mapper)
         {
-            AutoMapperProfile profile = new AutoMapperProfile();
-            mapper = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<TEntity, TDTO>();
-                cfg.CreateMap<TEntity, TView>();
-                cfg.AddProfile(new MapperProfiler());
-            });
-            _mapper = mapper.CreateMapper();
+            Mapper = mapper;
             this._context = new ContextDbApplication();
             table = _context.Set<TEntity>();
         }
@@ -62,16 +54,16 @@ namespace Infrastructure.Library.BaseService
         }
         public IEnumerable<TDTO> GetAll()
         {
-            return _mapper.Map<List<TDTO>>(table.ToList());
+            return Mapper.Map<List<TDTO>>(table.ToList());
         }
         public TDTO GetById(object id)
         {
-            return _mapper.Map<TDTO>(table.Find(id));
+            return Mapper.Map<TDTO>(table.Find(id));
         }
         public void Insert(TDTO obj)
         {
 
-            var model = _mapper.Map<TEntity>(obj);
+            var model = Mapper.Map<TEntity>(obj);
             model.Guid = Guid.NewGuid();
 
             model.CreateBy = 0;
@@ -89,7 +81,7 @@ namespace Infrastructure.Library.BaseService
         }
         public void Update(TDTO obj)
         {
-            var model = _mapper.Map<TEntity>(obj);
+            var model = Mapper.Map<TEntity>(obj);
             model.UpdateDate = DateTime.Now;
             model.DeleteBy = 0;
             table.Attach(model);

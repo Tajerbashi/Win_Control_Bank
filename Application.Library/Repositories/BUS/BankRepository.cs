@@ -1,4 +1,5 @@
-﻿using Domain.Library.Entities.BUS;
+﻿using AutoMapper;
+using Domain.Library.Entities.BUS;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.Views.BUS;
@@ -7,11 +8,10 @@ namespace Infrastructure.Library.Repositories.BUS
 {
     public abstract class BankRepository : GenericRepository<Bank, BankDTO, BankView>, IGenericQueries
     {
-
-        public BankRepository()
+        protected BankRepository(IMapper mapper) : base(mapper)
         {
-            
         }
+
         public string GetCount()
         {
             throw new NotImplementedException();
