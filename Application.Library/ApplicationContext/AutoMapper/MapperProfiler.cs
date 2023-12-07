@@ -21,6 +21,9 @@ namespace Infrastructure.Library.ApplicationContext.AutoMapper
             CreateMap<Customer, CustomerDTO>().ReverseMap();
             CreateMap<Customer, CustomerView>().ReverseMap();
 
+            CreateMap<Bank, BankDTO>().ReverseMap();
+            CreateMap<Bank, BankView>().ReverseMap();
+
 
         }
     }

@@ -17,14 +17,19 @@ namespace Infrastructure.Library.BaseService
     {
         IEnumerable<T> GetAll();
         T GetById(object id);
-        void Insert(T obj);
-        void Update(T obj);
+        object Insert(T obj);
+        object Update(T obj);
         void Delete(object id);
         void Delete(Guid guid);
-        void DisActive(Guid guid);
-        void Active(Guid guid);
-        void Save();
-        DapperServices Dapper { get; }
+        object DisActive(Guid guid);
+        object Active(Guid guid);
+        object Save();
+        void BeginTransaction();
+        void BeginTransactionAsync();
+        void CommitTransaction();
+        void CommitTransactionAync();
+        void RollBackTransaction();
+        void RollBackTransactionAsyn();
     }
 
     public abstract class GenericRepository<TEntity, TDTO, TView> : IGenericRepository<TDTO>
@@ -32,18 +37,20 @@ namespace Infrastructure.Library.BaseService
         where TDTO : BaseDTO
         where TView : BaseView
     {
-        public readonly Paging paging = new Paging();
         private DbSet<TEntity> table;
-        private IBaseQuery _gridQuery;
-        protected IBaseQuery GridQuery { get => _gridQuery = _gridQuery ?? new BaseQuery(); }
+
         protected IMapper Mapper { get; }
         protected ContextDbApplication _context;
-        private DapperServices _dapper;
-        public DapperServices Dapper { get => _dapper = _dapper ?? new DapperServices(); }
+
 
         public GenericRepository(IMapper mapper)
         {
-            Mapper = mapper;
+            MapperConfiguration ConfigMapper = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(typeof(MapperProfiler));
+                //cfg.AddProfile(new MapperProfiler());
+            });
+            Mapper = ConfigMapper.CreateMapper();
             this._context = new ContextDbApplication();
             table = _context.Set<TEntity>();
         }
@@ -60,7 +67,7 @@ namespace Infrastructure.Library.BaseService
         {
             return Mapper.Map<TDTO>(table.Find(id));
         }
-        public void Insert(TDTO obj)
+        public object Insert(TDTO obj)
         {
 
             var model = Mapper.Map<TEntity>(obj);
@@ -78,14 +85,18 @@ namespace Infrastructure.Library.BaseService
             model.IsDeleted = false;
             model.IsActive = true;
             table.Add(model);
+            _context.SaveChanges();
+            return model;
         }
-        public void Update(TDTO obj)
+        public object Update(TDTO obj)
         {
             var model = Mapper.Map<TEntity>(obj);
             model.UpdateDate = DateTime.Now;
             model.DeleteBy = 0;
             table.Attach(model);
             _context.Entry(model).State = EntityState.Modified;
+            _context.SaveChanges();
+            return model;
         }
         public void Delete(object id)
         {
@@ -101,27 +112,57 @@ namespace Infrastructure.Library.BaseService
             existing.IsDeleted = true;
             existing.IsActive = false;
         }
-        public void Save()
+        public object Save()
         {
-            _context.SaveChanges();
+            return _context.SaveChanges();
         }
 
-        public void DisActive(Guid guid)
+        public object DisActive(Guid guid)
         {
             TEntity existing = table.Where(x => x.Guid.Equals(guid)).Single();
             existing.UpdateDate = DateTime.Now;
             existing.IsActive = false;
+            _context.SaveChanges();
+            return existing;
         }
 
-        public void Active(Guid guid)
+        public object Active(Guid guid)
         {
             TEntity existing = table.Where(x => x.Guid.Equals(guid)).Single();
             existing.UpdateDate = DateTime.Now;
             existing.IsActive = true;
+            _context.SaveChanges();
+            return existing;
         }
-        public DataTable ExecuteQuery(string query)
+
+        public void BeginTransaction()
         {
-            return GridQuery.Execute(query);
+            _context.Database.BeginTransaction();
+        }
+
+        public void CommitTransaction()
+        {
+            _context.Database.CommitTransaction();
+        }
+
+        public void RollBackTransaction()
+        {
+            _context.Database.RollbackTransaction();
+        }
+
+        public void BeginTransactionAsync()
+        {
+            _context.Database.BeginTransactionAsync();
+        }
+
+        public void CommitTransactionAync()
+        {
+            _context.Database.CommitTransactionAsync();
+        }
+
+        public void RollBackTransactionAsyn()
+        {
+            _context.Database.RollbackTransactionAsync();
         }
     }
 
