@@ -14,7 +14,7 @@ namespace Infrastructure.Library.Repositories.BUS
 
         public string GetCount()
         {
-            throw new NotImplementedException();
+            return (@$"SELECT  COUNT(*) FROM    BUS.Banks WHERE   (IsDeleted = 0)");
         }
 
         public string Search(string value)
@@ -24,7 +24,13 @@ namespace Infrastructure.Library.Repositories.BUS
 
         public string ShowAll(string paging)
         {
-            throw new NotImplementedException();
+            return (@$"
+SELECT        ID AS آیدی, BankName AS [نام بانک], Guid AS کلید, CreateDate AS [تاریخ ثبت], UpdateDate AS [تاریخ ویرایش], Title AS عنوان, Description AS توضیحات, IsActive AS وضعیت
+FROM            BUS.Banks
+WHERE        (IsDeleted = 0)
+ORDER BY ID DESC 
+{paging}
+");
         }
 
         public string ShowFromTo(string from, string to)

@@ -1,4 +1,5 @@
-﻿using Domain.Library.Entities.RPT;
+﻿using AutoMapper;
+using Domain.Library.Entities.RPT;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Extentions;
 using Infrastructure.Library.Models.DTOs.RPT;
@@ -8,6 +9,10 @@ namespace Infrastructure.Library.Repositories.RPT
 {
     public abstract class BankReportRepository : GenericRepository<BankReport, BankReportDTO, BankReportView>, IGenericQueries
     {
+        protected BankReportRepository(IMapper mapper) : base(mapper)
+        {
+        }
+
         public string GetCount()
         {
             return (@"");
