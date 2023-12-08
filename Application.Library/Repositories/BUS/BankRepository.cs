@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Library.Entities.BUS;
 using Infrastructure.Library.BaseService;
+using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.Views.BUS;
 
@@ -36,6 +37,15 @@ ORDER BY ID DESC
         public string ShowFromTo(string from, string to)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<KeyValue<long>> TitleValue()
+        {
+            return _context.Banks.Select(x => new KeyValue<long>
+            {
+                Key = x.BankName,
+                Value = x.ID
+            });
         }
     }
 }

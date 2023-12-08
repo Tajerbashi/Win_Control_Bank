@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using Azure;
 using Domain.Library.Entities.BUS;
 using Infrastructure.Library.BaseService;
+using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.Views.BUS;
 
@@ -14,7 +16,15 @@ namespace Infrastructure.Library.Repositories.BUS
 
         public string GetCount()
         {
-            throw new NotImplementedException();
+            return (@"
+SELECT 
+	COUNT (*) AS [COUNT]
+FROM BUS.Carts C
+INNER JOIN BUS.Blances B ON B.CartID = C.ID
+INNER JOIN BUS.Customers CS ON CS.ID = C.CustomerID
+INNER JOIN BUS.Banks BN ON BN.ID = C.BankID
+WHERE C.IsDeleted = 0
+");
         }
 
         public string Search(string value)
@@ -24,12 +34,43 @@ namespace Infrastructure.Library.Repositories.BUS
 
         public string ShowAll(string paging)
         {
-            throw new NotImplementedException();
+            return (@$"
+SELECT 
+	BN.BankName AS [بانک],
+	CS.FullName AS [مالک],
+	FORMAT(CAST(C.AccountNumber as bigint),'####-####-####-####') AS [شماره حساب],
+	FORMAT(C.[ExpireDate],'yyyy/MM/dd hh:mm','fa-ir') AS [تاریخ انقضاء],
+	C.ShabaAccountNumber AS [شماره شبا],
+	FORMAT(CAST(B.Cash as bigint),'###,###,###') AS [موجودی],
+	FORMAT(CAST(B.LastCash as bigint),'###,###,###,###') AS [موجودی قبل],
+	CASE C.IsActive
+	WHEN 1 THEN N'فعال'
+	ELSE 'غیر فعال'
+	END AS [وضعیت],
+	FORMAT(C.CreateDate,'yyyy/MM/dd hh:mm','fa-ir') AS [تاریخ ثبت],
+	FORMAT(C.UpdateDate,'yyyy/MM/dd hh:mm','fa-ir') AS [تاریخ ویرایش]
+FROM BUS.Carts C
+INNER JOIN BUS.Blances B ON B.CartID = C.ID
+INNER JOIN BUS.Customers CS ON CS.ID = C.CustomerID
+INNER JOIN BUS.Banks BN ON BN.ID = C.BankID
+WHERE C.IsDeleted = 0
+ORDER BY C.ID DESC 
+{paging}
+");
         }
 
         public string ShowFromTo(string from, string to)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<KeyValue<long>> TitleValue()
+        {
+            return _context.Carts.Select(x => new KeyValue<long>
+            {
+                Key = ($@"{x.Bank.Title} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Value = x.ID
+            });
         }
     }
 }

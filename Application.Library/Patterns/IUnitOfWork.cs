@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Infrastructure.Library.ApplicationContext.DapperService;
+using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.Extentions;
 using Infrastructure.Library.Services.BUS;
 using Infrastructure.Library.Services.SEC;
@@ -8,8 +9,17 @@ namespace Infrastructure.Library.Patterns
 {
     public interface IUnitOfWork:IDisposable
     {
+
+
+        #region Config
         Paging Paging { get; }
         DapperServices Dapper { get; }
+
+        void BeginTransaction();
+        void CommitTransaction();
+        void RollBackTransaction();
+        #endregion
+
 
         #region SEC
         GroupService GroupService { get; }
@@ -28,10 +38,13 @@ namespace Infrastructure.Library.Patterns
         CustomerService CustomerService { get; }
         TransactionService TransactionService { get; }
         #endregion
+
     }
     public class UnitOfWork : IUnitOfWork
     {
         #region Configs
+
+        private readonly IContextDbApplication _context;
         private readonly IMapper mapper;
         private DapperServices _dapper;
         public DapperServices Dapper { get => _dapper = _dapper ?? new DapperServices(); }
@@ -41,6 +54,13 @@ namespace Infrastructure.Library.Patterns
             get => _paging = _paging ?? new Paging();
         }
         #endregion
+
+        public UnitOfWork()
+        {
+            _context = new ContextDbApplication();
+        }
+
+
         #region SEC
         private GroupService _groupService;
         public GroupService GroupService
@@ -121,8 +141,20 @@ namespace Infrastructure.Library.Patterns
         {
         }
 
+        public void BeginTransaction()
+        {
+           _context.BeginTransaction();
+        }
 
+        public void CommitTransaction()
+        {
+            _context.CommitTransaction();
+        }
 
+        public void RollBackTransaction()
+        {
+            _context.RollBackTransaction();
+        }
 
         #endregion
 

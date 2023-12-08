@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Library.Migrations
 {
     [DbContext(typeof(ContextDbApplication))]
-    [Migration("20231203213808_Add_New_Tables_Configuration")]
-    partial class Add_New_Tables_Configuration
+    [Migration("20231208164722_Initial_Database")]
+    partial class Initial_Database
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -54,13 +54,19 @@ namespace Infrastructure.Library.Migrations
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -71,7 +77,10 @@ namespace Infrastructure.Library.Migrations
             modelBuilder.Entity("Domain.Library.Entities.BUS.Blance", b =>
                 {
                     b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
 
                     b.Property<long>("CartID")
                         .HasColumnType("bigint");
@@ -88,11 +97,17 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<double>("LastCash")
                         .HasColumnType("float");
@@ -100,10 +115,12 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CartID");
 
                     b.ToTable("Blances", "BUS");
                 });
@@ -134,7 +151,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("ExpireDate")
@@ -143,13 +160,25 @@ namespace Infrastructure.Library.Migrations
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("Key")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Picture")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShabaAccountNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -161,13 +190,16 @@ namespace Infrastructure.Library.Migrations
                     b.ToTable("Carts", "BUS");
                 });
 
-            modelBuilder.Entity("Domain.Library.Entities.BUS.CartHitory", b =>
+            modelBuilder.Entity("Domain.Library.Entities.BUS.CartHistory", b =>
                 {
                     b.Property<long>("ID")
                         .HasColumnType("bigint");
 
                     b.Property<long>("CartID")
                         .HasColumnType("bigint");
+
+                    b.Property<double>("Cash")
+                        .HasColumnType("float");
 
                     b.Property<long>("CreateBy")
                         .HasColumnType("bigint");
@@ -178,21 +210,48 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("FromCartKey")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsCashable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("ToCartKey")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("TransactionType")
+                        .HasColumnType("tinyint");
+
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
 
-                    b.ToTable("CartHitories", "BUS");
+                    b.ToTable("CartHistories", "BUS");
                 });
 
             modelBuilder.Entity("Domain.Library.Entities.BUS.CartTransaction", b =>
@@ -215,11 +274,17 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<long>("TransactionID")
                         .HasColumnType("bigint");
@@ -227,7 +292,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -256,8 +321,11 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
@@ -265,13 +333,25 @@ namespace Infrastructure.Library.Migrations
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<Guid>("Key")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Picture")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -299,11 +379,17 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<byte>("TransactionType")
                         .HasColumnType("tinyint");
@@ -311,7 +397,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -339,7 +425,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -348,13 +434,19 @@ namespace Infrastructure.Library.Migrations
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -384,7 +476,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -393,13 +485,19 @@ namespace Infrastructure.Library.Migrations
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -407,6 +505,57 @@ namespace Infrastructure.Library.Migrations
                     b.HasIndex("CartID");
 
                     b.ToTable("CartLogs", "LOG");
+                });
+
+            modelBuilder.Entity("Domain.Library.Entities.LOG.CustomerLog", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
+
+                    b.Property<long>("CreateBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("CustomerID")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("DeleteBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("Guid")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("UpdateBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CustomerID");
+
+                    b.ToTable("CustomerLogs", "LOG");
                 });
 
             modelBuilder.Entity("Domain.Library.Entities.LOG.TransactionLog", b =>
@@ -426,7 +575,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -434,6 +583,12 @@ namespace Infrastructure.Library.Migrations
 
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -444,7 +599,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -471,7 +626,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -480,13 +635,19 @@ namespace Infrastructure.Library.Migrations
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("UserID")
@@ -519,7 +680,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -528,13 +689,19 @@ namespace Infrastructure.Library.Migrations
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -564,7 +731,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -573,13 +740,19 @@ namespace Infrastructure.Library.Migrations
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -606,7 +779,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -614,6 +787,12 @@ namespace Infrastructure.Library.Migrations
 
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
@@ -624,7 +803,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -651,7 +830,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -660,13 +839,19 @@ namespace Infrastructure.Library.Migrations
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -691,16 +876,22 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -725,7 +916,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("GroupID")
@@ -734,10 +925,16 @@ namespace Infrastructure.Library.Migrations
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("UserID")
@@ -769,16 +966,22 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -803,16 +1006,25 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Picture")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -837,11 +1049,17 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<long>("RoleID")
                         .HasColumnType("bigint");
@@ -849,7 +1067,7 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("UserID")
@@ -881,16 +1099,22 @@ namespace Infrastructure.Library.Migrations
                     b.Property<long>("DeleteBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DeleteDate")
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("UpdateDate")
+                    b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
@@ -902,7 +1126,7 @@ namespace Infrastructure.Library.Migrations
                 {
                     b.HasOne("Domain.Library.Entities.BUS.Cart", "Cart")
                         .WithMany("Blances")
-                        .HasForeignKey("ID")
+                        .HasForeignKey("CartID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -928,10 +1152,10 @@ namespace Infrastructure.Library.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("Domain.Library.Entities.BUS.CartHitory", b =>
+            modelBuilder.Entity("Domain.Library.Entities.BUS.CartHistory", b =>
                 {
                     b.HasOne("Domain.Library.Entities.BUS.Cart", "Cart")
-                        .WithMany("CartHitories")
+                        .WithMany("CartHistories")
                         .HasForeignKey("ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -978,6 +1202,17 @@ namespace Infrastructure.Library.Migrations
                         .IsRequired();
 
                     b.Navigation("Cart");
+                });
+
+            modelBuilder.Entity("Domain.Library.Entities.LOG.CustomerLog", b =>
+                {
+                    b.HasOne("Domain.Library.Entities.BUS.Customer", "Customer")
+                        .WithMany()
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Domain.Library.Entities.LOG.TransactionLog", b =>
@@ -1089,7 +1324,7 @@ namespace Infrastructure.Library.Migrations
                 {
                     b.Navigation("Blances");
 
-                    b.Navigation("CartHitories");
+                    b.Navigation("CartHistories");
 
                     b.Navigation("CartLogs");
 

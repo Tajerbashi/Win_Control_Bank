@@ -24,6 +24,12 @@ namespace Infrastructure.Library.ApplicationContext.AutoMapper
             CreateMap<Bank, BankDTO>().ReverseMap();
             CreateMap<Bank, BankView>().ReverseMap();
 
+            CreateMap<Cart, CartDTO>().ReverseMap();
+            CreateMap<Cart, CartView>().ReverseMap();
+
+            CreateMap<Blance, BlanceDTO>().ReverseMap();
+            CreateMap<Blance, BlanceView>().ReverseMap();
+
 
         }
     }

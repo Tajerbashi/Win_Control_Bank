@@ -7,7 +7,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Library.ApplicationContext.EF
 {
-    public class ContextDbApplication : DbContext
+    public interface IContextDbApplication:IDisposable
+    {
+        void BeginTransaction();
+        void CommitTransaction();
+        void RollBackTransaction();
+    }
+    public class ContextDbApplication : DbContext, IContextDbApplication
     {
         public ContextDbApplication(DbContextOptions<ContextDbApplication> option) : base(option)
         {
@@ -63,7 +69,20 @@ namespace Infrastructure.Library.ApplicationContext.EF
             modelBuilder.ApplyConfiguration(new BlanceConfiguration());
             modelBuilder.ApplyConfiguration(new CartHistoryConfiguration());
         }
-        
 
+        public void BeginTransaction()
+        {
+            base.Database.BeginTransaction();
+        }
+
+        public void CommitTransaction()
+        {
+            base.Database.CommitTransaction();
+        }
+
+        public void RollBackTransaction()
+        {
+            base.Database.RollbackTransaction();
+        }
     }
 }

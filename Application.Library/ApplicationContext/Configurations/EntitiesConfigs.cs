@@ -29,15 +29,20 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
             builder.HasMany(x => x.CartTransactions)
                .WithOne(x => x.Cart)
                .HasForeignKey(x => x.CartID);
+
+            builder.HasMany(x => x.Blances)
+                .WithOne(x => x.Cart)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
     public class BlanceConfiguration : IEntityTypeConfiguration<Blance>
     {
         public void Configure(EntityTypeBuilder<Blance> builder)
         {
-            builder.HasOne(B => B.Cart)
-                 .WithMany(C => C.Blances)
-                 .HasForeignKey(f => f.ID);
+            builder.HasOne(x => x.Cart)
+                .WithMany(x => x.Blances)
+                .HasForeignKey(x => x.CartID)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
     public class CartHistoryConfiguration : IEntityTypeConfiguration<CartHistory>

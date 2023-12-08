@@ -86,7 +86,7 @@ namespace Infrastructure.Library.BaseService
             model.IsActive = true;
             table.Add(model);
             _context.SaveChanges();
-            return model;
+            return model.ID;
         }
         public object Update(TDTO obj)
         {
@@ -96,7 +96,7 @@ namespace Infrastructure.Library.BaseService
             table.Attach(model);
             _context.Entry(model).State = EntityState.Modified;
             _context.SaveChanges();
-            return model;
+            return model.ID;
         }
         public void Delete(object id)
         {
@@ -123,7 +123,7 @@ namespace Infrastructure.Library.BaseService
             existing.UpdateDate = DateTime.Now;
             existing.IsActive = false;
             _context.SaveChanges();
-            return existing;
+            return existing.ID;
         }
 
         public object Active(Guid guid)
@@ -132,7 +132,7 @@ namespace Infrastructure.Library.BaseService
             existing.UpdateDate = DateTime.Now;
             existing.IsActive = true;
             _context.SaveChanges();
-            return existing;
+            return existing.ID;
         }
 
         public void BeginTransaction()

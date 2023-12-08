@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Library.Entities.BUS;
 using Infrastructure.Library.BaseService;
+using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.Views.BUS;
 
@@ -14,7 +15,11 @@ namespace Infrastructure.Library.Repositories.BUS
 
         public string GetCount()
         {
-            throw new NotImplementedException();
+            return (@"
+SELECT  COUNT(*)
+FROM    BUS.Customers
+WHERE   IsDeleted = 0
+");
         }
 
         public string Search(string value)
@@ -44,6 +49,15 @@ WHERE IsDeleted = 0
         public string ShowFromTo(string from, string to)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<KeyValue<long>> TitleValue()
+        {
+            return _context.Customers.Select(x => new KeyValue<long>
+            {
+                Key = x.FullName,
+                Value = x.ID
+            });
         }
     }
 }
