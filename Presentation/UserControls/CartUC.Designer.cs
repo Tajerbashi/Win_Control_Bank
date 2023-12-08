@@ -59,10 +59,10 @@
             // AddBtn
             // 
             AddBtn.Cursor = Cursors.Hand;
-            AddBtn.FlatAppearance.BorderColor = Color.FromArgb(192, 255, 192);
+            AddBtn.FlatAppearance.BorderColor = Color.White;
             AddBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            AddBtn.FlatAppearance.MouseDownBackColor = Color.Green;
-            AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            AddBtn.FlatAppearance.MouseDownBackColor = Color.RoyalBlue;
+            AddBtn.FlatAppearance.MouseOverBackColor = Color.DarkBlue;
             AddBtn.FlatStyle = FlatStyle.Flat;
             AddBtn.ForeColor = Color.White;
             AddBtn.Location = new Point(999, 20);
@@ -176,6 +176,7 @@
             Name = "CartUC";
             RightToLeft = RightToLeft.Yes;
             Size = new Size(1132, 743);
+            Load += CartUC_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).EndInit();

@@ -27,5 +27,10 @@ namespace Presentation.UserControls
             cartNewForm.ShowDialog();
             ShowDataGrid();
         }
+
+        private void CartUC_Load(object sender, EventArgs e)
+        {
+            ShowDataGrid();
+        }
     }
 }

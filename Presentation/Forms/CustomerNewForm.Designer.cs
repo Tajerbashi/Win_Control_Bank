@@ -1,6 +1,6 @@
 ﻿namespace Presentation.Forms
 {
-    partial class UserNewForm
+    partial class CustomerNewForm
     {
         /// <summary>
         /// Required designer variable.
@@ -42,8 +42,6 @@
             FullNameTxt = new TextBox();
             timer1 = new System.Windows.Forms.Timer(components);
             label3 = new Label();
-            textBox1 = new TextBox();
-            label4 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)UserPicture).BeginInit();
             SuspendLayout();
@@ -58,11 +56,11 @@
             CloseBtn.FlatAppearance.MouseOverBackColor = Color.Maroon;
             CloseBtn.FlatStyle = FlatStyle.Flat;
             CloseBtn.ForeColor = Color.White;
-            CloseBtn.Location = new Point(163, 384);
+            CloseBtn.Location = new Point(175, 298);
             CloseBtn.Margin = new Padding(4, 5, 4, 5);
             CloseBtn.Name = "CloseBtn";
             CloseBtn.Size = new Size(121, 32);
-            CloseBtn.TabIndex = 13;
+            CloseBtn.TabIndex = 4;
             CloseBtn.Text = "لفو عملیات";
             CloseBtn.UseVisualStyleBackColor = false;
             CloseBtn.Click += CloseBtn_Click;
@@ -77,10 +75,10 @@
             SaveBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             SaveBtn.FlatStyle = FlatStyle.Flat;
             SaveBtn.ForeColor = Color.White;
-            SaveBtn.Location = new Point(436, 384);
+            SaveBtn.Location = new Point(434, 298);
             SaveBtn.Name = "SaveBtn";
             SaveBtn.Size = new Size(121, 32);
-            SaveBtn.TabIndex = 14;
+            SaveBtn.TabIndex = 3;
             SaveBtn.Text = "ذخیره اطلاعات";
             SaveBtn.UseVisualStyleBackColor = false;
             SaveBtn.Click += SaveBtn_Click;
@@ -88,8 +86,6 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(textBox1);
             groupBox1.Controls.Add(MSG);
             groupBox1.Controls.Add(DescriptionTxt);
             groupBox1.Controls.Add(UserPicture);
@@ -103,46 +99,45 @@
             groupBox1.FlatStyle = FlatStyle.Popup;
             groupBox1.Location = new Point(5, 47);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(730, 424);
-            groupBox1.TabIndex = 15;
+            groupBox1.Size = new Size(730, 340);
+            groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             // 
             // MSG
             // 
             MSG.ForeColor = Color.Black;
-            MSG.Location = new Point(179, 22);
+            MSG.Location = new Point(150, 22);
             MSG.Name = "MSG";
             MSG.Size = new Size(431, 32);
             MSG.TabIndex = 23;
             MSG.TextAlign = ContentAlignment.MiddleCenter;
-            MSG.Visible = false;
             // 
             // DescriptionTxt
             // 
             DescriptionTxt.BackColor = Color.White;
             DescriptionTxt.BorderStyle = BorderStyle.FixedSingle;
-            DescriptionTxt.Location = new Point(16, 289);
+            DescriptionTxt.Location = new Point(253, 195);
             DescriptionTxt.MaxLength = 5000;
             DescriptionTxt.Name = "DescriptionTxt";
             DescriptionTxt.RightToLeft = RightToLeft.Yes;
-            DescriptionTxt.Size = new Size(698, 87);
-            DescriptionTxt.TabIndex = 22;
+            DescriptionTxt.Size = new Size(451, 87);
+            DescriptionTxt.TabIndex = 2;
             DescriptionTxt.Text = "";
             // 
             // UserPicture
             // 
             UserPicture.BorderStyle = BorderStyle.FixedSingle;
             UserPicture.Cursor = Cursors.Hand;
-            UserPicture.Location = new Point(16, 183);
+            UserPicture.Location = new Point(26, 57);
             UserPicture.Name = "UserPicture";
-            UserPicture.Size = new Size(200, 100);
+            UserPicture.Size = new Size(195, 225);
             UserPicture.TabIndex = 21;
             UserPicture.TabStop = false;
             // 
             // label2
             // 
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(619, 254);
+            label2.Location = new Point(609, 160);
             label2.Name = "label2";
             label2.Size = new Size(95, 32);
             label2.TabIndex = 19;
@@ -152,7 +147,7 @@
             // label1
             // 
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(616, 90);
+            label1.Location = new Point(609, 90);
             label1.Name = "label1";
             label1.Size = new Size(95, 32);
             label1.TabIndex = 18;
@@ -162,7 +157,7 @@
             // PageLbl
             // 
             PageLbl.ForeColor = Color.Black;
-            PageLbl.Location = new Point(619, 22);
+            PageLbl.Location = new Point(609, 22);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(95, 32);
             PageLbl.TabIndex = 17;
@@ -173,26 +168,21 @@
             // 
             TitleTxt.BackColor = Color.White;
             TitleTxt.BorderStyle = BorderStyle.FixedSingle;
-            TitleTxt.Location = new Point(410, 125);
+            TitleTxt.Location = new Point(253, 125);
             TitleTxt.Name = "TitleTxt";
-            TitleTxt.Size = new Size(294, 32);
-            TitleTxt.TabIndex = 16;
+            TitleTxt.Size = new Size(451, 32);
+            TitleTxt.TabIndex = 1;
             TitleTxt.TextAlign = HorizontalAlignment.Center;
             // 
             // FullNameTxt
             // 
             FullNameTxt.BackColor = Color.White;
             FullNameTxt.BorderStyle = BorderStyle.FixedSingle;
-            FullNameTxt.Location = new Point(415, 57);
+            FullNameTxt.Location = new Point(253, 57);
             FullNameTxt.Name = "FullNameTxt";
-            FullNameTxt.Size = new Size(294, 32);
-            FullNameTxt.TabIndex = 15;
+            FullNameTxt.Size = new Size(451, 32);
+            FullNameTxt.TabIndex = 0;
             FullNameTxt.TextAlign = HorizontalAlignment.Center;
-            // 
-            // timer1
-            // 
-            timer1.Interval = 3000;
-            timer1.Tick += timer1_Tick;
             // 
             // label3
             // 
@@ -202,41 +192,21 @@
             label3.Name = "label3";
             label3.Size = new Size(718, 35);
             label3.TabIndex = 24;
-            label3.Text = "فرم ثبت اطلاعات کارت";
+            label3.Text = "ثبت اطلاعات مشترک";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // textBox1
-            // 
-            textBox1.BackColor = Color.White;
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Location = new Point(21, 57);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(294, 32);
-            textBox1.TabIndex = 24;
-            textBox1.TextAlign = HorizontalAlignment.Center;
-            // 
-            // label4
-            // 
-            label4.ForeColor = Color.Black;
-            label4.Location = new Point(220, 22);
-            label4.Name = "label4";
-            label4.Size = new Size(95, 32);
-            label4.TabIndex = 25;
-            label4.Text = "نام کامل";
-            label4.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // UserNewForm
+            // CustomerNewForm
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(741, 479);
+            ClientSize = new Size(741, 395);
             Controls.Add(label3);
             Controls.Add(groupBox1);
             Font = new Font("IRANSansWeb", 11.25F);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 5, 4, 5);
-            Name = "UserNewForm";
+            Name = "CustomerNewForm";
             RightToLeftLayout = true;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "NewUserForm";
@@ -261,7 +231,5 @@
         private Label MSG;
         private System.Windows.Forms.Timer timer1;
         private Label label3;
-        private Label label4;
-        private TextBox textBox1;
     }
 }

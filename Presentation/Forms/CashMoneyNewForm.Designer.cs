@@ -1,6 +1,6 @@
 ﻿namespace Presentation.Forms
 {
-    partial class BankNewForm
+    partial class CashMoneyNewForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,13 @@
         {
             label3 = new Label();
             groupBox1 = new GroupBox();
+            AccountCombo = new ComboBox();
             MSG = new Label();
             DescriptionTxt = new RichTextBox();
             label2 = new Label();
             label1 = new Label();
             PageLbl = new Label();
-            TitleTxt = new TextBox();
-            BankNameTxt = new TextBox();
+            CashTxt = new TextBox();
             CloseBtn = new Button();
             SaveBtn = new Button();
             groupBox1.SuspendLayout();
@@ -46,38 +46,49 @@
             // 
             label3.BackColor = Color.DeepSkyBlue;
             label3.ForeColor = Color.White;
-            label3.Location = new Point(11, 10);
+            label3.Location = new Point(12, 9);
             label3.Name = "label3";
-            label3.Size = new Size(718, 35);
-            label3.TabIndex = 27;
-            label3.Text = "ثبت اطلاعات بانک";
+            label3.Size = new Size(629, 35);
+            label3.TabIndex = 28;
+            label3.Text = "ثبت اطلاعات برداشت از کارت بصورت نقدی";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(AccountCombo);
             groupBox1.Controls.Add(MSG);
             groupBox1.Controls.Add(DescriptionTxt);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(PageLbl);
-            groupBox1.Controls.Add(TitleTxt);
-            groupBox1.Controls.Add(BankNameTxt);
+            groupBox1.Controls.Add(CashTxt);
             groupBox1.Controls.Add(CloseBtn);
             groupBox1.Controls.Add(SaveBtn);
             groupBox1.FlatStyle = FlatStyle.Popup;
-            groupBox1.Location = new Point(12, 48);
+            groupBox1.Location = new Point(12, 43);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(717, 346);
-            groupBox1.TabIndex = 0;
+            groupBox1.Size = new Size(629, 346);
+            groupBox1.TabIndex = 29;
             groupBox1.TabStop = false;
+            // 
+            // AccountCombo
+            // 
+            AccountCombo.Cursor = Cursors.Hand;
+            AccountCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            AccountCombo.FormattingEnabled = true;
+            AccountCombo.Location = new Point(9, 57);
+            AccountCombo.Name = "AccountCombo";
+            AccountCombo.RightToLeft = RightToLeft.Yes;
+            AccountCombo.Size = new Size(614, 33);
+            AccountCombo.TabIndex = 24;
             // 
             // MSG
             // 
             MSG.ForeColor = Color.Black;
-            MSG.Location = new Point(159, 22);
+            MSG.Location = new Point(9, 22);
             MSG.Name = "MSG";
-            MSG.Size = new Size(398, 32);
+            MSG.Size = new Size(513, 32);
             MSG.TabIndex = 23;
             MSG.TextAlign = ContentAlignment.MiddleCenter;
             MSG.Visible = false;
@@ -90,14 +101,14 @@
             DescriptionTxt.MaxLength = 5000;
             DescriptionTxt.Name = "DescriptionTxt";
             DescriptionTxt.RightToLeft = RightToLeft.Yes;
-            DescriptionTxt.Size = new Size(698, 87);
+            DescriptionTxt.Size = new Size(614, 105);
             DescriptionTxt.TabIndex = 2;
             DescriptionTxt.Text = "";
             // 
             // label2
             // 
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(616, 160);
+            label2.Location = new Point(528, 160);
             label2.Name = "label2";
             label2.Size = new Size(95, 32);
             label2.TabIndex = 19;
@@ -107,42 +118,34 @@
             // label1
             // 
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(616, 90);
+            label1.Location = new Point(528, 90);
             label1.Name = "label1";
             label1.Size = new Size(95, 32);
             label1.TabIndex = 18;
-            label1.Text = "عنوان";
+            label1.Text = "مبلغ";
             label1.TextAlign = ContentAlignment.MiddleRight;
             // 
             // PageLbl
             // 
             PageLbl.ForeColor = Color.Black;
-            PageLbl.Location = new Point(616, 22);
+            PageLbl.Location = new Point(528, 22);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(95, 32);
             PageLbl.TabIndex = 17;
-            PageLbl.Text = "نام بانک";
+            PageLbl.Text = "شماره حساب";
             PageLbl.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // TitleTxt
+            // CashTxt
             // 
-            TitleTxt.BackColor = Color.White;
-            TitleTxt.BorderStyle = BorderStyle.FixedSingle;
-            TitleTxt.Location = new Point(9, 125);
-            TitleTxt.Name = "TitleTxt";
-            TitleTxt.Size = new Size(695, 32);
-            TitleTxt.TabIndex = 1;
-            TitleTxt.TextAlign = HorizontalAlignment.Center;
-            // 
-            // BankNameTxt
-            // 
-            BankNameTxt.BackColor = Color.White;
-            BankNameTxt.BorderStyle = BorderStyle.FixedSingle;
-            BankNameTxt.Location = new Point(9, 57);
-            BankNameTxt.Name = "BankNameTxt";
-            BankNameTxt.Size = new Size(695, 32);
-            BankNameTxt.TabIndex = 0;
-            BankNameTxt.TextAlign = HorizontalAlignment.Center;
+            CashTxt.BackColor = Color.White;
+            CashTxt.BorderStyle = BorderStyle.FixedSingle;
+            CashTxt.Location = new Point(9, 125);
+            CashTxt.Name = "CashTxt";
+            CashTxt.PlaceholderText = "مبلغ برداشتی";
+            CashTxt.Size = new Size(614, 32);
+            CashTxt.TabIndex = 1;
+            CashTxt.TextAlign = HorizontalAlignment.Center;
+            CashTxt.KeyPress += CashTxt_KeyPress;
             // 
             // CloseBtn
             // 
@@ -154,14 +157,13 @@
             CloseBtn.FlatAppearance.MouseOverBackColor = Color.Maroon;
             CloseBtn.FlatStyle = FlatStyle.Flat;
             CloseBtn.ForeColor = Color.White;
-            CloseBtn.Location = new Point(158, 306);
+            CloseBtn.Location = new Point(114, 308);
             CloseBtn.Margin = new Padding(4, 5, 4, 5);
             CloseBtn.Name = "CloseBtn";
             CloseBtn.Size = new Size(121, 32);
             CloseBtn.TabIndex = 4;
             CloseBtn.Text = "لفو عملیات";
             CloseBtn.UseVisualStyleBackColor = false;
-            CloseBtn.Click += CloseBtn_Click;
             // 
             // SaveBtn
             // 
@@ -173,7 +175,7 @@
             SaveBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             SaveBtn.FlatStyle = FlatStyle.Flat;
             SaveBtn.ForeColor = Color.White;
-            SaveBtn.Location = new Point(437, 306);
+            SaveBtn.Location = new Point(393, 308);
             SaveBtn.Name = "SaveBtn";
             SaveBtn.Size = new Size(121, 32);
             SaveBtn.TabIndex = 3;
@@ -181,21 +183,20 @@
             SaveBtn.UseVisualStyleBackColor = false;
             SaveBtn.Click += SaveBtn_Click;
             // 
-            // BankNewForm
+            // CashMoneyNewForm
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Azure;
-            ClientSize = new Size(741, 405);
-            Controls.Add(label3);
+            ClientSize = new Size(653, 401);
             Controls.Add(groupBox1);
+            Controls.Add(label3);
             Font = new Font("IRANSansWeb", 11.25F);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 5, 4, 5);
-            Name = "BankNewForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "BankNewForm";
-            Load += BankNewForm_Load;
+            Name = "CashMoneyNewForm";
+            Text = "CashMoneyNewForm";
+            Load += CashMoneyNewForm_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
@@ -210,9 +211,9 @@
         private Label label2;
         private Label label1;
         private Label PageLbl;
-        private TextBox TitleTxt;
-        private TextBox BankNameTxt;
+        private TextBox CashTxt;
         private Button CloseBtn;
         private Button SaveBtn;
+        private ComboBox AccountCombo;
     }
 }

@@ -166,5 +166,10 @@ namespace Presentation
             }
             MainPanel.Controls.Add(panel);
         }
+
+        private void ExternalTransferBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

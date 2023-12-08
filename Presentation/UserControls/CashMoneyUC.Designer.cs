@@ -36,12 +36,14 @@
             SearchBtn = new Button();
             SearchTxt = new TextBox();
             groupBox1 = new GroupBox();
+            AddBtn = new Button();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
             SuspendLayout();
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(AddBtn);
             groupBox2.Controls.Add(GridData);
             groupBox2.Controls.Add(PageLbl);
             groupBox2.Controls.Add(NextBtn);
@@ -144,6 +146,23 @@
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             // 
+            // AddBtn
+            // 
+            AddBtn.Cursor = Cursors.Hand;
+            AddBtn.FlatAppearance.BorderColor = Color.White;
+            AddBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            AddBtn.FlatAppearance.MouseDownBackColor = Color.RoyalBlue;
+            AddBtn.FlatAppearance.MouseOverBackColor = Color.DarkBlue;
+            AddBtn.FlatStyle = FlatStyle.Flat;
+            AddBtn.ForeColor = Color.White;
+            AddBtn.Location = new Point(999, 24);
+            AddBtn.Name = "AddBtn";
+            AddBtn.Size = new Size(121, 32);
+            AddBtn.TabIndex = 16;
+            AddBtn.Text = "جدید";
+            AddBtn.UseVisualStyleBackColor = true;
+            AddBtn.Click += AddBtn_Click;
+            // 
             // CashMoneyUC
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
@@ -170,5 +189,6 @@
         private TextBox SearchTxt;
         private GroupBox groupBox1;
         private DataGridView GridData;
+        private Button AddBtn;
     }
 }

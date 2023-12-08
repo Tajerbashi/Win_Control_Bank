@@ -36,8 +36,10 @@
             SearchBtn = new Button();
             SearchTxt = new TextBox();
             groupBox1 = new GroupBox();
+            label1 = new Label();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox2
@@ -138,11 +140,24 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(3, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(1126, 82);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.BackColor = Color.White;
+            label1.FlatStyle = FlatStyle.Flat;
+            label1.ForeColor = Color.FromArgb(192, 64, 0);
+            label1.Location = new Point(188, -4);
+            label1.Name = "label1";
+            label1.Size = new Size(751, 32);
+            label1.TabIndex = 12;
+            label1.Text = "صرافی آنلاین";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // OnlineExchangeUC
             // 
@@ -158,6 +173,7 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).EndInit();
+            groupBox1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -171,5 +187,6 @@
         private TextBox SearchTxt;
         private GroupBox groupBox1;
         private DataGridView GridData;
+        private Label label1;
     }
 }

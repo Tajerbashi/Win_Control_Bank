@@ -1,11 +1,22 @@
-﻿using Infrastructure.Library.Models.DTOs.BUS;
-using Infrastructure.Library.Patterns;
+﻿using Infrastructure.Library.Patterns;
+using Presentation.Generator;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Presentation.Forms
 {
-    public partial class BankNewForm : Form
+    public partial class CashMoneyNewForm : Form
     {
+        private readonly IUnitOfWork unitOfWork;
+        private readonly IFacadPattern pattern;
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -25,34 +36,29 @@ namespace Presentation.Forms
         public static extern bool ReleaseCapture();
 
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
-        public BankNewForm()
+        public CashMoneyNewForm()
         {
+            unitOfWork = new UnitOfWork();
+            pattern = new FacadPattern();
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
         #endregion
 
-        private void BankNewForm_Load(object sender, EventArgs e)
+        private void CashMoneyNewForm_Load(object sender, EventArgs e)
         {
+            AccountCombo = ComboBoxGenerator.FillData(AccountCombo, unitOfWork.CartService.TitleValue(), Convert.ToByte(AccountCombo.Tag));
+        }
 
+        private void CashTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            IUnitOfWork unitOfWork = new UnitOfWork();
-            BankDTO bankDTO = new BankDTO();
-            bankDTO.BankName = BankNameTxt.Text;
-            bankDTO.Title = TitleTxt.Text;
-            bankDTO.Description = DescriptionTxt.Text;
-            unitOfWork.BankService.Insert(bankDTO);
-            this.Close();
 
-        }
-
-        private void CloseBtn_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

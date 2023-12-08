@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="GotvandPersianDatePicker" Version="4.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -17,7 +18,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application.Library\Infrastructure.Library.csproj" />
-    <ProjectReference Include="..\Common.Library\Common.Library.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DateTimeSelector">
+      <HintPath>..\..\..\..\..\..\Downloads\DateTimeSelector.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
