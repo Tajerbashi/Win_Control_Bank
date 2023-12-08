@@ -1,5 +1,6 @@
 ﻿using Domain.Library.Bases;
 using Domain.Library.Entities.LOG;
+using Domain.Library.Enums;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,6 +14,8 @@ namespace Domain.Library.Entities.BUS
         [Description("موجودی فعلی")]
         public double Cash { get; set; }
 
+        [Description("نوع موجودی")]
+        public BlanceType BlanceType { get; set; }
 
         [ForeignKey("Cart")]
         public long CartID { get; set; }

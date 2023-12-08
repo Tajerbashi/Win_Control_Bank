@@ -11,6 +11,9 @@ namespace Domain.Library.Entities.BUS
     {
         [Description("شماره حساب")]
         public string AccountNumber { get; set; }
+        [Description("شماره کارت شبا")]
+        public string ShabaAccountNumber { get; set; }
+
         [Description("تصویر")]
         public string Picture { get; set; }
         [Description("کلید اختصاصی")]
