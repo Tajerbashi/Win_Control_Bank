@@ -11,17 +11,18 @@ namespace Domain.Library.Entities.BUS
     {
         [Description("شماره حساب")]
         public string AccountNumber { get; set; }
+
         [Description("شماره کارت شبا")]
         public string ShabaAccountNumber { get; set; }
 
         [Description("تصویر")]
         public string Picture { get; set; }
+
         [Description("کلید اختصاصی")]
         public Guid Key { get; set; }
+
         [Description("تاریخ انقضاء")]
         public DateTime ExpireDate { get; set; }
-
-
 
 
         //  Relations
@@ -33,10 +34,14 @@ namespace Domain.Library.Entities.BUS
         public long CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
 
-        public virtual List<CartHistory> CartHistories { get; set; }
-        public virtual List<CartTransaction> CartTransactions { get; set; }
 
-        public virtual List<Blance> Blances { get; set; }
+        
+
+
+
+        public virtual List<CartHistory> CartHistories { get; set; }
+        public virtual List<Transaction> Transactions { get; set; }
+
         public virtual List<CartLog> CartLogs { get; set; }
         public virtual List<CartReport> CartReports { get; set; }
 

@@ -34,7 +34,6 @@ namespace Infrastructure.Library.ApplicationContext.EF
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartHistory> CartHistories { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
-        public DbSet<CartTransaction> CartTransactions { get; set; }
         public DbSet<Bank> Banks { get; set; }
         public DbSet<Blance> Blances { get; set; }
 
@@ -49,7 +48,6 @@ namespace Infrastructure.Library.ApplicationContext.EF
         public DbSet<BankReport> BankReports { get; set; }
         public DbSet<CartReport> CartReports { get; set; }
         public DbSet<TransactionReport> TransactionReports { get; set; }
-        public DbSet<TransferReport> TransferReports { get; set; }
 
 
 

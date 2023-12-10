@@ -16,5 +16,6 @@ namespace Domain.Library.Entities.BUS
         public string Picture { get; set; }
 
         public virtual List<Cart> Carts { get; set; }
+
     }
 }

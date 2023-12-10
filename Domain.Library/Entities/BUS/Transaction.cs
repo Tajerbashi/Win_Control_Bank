@@ -15,7 +15,8 @@ namespace Domain.Library.Entities.BUS
         public TransactionType TransactionType { get; set; }
 
 
-        public virtual List<CartTransaction> CartTransactions { get; set; }
+
+        public virtual Blance Blance { get; set; }
         public virtual List<TransactionReport> TransactionReports { get; set; }
 
     }

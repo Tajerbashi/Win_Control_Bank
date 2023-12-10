@@ -171,5 +171,15 @@ namespace Presentation
         {
 
         }
+
+        private void BalanceBtn_Click(object sender, EventArgs e)
+        {
+            BlanceUC panel = new BlanceUC();
+            if (MainPanel.Controls.Count > 0)
+            {
+                MainPanel.Controls[0].Dispose();
+            }
+            MainPanel.Controls.Add(panel);
+        }
     }
 }

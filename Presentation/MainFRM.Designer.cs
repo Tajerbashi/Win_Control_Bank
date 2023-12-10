@@ -249,6 +249,7 @@
             BalanceBtn.TabIndex = 6;
             BalanceBtn.Text = "موجودی";
             BalanceBtn.UseVisualStyleBackColor = true;
+            BalanceBtn.Click += BalanceBtn_Click;
             // 
             // TaransactionBtn
             // 

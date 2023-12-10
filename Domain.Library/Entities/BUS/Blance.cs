@@ -9,17 +9,20 @@ namespace Domain.Library.Entities.BUS
     [Table("Blances", Schema = "BUS")]
     public class Blance : BaseEntity
     {
-        [Description("موجودی قبلی")]
-        public double LastCash { get; set; }
-        [Description("موجودی فعلی")]
+        [Description("موجودی")]
+        public double BlanceCash { get; set; }
+
+        [Description("مقدار")]
         public double Cash { get; set; }
 
         [Description("نوع موجودی")]
         public BlanceType BlanceType { get; set; }
 
-        [ForeignKey("Cart")]
-        public long CartID { get; set; }
-        public virtual Cart Cart { get; set; }
+
+        [ForeignKey("Transaction")]
+        public long TransactionID { get; set; }
+        public virtual Transaction Transaction { get; set; }
+
 
         public virtual List<BlanceLog> BlanceLogs { get; set; }
 

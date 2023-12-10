@@ -120,54 +120,6 @@ namespace Infrastructure.Library.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Transactions",
-                schema: "BUS",
-                columns: table => new
-                {
-                    ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Cash = table.Column<double>(type: "float", nullable: false),
-                    TransactionType = table.Column<byte>(type: "tinyint", nullable: false),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreateBy = table.Column<long>(type: "bigint", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdateBy = table.Column<long>(type: "bigint", nullable: false),
-                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeleteBy = table.Column<long>(type: "bigint", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Transactions", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TransferReports",
-                schema: "RPT",
-                columns: table => new
-                {
-                    ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreateBy = table.Column<long>(type: "bigint", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdateBy = table.Column<long>(type: "bigint", nullable: false),
-                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeleteBy = table.Column<long>(type: "bigint", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TransferReports", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UserRoleGroups",
                 schema: "SEC",
                 columns: table => new
@@ -320,70 +272,6 @@ namespace Infrastructure.Library.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TransactionLogs",
-                schema: "LOG",
-                columns: table => new
-                {
-                    ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TransactionID = table.Column<long>(type: "bigint", nullable: false),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreateBy = table.Column<long>(type: "bigint", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdateBy = table.Column<long>(type: "bigint", nullable: false),
-                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeleteBy = table.Column<long>(type: "bigint", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TransactionLogs", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_TransactionLogs_Transactions_TransactionID",
-                        column: x => x.TransactionID,
-                        principalSchema: "BUS",
-                        principalTable: "Transactions",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TransactionReports",
-                schema: "RPT",
-                columns: table => new
-                {
-                    ID = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TransactionID = table.Column<long>(type: "bigint", nullable: false),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreateBy = table.Column<long>(type: "bigint", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdateBy = table.Column<long>(type: "bigint", nullable: false),
-                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeleteBy = table.Column<long>(type: "bigint", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TransactionReports", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_TransactionReports_Transactions_TransactionID",
-                        column: x => x.TransactionID,
-                        principalSchema: "BUS",
-                        principalTable: "Transactions",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "GroupUsers",
                 schema: "SEC",
                 columns: table => new
@@ -492,43 +380,12 @@ namespace Infrastructure.Library.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Blances",
+                name: "CartHistories",
                 schema: "BUS",
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LastCash = table.Column<double>(type: "float", nullable: false),
-                    Cash = table.Column<double>(type: "float", nullable: false),
-                    CartID = table.Column<long>(type: "bigint", nullable: false),
-                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreateBy = table.Column<long>(type: "bigint", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdateBy = table.Column<long>(type: "bigint", nullable: false),
-                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeleteBy = table.Column<long>(type: "bigint", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Blances", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Blances_Carts_CartID",
-                        column: x => x.CartID,
-                        principalSchema: "BUS",
-                        principalTable: "Carts",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CartHistories",
-                schema: "BUS",
-                columns: table => new
-                {
-                    ID = table.Column<long>(type: "bigint", nullable: false),
                     TransactionType = table.Column<byte>(type: "tinyint", nullable: false),
                     Cash = table.Column<double>(type: "float", nullable: false),
                     IsCashable = table.Column<bool>(type: "bit", nullable: false),
@@ -552,8 +409,8 @@ namespace Infrastructure.Library.Migrations
                 {
                     table.PrimaryKey("PK_CartHistories", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_CartHistories_Carts_ID",
-                        column: x => x.ID,
+                        name: "FK_CartHistories_Carts_CartID",
+                        column: x => x.CartID,
                         principalSchema: "BUS",
                         principalTable: "Carts",
                         principalColumn: "ID",
@@ -625,13 +482,46 @@ namespace Infrastructure.Library.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CartTransactions",
+                name: "Transactions",
                 schema: "BUS",
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CartID = table.Column<long>(type: "bigint", nullable: false),
+                    Cash = table.Column<double>(type: "float", nullable: false),
+                    TransactionType = table.Column<byte>(type: "tinyint", nullable: false),
+                    CartID = table.Column<long>(type: "bigint", nullable: true),
+                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreateBy = table.Column<long>(type: "bigint", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdateBy = table.Column<long>(type: "bigint", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteBy = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Transactions", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Transactions_Carts_CartID",
+                        column: x => x.CartID,
+                        principalSchema: "BUS",
+                        principalTable: "Carts",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Blances",
+                schema: "BUS",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BlanceCash = table.Column<double>(type: "float", nullable: false),
+                    Cash = table.Column<double>(type: "float", nullable: false),
+                    BlanceType = table.Column<byte>(type: "tinyint", nullable: false),
                     TransactionID = table.Column<long>(type: "bigint", nullable: false),
                     Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -645,16 +535,73 @@ namespace Infrastructure.Library.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CartTransactions", x => x.ID);
+                    table.PrimaryKey("PK_Blances", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_CartTransactions_Carts_CartID",
-                        column: x => x.CartID,
+                        name: "FK_Blances_Transactions_TransactionID",
+                        column: x => x.TransactionID,
                         principalSchema: "BUS",
-                        principalTable: "Carts",
+                        principalTable: "Transactions",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TransactionLogs",
+                schema: "LOG",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TransactionID = table.Column<long>(type: "bigint", nullable: false),
+                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreateBy = table.Column<long>(type: "bigint", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdateBy = table.Column<long>(type: "bigint", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteBy = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TransactionLogs", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_CartTransactions_Transactions_TransactionID",
+                        name: "FK_TransactionLogs_Transactions_TransactionID",
+                        column: x => x.TransactionID,
+                        principalSchema: "BUS",
+                        principalTable: "Transactions",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TransactionReports",
+                schema: "RPT",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TransactionID = table.Column<long>(type: "bigint", nullable: false),
+                    Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreateBy = table.Column<long>(type: "bigint", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UpdateBy = table.Column<long>(type: "bigint", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeleteBy = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TransactionReports", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_TransactionReports_Transactions_TransactionID",
                         column: x => x.TransactionID,
                         principalSchema: "BUS",
                         principalTable: "Transactions",
@@ -707,9 +654,16 @@ namespace Infrastructure.Library.Migrations
                 column: "BlanceID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Blances_CartID",
+                name: "IX_Blances_TransactionID",
                 schema: "BUS",
                 table: "Blances",
+                column: "TransactionID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartHistories_CartID",
+                schema: "BUS",
+                table: "CartHistories",
                 column: "CartID");
 
             migrationBuilder.CreateIndex(
@@ -735,18 +689,6 @@ namespace Infrastructure.Library.Migrations
                 schema: "BUS",
                 table: "Carts",
                 column: "CustomerID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CartTransactions_CartID",
-                schema: "BUS",
-                table: "CartTransactions",
-                column: "CartID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CartTransactions_TransactionID",
-                schema: "BUS",
-                table: "CartTransactions",
-                column: "TransactionID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomerLogs_CustomerID",
@@ -777,6 +719,12 @@ namespace Infrastructure.Library.Migrations
                 schema: "RPT",
                 table: "TransactionReports",
                 column: "TransactionID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Transactions_CartID",
+                schema: "BUS",
+                table: "Transactions",
+                column: "CartID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserLogs_UserID",
@@ -821,10 +769,6 @@ namespace Infrastructure.Library.Migrations
                 schema: "RPT");
 
             migrationBuilder.DropTable(
-                name: "CartTransactions",
-                schema: "BUS");
-
-            migrationBuilder.DropTable(
                 name: "CustomerLogs",
                 schema: "LOG");
 
@@ -838,10 +782,6 @@ namespace Infrastructure.Library.Migrations
 
             migrationBuilder.DropTable(
                 name: "TransactionReports",
-                schema: "RPT");
-
-            migrationBuilder.DropTable(
-                name: "TransferReports",
                 schema: "RPT");
 
             migrationBuilder.DropTable(
@@ -865,16 +805,16 @@ namespace Infrastructure.Library.Migrations
                 schema: "SEC");
 
             migrationBuilder.DropTable(
-                name: "Transactions",
-                schema: "BUS");
-
-            migrationBuilder.DropTable(
                 name: "Role",
                 schema: "SEC");
 
             migrationBuilder.DropTable(
                 name: "Users",
                 schema: "SEC");
+
+            migrationBuilder.DropTable(
+                name: "Transactions",
+                schema: "BUS");
 
             migrationBuilder.DropTable(
                 name: "Carts",

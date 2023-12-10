@@ -1,4 +1,5 @@
-﻿using Infrastructure.Library.Patterns;
+﻿using Infrastructure.Library.Models.DTOs.BUS;
+using Infrastructure.Library.Patterns;
 using Presentation.Generator;
 using System;
 using System.Collections.Generic;
@@ -58,6 +59,7 @@ namespace Presentation.Forms
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
+            BlanceDTO blanceDTO = new BlanceDTO();
 
         }
     }

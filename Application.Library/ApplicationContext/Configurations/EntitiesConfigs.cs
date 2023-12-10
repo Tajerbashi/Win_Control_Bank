@@ -5,56 +5,87 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Infrastructure.Library.ApplicationContext.Configurations
 {
     #region BUS
-    public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
+    public class BankConfiguration : IEntityTypeConfiguration<Bank>
     {
-        public void Configure(EntityTypeBuilder<Transaction> builder)
+        public void Configure(EntityTypeBuilder<Bank> builder)
         {
-            builder.HasMany(x => x.CartTransactions)
-                .WithOne(x => x.Transaction)
-                .HasForeignKey(x => x.TransactionID);
+            builder.HasMany(x => x.Carts)
+                .WithOne(x => x.Bank)
+                .HasForeignKey(x => x.BankID)
+                .IsRequired();
+
+            builder.HasMany(x => x.BankReports)
+                .WithOne(x => x.Bank)
+                .HasForeignKey(x => x.BankID)
+                .IsRequired();
         }
     }
-    public class CartConfiguration : IEntityTypeConfiguration<Cart>
-    {
-        public void Configure(EntityTypeBuilder<Cart> builder)
-        {
-            builder.HasOne(B => B.Bank)
-                 .WithMany(C => C.Carts)
-                 .HasForeignKey(f => f.BankID);
 
-            builder.HasOne(C => C.Customer)
-                .WithMany(C => C.Carts)
-                .HasForeignKey(f => f.CustomerID);
-
-            builder.HasMany(x => x.CartTransactions)
-               .WithOne(x => x.Cart)
-               .HasForeignKey(x => x.CartID);
-
-            builder.HasMany(x => x.Blances)
-                .WithOne(x => x.Cart)
-                .OnDelete(DeleteBehavior.Cascade);
-        }
-    }
     public class BlanceConfiguration : IEntityTypeConfiguration<Blance>
     {
         public void Configure(EntityTypeBuilder<Blance> builder)
         {
-            builder.HasOne(x => x.Cart)
-                .WithMany(x => x.Blances)
-                .HasForeignKey(x => x.CartID)
-                .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(x => x.Transaction)
+                .WithOne(x => x.Blance)
+                .HasForeignKey<Blance>(x => x.TransactionID)
+                .IsRequired();
+
+            //  TODO Many To ONE
+            builder.HasMany(x => x.BlanceLogs)
+                .WithOne(x => x.Blance)
+                .HasForeignKey(x => x.BlanceID)
+                .IsRequired();
         }
     }
+
+    public class CartConfiguration : IEntityTypeConfiguration<Cart>
+    {
+        public void Configure(EntityTypeBuilder<Cart> builder)
+        {
+            builder.HasOne(x => x.Bank)
+                .WithMany(x => x.Carts)
+                .HasForeignKey(x => x.BankID)
+                .IsRequired();
+
+            builder.HasOne(x => x.Customer)
+                .WithMany(x => x.Carts)
+                .HasForeignKey(x => x.CustomerID)
+                .IsRequired();
+            
+
+            //  TODO Many To ONE
+        }
+    }
+
     public class CartHistoryConfiguration : IEntityTypeConfiguration<CartHistory>
     {
         public void Configure(EntityTypeBuilder<CartHistory> builder)
         {
-            builder.HasOne(B => B.Cart)
-                 .WithMany(C => C.CartHistories)
-                 .HasForeignKey(f => f.ID);
+            builder.HasOne(x => x.Cart)
+                .WithMany(x => x.CartHistories)
+                .HasForeignKey(x => x.CartID);
         }
     }
 
+    public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
+    {
+        public void Configure(EntityTypeBuilder<Customer> builder)
+        {
+            builder.HasMany(x => x.Carts)
+                .WithOne(x => x.Customer);
+        }
+    }
+
+    public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
+    {
+        public void Configure(EntityTypeBuilder<Transaction> builder)
+        {
+            builder.HasOne(x => x.Blance)
+                .WithOne(x => x.Transaction)
+                .HasForeignKey<Blance>(x => x.TransactionID)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+    }
     #endregion
     #region SEC
     #endregion
