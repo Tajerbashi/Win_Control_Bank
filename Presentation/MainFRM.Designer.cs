@@ -92,7 +92,7 @@
             BankBtn.FlatStyle = FlatStyle.Flat;
             BankBtn.Font = new Font("IRANSansWeb", 14.25F);
             BankBtn.ForeColor = Color.White;
-            BankBtn.Location = new Point(6, 127);
+            BankBtn.Location = new Point(126, 127);
             BankBtn.Name = "BankBtn";
             BankBtn.Size = new Size(114, 40);
             BankBtn.TabIndex = 15;
@@ -325,7 +325,7 @@
             // 
             // UserBtn
             // 
-            UserBtn.BackColor = Color.Tomato;
+            UserBtn.BackColor = Color.CornflowerBlue;
             UserBtn.Cursor = Cursors.Hand;
             UserBtn.FlatAppearance.BorderColor = Color.White;
             UserBtn.FlatAppearance.BorderSize = 2;
@@ -335,9 +335,9 @@
             UserBtn.FlatStyle = FlatStyle.Flat;
             UserBtn.Font = new Font("IRANSansWeb", 14.25F);
             UserBtn.ForeColor = Color.White;
-            UserBtn.Location = new Point(126, 127);
+            UserBtn.Location = new Point(6, 173);
             UserBtn.Name = "UserBtn";
-            UserBtn.Size = new Size(114, 40);
+            UserBtn.Size = new Size(234, 50);
             UserBtn.TabIndex = 1;
             UserBtn.Text = "مشترکین";
             UserBtn.UseVisualStyleBackColor = false;
@@ -355,9 +355,9 @@
             CartBtn.FlatStyle = FlatStyle.Flat;
             CartBtn.Font = new Font("IRANSansWeb", 14.25F);
             CartBtn.ForeColor = Color.White;
-            CartBtn.Location = new Point(28, 173);
+            CartBtn.Location = new Point(6, 127);
             CartBtn.Name = "CartBtn";
-            CartBtn.Size = new Size(190, 40);
+            CartBtn.Size = new Size(114, 40);
             CartBtn.TabIndex = 0;
             CartBtn.Text = "کارت";
             CartBtn.UseVisualStyleBackColor = false;

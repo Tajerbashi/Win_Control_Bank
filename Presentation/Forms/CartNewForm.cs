@@ -1,12 +1,9 @@
-﻿using Infrastructure.Library.Models.DTOs.BUS;
-using System.Globalization;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
-using Atf.UI;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+﻿using Domain.Library.Enums;
+using Infrastructure.Library.Models.Controls;
+using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Patterns;
 using Presentation.Generator;
-using Infrastructure.Library.Models.Controls;
+using System.Runtime.InteropServices;
 namespace Presentation.Forms
 {
     public partial class CartNewForm : Form
@@ -45,41 +42,48 @@ namespace Presentation.Forms
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
+            using (var context = unitOfWork.BeginTransaction())
+            {
+                try
+                {
+                    CartDTO cart = new CartDTO();
+                    TransactionDTO transaction = new TransactionDTO();
+                    BlanceDTO blance = new BlanceDTO();
+                    cart.AccountNumber = AccountNumberTxt.Text;
+                    cart.Key = Guid.NewGuid();
+                    cart.ShabaAccountNumber = ShabaCartNumber.Text;
+                    cart.BankID = BankCombo.SelectedIndex;
+                    cart.CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value;
+                    cart.BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value;
+                    cart.ExpireDate = (DateTime)ExpireDate.Value;
+                    var cartId = unitOfWork.CartService.Insert(cart);
+                    transaction.Cash = Convert.ToDouble(BlanceTxt.Text);
+                    transaction.TransactionType = TransactionType.Settlemant;
+                    transaction.CartID = (long)cartId;
+                    var tracId = unitOfWork.TransactionService.Insert(transaction);
+                    blance.BlanceCash = Convert.ToDouble(BlanceTxt.Text);
+                    blance.BlanceType = BlanceType.Banking;
+                    blance.TransactionID = (long)tracId;
+                    unitOfWork.BlanceService.Insert(blance);
+                    context.Commit();
+                    this.Close();
+                }
+                catch (Exception)
+                {
+                    context.Rollback();
+                    throw;
+                }
+            }
 
-            try
-            {
-                unitOfWork.BeginTransaction();
-                CartDTO model = new CartDTO();
-                BlanceDTO blance = new BlanceDTO();
-                model.AccountNumber = AccountNumberTxt.Text;
-                model.Key = Guid.NewGuid();
-                model.ShabaAccountNumber = ShabaCartNumber.Text;
-                model.BankID = BankCombo.SelectedIndex;
-                model.CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value;
-                model.BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value;
-                model.ExpireDate = (DateTime)ExpireDate.Value;
-                var Cart = unitOfWork.CartService.Insert(model);
-                blance.CartID = (long)Cart;
-                blance.LastCash = Convert.ToDouble(BlanceTxt.Text);
-                blance.Cash = Convert.ToDouble(BlanceTxt.Text);
-                unitOfWork.BlanceService.Insert(blance);
-                unitOfWork.CommitTransaction();
-                this.Close();
-            }
-            catch (Exception)
-            {
-                unitOfWork.RollBackTransaction();
-                throw;
-            }
-            
         }
 
         private void CartNewForm_Load(object sender, EventArgs e)
         {
-            BankCombo = ComboBoxGenerator.FillData(BankCombo,unitOfWork.BankService.TitleValue(), Convert.ToByte(BankCombo.Tag));
-            CustomerCombo = ComboBoxGenerator.FillData(CustomerCombo,unitOfWork.CustomerService.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
+            BankCombo = ComboBoxGenerator.FillData(BankCombo, unitOfWork.BankService.TitleValue(), Convert.ToByte(BankCombo.Tag));
+            CustomerCombo = ComboBoxGenerator.FillData(CustomerCombo, unitOfWork.CustomerService.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
             ExpireDate.UsePersianFormat = true;
             ExpireDate.Value = DateTime.Now;
+            unitOfWork.Dispose();
         }
 
         private void CloseBtn_Click(object sender, EventArgs e)
