@@ -31,7 +31,7 @@ namespace Infrastructure.Library.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
 
                     b.Property<string>("BankName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<long>("CreateBy")
                         .HasColumnType("bigint");
@@ -68,6 +68,10 @@ namespace Infrastructure.Library.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("BankName")
+                        .IsUnique()
+                        .HasFilter("[BankName] IS NOT NULL");
+
                     b.ToTable("Banks", "BUS");
                 });
 
@@ -84,9 +88,6 @@ namespace Infrastructure.Library.Migrations
 
                     b.Property<byte>("BlanceType")
                         .HasColumnType("tinyint");
-
-                    b.Property<double>("Cash")
-                        .HasColumnType("float");
 
                     b.Property<long>("CreateBy")
                         .HasColumnType("bigint");
@@ -135,7 +136,7 @@ namespace Infrastructure.Library.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
 
                     b.Property<string>("AccountNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<long>("BankID")
                         .HasColumnType("bigint");
@@ -184,9 +185,11 @@ namespace Infrastructure.Library.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("BankID");
-
                     b.HasIndex("CustomerID");
+
+                    b.HasIndex("BankID", "AccountNumber")
+                        .IsUnique()
+                        .HasFilter("[AccountNumber] IS NOT NULL");
 
                     b.ToTable("Carts", "BUS");
                 });
@@ -284,7 +287,7 @@ namespace Infrastructure.Library.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<Guid>("Guid")
                         .HasColumnType("uniqueidentifier");
@@ -302,7 +305,7 @@ namespace Infrastructure.Library.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<long>("UpdateBy")
                         .HasColumnType("bigint");
@@ -311,6 +314,10 @@ namespace Infrastructure.Library.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("FullName", "Title")
+                        .IsUnique()
+                        .HasFilter("[FullName] IS NOT NULL AND [Title] IS NOT NULL");
 
                     b.ToTable("Customers", "BUS");
                 });
@@ -323,7 +330,7 @@ namespace Infrastructure.Library.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
 
-                    b.Property<long?>("CartID")
+                    b.Property<long>("CartID")
                         .HasColumnType("bigint");
 
                     b.Property<double>("Cash")
@@ -1080,9 +1087,13 @@ namespace Infrastructure.Library.Migrations
 
             modelBuilder.Entity("Domain.Library.Entities.BUS.Transaction", b =>
                 {
-                    b.HasOne("Domain.Library.Entities.BUS.Cart", null)
+                    b.HasOne("Domain.Library.Entities.BUS.Cart", "Cart")
                         .WithMany("Transactions")
-                        .HasForeignKey("CartID");
+                        .HasForeignKey("CartID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
                 });
 
             modelBuilder.Entity("Domain.Library.Entities.LOG.BlanceLog", b =>

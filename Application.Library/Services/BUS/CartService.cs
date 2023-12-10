@@ -8,5 +8,6 @@ namespace Infrastructure.Library.Services.BUS
         public CartService(IMapper mapper) : base(mapper)
         {
         }
+        
     }
 }

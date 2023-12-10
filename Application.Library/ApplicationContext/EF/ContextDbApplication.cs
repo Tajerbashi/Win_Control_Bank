@@ -4,12 +4,13 @@ using Domain.Library.Entities.RPT;
 using Domain.Library.Entities.SEC;
 using Infrastructure.Library.ApplicationContext.Configurations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Infrastructure.Library.ApplicationContext.EF
 {
-    public interface IContextDbApplication:IDisposable
+    public interface IContextDbApplication : IDisposable
     {
-        void BeginTransaction();
+        IDbContextTransaction BeginTransaction();
         void CommitTransaction();
         void RollBackTransaction();
     }
@@ -20,7 +21,7 @@ namespace Infrastructure.Library.ApplicationContext.EF
         }
         public ContextDbApplication()
         {
-            
+
         }
         public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
@@ -62,15 +63,17 @@ namespace Infrastructure.Library.ApplicationContext.EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new TransactionConfiguration());
-            modelBuilder.ApplyConfiguration(new CartConfiguration());
+            modelBuilder.ApplyConfiguration(new BankConfiguration());
             modelBuilder.ApplyConfiguration(new BlanceConfiguration());
+            modelBuilder.ApplyConfiguration(new CartConfiguration());
             modelBuilder.ApplyConfiguration(new CartHistoryConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.ApplyConfiguration(new TransactionConfiguration());
         }
 
-        public void BeginTransaction()
+        public IDbContextTransaction BeginTransaction()
         {
-            base.Database.BeginTransaction();
+            return base.Database.BeginTransaction();
         }
 
         public void CommitTransaction()

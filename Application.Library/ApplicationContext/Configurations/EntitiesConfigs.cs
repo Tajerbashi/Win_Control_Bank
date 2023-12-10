@@ -9,6 +9,8 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
     {
         public void Configure(EntityTypeBuilder<Bank> builder)
         {
+            builder.HasIndex(x => x.BankName).IsUnique();
+
             builder.HasMany(x => x.Carts)
                 .WithOne(x => x.Bank)
                 .HasForeignKey(x => x.BankID)
@@ -18,6 +20,7 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
                 .WithOne(x => x.Bank)
                 .HasForeignKey(x => x.BankID)
                 .IsRequired();
+
         }
     }
 
@@ -42,6 +45,11 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
     {
         public void Configure(EntityTypeBuilder<Cart> builder)
         {
+            builder.HasIndex(x => new
+            {
+                x.BankID,
+                x.AccountNumber,
+            }).IsUnique();
             builder.HasOne(x => x.Bank)
                 .WithMany(x => x.Carts)
                 .HasForeignKey(x => x.BankID)
@@ -52,7 +60,6 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
                 .HasForeignKey(x => x.CustomerID)
                 .IsRequired();
             
-
             //  TODO Many To ONE
         }
     }
@@ -71,6 +78,11 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
     {
         public void Configure(EntityTypeBuilder<Customer> builder)
         {
+            builder.HasIndex(x => new
+            {
+                x.FullName,
+                x.Title,
+            }).IsUnique();
             builder.HasMany(x => x.Carts)
                 .WithOne(x => x.Customer);
         }
@@ -83,6 +95,11 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
             builder.HasOne(x => x.Blance)
                 .WithOne(x => x.Transaction)
                 .HasForeignKey<Blance>(x => x.TransactionID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(x => x.Cart)
+                .WithMany(x => x.Transactions)
+                .HasForeignKey(x => x.CartID) 
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

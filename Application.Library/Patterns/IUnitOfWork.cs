@@ -4,6 +4,7 @@ using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.Extentions;
 using Infrastructure.Library.Services.BUS;
 using Infrastructure.Library.Services.SEC;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Infrastructure.Library.Patterns
 {
@@ -15,7 +16,7 @@ namespace Infrastructure.Library.Patterns
         Paging Paging { get; }
         DapperServices Dapper { get; }
 
-        void BeginTransaction();
+        IDbContextTransaction BeginTransaction();
         void CommitTransaction();
         void RollBackTransaction();
         #endregion
@@ -141,9 +142,9 @@ namespace Infrastructure.Library.Patterns
         {
         }
 
-        public void BeginTransaction()
+        public IDbContextTransaction BeginTransaction()
         {
-           _context.BeginTransaction();
+            return _context.BeginTransaction();
         }
 
         public void CommitTransaction()

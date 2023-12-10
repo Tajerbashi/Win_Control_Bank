@@ -20,9 +20,10 @@ namespace Infrastructure.Library.Repositories.BUS
 SELECT 
 	COUNT (*) AS [COUNT]
 FROM BUS.Carts C
-INNER JOIN BUS.Blances B ON B.CartID = C.ID
-INNER JOIN BUS.Customers CS ON CS.ID = C.CustomerID
-INNER JOIN BUS.Banks BN ON BN.ID = C.BankID
+INNER JOIN BUS.Banks BN ON C.BankID = BN.ID
+INNER JOIN BUS.Customers CS ON C.CustomerID = CS.ID
+INNER JOIN BUS.Transactions T ON T.CartID = C.ID
+INNER JOIN BUS.Blances B ON B.TransactionID = T.ID
 WHERE C.IsDeleted = 0
 ");
         }
@@ -38,11 +39,20 @@ WHERE C.IsDeleted = 0
 SELECT 
 	BN.BankName AS [بانک],
 	CS.FullName AS [مالک],
-	FORMAT(CAST(C.AccountNumber as bigint),'####-####-####-####') AS [شماره حساب],
-	FORMAT(C.[ExpireDate],'yyyy/MM/dd hh:mm','fa-ir') AS [تاریخ انقضاء],
+	C.AccountNumber AS [شماره حساب],
 	C.ShabaAccountNumber AS [شماره شبا],
-	FORMAT(CAST(B.Cash as bigint),'###,###,###') AS [موجودی],
-	FORMAT(CAST(B.LastCash as bigint),'###,###,###,###') AS [موجودی قبل],
+	FORMAT(C.[ExpireDate],'yyyy/MM/dd hh:mm','fa-ir') AS [تاریخ انقضاء],
+	FORMAT(CAST(B.BlanceCash as bigint),'###,###,###') AS [موجودی],
+	Case T.TransactionType
+	WHEN 1 THEN N'واریز'
+	ELSE N'برداشت'
+	END N'تراکنش'
+	,
+	Case B.BlanceType
+	WHEN 1 THEN N'نقدی'
+	ELSE N'بانکی'
+	END N'موجودی'
+	,
 	CASE C.IsActive
 	WHEN 1 THEN N'فعال'
 	ELSE 'غیر فعال'
@@ -50,9 +60,10 @@ SELECT
 	FORMAT(C.CreateDate,'yyyy/MM/dd hh:mm','fa-ir') AS [تاریخ ثبت],
 	FORMAT(C.UpdateDate,'yyyy/MM/dd hh:mm','fa-ir') AS [تاریخ ویرایش]
 FROM BUS.Carts C
-INNER JOIN BUS.Blances B ON B.CartID = C.ID
-INNER JOIN BUS.Customers CS ON CS.ID = C.CustomerID
-INNER JOIN BUS.Banks BN ON BN.ID = C.BankID
+INNER JOIN BUS.Banks BN ON C.BankID = BN.ID
+INNER JOIN BUS.Customers CS ON C.CustomerID = CS.ID
+INNER JOIN BUS.Transactions T ON T.CartID = C.ID
+INNER JOIN BUS.Blances B ON B.TransactionID = T.ID
 WHERE C.IsDeleted = 0
 ORDER BY C.ID DESC 
 {paging}

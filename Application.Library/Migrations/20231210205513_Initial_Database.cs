@@ -30,7 +30,7 @@ namespace Infrastructure.Library.Migrations
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BankName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BankName = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreateBy = table.Column<long>(type: "bigint", nullable: false),
@@ -55,7 +55,7 @@ namespace Infrastructure.Library.Migrations
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FullName = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Key = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -67,7 +67,7 @@ namespace Infrastructure.Library.Migrations
                     DeleteBy = table.Column<long>(type: "bigint", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -203,7 +203,7 @@ namespace Infrastructure.Library.Migrations
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AccountNumber = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ShabaAccountNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Key = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -490,7 +490,7 @@ namespace Infrastructure.Library.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Cash = table.Column<double>(type: "float", nullable: false),
                     TransactionType = table.Column<byte>(type: "tinyint", nullable: false),
-                    CartID = table.Column<long>(type: "bigint", nullable: true),
+                    CartID = table.Column<long>(type: "bigint", nullable: false),
                     Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreateBy = table.Column<long>(type: "bigint", nullable: false),
@@ -509,7 +509,8 @@ namespace Infrastructure.Library.Migrations
                         column: x => x.CartID,
                         principalSchema: "BUS",
                         principalTable: "Carts",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -520,7 +521,6 @@ namespace Infrastructure.Library.Migrations
                     ID = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BlanceCash = table.Column<double>(type: "float", nullable: false),
-                    Cash = table.Column<double>(type: "float", nullable: false),
                     BlanceType = table.Column<byte>(type: "tinyint", nullable: false),
                     TransactionID = table.Column<long>(type: "bigint", nullable: false),
                     Guid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -648,6 +648,14 @@ namespace Infrastructure.Library.Migrations
                 column: "BankID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Banks_BankName",
+                schema: "BUS",
+                table: "Banks",
+                column: "BankName",
+                unique: true,
+                filter: "[BankName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_BlanceLogs_BlanceID",
                 schema: "LOG",
                 table: "BlanceLogs",
@@ -679,10 +687,12 @@ namespace Infrastructure.Library.Migrations
                 column: "CartID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Carts_BankID",
+                name: "IX_Carts_BankID_AccountNumber",
                 schema: "BUS",
                 table: "Carts",
-                column: "BankID");
+                columns: new[] { "BankID", "AccountNumber" },
+                unique: true,
+                filter: "[AccountNumber] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Carts_CustomerID",
@@ -695,6 +705,14 @@ namespace Infrastructure.Library.Migrations
                 schema: "LOG",
                 table: "CustomerLogs",
                 column: "CustomerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Customers_FullName_Title",
+                schema: "BUS",
+                table: "Customers",
+                columns: new[] { "FullName", "Title" },
+                unique: true,
+                filter: "[FullName] IS NOT NULL AND [Title] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_GroupUsers_GroupID",
