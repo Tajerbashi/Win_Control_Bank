@@ -14,8 +14,10 @@ namespace Domain.Library.Entities.BUS
         [Description("نوع تراکنش")]
         public TransactionType TransactionType { get; set; }
 
-
-
+        [Description("کارت")]
+        [ForeignKey("Cart")]
+        public long CartID { get; set; }
+        public Cart Cart { get; set; }
         public virtual Blance Blance { get; set; }
         public virtual List<TransactionReport> TransactionReports { get; set; }
 

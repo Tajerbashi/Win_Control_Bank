@@ -38,10 +38,9 @@ namespace Domain.Library.Entities.BUS
         
 
 
-
-        public virtual List<CartHistory> CartHistories { get; set; }
         public virtual List<Transaction> Transactions { get; set; }
 
+        public virtual List<CartHistory> CartHistories { get; set; }
         public virtual List<CartLog> CartLogs { get; set; }
         public virtual List<CartReport> CartReports { get; set; }
 

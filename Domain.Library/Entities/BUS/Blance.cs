@@ -12,12 +12,8 @@ namespace Domain.Library.Entities.BUS
         [Description("موجودی")]
         public double BlanceCash { get; set; }
 
-        [Description("مقدار")]
-        public double Cash { get; set; }
-
         [Description("نوع موجودی")]
         public BlanceType BlanceType { get; set; }
-
 
         [ForeignKey("Transaction")]
         public long TransactionID { get; set; }
