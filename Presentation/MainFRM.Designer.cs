@@ -261,7 +261,7 @@
             TaransactionBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             TaransactionBtn.FlatStyle = FlatStyle.Flat;
             TaransactionBtn.ForeColor = Color.White;
-            TaransactionBtn.Location = new Point(28, 353);
+            TaransactionBtn.Location = new Point(28, 306);
             TaransactionBtn.Name = "TaransactionBtn";
             TaransactionBtn.Size = new Size(190, 40);
             TaransactionBtn.TabIndex = 5;
@@ -279,7 +279,7 @@
             CashMoneyBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             CashMoneyBtn.FlatStyle = FlatStyle.Flat;
             CashMoneyBtn.ForeColor = Color.White;
-            CashMoneyBtn.Location = new Point(28, 308);
+            CashMoneyBtn.Location = new Point(28, 352);
             CashMoneyBtn.Name = "CashMoneyBtn";
             CashMoneyBtn.Size = new Size(190, 40);
             CashMoneyBtn.TabIndex = 4;

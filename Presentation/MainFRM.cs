@@ -135,7 +135,12 @@ namespace Presentation
 
         private void TaransactionBtn_Click(object sender, EventArgs e)
         {
-
+            TransactionUC panel = new TransactionUC();
+            if (MainPanel.Controls.Count > 0)
+            {
+                MainPanel.Controls[0].Dispose();
+            }
+            MainPanel.Controls.Add(panel);
         }
 
         private void OnlineExchangeBtn_Click(object sender, EventArgs e)
