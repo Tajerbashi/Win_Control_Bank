@@ -83,5 +83,13 @@ ORDER BY C.ID DESC
                 Value = x.ID
             });
         }
+        public IEnumerable<KeyValue<long>> TitleValueByUser(long Id)
+        {
+            return _context.Carts.Where(x => x.CustomerID == Id).Select(x => new KeyValue<long>
+            {
+                Key = ($@"{x.Bank.Title} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Value = x.ID
+            });
+        }
     }
 }

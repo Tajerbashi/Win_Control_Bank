@@ -9,6 +9,7 @@ namespace Domain.Library.Entities.BUS
     [Table("Transactions", Schema = "BUS")]
     public class Transaction : BaseEntity
     {
+        [Description("مبلغ تراکنش")]
         public double Cash { get; set; }
 
         [Description("نوع تراکنش")]
@@ -18,7 +19,9 @@ namespace Domain.Library.Entities.BUS
         [ForeignKey("Cart")]
         public long CartID { get; set; }
         public Cart Cart { get; set; }
+
         public virtual Blance Blance { get; set; }
+
         public virtual List<TransactionReport> TransactionReports { get; set; }
 
     }

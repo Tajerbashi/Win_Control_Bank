@@ -57,7 +57,7 @@ WHERE IsDeleted = 0
             {
                 Key = x.FullName,
                 Value = x.ID
-            });
+            }).OrderByDescending(x => x.Key);
         }
     }
 }
