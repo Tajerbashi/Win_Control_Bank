@@ -85,6 +85,7 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
             }).IsUnique();
             builder.HasMany(x => x.Carts)
                 .WithOne(x => x.Customer);
+
         }
     }
 
@@ -103,6 +104,17 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
+
+    public class BlanceCustomerConfiguration : IEntityTypeConfiguration<BlanceCustomer>
+    {
+        public void Configure(EntityTypeBuilder<BlanceCustomer> builder)
+        {
+            builder.HasOne(x => x.Blance)
+                .WithOne(x => x.BlanceCustomer)
+                .HasForeignKey<BlanceCustomer>(x => x.BlanceID);
+        }
+    }
+
     #endregion
     #region SEC
     #endregion

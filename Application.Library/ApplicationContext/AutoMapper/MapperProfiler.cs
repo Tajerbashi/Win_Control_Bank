@@ -5,7 +5,6 @@ using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.DTOs.SEC;
 using Infrastructure.Library.Models.Views.BUS;
 using Infrastructure.Library.Models.Views.SEC;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Infrastructure.Library.ApplicationContext.AutoMapper
 {
@@ -32,6 +31,9 @@ namespace Infrastructure.Library.ApplicationContext.AutoMapper
 
             CreateMap<Blance, BlanceDTO>().ReverseMap();
             CreateMap<Blance, BlanceView>().ReverseMap();
+
+            CreateMap<BlanceCustomer, BlanceCustomerDTO>().ReverseMap();
+            CreateMap<BlanceCustomer, BlanceCustomerView>().ReverseMap();
 
 
         }

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Azure;
 using Domain.Library.Entities.BUS;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
@@ -51,8 +50,7 @@ SELECT
 	Case B.BlanceType
 	WHEN 1 THEN N'نقدی'
 	ELSE N'بانکی'
-	END N'موجودی'
-	,
+	END N'نوع موجودی',
 	CASE C.IsActive
 	WHEN 1 THEN N'فعال'
 	ELSE 'غیر فعال'

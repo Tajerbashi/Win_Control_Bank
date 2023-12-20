@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Library.Models.Views.BUS
 {
-    public class BankView : BaseView
+    public class BlanceCustomerView : BaseView
     {
-    } 
+    }
 }
