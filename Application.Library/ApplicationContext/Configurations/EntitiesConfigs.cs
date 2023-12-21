@@ -110,8 +110,8 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
         public void Configure(EntityTypeBuilder<BlanceCustomer> builder)
         {
             builder.HasOne(x => x.Blance)
-                .WithOne(x => x.BlanceCustomer)
-                .HasForeignKey<BlanceCustomer>(x => x.BlanceID);
+                .WithMany(x => x.BlanceCustomers)
+                .HasForeignKey(x => x.BlanceID);
         }
     }
 

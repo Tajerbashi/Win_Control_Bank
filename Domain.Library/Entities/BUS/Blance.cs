@@ -19,7 +19,7 @@ namespace Domain.Library.Entities.BUS
         public long TransactionID { get; set; }
         public virtual Transaction Transaction { get; set; }
 
-        public virtual BlanceCustomer BlanceCustomer { get; set; }
+        public virtual List<BlanceCustomer> BlanceCustomers { get; set; }
 
         public virtual List<BlanceLog> BlanceLogs { get; set; }
     }

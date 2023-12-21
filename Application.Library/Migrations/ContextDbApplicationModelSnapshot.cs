@@ -182,8 +182,7 @@ namespace Infrastructure.Library.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("BlanceID")
-                        .IsUnique();
+                    b.HasIndex("BlanceID");
 
                     b.ToTable("BlanceCustomers", "BUS");
                 });
@@ -1170,8 +1169,8 @@ namespace Infrastructure.Library.Migrations
             modelBuilder.Entity("Domain.Library.Entities.BUS.BlanceCustomer", b =>
                 {
                     b.HasOne("Domain.Library.Entities.BUS.Blance", "Blance")
-                        .WithOne("BlanceCustomer")
-                        .HasForeignKey("Domain.Library.Entities.BUS.BlanceCustomer", "BlanceID")
+                        .WithMany("BlanceCustomers")
+                        .HasForeignKey("BlanceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1365,7 +1364,7 @@ namespace Infrastructure.Library.Migrations
 
             modelBuilder.Entity("Domain.Library.Entities.BUS.Blance", b =>
                 {
-                    b.Navigation("BlanceCustomer");
+                    b.Navigation("BlanceCustomers");
 
                     b.Navigation("BlanceLogs");
                 });

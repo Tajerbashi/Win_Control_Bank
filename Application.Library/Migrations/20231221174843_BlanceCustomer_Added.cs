@@ -82,8 +82,7 @@ namespace Infrastructure.Library.Migrations
                 name: "IX_BlanceCustomers_BlanceID",
                 schema: "BUS",
                 table: "BlanceCustomers",
-                column: "BlanceID",
-                unique: true);
+                column: "BlanceID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CustomerReports_CustomerID",
