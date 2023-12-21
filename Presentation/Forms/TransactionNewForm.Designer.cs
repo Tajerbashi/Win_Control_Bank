@@ -35,6 +35,8 @@
             CloseBtn = new Button();
             SaveBtn = new Button();
             groupBox1 = new GroupBox();
+            UserAccountCombo = new ComboBox();
+            label7 = new Label();
             NewUserCheck = new CheckBox();
             PanelNewUser = new Panel();
             SaveNewUserBtn = new Button();
@@ -48,8 +50,6 @@
             FromCartCombo = new ComboBox();
             label2 = new Label();
             label1 = new Label();
-            label7 = new Label();
-            UserAccountCombo = new ComboBox();
             groupBox1.SuspendLayout();
             PanelNewUser.SuspendLayout();
             SuspendLayout();
@@ -159,6 +159,29 @@
             groupBox1.Size = new Size(751, 519);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
+            // 
+            // UserAccountCombo
+            // 
+            UserAccountCombo.Cursor = Cursors.Hand;
+            UserAccountCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            UserAccountCombo.FormattingEnabled = true;
+            UserAccountCombo.Location = new Point(6, 349);
+            UserAccountCombo.Name = "UserAccountCombo";
+            UserAccountCombo.RightToLeft = RightToLeft.Yes;
+            UserAccountCombo.Size = new Size(338, 33);
+            UserAccountCombo.TabIndex = 44;
+            UserAccountCombo.Visible = false;
+            // 
+            // label7
+            // 
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(200, 320);
+            label7.Name = "label7";
+            label7.Size = new Size(144, 32);
+            label7.TabIndex = 43;
+            label7.Text = "از حساب کاربری";
+            label7.TextAlign = ContentAlignment.MiddleRight;
+            label7.Visible = false;
             // 
             // NewUserCheck
             // 
@@ -310,28 +333,6 @@
             label1.TabIndex = 32;
             label1.Text = "از مشترک";
             label1.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label7
-            // 
-            label7.ForeColor = Color.White;
-            label7.Location = new Point(200, 320);
-            label7.Name = "label7";
-            label7.Size = new Size(144, 32);
-            label7.TabIndex = 43;
-            label7.Text = "از حساب کاریری";
-            label7.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // UserAccountCombo
-            // 
-            UserAccountCombo.Cursor = Cursors.Hand;
-            UserAccountCombo.DropDownStyle = ComboBoxStyle.DropDownList;
-            UserAccountCombo.FormattingEnabled = true;
-            UserAccountCombo.Location = new Point(6, 349);
-            UserAccountCombo.Name = "UserAccountCombo";
-            UserAccountCombo.RightToLeft = RightToLeft.Yes;
-            UserAccountCombo.Size = new Size(338, 33);
-            UserAccountCombo.TabIndex = 44;
-            UserAccountCombo.Visible = false;
             // 
             // TransactionNewForm
             // 
