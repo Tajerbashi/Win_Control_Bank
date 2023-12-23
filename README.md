@@ -15,6 +15,7 @@
 | Calcualte      | right foo     |
 | Online Exchange      | right foo     |
 
+## Plan Of Application is Manage Accounts Of Bank
 ## Inline code
 
 This is an application for Accounting and Reportation `Accounting/Exchange`.
