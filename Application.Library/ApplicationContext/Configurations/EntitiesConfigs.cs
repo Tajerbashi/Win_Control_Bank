@@ -1,4 +1,5 @@
 ﻿using Domain.Library.Entities.BUS;
+using Domain.Library.Entities.CNT;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -112,4 +113,13 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
     #endregion
     #region RPT
     #endregion
+    #region CNT
+    public class ConstVariableConfiguration : IEntityTypeConfiguration<ConstVariable>
+    {
+        public void Configure(EntityTypeBuilder<ConstVariable> builder)
+        {
+        }
+    }
+    #endregion
+
 }

@@ -49,11 +49,19 @@ namespace Presentation.Forms
                     CartDTO cart = new CartDTO();
                     TransactionDTO transaction = new TransactionDTO();
                     BlanceDTO blance = new BlanceDTO();
-                    cart.AccountNumber = AccountNumberTxt.Text;
                     cart.Key = Guid.NewGuid();
                     cart.ShabaAccountNumber = ShabaCartNumber.Text;
                     cart.BankID = BankCombo.SelectedIndex;
                     cart.CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value;
+                    cart.ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
+                    if (cart.ParentID != null)
+                    {
+                        cart.AccountNumber = $"{AccountNumberTxt.Text} : {cart.ParentID}";
+                    }
+                    else
+                    {
+                        cart.AccountNumber = $"{AccountNumberTxt.Text}";
+                    }
                     cart.BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value;
                     cart.ExpireDate = (DateTime)ExpireDate.Value;
                     var cartId = unitOfWork.CartService.Insert(cart);
@@ -104,6 +112,40 @@ namespace Presentation.Forms
         private void ShabaCartNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void ParentCartCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var PId =  ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
+            AccountNumberTxt.Text = string.Empty;
+            AccountNumberTxt.Enabled = true;
+            ShabaCartNumber.Text = string.Empty;
+            ShabaCartNumber.Enabled = true;
+            ExpireDate.Value = DateTime.Now;
+            ShabaCartNumber.Enabled = true;
+            if (PId != 0)
+            {
+                var cartModel = unitOfWork.CartService.GetById(PId);
+                AccountNumberTxt.Text = cartModel.AccountNumber;
+                AccountNumberTxt.Enabled = false;
+                ShabaCartNumber.Text = cartModel.ShabaAccountNumber;
+                ShabaCartNumber.Enabled = false;
+                ExpireDate.Value = cartModel.ExpireDate;
+                ExpireDate.Enabled = false;
+            }
+        }
+
+        private void BankCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var Id = ((KeyValue<long>)BankCombo.SelectedItem).Value;
+            if (Id != 0)
+            {
+                ParentCartCombo = ComboBoxGenerator.FillData(ParentCartCombo, unitOfWork.CartService.TitleValuesCartByBankId(Id), Convert.ToByte(ParentCartCombo.Tag));
+            }
+            else
+            {
+                ParentCartCombo.Items.Clear();
+            }
         }
     }
 }

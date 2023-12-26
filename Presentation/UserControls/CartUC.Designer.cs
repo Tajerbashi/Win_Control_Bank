@@ -162,7 +162,7 @@
             label1.Name = "label1";
             label1.Size = new Size(1114, 32);
             label1.TabIndex = 13;
-            label1.Text = "اطلاعات کارتی";
+            label1.Text = "اطلاعات کارت";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // CartUC

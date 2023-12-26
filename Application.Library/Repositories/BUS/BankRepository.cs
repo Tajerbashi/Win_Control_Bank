@@ -26,7 +26,13 @@ namespace Infrastructure.Library.Repositories.BUS
         public string ShowAll(string paging)
         {
             return (@$"
-SELECT        ID AS آیدی, BankName AS [نام بانک], Guid AS کلید, CreateDate AS [تاریخ ثبت], UpdateDate AS [تاریخ ویرایش], Title AS عنوان, Description AS توضیحات, IsActive AS وضعیت
+SELECT        
+ID AS آیدی, 
+BankName AS [نام بانک], 
+FORMAT(CreateDate,'yyyy-mm-dd','fa') AS [تاریخ ثبت], 
+UpdateDate AS [تاریخ ویرایش], 
+Title AS عنوان, Description AS توضیحات, 
+CASE IsActive WHEN 1 THEN N'فعال' ELSE N'غیر فعال' END AS وضعیت
 FROM            BUS.Banks
 WHERE        (IsDeleted = 0)
 ORDER BY ID DESC 

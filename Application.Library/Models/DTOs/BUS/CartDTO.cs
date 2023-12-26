@@ -16,6 +16,7 @@ namespace Infrastructure.Library.Models.DTOs.BUS
         public DateTime ExpireDate { get; set; }
         public long BankID { get; set; }
         public long CustomerID { get; set; }
+        public long? ParentID { get; set; }
 
         public List<CartHistoryDTO> CartHistories { get; set; }
         public List<CartTransactionDTO> CartTransactions { get; set; }

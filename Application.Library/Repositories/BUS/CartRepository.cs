@@ -73,9 +73,25 @@ ORDER BY C.ID DESC
             throw new NotImplementedException();
         }
 
-        public IEnumerable<KeyValue<long>> TitleValue()
+        public IEnumerable<KeyValue<long>> TitleValuesParent()
         {
-            return _context.Carts.Select(x => new KeyValue<long>
+            return _context.Carts.Where(x => x.ParentID == null).Select(x => new KeyValue<long>
+            {
+                Key = ($@"{x.Bank.Title} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Value = x.ID
+            });
+        }
+        public IEnumerable<KeyValue<long>> TitleValuesCartByBankId(long Id)
+        {
+            return _context.Carts.Where(x => x.BankID == Id).Select(x => new KeyValue<long>
+            {
+                Key = ($@"{x.Bank.Title} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Value = x.ID
+            });
+        }
+        public IEnumerable<KeyValue<long>> TitleValuesChild(long Id)
+        {
+            return _context.Carts.Where(x => x.ParentID == Id).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.Title} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
@@ -88,6 +104,11 @@ ORDER BY C.ID DESC
                 Key = ($@"{x.Bank.Title} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
             });
+        }
+
+        public IEnumerable<KeyValue<long>> TitleValue()
+        {
+            throw new NotImplementedException();
         }
     }
 }

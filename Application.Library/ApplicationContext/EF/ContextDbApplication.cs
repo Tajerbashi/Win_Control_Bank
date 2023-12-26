@@ -1,4 +1,5 @@
 ﻿using Domain.Library.Entities.BUS;
+using Domain.Library.Entities.CNT;
 using Domain.Library.Entities.LOG;
 using Domain.Library.Entities.RPT;
 using Domain.Library.Entities.SEC;
@@ -57,7 +58,10 @@ namespace Infrastructure.Library.ApplicationContext.EF
         public DbSet<CustomerReport> CustomerReports { get; set; }
         #endregion
 
+        #region CNT
+        public DbSet<ConstVariable> ConstVariables { get; set; }
 
+        #endregion
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -75,6 +79,7 @@ namespace Infrastructure.Library.ApplicationContext.EF
             modelBuilder.ApplyConfiguration(new CartHistoryConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
+            modelBuilder.ApplyConfiguration(new ConstVariableConfiguration());
         }
 
         public IDbContextTransaction BeginTransaction()

@@ -33,11 +33,9 @@ WHERE   IsDeleted = 0
 SELECT       
     ID AS آیدی, 
     FullName AS [نام کامل], 
-    [Key] AS [کلید اختصاصی], 
-    Guid AS [کد اختصاصی], 
-    CreateDate AS [تاریخ ثبت], 
+    FORMAT(CreateDate,'yyyy-mm-dd','fa') AS [تاریخ ثبت], 
     UpdateDate AS [آخرین ویرایش],   
-    IsActive AS وضعیت,
+    CASE IsActive WHEN 1 THEN N'فعال' ELSE N'غیر فعال' END AS وضعیت,
     Description AS توضیحات, 
     Title AS عنوان, 
     Picture AS نصویر
