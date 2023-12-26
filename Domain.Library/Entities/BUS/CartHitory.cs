@@ -11,6 +11,9 @@ namespace Domain.Library.Entities.BUS
         [Description("نوع تراکنش")]
         public TransactionType TransactionType { get; set; }
 
+        [Description("نوع موجودی")]
+        public BlanceType BlanceType { get; set; }
+
         [Description("مبلغ")]
         public double Cash { get; set; }
 
@@ -25,8 +28,6 @@ namespace Domain.Library.Entities.BUS
 
         [Description("پیام")]
         public string Message { get; set; }
-
-
 
         [ForeignKey("Cart")]
         public long CartID { get; set; }

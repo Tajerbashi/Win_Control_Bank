@@ -9,7 +9,7 @@ namespace Domain.Library.Entities.SEC
     {
         [Description("تصویر")]
         public string Picture { get; set; }
-        public virtual List<UserRole> UserRoles { get; set; }
-        public virtual List<GroupUser> GroupUsers { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<GroupUser> GroupUsers { get; set; }
     }
 }

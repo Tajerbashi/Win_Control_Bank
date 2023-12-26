@@ -34,10 +34,14 @@ namespace Domain.Library.Entities.BUS
         public long CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
 
-        public virtual List<Transaction> Transactions { get; set; }
-        public virtual List<CartHistory> CartHistories { get; set; }
-        public virtual List<CartLog> CartLogs { get; set; }
-        public virtual List<CartReport> CartReports { get; set; }
+        [ForeignKey(nameof(CartChild))]
+        public long? ParentID { get; set; }
+        public virtual Cart CartChild{ get; set; }
+
+        public virtual ICollection<Transaction> Transactions { get; set; }
+        public virtual ICollection<CartHistory> CartHistories { get; set; }
+        public virtual ICollection<CartLog> CartLogs { get; set; }
+        public virtual ICollection<CartReport> CartReports { get; set; }
 
     }
 }

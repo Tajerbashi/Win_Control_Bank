@@ -32,10 +32,6 @@ namespace Infrastructure.Library.ApplicationContext.AutoMapper
             CreateMap<Blance, BlanceDTO>().ReverseMap();
             CreateMap<Blance, BlanceView>().ReverseMap();
 
-            CreateMap<BlanceCustomer, BlanceCustomerDTO>().ReverseMap();
-            CreateMap<BlanceCustomer, BlanceCustomerView>().ReverseMap();
-
-
         }
     }
 }

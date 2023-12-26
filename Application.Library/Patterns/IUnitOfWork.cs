@@ -28,7 +28,6 @@ namespace Infrastructure.Library.Patterns
         RoleService RoleService { get; }
         UserService UserService { get; }
         UserRoleService UserRoleService { get; }
-        UserRoleGroupService UserRoleGroupService { get; }
         #endregion
 
         #region BUS
@@ -90,12 +89,6 @@ namespace Infrastructure.Library.Patterns
         public UserRoleService UserRoleService
         {
             get => _userRoleService ?? new UserRoleService(mapper);
-        }
-
-        private UserRoleGroupService _userRoleGroupService;
-        public UserRoleGroupService UserRoleGroupService
-        {
-            get => _userRoleGroupService ?? new UserRoleGroupService(mapper);
         }
 
 

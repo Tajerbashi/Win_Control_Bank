@@ -32,7 +32,6 @@ namespace Infrastructure.Library.ApplicationContext.EF
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Bank> Banks { get; set; }
         public DbSet<Blance> Blances { get; set; }
-        public DbSet<BlanceCustomer> BlanceCustomers { get; set; }
         #endregion
 
         #region SEC
@@ -41,7 +40,6 @@ namespace Infrastructure.Library.ApplicationContext.EF
         public DbSet<Role> Roles { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<GroupUser> GroupUsers { get; set; }
-        public DbSet<UserRoleGroup> UserRoleGroups { get; set; }
         #endregion
 
         #region LOG
@@ -77,7 +75,6 @@ namespace Infrastructure.Library.ApplicationContext.EF
             modelBuilder.ApplyConfiguration(new CartHistoryConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
-            modelBuilder.ApplyConfiguration(new BlanceCustomerConfiguration());
         }
 
         public IDbContextTransaction BeginTransaction()

@@ -6,6 +6,6 @@ namespace Domain.Library.Entities.SEC
     [Table("Role", Schema = "SEC")]
     public class Role : BaseEntity
     {
-        public virtual List<UserRole> UserRoles { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

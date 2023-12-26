@@ -105,16 +105,6 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
         }
     }
 
-    public class BlanceCustomerConfiguration : IEntityTypeConfiguration<BlanceCustomer>
-    {
-        public void Configure(EntityTypeBuilder<BlanceCustomer> builder)
-        {
-            builder.HasOne(x => x.Blance)
-                .WithMany(x => x.BlanceCustomers)
-                .HasForeignKey(x => x.BlanceID);
-        }
-    }
-
     #endregion
     #region SEC
     #endregion

@@ -10,7 +10,7 @@ namespace Domain.Library.Entities.BUS
     {
         [Description("نام بانک")]
         public string BankName { get; set; }
-        public virtual List<Cart> Carts { get; set; }
-        public virtual List<BankReport> BankReports { get; set; }
+        public virtual ICollection<Cart> Carts { get; set; }
+        public virtual ICollection<BankReport> BankReports { get; set; }
     }
 }

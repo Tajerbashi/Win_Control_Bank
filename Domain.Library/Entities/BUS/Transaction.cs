@@ -22,7 +22,7 @@ namespace Domain.Library.Entities.BUS
 
         public virtual Blance Blance { get; set; }
 
-        public virtual List<TransactionReport> TransactionReports { get; set; }
+        public virtual ICollection<TransactionReport> TransactionReports { get; set; }
 
     }
 
