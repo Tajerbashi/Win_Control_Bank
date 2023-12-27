@@ -35,11 +35,11 @@ namespace Infrastructure.Library.Repositories.BUS
 
         public IEnumerable<KeyValue<long>> TitleValue()
         {
-            return _context.Banks.Select(x => new KeyValue<long>
+            return new List<KeyValue<long>>()
             {
-                Key = x.BankName,
-                Value = x.ID
-            });
+                new KeyValue<long> { Value = 1 ,Key = "نقدی"},
+                new KeyValue<long> { Value = 2 ,Key = "بانکی"},
+            };
         }
     }
 }

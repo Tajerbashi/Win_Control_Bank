@@ -37,13 +37,21 @@ namespace Infrastructure.Library.Repositories.BUS
         {
             List<KeyValue<long>> result = new List<KeyValue<long>>()
             {
+                new KeyValue<long> { Value = 1 ,Key = "واریز"},
+                new KeyValue<long> { Value = 2 ,Key = "برداشت"},
+            };
+
+            return result;
+        }
+        public IEnumerable<KeyValue<long>> TitleValueKind()
+        {
+            return new List<KeyValue<long>>()
+            {
                 new KeyValue<long> { Value = 1 ,Key = "خرید از کارت"},
                 new KeyValue<long> { Value = 2 ,Key = "برداشت نقدی"},
                 new KeyValue<long> { Value = 3 ,Key = "انتقال به کارت دیگر"},
                 new KeyValue<long> { Value = 4 ,Key = "واریز به کارت"},
             };
-
-            return result;
         }
     }
 }

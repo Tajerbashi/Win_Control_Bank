@@ -46,9 +46,13 @@ namespace Presentation.Forms
 
         private void TransactionNewForm_Load(object sender, EventArgs e)
         {
-            CustomerCombo = ComboBoxGenerator.FillData(CustomerCombo, unitOfWork.CustomerService.TitleValue(), Convert.ToByte(TransactionTypeCombo.Tag));
-            TransactionTypeCombo = ComboBoxGenerator.FillData(TransactionTypeCombo, unitOfWork.TransactionService.TitleValue(), Convert.ToByte(TransactionTypeCombo.Tag));
-            ToCartCombo = ComboBoxGenerator.FillData(ToCartCombo, unitOfWork.TransactionService.TitleValue(), Convert.ToByte(TransactionTypeCombo.Tag));
+            TransactionTypeCombo = ComboBoxGenerator.FillData(TransactionTypeCombo, unitOfWork.TransactionService.TitleValueKind(), Convert.ToByte(TransactionTypeCombo.Tag));
+            TransactionKindCombo = ComboBoxGenerator.FillData(TransactionKindCombo, unitOfWork.TransactionService.TitleValue(), Convert.ToByte(TransactionKindCombo.Tag));
+
+            FromCustomerCombo = ComboBoxGenerator.FillData(FromCustomerCombo, unitOfWork.CartService.TitleValue(), Convert.ToByte(FromCustomerCombo.Tag));
+            ToCustomerCombo = ComboBoxGenerator.FillData(ToCustomerCombo, unitOfWork.CartService.TitleValue(), Convert.ToByte(ToCustomerCombo.Tag));
+
+            BlanceTypeCombo = ComboBoxGenerator.FillData(BlanceTypeCombo, unitOfWork.BlanceService.TitleValue(), Convert.ToByte(BlanceTypeCombo.Tag));
         }
 
         private void CloseBtn_Click(object sender, EventArgs e)
@@ -93,36 +97,47 @@ namespace Presentation.Forms
             {
                 case 1:
                     {
-                        ToCartCombo.Visible = false;
                         label5.Visible = false;
-                        NewUserCheck.Visible = false;
+                        ToCustomerCombo.Visible = false;
+                        label7.Visible = false;
+                        ToAccountCombo.Visible = false;
+                        TransactionKindCombo.SelectedIndex = 2;
                         break;
                     }
                 case 2:
                     {
-                        ToCartCombo.Visible = false;
                         label5.Visible = false;
-                        NewUserCheck.Visible = false;
+                        ToCustomerCombo.Visible = false;
+                        label7.Visible = false;
+                        ToAccountCombo.Visible = false;
+                        TransactionKindCombo.SelectedIndex = 2;
                         break;
                     }
                 case 3:
                     {
-                        ToCartCombo.Visible = true;
                         label5.Visible = true;
-                        NewUserCheck.Visible = true;
+                        ToCustomerCombo.Visible = true;
+                        label7.Visible = true;
+                        ToAccountCombo.Visible = true;
+                        TransactionKindCombo.SelectedIndex = 2;
                         break;
                     }
                 case 4:
                     {
-                        ToCartCombo.Visible = false;
                         label5.Visible = false;
-                        NewUserCheck.Visible = false;
+                        ToCustomerCombo.Visible = false;
+                        label7.Visible = false;
+                        ToAccountCombo.Visible = false;
+                        TransactionKindCombo.SelectedIndex = 1;
                         break;
                     }
                 default:
                     {
                         MSG.Text = "هنوز هیچ نوع تراکنشی تایید نشده است";
-                        ToCartCombo.Visible = false;
+                        label5.Visible = false;
+                        ToCustomerCombo.Visible = false;
+                        label7.Visible = false;
+                        ToAccountCombo.Visible = false;
                         break;
                     }
             }
@@ -130,20 +145,34 @@ namespace Presentation.Forms
 
         private void NewUserCheck_CheckedChanged(object sender, EventArgs e)
         {
-            if (NewUserCheck.Checked)
-            {
-                PanelNewUser.Visible = true;
-            }
-            else
-            {
-                PanelNewUser.Visible = false;
-            }
+            //if (NewUserCheck.Checked)
+            //{
+            //    PanelNewUser.Visible = true;
+            //}
+            //else
+            //{
+            //    PanelNewUser.Visible = false;
+            //}
         }
 
         private void CustomerCombo_SelectedValueChanged(object sender, EventArgs e)
         {
+            var Id = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value; ;
+            if (Id != 0)
+            {
+                FromAccountCombo = ComboBoxGenerator.FillData(FromAccountCombo, unitOfWork.CartService.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
+            }
             //FromCartCombo = ComboBoxGenerator.FillData(FromCartCombo, unitOfWork.CartService.TitleValue(), Convert.ToByte(TransactionTypeCombo.Tag));
-            FromCartCombo = ComboBoxGenerator.FillData(FromCartCombo, unitOfWork.CartService.TitleValueByUser(((KeyValue<long>)CustomerCombo.SelectedItem).Value), Convert.ToByte(TransactionTypeCombo.Tag));
+            //FromCartCombo = ComboBoxGenerator.FillData(FromCartCombo, unitOfWork.CartService.TitleValueByUser(((KeyValue<long>)CustomerCombo.SelectedItem).Value), Convert.ToByte(TransactionTypeCombo.Tag));
+        }
+
+        private void ToCustomerCombo_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value; ;
+            if (Id != 0)
+            {
+                ToAccountCombo = ComboBoxGenerator.FillData(ToAccountCombo, unitOfWork.CartService.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
+            }
         }
     }
 }

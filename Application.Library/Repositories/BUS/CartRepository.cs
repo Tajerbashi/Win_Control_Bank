@@ -77,7 +77,7 @@ ORDER BY C.ID DESC
         {
             return _context.Carts.Where(x => x.ParentID == null).Select(x => new KeyValue<long>
             {
-                Key = ($@"{x.Bank.Title} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
             });
         }
@@ -85,7 +85,7 @@ ORDER BY C.ID DESC
         {
             return _context.Carts.Where(x => x.BankID == Id).Select(x => new KeyValue<long>
             {
-                Key = ($@"{x.Bank.Title} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
             });
         }
@@ -93,7 +93,7 @@ ORDER BY C.ID DESC
         {
             return _context.Carts.Where(x => x.ParentID == Id).Select(x => new KeyValue<long>
             {
-                Key = ($@"{x.Bank.Title} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
             });
         }
@@ -101,14 +101,18 @@ ORDER BY C.ID DESC
         {
             return _context.Carts.Where(x => x.CustomerID == Id).Select(x => new KeyValue<long>
             {
-                Key = ($@"{x.Bank.Title} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
             });
         }
 
         public IEnumerable<KeyValue<long>> TitleValue()
         {
-            throw new NotImplementedException();
+            return _context.Carts.Select(x => new KeyValue<long>
+            {
+                Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Value = x.ID
+            });
         }
     }
 }
