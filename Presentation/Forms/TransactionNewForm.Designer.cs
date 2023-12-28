@@ -35,6 +35,8 @@
             CloseBtn = new Button();
             SaveBtn = new Button();
             groupBox1 = new GroupBox();
+            FromAccountLBL = new Label();
+            FromCustomerLBL = new Label();
             TransactionKindCombo = new ComboBox();
             label2 = new Label();
             FromAccountCombo = new ComboBox();
@@ -134,6 +136,8 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(FromAccountLBL);
+            groupBox1.Controls.Add(FromCustomerLBL);
             groupBox1.Controls.Add(TransactionKindCombo);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(FromAccountCombo);
@@ -159,6 +163,24 @@
             groupBox1.Size = new Size(1129, 349);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
+            // 
+            // FromAccountLBL
+            // 
+            FromAccountLBL.ForeColor = Color.FromArgb(255, 192, 192);
+            FromAccountLBL.Location = new Point(6, 160);
+            FromAccountLBL.Name = "FromAccountLBL";
+            FromAccountLBL.Size = new Size(409, 32);
+            FromAccountLBL.TabIndex = 51;
+            FromAccountLBL.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // FromCustomerLBL
+            // 
+            FromCustomerLBL.ForeColor = Color.FromArgb(255, 192, 192);
+            FromCustomerLBL.Location = new Point(567, 160);
+            FromCustomerLBL.Name = "FromCustomerLBL";
+            FromCustomerLBL.Size = new Size(436, 32);
+            FromCustomerLBL.TabIndex = 50;
+            FromCustomerLBL.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // TransactionKindCombo
             // 
@@ -191,6 +213,7 @@
             FromAccountCombo.RightToLeft = RightToLeft.Yes;
             FromAccountCombo.Size = new Size(556, 33);
             FromAccountCombo.TabIndex = 4;
+            FromAccountCombo.SelectedValueChanged += FromAccountCombo_SelectedValueChanged;
             // 
             // label9
             // 
@@ -357,5 +380,7 @@
         private Label label9;
         private ComboBox TransactionKindCombo;
         private Label label2;
+        private Label FromAccountLBL;
+        private Label FromCustomerLBL;
     }
 }

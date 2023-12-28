@@ -4,6 +4,7 @@ using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.Views.BUS;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Library.Repositories.BUS
 {
@@ -16,6 +17,14 @@ namespace Infrastructure.Library.Repositories.BUS
         public string GetCount()
         {
             throw new NotImplementedException();
+        }
+        public string GetBlance(long Id)
+        {
+            var blance = _context.Blances
+                .Include(c => c.Transaction)
+                .ThenInclude(x => x.Cart)
+                .Where(x => x.Transaction.Cart.ID == Id).OrderByDescending(x => x.ID).FirstOrDefault();
+            return blance != null ? blance.BlanceCash.ToString("N") : "";
         }
 
         public string Search(string value)

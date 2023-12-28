@@ -49,8 +49,8 @@ namespace Presentation.Forms
             TransactionTypeCombo = ComboBoxGenerator.FillData(TransactionTypeCombo, unitOfWork.TransactionService.TitleValueKind(), Convert.ToByte(TransactionTypeCombo.Tag));
             TransactionKindCombo = ComboBoxGenerator.FillData(TransactionKindCombo, unitOfWork.TransactionService.TitleValue(), Convert.ToByte(TransactionKindCombo.Tag));
 
-            FromCustomerCombo = ComboBoxGenerator.FillData(FromCustomerCombo, unitOfWork.CartService.TitleValue(), Convert.ToByte(FromCustomerCombo.Tag));
-            ToCustomerCombo = ComboBoxGenerator.FillData(ToCustomerCombo, unitOfWork.CartService.TitleValue(), Convert.ToByte(ToCustomerCombo.Tag));
+            FromCustomerCombo = ComboBoxGenerator.FillData(FromCustomerCombo, unitOfWork.CartService.TitleValuesParent(), Convert.ToByte(FromCustomerCombo.Tag));
+            ToCustomerCombo = ComboBoxGenerator.FillData(ToCustomerCombo, unitOfWork.CartService.TitleValuesParent(), Convert.ToByte(ToCustomerCombo.Tag));
 
             BlanceTypeCombo = ComboBoxGenerator.FillData(BlanceTypeCombo, unitOfWork.BlanceService.TitleValue(), Convert.ToByte(BlanceTypeCombo.Tag));
         }
@@ -63,29 +63,38 @@ namespace Presentation.Forms
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             var type = ((KeyValue<long>)TransactionTypeCombo.SelectedItem).Value;
-            switch (type)
+            if (TransactionValidation(type))
             {
-                case 1:
-                    {
-                        break;
-                    }
-                case 2:
-                    {
-                        break;
-                    }
-                case 3:
-                    {
-                        break;
-                    }
-                case 4:
-                    {
-                        break;
-                    }
-                default:
-                    {
-                        MSG.Text = "هنوز هیچ نوع تراکنشی تایید نشده است";
-                        break;
-                    }
+
+            }
+            else
+            {
+
+                switch (type)
+                {
+                    case 1:
+                        {
+                            break;
+                        }
+                    case 2:
+                        {
+                            break;
+                        }
+                    case 3:
+                        {
+                            break;
+                        }
+                    case 4:
+                        {
+                            break;
+                        }
+                    default:
+                        {
+                            MSG.Text = "هنوز هیچ نوع تراکنشی تایید نشده است";
+                            break;
+                        }
+                }
+
             }
         }
 
@@ -157,10 +166,12 @@ namespace Presentation.Forms
 
         private void CustomerCombo_SelectedValueChanged(object sender, EventArgs e)
         {
-            var Id = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value; ;
+            var Id = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
             if (Id != 0)
             {
+                FromCustomerLBL.Text = unitOfWork.BlanceService.GetBlance(Id);
                 FromAccountCombo = ComboBoxGenerator.FillData(FromAccountCombo, unitOfWork.CartService.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
+
             }
             //FromCartCombo = ComboBoxGenerator.FillData(FromCartCombo, unitOfWork.CartService.TitleValue(), Convert.ToByte(TransactionTypeCombo.Tag));
             //FromCartCombo = ComboBoxGenerator.FillData(FromCartCombo, unitOfWork.CartService.TitleValueByUser(((KeyValue<long>)CustomerCombo.SelectedItem).Value), Convert.ToByte(TransactionTypeCombo.Tag));
@@ -173,6 +184,46 @@ namespace Presentation.Forms
             {
                 ToAccountCombo = ComboBoxGenerator.FillData(ToAccountCombo, unitOfWork.CartService.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
             }
+        }
+
+        private void FromAccountCombo_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var Id = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
+            if (Id != 0)
+            {
+                FromAccountLBL.Text = unitOfWork.BlanceService.GetBlance(Id);
+            }
+
+        }
+        private bool TransactionValidation(long type)
+        {
+            switch (type)
+            {
+                case 1:
+                    {
+                        if (FromAccountLBL.Text.Trim() != null && FromAccountLBL.Text.Trim() != "")
+                        {
+                            var TransactionCash = Convert.ToDouble(FromAccountLBL.Text);
+                            var CurrentCash = Convert.ToDouble(CashTxt.Text);
+                            if (CurrentCash > TransactionCash)
+                            {
+                                MSG.Text = "مبلغ تراکنش از مبلغ موجودی کارت بیشتراست";
+                                return false;
+                            }
+                            else
+                            {
+                                //  تراکنش انجام شود
+                                return true;
+                            }
+                        }
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
+            return true;
         }
     }
 }
