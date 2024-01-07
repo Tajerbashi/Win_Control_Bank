@@ -172,11 +172,7 @@ namespace Presentation
             MainPanel.Controls.Add(panel);
         }
 
-        private void ExternalTransferBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
+     
         private void BalanceBtn_Click(object sender, EventArgs e)
         {
             BlanceUC panel = new BlanceUC();
@@ -186,5 +182,6 @@ namespace Presentation
             }
             MainPanel.Controls.Add(panel);
         }
+
     }
 }

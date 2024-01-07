@@ -36,8 +36,6 @@
             ExitBtn = new Button();
             ClockLbl = new Label();
             SettingBtn = new Button();
-            ExternalTransferBtn = new Button();
-            TransferMoneyBtn = new Button();
             BalanceBtn = new Button();
             TaransactionBtn = new Button();
             CashMoneyBtn = new Button();
@@ -62,8 +60,6 @@
             groupBox1.Controls.Add(ExitBtn);
             groupBox1.Controls.Add(ClockLbl);
             groupBox1.Controls.Add(SettingBtn);
-            groupBox1.Controls.Add(ExternalTransferBtn);
-            groupBox1.Controls.Add(TransferMoneyBtn);
             groupBox1.Controls.Add(BalanceBtn);
             groupBox1.Controls.Add(TaransactionBtn);
             groupBox1.Controls.Add(CashMoneyBtn);
@@ -197,41 +193,6 @@
             SettingBtn.TabIndex = 9;
             SettingBtn.Text = "تنظیمات";
             SettingBtn.UseVisualStyleBackColor = true;
-            // 
-            // ExternalTransferBtn
-            // 
-            ExternalTransferBtn.Cursor = Cursors.Hand;
-            ExternalTransferBtn.FlatAppearance.BorderColor = Color.White;
-            ExternalTransferBtn.FlatAppearance.BorderSize = 2;
-            ExternalTransferBtn.FlatAppearance.CheckedBackColor = Color.Black;
-            ExternalTransferBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 0, 192);
-            ExternalTransferBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
-            ExternalTransferBtn.FlatStyle = FlatStyle.Flat;
-            ExternalTransferBtn.ForeColor = Color.White;
-            ExternalTransferBtn.Location = new Point(28, 533);
-            ExternalTransferBtn.Name = "ExternalTransferBtn";
-            ExternalTransferBtn.Size = new Size(190, 40);
-            ExternalTransferBtn.TabIndex = 8;
-            ExternalTransferBtn.Text = "واریزی خارجی";
-            ExternalTransferBtn.UseVisualStyleBackColor = true;
-            ExternalTransferBtn.Click += ExternalTransferBtn_Click;
-            // 
-            // TransferMoneyBtn
-            // 
-            TransferMoneyBtn.Cursor = Cursors.Hand;
-            TransferMoneyBtn.FlatAppearance.BorderColor = Color.White;
-            TransferMoneyBtn.FlatAppearance.BorderSize = 2;
-            TransferMoneyBtn.FlatAppearance.CheckedBackColor = Color.Black;
-            TransferMoneyBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 0, 192);
-            TransferMoneyBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
-            TransferMoneyBtn.FlatStyle = FlatStyle.Flat;
-            TransferMoneyBtn.ForeColor = Color.White;
-            TransferMoneyBtn.Location = new Point(28, 488);
-            TransferMoneyBtn.Name = "TransferMoneyBtn";
-            TransferMoneyBtn.Size = new Size(190, 40);
-            TransferMoneyBtn.TabIndex = 7;
-            TransferMoneyBtn.Text = "حواله";
-            TransferMoneyBtn.UseVisualStyleBackColor = true;
             // 
             // BalanceBtn
             // 
@@ -411,8 +372,6 @@
         private GroupBox groupBox2;
         private Label ClockLbl;
         private Button SettingBtn;
-        private Button ExternalTransferBtn;
-        private Button TransferMoneyBtn;
         private Button BalanceBtn;
         private Button TaransactionBtn;
         private Button CashMoneyBtn;
