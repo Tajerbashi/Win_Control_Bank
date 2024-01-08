@@ -3,6 +3,7 @@ using Domain.Library.Entities.CNT;
 using Domain.Library.Entities.LOG;
 using Domain.Library.Entities.RPT;
 using Domain.Library.Entities.SEC;
+using Domain.Library.Entities.WEB;
 using Infrastructure.Library.ApplicationContext.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -63,6 +64,11 @@ namespace Infrastructure.Library.ApplicationContext.EF
 
         #endregion
 
+        #region WEB
+        public DbSet<WebService> WebServices { get; set; }
+
+        #endregion
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -80,6 +86,7 @@ namespace Infrastructure.Library.ApplicationContext.EF
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
             modelBuilder.ApplyConfiguration(new ConstVariableConfiguration());
+            modelBuilder.ApplyConfiguration(new WebServiceConfiguration());
         }
 
         public IDbContextTransaction BeginTransaction()

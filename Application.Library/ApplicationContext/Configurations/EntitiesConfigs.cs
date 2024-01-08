@@ -1,5 +1,6 @@
 ﻿using Domain.Library.Entities.BUS;
 using Domain.Library.Entities.CNT;
+using Domain.Library.Entities.WEB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -60,7 +61,7 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
                 .WithMany(x => x.Carts)
                 .HasForeignKey(x => x.CustomerID)
                 .IsRequired();
-            
+
             //  TODO Many To ONE
         }
     }
@@ -101,7 +102,7 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
 
             builder.HasOne(x => x.Cart)
                 .WithMany(x => x.Transactions)
-                .HasForeignKey(x => x.CartID) 
+                .HasForeignKey(x => x.CartID)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }
@@ -112,6 +113,14 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
     #region LOG
     #endregion
     #region RPT
+    #endregion
+    #region WEB
+    public class WebServiceConfiguration : IEntityTypeConfiguration<WebService>
+    {
+        public void Configure(EntityTypeBuilder<WebService> builder)
+        {
+        }
+    }
     #endregion
     #region CNT
     public class ConstVariableConfiguration : IEntityTypeConfiguration<ConstVariable>

@@ -4,11 +4,12 @@ using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.Extentions;
 using Infrastructure.Library.Services.BUS;
 using Infrastructure.Library.Services.SEC;
+using Infrastructure.Library.Services.WEB;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Infrastructure.Library.Patterns
 {
-    public interface IUnitOfWork:IDisposable
+    public interface IUnitOfWork : IDisposable
     {
 
 
@@ -37,6 +38,11 @@ namespace Infrastructure.Library.Patterns
         CartService CartService { get; }
         CustomerService CustomerService { get; }
         TransactionService TransactionService { get; }
+        #endregion
+
+        #region BUS
+        WebServiceService WebServiceService { get; }
+
         #endregion
 
     }
@@ -131,6 +137,13 @@ namespace Infrastructure.Library.Patterns
             get => _TransactionService ?? new TransactionService(mapper);
         }
 
+        #region WEB
+        private WebServiceService _WebServiceService;
+        public WebServiceService WebServiceService
+        {
+            get => _WebServiceService ?? new WebServiceService(mapper);
+        }
+        #endregion
         public void Dispose()
         {
         }

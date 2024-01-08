@@ -14,7 +14,7 @@ namespace Domain.Library.Enums
         /// </summary>
         [Description("بانکی")]
         Banking = 2,
-        
+
 
     }
 
