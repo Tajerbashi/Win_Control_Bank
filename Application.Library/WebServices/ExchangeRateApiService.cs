@@ -1,13 +1,12 @@
-﻿using Infrastructure.Library.Models.Views.WEB;
-using Infrastructure.Library.Patterns;
+﻿using Infrastructure.Library.Patterns;
+using Infrastructure.Library.WebServices.Model;
 using Newtonsoft.Json;
-using System.Text.Json.Serialization;
 
 namespace Infrastructure.Library.WebServices
 {
     public static class ExchangeRateApiService
     {
-        
+
         public static string Exchanges
         {
             get
@@ -1623,15 +1622,13 @@ Design
         }
 
         private static List<string> RateExchange = new List<string>();
-        public static List<WebServiceView> GetOfflineData()
+        public static WebServiceExchange GetOfflineData()
         {
             IUnitOfWork unitOfWork = new UnitOfWork();
             var model = unitOfWork.WebServiceService.GetOfflineData();
 
-            var dtoModel = JsonConvert.DeserializeObject<List<WebServiceView>>(model);
-
+            var dtoModel = JsonConvert.DeserializeObject<WebServiceExchange>(model);
             return dtoModel;
-
         }
     }
 }

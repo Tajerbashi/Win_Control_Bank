@@ -1,6 +1,5 @@
 ﻿using Infrastructure.Library.Patterns;
 using Infrastructure.Library.WebServices;
-using System.Data;
 
 namespace Presentation.UserControls
 {
@@ -17,7 +16,7 @@ namespace Presentation.UserControls
         }
         private void OnlineExchangeUC_Load(object sender, EventArgs e)
         {
-           var data =  ExchangeRateApiService.GetOfflineData();
+            var data = ExchangeRateApiService.GetOfflineData();
         }
 
 
