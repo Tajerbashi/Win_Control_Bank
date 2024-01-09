@@ -346,7 +346,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.MenuHighlight;
+            BackColor = Color.Teal;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1420, 780);
             Controls.Add(groupBox2);
