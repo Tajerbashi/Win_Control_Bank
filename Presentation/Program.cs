@@ -16,14 +16,7 @@ namespace Presentation
             MapperConfiguration mapper = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(typeof(MapperProfiler));
-                //cfg.AddProfile(new MapperProfiler());
             });
-            //mapper = new MapperConfiguration(cfg =>
-            //{
-            //    cfg.CreateMap<TEntity, TDTO>();
-            //    cfg.CreateMap<TEntity, TView>();
-            //    cfg.AddProfile(new MapperProfiler());
-            //});
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();

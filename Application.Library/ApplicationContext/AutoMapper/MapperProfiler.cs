@@ -17,12 +17,6 @@ namespace Infrastructure.Library.ApplicationContext.AutoMapper
         public MapperProfiler()
         {
 
-
-
-
-
-
-
             #region SEC
             CreateMap<User, UserDTO>().ReverseMap();
             CreateMap<User, UserView>().ReverseMap();
@@ -56,6 +50,8 @@ namespace Infrastructure.Library.ApplicationContext.AutoMapper
             CreateMap<WebService, WebServiceView>().ReverseMap();
             #endregion
 
+            #region CNT
+            #endregion
         }
     }
 }

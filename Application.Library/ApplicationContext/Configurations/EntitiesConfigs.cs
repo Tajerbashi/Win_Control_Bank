@@ -108,12 +108,16 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
     }
 
     #endregion
+
     #region SEC
     #endregion
+    
     #region LOG
     #endregion
+    
     #region RPT
     #endregion
+    
     #region WEB
     public class WebServiceConfiguration : IEntityTypeConfiguration<WebService>
     {
@@ -122,6 +126,7 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
         }
     }
     #endregion
+    
     #region CNT
     public class ConstVariableConfiguration : IEntityTypeConfiguration<ConstVariable>
     {
