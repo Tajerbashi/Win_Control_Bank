@@ -1,6 +1,7 @@
 ﻿using Domain.Library.Bases;
 using Domain.Library.Entities.LOG;
 using Domain.Library.Entities.RPT;
+using Domain.Library.Enums;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,6 +15,9 @@ namespace Domain.Library.Entities.BUS
 
         [Description("شماره کارت شبا")]
         public string ShabaAccountNumber { get; set; }
+
+        [Description("نوع کارت")]
+        public CartType CartType { get; set; }
 
         [Description("تصویر")]
         public string Picture { get; set; }
@@ -38,10 +42,10 @@ namespace Domain.Library.Entities.BUS
         public long? ParentID { get; set; }
         public virtual Cart CartChild{ get; set; }
 
-        public virtual ICollection<Transaction> Transactions { get; set; }
-        public virtual ICollection<CartHistory> CartHistories { get; set; }
-        public virtual ICollection<CartLog> CartLogs { get; set; }
-        public virtual ICollection<CartReport> CartReports { get; set; }
+        public List<Transaction> Transactions { get; set; }
+        public List<CartHistory> CartHistories { get; set; }
+        public List<CartLog> CartLogs { get; set; }
+        public List<CartReport> CartReports { get; set; }
 
     }
 }
