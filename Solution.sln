@@ -16,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Library", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "Presentation\Presentation.csproj", "{95D9507B-385B-4F8E-957A-CA981056E4FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Library", "Common.Library\Common.Library.csproj", "{D7B493E0-0646-4978-9B65-51257836BC96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Library", "Common.Library\Common.Library.csproj", "{D7B493E0-0646-4978-9B65-51257836BC96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

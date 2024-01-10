@@ -42,21 +42,23 @@ namespace Presentation.Forms
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            using (var context = unitOfWork.BeginTransaction())
-            {
+            //using (var context = unitOfWork.BeginTransaction())
+            //{
+            var context = unitOfWork.BeginTransaction();
                 try
                 {
                     CartDTO cart = new CartDTO();
                     TransactionDTO transaction = new TransactionDTO();
                     BlanceDTO blance = new BlanceDTO();
                     cart.Key = Guid.NewGuid();
+                    cart.CartType = CartType.Main;
                     cart.ShabaAccountNumber = ShabaCartNumber.Text;
                     cart.BankID = BankCombo.SelectedIndex;
                     cart.CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value;
                     cart.ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
                     if (cart.ParentID != null)
                     {
-                        cart.AccountNumber = $"{AccountNumberTxt.Text} : {cart.ParentID}";
+                        cart.AccountNumber = $"{AccountNumberTxt.Text} : {cart.CustomerID} : {cart.ParentID}";
                     }
                     else
                     {
@@ -81,7 +83,7 @@ namespace Presentation.Forms
                     context.Rollback();
                     throw;
                 }
-            }
+            //}
 
         }
 

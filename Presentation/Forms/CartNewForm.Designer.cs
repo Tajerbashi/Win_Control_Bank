@@ -82,7 +82,7 @@
             // 
             // label9
             // 
-            label9.ForeColor = Color.Black;
+            label9.ForeColor = Color.White;
             label9.Location = new Point(616, 131);
             label9.Name = "label9";
             label9.Size = new Size(95, 32);
@@ -117,7 +117,7 @@
             // 
             // label1
             // 
-            label1.ForeColor = Color.Black;
+            label1.ForeColor = Color.White;
             label1.Location = new Point(578, 343);
             label1.Name = "label1";
             label1.Size = new Size(133, 32);
@@ -143,7 +143,7 @@
             // 
             // label8
             // 
-            label8.ForeColor = Color.Black;
+            label8.ForeColor = Color.White;
             label8.Location = new Point(203, 413);
             label8.Name = "label8";
             label8.Size = new Size(95, 32);
@@ -166,7 +166,7 @@
             // 
             // label7
             // 
-            label7.ForeColor = Color.Black;
+            label7.ForeColor = Color.White;
             label7.Location = new Point(616, 413);
             label7.Name = "label7";
             label7.Size = new Size(95, 32);
@@ -187,7 +187,7 @@
             // 
             // label6
             // 
-            label6.ForeColor = Color.Black;
+            label6.ForeColor = Color.White;
             label6.Location = new Point(616, 273);
             label6.Name = "label6";
             label6.Size = new Size(95, 32);
@@ -210,7 +210,7 @@
             // 
             // label5
             // 
-            label5.ForeColor = Color.Black;
+            label5.ForeColor = Color.White;
             label5.Location = new Point(616, 202);
             label5.Name = "label5";
             label5.Size = new Size(95, 32);
@@ -231,7 +231,7 @@
             // 
             // label4
             // 
-            label4.ForeColor = Color.Black;
+            label4.ForeColor = Color.White;
             label4.Location = new Point(616, 60);
             label4.Name = "label4";
             label4.Size = new Size(95, 32);
@@ -290,7 +290,7 @@
             // 
             // label3
             // 
-            label3.BackColor = Color.DeepSkyBlue;
+            label3.BackColor = Color.DarkSlateGray;
             label3.ForeColor = Color.White;
             label3.Location = new Point(11, 9);
             label3.Name = "label3";
@@ -303,7 +303,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Azure;
+            BackColor = Color.Teal;
             ClientSize = new Size(741, 595);
             Controls.Add(label3);
             Controls.Add(groupBox1);

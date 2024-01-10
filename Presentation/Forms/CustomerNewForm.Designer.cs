@@ -136,7 +136,7 @@
             // 
             // label2
             // 
-            label2.ForeColor = Color.Black;
+            label2.ForeColor = Color.White;
             label2.Location = new Point(609, 160);
             label2.Name = "label2";
             label2.Size = new Size(95, 32);
@@ -146,7 +146,7 @@
             // 
             // label1
             // 
-            label1.ForeColor = Color.Black;
+            label1.ForeColor = Color.White;
             label1.Location = new Point(609, 90);
             label1.Name = "label1";
             label1.Size = new Size(95, 32);
@@ -156,7 +156,7 @@
             // 
             // PageLbl
             // 
-            PageLbl.ForeColor = Color.Black;
+            PageLbl.ForeColor = Color.White;
             PageLbl.Location = new Point(609, 22);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(95, 32);
@@ -186,7 +186,7 @@
             // 
             // label3
             // 
-            label3.BackColor = Color.DeepSkyBlue;
+            label3.BackColor = Color.DarkSlateGray;
             label3.ForeColor = Color.White;
             label3.Location = new Point(11, 9);
             label3.Name = "label3";
@@ -199,7 +199,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Azure;
+            BackColor = Color.Teal;
             ClientSize = new Size(741, 395);
             Controls.Add(label3);
             Controls.Add(groupBox1);

@@ -6,11 +6,9 @@ namespace Presentation.UserControls
 {
     public partial class BankUC : UserControl
     {
-        private readonly IUnitOfWork unitOfWork;
         private readonly IFacadPattern pattern;
         public BankUC()
         {
-            unitOfWork = new UnitOfWork();
             pattern = new FacadPattern();
             InitializeComponent();
         }
