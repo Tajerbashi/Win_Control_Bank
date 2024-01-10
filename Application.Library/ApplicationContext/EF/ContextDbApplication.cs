@@ -23,7 +23,6 @@ namespace Infrastructure.Library.ApplicationContext.EF
         }
         public ContextDbApplication()
         {
-
         }
 
 

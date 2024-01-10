@@ -1,15 +1,16 @@
-﻿using AutoMapper;
-using Domain.Library.Entities.BUS;
+﻿using Domain.Library.Entities.BUS;
+using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.Views.BUS;
+using Infrastructure.Library.Patterns;
 
 namespace Infrastructure.Library.Repositories.BUS
 {
     public abstract class CartHistoryRepository : GenericRepository<CartHistory, CartHistoryDTO, CartHistoryView>, IGenericQueries
     {
-        protected CartHistoryRepository(IMapper mapper) : base(mapper)
+        protected CartHistoryRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
 
@@ -35,7 +36,7 @@ namespace Infrastructure.Library.Repositories.BUS
 
         public IEnumerable<KeyValue<long>> TitleValue()
         {
-            return _context.Banks.Select(x => new KeyValue<long>
+            return Context.Banks.Select(x => new KeyValue<long>
             {
                 Key = x.BankName,
                 Value = x.ID

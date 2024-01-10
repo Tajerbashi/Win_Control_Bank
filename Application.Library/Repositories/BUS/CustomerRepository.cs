@@ -1,15 +1,16 @@
-﻿using AutoMapper;
-using Domain.Library.Entities.BUS;
+﻿using Domain.Library.Entities.BUS;
+using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.Views.BUS;
+using Infrastructure.Library.Patterns;
 
 namespace Infrastructure.Library.Repositories.BUS
 {
     public abstract class CustomerRepository : GenericRepository<Customer, CustomerDTO, CustomerView>, IGenericQueries
     {
-        protected CustomerRepository(IMapper mapper) : base(mapper)
+        protected CustomerRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
 
@@ -51,7 +52,7 @@ WHERE IsDeleted = 0
 
         public IEnumerable<KeyValue<long>> TitleValue()
         {
-            return _context.Customers.Select(x => new KeyValue<long>
+            return Context.Customers.Select(x => new KeyValue<long>
             {
                 Key = x.FullName,
                 Value = x.ID

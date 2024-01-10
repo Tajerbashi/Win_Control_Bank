@@ -1,11 +1,12 @@
-﻿using AutoMapper;
+﻿using Infrastructure.Library.ApplicationContext.EF;
+using Infrastructure.Library.Patterns;
 using Infrastructure.Library.Repositories.BUS;
 
 namespace Infrastructure.Library.Services.BUS
 {
     public class BlanceService : BlanceRepository
     {
-        public BlanceService(IMapper mapper) : base(mapper)
+        public BlanceService(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
     }

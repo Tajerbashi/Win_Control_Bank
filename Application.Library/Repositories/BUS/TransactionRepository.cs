@@ -1,15 +1,16 @@
-﻿using AutoMapper;
-using Domain.Library.Entities.BUS;
+﻿using Domain.Library.Entities.BUS;
+using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.Views.BUS;
+using Infrastructure.Library.Patterns;
 
 namespace Infrastructure.Library.Repositories.BUS
 {
     public abstract class TransactionRepository : GenericRepository<Transaction, TransactionDTO, TransactionView>, IGenericQueries
     {
-        protected TransactionRepository(IMapper mapper) : base(mapper)
+        protected TransactionRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
 

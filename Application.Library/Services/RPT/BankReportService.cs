@@ -1,11 +1,12 @@
-﻿using AutoMapper;
+﻿using Infrastructure.Library.ApplicationContext.EF;
+using Infrastructure.Library.Patterns;
 using Infrastructure.Library.Repositories.RPT;
 
 namespace Infrastructure.Library.Services.RPT
 {
     public class BankReportService : BankReportRepository
     {
-        protected BankReportService(IMapper mapper) : base(mapper)
+        public BankReportService(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
     }

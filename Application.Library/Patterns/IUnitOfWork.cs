@@ -1,169 +1,92 @@
-﻿using AutoMapper;
-using Infrastructure.Library.ApplicationContext.DapperService;
+﻿using Infrastructure.Library.ApplicationContext.DapperService;
 using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.Extentions;
-using Infrastructure.Library.Services.BUS;
-using Infrastructure.Library.Services.SEC;
-using Infrastructure.Library.Services.WEB;
-using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Library.Patterns
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork<out TContext> where TContext : DbContext, new()
     {
-
+        //The following Property is going to hold the context object
+        TContext Context { get; }
+        //Start the database Transaction
+        void BeginTransaction();
+        //Commit the database Transaction
+        void Commit();
+        //Rollback the database Transaction
+        void Rollback();
+        //DbContext Class SaveChanges method
+        void Save();
 
         #region Config
         Paging Paging { get; }
         DapperServices Dapper { get; }
 
-        IDbContextTransaction BeginTransaction();
-        void CommitTransaction();
-        void RollBackTransaction();
         #endregion
 
 
-        #region SEC
-        GroupService GroupService { get; }
-        GroupUserService GroupUserService { get; }
-        RoleService RoleService { get; }
-        UserService UserService { get; }
-        UserRoleService UserRoleService { get; }
-        #endregion
+        //#region SEC
+        //GroupService GroupService { get; }
+        //GroupUserService GroupUserService { get; }
+        //RoleService RoleService { get; }
+        //UserService UserService { get; }
+        //UserRoleService UserRoleService { get; }
+        //#endregion
 
-        #region BUS
-        BankService BankService { get; }
-        BlanceService BlanceService { get; }
-        CartHistoryService CartHistoryService { get; }
-        CartService CartService { get; }
-        CustomerService CustomerService { get; }
-        TransactionService TransactionService { get; }
-        #endregion
+        //#region BUS
+        //BankService BankService { get; }
+        //BlanceService BlanceService { get; }
+        //CartHistoryService CartHistoryService { get; }
+        //CartService CartService { get; }
+        //CustomerService CustomerService { get; }
+        //TransactionService TransactionService { get; }
+        //#endregion
 
-        #region BUS
-        WebServiceService WebServiceService { get; }
+        //#region BUS
+        //WebServiceService WebServiceService { get; }
 
-        #endregion
+        //#endregion
 
     }
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork<TContext> : IUnitOfWork<TContext>, IDisposable where TContext : ContextDbApplication, new()
     {
-        #region Configs
+        private TContext _Context;
+        public TContext Context { get => _Context ?? new TContext(); }
 
-        private readonly IContextDbApplication _context;
-        private readonly IMapper mapper;
-        private DapperServices _dapper;
-        public DapperServices Dapper { get => _dapper = _dapper ?? new DapperServices(); }
-        private Paging _paging;
-        public Paging Paging
-        {
-            get => _paging = _paging ?? new Paging();
-        }
-        #endregion
+        private Paging _Paging;
+        public Paging Paging { get => _Paging ?? new Paging(); }
 
+        private DapperServices _Dapper;
+        public DapperServices Dapper { get => _Dapper ?? new DapperServices(); }
         public UnitOfWork()
         {
-            _context = new ContextDbApplication();
+            _Context = new TContext();
+            _Paging = new Paging();
+            _Dapper = new DapperServices();
         }
-
-
-        #region SEC
-        private GroupService _groupService;
-        public GroupService GroupService
+        public void BeginTransaction()
         {
-            get => _groupService = _groupService ?? new GroupService(mapper);
+            Context.Database.BeginTransaction();
         }
-        private GroupUserService _groupUserService;
-        public GroupUserService GroupUserService
+
+        public void Commit()
         {
-            get => _groupUserService ?? new GroupUserService(mapper);
+            Context.Database.BeginTransaction();
         }
 
-        private RoleService _roleService;
-        public RoleService RoleService
-        {
-            get => _roleService ?? new RoleService(mapper);
-        }
-
-        private UserService _userService;
-        public UserService UserService
-        {
-            get => (_userService ?? new UserService(mapper));
-        }
-
-        private UserRoleService _userRoleService;
-        public UserRoleService UserRoleService
-        {
-            get => _userRoleService ?? new UserRoleService(mapper);
-        }
-
-
-        #endregion
-
-        #region BUS
-        private BankService _BankService;
-        public BankService BankService
-        {
-            get => _BankService ?? new BankService(mapper);
-        }
-
-        private BlanceService _BlanceService;
-        public BlanceService BlanceService
-        {
-            get => _BlanceService ?? new BlanceService(mapper);
-        }
-
-        private CartHistoryService _CartHistoryService;
-        public CartHistoryService CartHistoryService
-        {
-            get => _CartHistoryService ?? new CartHistoryService(mapper);
-        }
-
-        private CartService _CartService;
-        public CartService CartService
-        {
-            get => _CartService ?? new CartService(mapper);
-        }
-
-        private CustomerService _CustomerService;
-        public CustomerService CustomerService
-        {
-            get => _CustomerService ?? new CustomerService(mapper);
-        }
-
-        private TransactionService _TransactionService;
-        public TransactionService TransactionService
-        {
-            get => _TransactionService ?? new TransactionService(mapper);
-        }
-
-        #region WEB
-        private WebServiceService _WebServiceService;
-        public WebServiceService WebServiceService
-        {
-            get => _WebServiceService ?? new WebServiceService(mapper);
-        }
-        #endregion
         public void Dispose()
         {
+            Context.Dispose();
         }
 
-        public IDbContextTransaction BeginTransaction()
+        public void Rollback()
         {
-            return _context.BeginTransaction();
+            Context.Database.RollbackTransaction();
         }
 
-        public void CommitTransaction()
+        public void Save()
         {
-            _context.CommitTransaction();
+            Context.SaveChanges();
         }
-
-        public void RollBackTransaction()
-        {
-            _context.RollBackTransaction();
-        }
-
-        #endregion
-
     }
 }

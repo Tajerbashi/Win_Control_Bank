@@ -1,6 +1,7 @@
 ﻿using Domain.Library.Entities.BUS;
 using Domain.Library.Entities.LOG;
 using Domain.Library.Entities.RPT;
+using Domain.Library.Enums;
 using Infrastructure.Library.BaseModels;
 using Infrastructure.Library.Models.DTOs.LOG;
 using Infrastructure.Library.Models.DTOs.RPT;
@@ -19,9 +20,14 @@ namespace Infrastructure.Library.Models.DTOs.BUS
         public long? ParentID { get; set; }
 
         public List<CartHistoryDTO> CartHistories { get; set; }
-        public List<CartTransactionDTO> CartTransactions { get; set; }
         public List<BlanceDTO> Blances { get; set; }
         public List<CartLogDTO> CartLogs { get; set; }
         public List<CartReportDTO> CartReports { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
+        /// <summary>
+        /// CartType
+        /// </summary>
+        public CartType CartType { get; set; }
+        //public string CartTypeTitle { get => CartType.; }
     }
 }

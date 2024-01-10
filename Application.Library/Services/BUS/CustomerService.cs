@@ -1,9 +1,12 @@
-﻿using AutoMapper;
+﻿using Infrastructure.Library.ApplicationContext.EF;
+using Infrastructure.Library.Patterns;
 using Infrastructure.Library.Repositories.BUS;
 namespace Infrastructure.Library.Services.BUS
 {
     public class CustomerService : CustomerRepository
     {
-        public CustomerService(IMapper mapper) : base(mapper) { }
+        public CustomerService(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        {
+        }
     }
 }

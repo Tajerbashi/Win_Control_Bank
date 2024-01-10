@@ -1,15 +1,16 @@
-﻿using AutoMapper;
-using Domain.Library.Entities.BUS;
+﻿using Domain.Library.Entities.BUS;
+using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.Views.BUS;
+using Infrastructure.Library.Patterns;
 
 namespace Infrastructure.Library.Repositories.BUS
 {
     public abstract class CartRepository : GenericRepository<Cart, CartDTO, CartView>, IGenericQueries
     {
-        protected CartRepository(IMapper mapper) : base(mapper)
+        protected CartRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
 
@@ -75,7 +76,15 @@ ORDER BY C.ID DESC
 
         public IEnumerable<KeyValue<long>> TitleValuesParent()
         {
-            return _context.Carts.Where(x => x.ParentID == null).Select(x => new KeyValue<long>
+            return Context.Carts.Where(x => x.ParentID == null && x.CartType == Domain.Library.Enums.CartType.Main).Select(x => new KeyValue<long>
+            {
+                Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Value = x.ID
+            });
+        }
+        public IEnumerable<KeyValue<long>> TitleValuesAllCart()
+        {
+            return Context.Carts.Where(x => x.ParentID == null).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
@@ -83,7 +92,7 @@ ORDER BY C.ID DESC
         }
         public IEnumerable<KeyValue<long>> TitleValuesCartByBankId(long Id)
         {
-            return _context.Carts.Where(x => x.BankID == Id).Select(x => new KeyValue<long>
+            return Context.Carts.Where(x => x.BankID == Id).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
@@ -91,7 +100,7 @@ ORDER BY C.ID DESC
         }
         public IEnumerable<KeyValue<long>> TitleValuesChild(long Id)
         {
-            return _context.Carts.Where(x => x.ParentID == Id).Select(x => new KeyValue<long>
+            return Context.Carts.Where(x => x.ParentID == Id || x.ID == Id).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
@@ -99,7 +108,7 @@ ORDER BY C.ID DESC
         }
         public IEnumerable<KeyValue<long>> TitleValueByUser(long Id)
         {
-            return _context.Carts.Where(x => x.CustomerID == Id).Select(x => new KeyValue<long>
+            return Context.Carts.Where(x => x.CustomerID == Id).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
@@ -108,7 +117,7 @@ ORDER BY C.ID DESC
 
         public IEnumerable<KeyValue<long>> TitleValue()
         {
-            return _context.Carts.Select(x => new KeyValue<long>
+            return Context.Carts.Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID

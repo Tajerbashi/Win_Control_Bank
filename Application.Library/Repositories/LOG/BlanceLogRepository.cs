@@ -1,15 +1,17 @@
 ﻿using AutoMapper;
 using Domain.Library.Entities.LOG;
+using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.LOG;
 using Infrastructure.Library.Models.Views.LOG;
+using Infrastructure.Library.Patterns;
 
 namespace Infrastructure.Library.Repositories.LOG
 {
     public abstract class BlanceLogRepository : GenericRepository<BlanceLog, BlanceLogDTO, BlanceLogView>, IGenericQueries
     {
-        protected BlanceLogRepository(IMapper mapper) : base(mapper)
+        protected BlanceLogRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
 
@@ -35,7 +37,7 @@ namespace Infrastructure.Library.Repositories.LOG
 
         public IEnumerable<KeyValue<long>> TitleValue()
         {
-            return _context.Banks.Select(x => new KeyValue<long>
+            return Context.Banks.Select(x => new KeyValue<long>
             {
                 Key = x.BankName,
                 Value = x.ID

@@ -1,18 +1,16 @@
-﻿using AutoMapper;
-using Domain.Library.Entities.SEC;
-using Domain.Library.Entities.WEB;
+﻿using Domain.Library.Entities.WEB;
+using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
-using Infrastructure.Library.Models.DTOs.SEC;
 using Infrastructure.Library.Models.DTOs.WEB;
-using Infrastructure.Library.Models.Views.SEC;
 using Infrastructure.Library.Models.Views.WEB;
+using Infrastructure.Library.Patterns;
 
 namespace Infrastructure.Library.Repositories.WEB
 {
     public abstract class WebServiceRepository : GenericRepository<WebService, WebServiceDTO, WebServiceView>, IGenericQueries
     {
-        protected WebServiceRepository(IMapper mapper) : base(mapper)
+        protected WebServiceRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
 

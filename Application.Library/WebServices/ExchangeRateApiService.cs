@@ -1621,14 +1621,11 @@ Design
             }
         }
 
-        private static List<string> RateExchange = new List<string>();
-        public static WebServiceExchange GetOfflineData()
-        {
-            IUnitOfWork unitOfWork = new UnitOfWork();
-            var model = unitOfWork.WebServiceService.GetOfflineData();
-
-            var dtoModel = JsonConvert.DeserializeObject<WebServiceExchange>(model);
-            return dtoModel;
-        }
+        //private static List<string> RateExchange = new List<string>();
+        //public static WebServiceExchange GetOfflineData()
+        //{
+        //    var dtoModel = JsonConvert.DeserializeObject<WebServiceExchange>(model);
+        //    return dtoModel;
+        //}
     }
 }

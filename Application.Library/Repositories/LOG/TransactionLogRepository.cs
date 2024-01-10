@@ -1,15 +1,16 @@
-﻿using AutoMapper;
-using Domain.Library.Entities.LOG;
+﻿using Domain.Library.Entities.LOG;
+using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.LOG;
 using Infrastructure.Library.Models.Views.LOG;
+using Infrastructure.Library.Patterns;
 
 namespace Infrastructure.Library.Repositories.LOG
 {
     public abstract class TransactionLogRepository : GenericRepository<TransactionLog, TransactionLogDTO, TransactionLogView>, IGenericQueries
     {
-        protected TransactionLogRepository(IMapper mapper) : base(mapper)
+        protected TransactionLogRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
 
@@ -35,7 +36,7 @@ namespace Infrastructure.Library.Repositories.LOG
 
         public IEnumerable<KeyValue<long>> TitleValue()
         {
-            return _context.Banks.Select(x => new KeyValue<long>
+            return Context.Banks.Select(x => new KeyValue<long>
             {
                 Key = x.BankName,
                 Value = x.ID

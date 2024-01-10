@@ -1,15 +1,17 @@
 ﻿using AutoMapper;
 using Domain.Library.Entities.BUS;
+using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.Views.BUS;
+using Infrastructure.Library.Patterns;
 
 namespace Infrastructure.Library.Repositories.BUS
 {
     public abstract class BankRepository : GenericRepository<Bank, BankDTO, BankView>, IGenericQueries
     {
-        protected BankRepository(IMapper mapper) : base(mapper)
+        protected BankRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
 
@@ -47,7 +49,7 @@ ORDER BY ID DESC
 
         public IEnumerable<KeyValue<long>> TitleValue()
         {
-            return _context.Banks.Select(x => new KeyValue<long>
+            return Context.Banks.Select(x => new KeyValue<long>
             {
                 Key = x.BankName,
                 Value = x.ID

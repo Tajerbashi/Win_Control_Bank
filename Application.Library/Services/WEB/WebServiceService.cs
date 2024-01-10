@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
+using Infrastructure.Library.ApplicationContext.EF;
+using Infrastructure.Library.Patterns;
 using Infrastructure.Library.Repositories.WEB;
 
 namespace Infrastructure.Library.Services.WEB
 {
     public class WebServiceService : WebServiceRepository
     {
-        public WebServiceService(IMapper mapper) : base(mapper)
+        public WebServiceService(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
+
         public string GetOfflineData() {
             return (@"
 {

@@ -1,16 +1,18 @@
 ﻿using AutoMapper;
 using Domain.Library.Entities.BUS;
+using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.Views.BUS;
+using Infrastructure.Library.Patterns;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Library.Repositories.BUS
 {
     public abstract class BlanceRepository : GenericRepository<Blance, BlanceDTO, BlanceView>, IGenericQueries
     {
-        protected BlanceRepository(IMapper mapper) : base(mapper)
+        protected BlanceRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
 
@@ -20,13 +22,14 @@ namespace Infrastructure.Library.Repositories.BUS
         }
         public string GetBlance(long Id)
         {
-            var blance = _context.Blances
-                .Include(c => c.Transaction)
-                .ThenInclude(x => x.Cart)
-                .Where(x => x.Transaction.Cart.ID == Id).OrderByDescending(x => x.ID).FirstOrDefault();
-            return blance != null ? blance.BlanceCash.ToString("N") : "";
+            var lastBlance = Context.Transactions.Include(x => x.Blance).Where(x => x.CartID == Id).OrderByDescending(x => x.ID).FirstOrDefault().Blance.BlanceCash;
+            return lastBlance != null ? lastBlance.ToString("N") : "";
         }
-
+        public double GetBlanceCash(long Id)
+        {
+            var result  = Context.Transactions.Include(x => x.Blance).Where(x => x.CartID == Id).OrderByDescending(x => x.ID).FirstOrDefault().Blance.BlanceCash;
+            return result;
+        }
         public string Search(string value)
         {
             throw new NotImplementedException();

@@ -1,4 +1,5 @@
-﻿using Infrastructure.Library.BaseModels;
+﻿using Domain.Library.Enums;
+using Infrastructure.Library.BaseModels;
 
 namespace Infrastructure.Library.Models.DTOs.BUS
 {
@@ -8,5 +9,8 @@ namespace Infrastructure.Library.Models.DTOs.BUS
         /// BankName
         /// </summary>
         public string BankName { get; set; }
+
+        
+
     }
 }

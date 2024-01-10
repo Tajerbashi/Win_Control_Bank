@@ -1,15 +1,16 @@
-﻿using AutoMapper;
-using Domain.Library.Entities.SEC;
+﻿using Domain.Library.Entities.SEC;
+using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.SEC;
 using Infrastructure.Library.Models.Views.SEC;
+using Infrastructure.Library.Patterns;
 
 namespace Infrastructure.Library.Repositories.SEC
 {
     public abstract class UserRepository : GenericRepository<User, UserDTO, UserView>, IGenericQueries
     {
-        protected UserRepository(IMapper mapper) : base(mapper)
+        protected UserRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
 
@@ -35,7 +36,7 @@ namespace Infrastructure.Library.Repositories.SEC
 
         public IEnumerable<KeyValue<long>> TitleValue()
         {
-            return _context.Banks.Select(x => new KeyValue<long>
+            return Context.Banks.Select(x => new KeyValue<long>
             {
                 Key = x.BankName,
                 Value = x.ID
