@@ -8,13 +8,9 @@ namespace Presentation.UserControls
 {
     public partial class CustomerUS : UserControl
     {
-        private readonly IUnitOfWork unitOfWork;
-        private readonly IFacadPattern pattern;
         
         public CustomerUS()
         {
-            unitOfWork = new UnitOfWork();
-            pattern = new FacadPattern();
             InitializeComponent();
         }
         private void ShowDataGrid()

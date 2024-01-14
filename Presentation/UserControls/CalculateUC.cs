@@ -5,13 +5,9 @@ namespace Presentation.UserControls
 {
     public partial class CalculateUC : UserControl
     {
-        private readonly IUnitOfWork unitOfWork;
-        private readonly IFacadPattern pattern;
 
         public CalculateUC()
         {
-            unitOfWork = new UnitOfWork();
-            pattern = new FacadPattern();
             InitializeComponent();
         }
         private void ShowDataGrid()

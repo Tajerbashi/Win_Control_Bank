@@ -8,8 +8,6 @@ namespace Presentation.Forms
 {
     public partial class CartNewForm : Form
     {
-        private readonly IUnitOfWork unitOfWork;
-        private readonly IFacadPattern pattern;
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -31,8 +29,6 @@ namespace Presentation.Forms
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
         public CartNewForm()
         {
-            unitOfWork = new UnitOfWork();
-            pattern = new FacadPattern();
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));

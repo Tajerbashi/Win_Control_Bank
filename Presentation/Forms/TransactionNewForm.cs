@@ -38,11 +38,6 @@ namespace Presentation.Forms
 
         #endregion
 
-        private IUnitOfWork _unitOfWork;
-        private IUnitOfWork unitOfWork
-        {
-            get => _unitOfWork = _unitOfWork ?? new UnitOfWork();
-        }
 
 
         private void TransactionNewForm_Load(object sender, EventArgs e)

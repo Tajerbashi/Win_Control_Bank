@@ -5,7 +5,6 @@ namespace Presentation.Forms
 {
     public partial class CustomerNewForm : Form
     {
-        private readonly IUnitOfWork _unitOfWork = new UnitOfWork();
         public CustomerNewForm()
         {
             InitializeComponent();

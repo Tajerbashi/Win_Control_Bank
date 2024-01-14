@@ -6,13 +6,9 @@ namespace Presentation.UserControls
 {
     public partial class CashMoneyUC : UserControl
     {
-        private readonly IUnitOfWork unitOfWork;
-        private readonly IFacadPattern pattern;
 
         public CashMoneyUC()
         {
-            unitOfWork = new UnitOfWork();
-            pattern = new FacadPattern();
             InitializeComponent();
         }
         private void ShowDataGrid()
