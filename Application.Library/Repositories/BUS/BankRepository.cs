@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Domain.Library.Entities.BUS;
+﻿using Domain.Library.Entities.BUS;
 using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;

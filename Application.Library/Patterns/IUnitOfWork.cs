@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Library.Patterns
 {
-    public interface IUnitOfWork<out TContext> where TContext : DbContext, new()
+    public interface IUnitOfWork<out TContext> where TContext : DbContext, IDisposable, new()
     {
         //The following Property is going to hold the context object
         TContext Context { get; }
@@ -17,6 +17,7 @@ namespace Infrastructure.Library.Patterns
         void Rollback();
         //DbContext Class SaveChanges method
         void Save();
+        void Dispose();
 
         #region Config
         Paging Paging { get; }
@@ -48,7 +49,8 @@ namespace Infrastructure.Library.Patterns
         //#endregion
 
     }
-    public class UnitOfWork<TContext> : IUnitOfWork<TContext>, IDisposable where TContext : ContextDbApplication, new()
+    public class UnitOfWork<TContext> : IUnitOfWork<TContext>
+        where TContext : ContextDbApplication, new()
     {
         private TContext _Context;
         public TContext Context { get => _Context ?? new TContext(); }
@@ -66,12 +68,14 @@ namespace Infrastructure.Library.Patterns
         }
         public void BeginTransaction()
         {
-            Context.Database.BeginTransaction();
+            //Context.Database.BeginTransaction();
+            Context.BeginTransaction();
         }
 
         public void Commit()
         {
-            Context.Database.BeginTransaction();
+            //Context.Database.CommitTransaction();
+            Context.CommitTransaction();
         }
 
         public void Dispose()
@@ -81,7 +85,8 @@ namespace Infrastructure.Library.Patterns
 
         public void Rollback()
         {
-            Context.Database.RollbackTransaction();
+            //Context.Database.RollbackTransaction();
+            Context.RollBackTransaction();
         }
 
         public void Save()
