@@ -8,6 +8,7 @@ namespace Presentation.Forms
 {
     public partial class TransactionNewForm : Form
     {
+        private IFacadPattern Pattern;
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -28,6 +29,7 @@ namespace Presentation.Forms
         public TransactionNewForm()
         {
             InitializeComponent();
+            Pattern = new FacadPattern();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
@@ -66,33 +68,31 @@ namespace Presentation.Forms
                     case 1: // خرید از کارت
                         {
                             //var CartData = unitOfWork.CartService.GetById(fromCartId);
-                            using (var context = unitOfWork.BeginTransaction())
+                            Pattern.UnitOfWork.BeginTransaction();
+                            try
                             {
-                                try
+                                var CartChildData = Pattern.CartService.GetById(fromCartChildId);
+                                var transaction = new TransactionDTO
                                 {
-                                    var CartChildData = unitOfWork.CartService.GetById(fromCartChildId);
-                                    var transaction = new TransactionDTO
-                                    {
-                                        CartID = fromCartChildId,
-                                        Cash = Convert.ToInt64(cash),
-                                        TransactionType = Domain.Library.Enums.TransactionType.Harvesting
-                                    };
-                                    var TransactionId = unitOfWork.TransactionService.Insert(transaction);
-                                    var lastBlance = unitOfWork.BlanceService.GetBlanceCash(fromCartChildId);
-                                    var blance = new BlanceDTO
-                                    {
-                                        BlanceCash = lastBlance - Convert.ToInt64(cash),
-                                        BlanceType = Domain.Library.Enums.BlanceType.Banking,
-                                        TransactionID = (long)TransactionId,
-                                    };
-                                    context.Commit();
-                                    this.Close();
-                                }
-                                catch
+                                    CartID = fromCartChildId,
+                                    Cash = Convert.ToInt64(cash),
+                                    TransactionType = Domain.Library.Enums.TransactionType.Harvesting
+                                };
+                                var TransactionId = Pattern.TransactionService.Insert(transaction);
+                                var lastBlance = Pattern.BlanceService.GetBlanceCash(fromCartChildId);
+                                var blance = new BlanceDTO
                                 {
-                                    context.Rollback();
-                                    throw;
-                                }
+                                    BlanceCash = lastBlance - Convert.ToInt64(cash),
+                                    BlanceType = Domain.Library.Enums.BlanceType.Banking,
+                                    TransactionID = (long)TransactionId,
+                                };
+                                Pattern.UnitOfWork.Commit();
+                                this.Close();
+                            }
+                            catch
+                            {
+                                Pattern.UnitOfWork.Rollback();
+                                throw;
                             }
                             break;
                         }
@@ -199,7 +199,7 @@ namespace Presentation.Forms
             var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                ToAccountCombo = ComboBoxGenerator.FillData(ToAccountCombo, unitOfWork.CartService.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
+                ToAccountCombo = ComboBoxGenerator.FillData(ToAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
             }
         }
 
@@ -208,7 +208,7 @@ namespace Presentation.Forms
             var Id = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                FromAccountLBL.Text = unitOfWork.BlanceService.GetBlance(Id);
+                FromAccountLBL.Text = Pattern.BlanceService.GetBlance(Id);
             }
 
         }
@@ -274,7 +274,7 @@ namespace Presentation.Forms
 
         private void SaveNewDataBtn_Click(object sender, EventArgs e)
         {
-            var context = unitOfWork.BeginTransaction();
+            Pattern.UnitOfWork.BeginTransaction();
             try
             {
                 var Custumer = new CustomerDTO
@@ -284,14 +284,14 @@ namespace Presentation.Forms
                     Title = NewCustomerNameTxt.Text,
                     Key = Guid.NewGuid()
                 };
-                var customeId = unitOfWork.CustomerService.Insert(Custumer);
+                var customeId = Pattern.CustomerService.Insert(Custumer);
                 var Bank = new BankDTO
                 {
                     BankName = NewBankNameTxt.Text,
                     Description = NewBankNameTxt.Text,
                     Title = NewBankNameTxt.Text,
                 };
-                var bankId = unitOfWork.BankService.Insert(Bank);
+                var bankId = Pattern.BankService.Insert(Bank);
                 var Cart = new CartDTO
                 {
                     CartType  = Domain.Library.Enums.CartType.Custome,
@@ -303,13 +303,13 @@ namespace Presentation.Forms
                     ShabaAccountNumber = Guid.NewGuid().ToString(),
                     ParentID = null
                 };
-                unitOfWork.CartService.Insert(Cart);
-                context.CommitAsync();
+                Pattern.CartService.Insert(Cart);
+                Pattern.UnitOfWork.Commit();
                 UpdateComboBoxes();
             }
             catch
             {
-                context.Rollback();
+                Pattern.UnitOfWork.Rollback();
                 throw;
             }
         }
@@ -328,13 +328,13 @@ namespace Presentation.Forms
         }
         private void UpdateComboBoxes()
         {
-            TransactionTypeCombo = ComboBoxGenerator.FillData(TransactionTypeCombo, unitOfWork.TransactionService.TitleValueKind(), Convert.ToByte(TransactionTypeCombo.Tag));
-            TransactionKindCombo = ComboBoxGenerator.FillData(TransactionKindCombo, unitOfWork.TransactionService.TitleValue(), Convert.ToByte(TransactionKindCombo.Tag));
+            TransactionTypeCombo = ComboBoxGenerator.FillData(TransactionTypeCombo, Pattern.TransactionService.TitleValueKind(), Convert.ToByte(TransactionTypeCombo.Tag));
+            TransactionKindCombo = ComboBoxGenerator.FillData(TransactionKindCombo, Pattern.TransactionService.TitleValue(), Convert.ToByte(TransactionKindCombo.Tag));
 
-            FromCustomerCombo = ComboBoxGenerator.FillData(FromCustomerCombo, unitOfWork.CartService.TitleValuesParent(), Convert.ToByte(FromCustomerCombo.Tag));
-            ToCustomerCombo = ComboBoxGenerator.FillData(ToCustomerCombo, unitOfWork.CartService.TitleValuesAllCart(), Convert.ToByte(ToCustomerCombo.Tag));
+            FromCustomerCombo = ComboBoxGenerator.FillData(FromCustomerCombo, Pattern.CartService.TitleValuesParent(), Convert.ToByte(FromCustomerCombo.Tag));
+            ToCustomerCombo = ComboBoxGenerator.FillData(ToCustomerCombo, Pattern.CartService.TitleValuesAllCart(), Convert.ToByte(ToCustomerCombo.Tag));
 
-            BlanceTypeCombo = ComboBoxGenerator.FillData(BlanceTypeCombo, unitOfWork.BlanceService.TitleValue(), Convert.ToByte(BlanceTypeCombo.Tag));
+            BlanceTypeCombo = ComboBoxGenerator.FillData(BlanceTypeCombo, Pattern.BlanceService.TitleValue(), Convert.ToByte(BlanceTypeCombo.Tag));
         }
 
         private void ToCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -342,8 +342,8 @@ namespace Presentation.Forms
             var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                ToCustomerCombo.Text = unitOfWork.BlanceService.GetBlance(Id);
-                ToAccountCombo = ComboBoxGenerator.FillData(ToAccountCombo, unitOfWork.CartService.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
+                ToCustomerCombo.Text = Pattern.BlanceService.GetBlance(Id);
+                ToAccountCombo = ComboBoxGenerator.FillData(ToAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
             }
         }
 
@@ -352,8 +352,8 @@ namespace Presentation.Forms
             var Id = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                FromCustomerLBL.Text = unitOfWork.BlanceService.GetBlance(Id);
-                FromAccountCombo = ComboBoxGenerator.FillData(FromAccountCombo, unitOfWork.CartService.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
+                FromCustomerLBL.Text = Pattern.BlanceService.GetBlance(Id);
+                FromAccountCombo = ComboBoxGenerator.FillData(FromAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
 
             }
 

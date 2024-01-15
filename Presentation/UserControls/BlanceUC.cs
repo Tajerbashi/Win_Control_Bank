@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using Infrastructure.Library.Patterns;
 
 namespace Presentation.UserControls
 {
     public partial class BlanceUC : UserControl
     {
+        private IFacadPattern Pattern;
         public BlanceUC()
         {
             InitializeComponent();
+            Pattern = new FacadPattern();
         }
     }
 }

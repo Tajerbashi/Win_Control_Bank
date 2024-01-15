@@ -6,6 +6,8 @@ namespace Presentation.Forms
 {
     public partial class BankNewForm : Form
     {
+        private IFacadPattern Pattern;
+
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -28,6 +30,7 @@ namespace Presentation.Forms
         public BankNewForm()
         {
             InitializeComponent();
+            Pattern = new FacadPattern();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
@@ -40,12 +43,11 @@ namespace Presentation.Forms
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            IUnitOfWork unitOfWork = new UnitOfWork();
             BankDTO bankDTO = new BankDTO();
             bankDTO.BankName = BankNameTxt.Text;
             bankDTO.Title = TitleTxt.Text;
             bankDTO.Description = DescriptionTxt.Text;
-            unitOfWork.BankService.Insert(bankDTO);
+            Pattern.BankService.Insert(bankDTO);
             this.Close();
 
         }

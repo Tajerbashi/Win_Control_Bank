@@ -16,6 +16,8 @@ namespace Presentation.Forms
 {
     public partial class CashMoneyNewForm : Form
     {
+        private IFacadPattern Pattern;
+
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -38,6 +40,7 @@ namespace Presentation.Forms
         public CashMoneyNewForm()
         {
             InitializeComponent();
+            Pattern = new FacadPattern();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
@@ -45,7 +48,7 @@ namespace Presentation.Forms
 
         private void CashMoneyNewForm_Load(object sender, EventArgs e)
         {
-            AccountCombo = ComboBoxGenerator.FillData(AccountCombo, unitOfWork.CartService.TitleValue(), Convert.ToByte(AccountCombo.Tag));
+            AccountCombo = ComboBoxGenerator.FillData(AccountCombo, Pattern.CartService.TitleValue(), Convert.ToByte(AccountCombo.Tag));
         }
 
         private void CashTxt_KeyPress(object sender, KeyPressEventArgs e)

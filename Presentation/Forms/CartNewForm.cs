@@ -30,66 +30,68 @@ namespace Presentation.Forms
         public CartNewForm()
         {
             InitializeComponent();
+            Pattern = new FacadPattern();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
         #endregion
+        private IFacadPattern Pattern;
 
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             //using (var context = unitOfWork.BeginTransaction())
             //{
-            var context = unitOfWork.BeginTransaction();
-                try
+            Pattern.UnitOfWork.BeginTransaction();
+            try
+            {
+                CartDTO cart = new CartDTO();
+                TransactionDTO transaction = new TransactionDTO();
+                BlanceDTO blance = new BlanceDTO();
+                cart.Key = Guid.NewGuid();
+                cart.CartType = CartType.Main;
+                cart.ShabaAccountNumber = ShabaCartNumber.Text;
+                cart.BankID = BankCombo.SelectedIndex;
+                cart.CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value;
+                cart.ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
+                if (cart.ParentID != null)
                 {
-                    CartDTO cart = new CartDTO();
-                    TransactionDTO transaction = new TransactionDTO();
-                    BlanceDTO blance = new BlanceDTO();
-                    cart.Key = Guid.NewGuid();
-                    cart.CartType = CartType.Main;
-                    cart.ShabaAccountNumber = ShabaCartNumber.Text;
-                    cart.BankID = BankCombo.SelectedIndex;
-                    cart.CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value;
-                    cart.ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
-                    if (cart.ParentID != null)
-                    {
-                        cart.AccountNumber = $"{AccountNumberTxt.Text} : {cart.CustomerID} : {cart.ParentID}";
-                    }
-                    else
-                    {
-                        cart.AccountNumber = $"{AccountNumberTxt.Text}";
-                    }
-                    cart.BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value;
-                    cart.ExpireDate = (DateTime)ExpireDate.Value;
-                    var cartId = unitOfWork.CartService.Insert(cart);
-                    transaction.Cash = Convert.ToDouble(BlanceTxt.Text);
-                    transaction.TransactionType = TransactionType.Settlemant;
-                    transaction.CartID = (long)cartId;
-                    var tracId = unitOfWork.TransactionService.Insert(transaction);
-                    blance.BlanceCash = Convert.ToDouble(BlanceTxt.Text);
-                    blance.BlanceType = BlanceType.Banking;
-                    blance.TransactionID = (long)tracId;
-                    unitOfWork.BlanceService.Insert(blance);
-                    context.Commit();
-                    this.Close();
+                    cart.AccountNumber = $"{AccountNumberTxt.Text} : {cart.CustomerID} : {cart.ParentID}";
                 }
-                catch (Exception)
+                else
                 {
-                    context.Rollback();
-                    throw;
+                    cart.AccountNumber = $"{AccountNumberTxt.Text}";
                 }
+                cart.BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value;
+                cart.ExpireDate = (DateTime)ExpireDate.Value;
+                var cartId = Pattern.CartService.Insert(cart);
+                transaction.Cash = Convert.ToDouble(BlanceTxt.Text);
+                transaction.TransactionType = TransactionType.Settlemant;
+                transaction.CartID = (long)cartId;
+                var tracId = Pattern.TransactionService.Insert(transaction);
+                blance.BlanceCash = Convert.ToDouble(BlanceTxt.Text);
+                blance.BlanceType = BlanceType.Banking;
+                blance.TransactionID = (long)tracId;
+                Pattern.BlanceService.Insert(blance);
+                Pattern.UnitOfWork.Commit();
+                this.Close();
+            }
+            catch (Exception)
+            {
+                Pattern.UnitOfWork.Rollback();
+                throw;
+            }
             //}
 
         }
 
         private void CartNewForm_Load(object sender, EventArgs e)
         {
-            BankCombo = ComboBoxGenerator.FillData(BankCombo, unitOfWork.BankService.TitleValue(), Convert.ToByte(BankCombo.Tag));
-            CustomerCombo = ComboBoxGenerator.FillData(CustomerCombo, unitOfWork.CustomerService.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
+            BankCombo = ComboBoxGenerator.FillData(BankCombo, Pattern.BankService.TitleValue(), Convert.ToByte(BankCombo.Tag));
+            CustomerCombo = ComboBoxGenerator.FillData(CustomerCombo, Pattern.CustomerService.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
             ExpireDate.UsePersianFormat = true;
             ExpireDate.Value = DateTime.Now;
-            unitOfWork.Dispose();
+            Pattern.UnitOfWork.Dispose();
         }
 
         private void CloseBtn_Click(object sender, EventArgs e)
@@ -123,7 +125,7 @@ namespace Presentation.Forms
             ShabaCartNumber.Enabled = true;
             if (PId != 0)
             {
-                var cartModel = unitOfWork.CartService.GetById(PId);
+                var cartModel = Pattern.CartService.GetById(PId);
                 AccountNumberTxt.Text = cartModel.AccountNumber;
                 AccountNumberTxt.Enabled = false;
                 ShabaCartNumber.Text = cartModel.ShabaAccountNumber;
@@ -138,7 +140,7 @@ namespace Presentation.Forms
             var Id = ((KeyValue<long>)BankCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                ParentCartCombo = ComboBoxGenerator.FillData(ParentCartCombo, unitOfWork.CartService.TitleValuesCartByBankId(Id), Convert.ToByte(ParentCartCombo.Tag));
+                ParentCartCombo = ComboBoxGenerator.FillData(ParentCartCombo, Pattern.CartService.TitleValuesCartByBankId(Id), Convert.ToByte(ParentCartCombo.Tag));
             }
             else
             {

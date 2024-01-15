@@ -1,18 +1,19 @@
 ﻿using Infrastructure.Library.Patterns;
-using Infrastructure.Library.WebServices;
 
 namespace Presentation.UserControls
 {
     public partial class OnlineExchangeUC : UserControl
     {
+        private IFacadPattern Pattern;
 
         public OnlineExchangeUC()
         {
             InitializeComponent();
+            Pattern = new FacadPattern();
         }
         private void OnlineExchangeUC_Load(object sender, EventArgs e)
         {
-            var data = ExchangeRateApiService.GetOfflineData();
+            //var data = ExchangeRateApiService.GetOfflineData();
         }
 
 

@@ -6,17 +6,17 @@ namespace Presentation.UserControls
 {
     public partial class BankUC : UserControl
     {
-        private readonly IFacadPattern pattern;
+        private IFacadPattern Pattern;
         public BankUC()
         {
-            pattern = new FacadPattern();
             InitializeComponent();
+            Pattern = new FacadPattern();
         }
         private void ShowDataGrid()
         {
-            GridData.DataSource = pattern.ExecuteQuery(unitOfWork.BankService.ShowAll(unitOfWork.Paging.Order(unitOfWork.Paging.Page)));
-            var count = (pattern.ExecuteQuery(unitOfWork.BankService.GetCount())).Rows[0].Field<int>(0); ;
-            PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {unitOfWork.Paging.Page + 1}";
+            GridData.DataSource = Pattern.ExecuteQuery(Pattern.BankService.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
+            var count = (Pattern.ExecuteQuery(Pattern.BankService.GetCount())).Rows[0].Field<int>(0); ;
+            PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {Pattern.Paging.Page + 1}";
 
         }
 
