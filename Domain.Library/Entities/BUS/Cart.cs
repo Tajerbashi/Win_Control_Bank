@@ -30,6 +30,12 @@ namespace Domain.Library.Entities.BUS
 
 
         //  Relations
+        [ForeignKey(nameof(CartChild))]
+        public long? ParentID { get; set; }
+        public virtual Cart CartChild { get; set; }
+
+
+
         [ForeignKey("Bank")]
         public long BankID { get; set; }
         public virtual Bank Bank { get; set; }
@@ -37,15 +43,16 @@ namespace Domain.Library.Entities.BUS
         [ForeignKey("Customer")]
         public long CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
+        
+        //  Child
+        public virtual Blance Blance { get; set; }
 
-        [ForeignKey(nameof(CartChild))]
-        public long? ParentID { get; set; }
-        public virtual Cart CartChild{ get; set; }
+        
 
-        public List<Transaction> Transactions { get; set; }
-        public List<CartHistory> CartHistories { get; set; }
-        public List<CartLog> CartLogs { get; set; }
-        public List<CartReport> CartReports { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
+        public virtual ICollection<CartHistory> CartHistories { get; set; }
+        public virtual ICollection<CartLog> CartLogs { get; set; }
+        public virtual ICollection<CartReport> CartReports { get; set; }
 
     }
 }

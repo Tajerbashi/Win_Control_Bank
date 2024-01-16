@@ -42,46 +42,48 @@ namespace Presentation.Forms
         {
             //using (var context = unitOfWork.BeginTransaction())
             //{
-            Pattern.UnitOfWork.BeginTransaction();
-            try
+
+            using (var context = Pattern.UnitOfWork.Context.BeginTransaction())
             {
-                CartDTO cart = new CartDTO();
-                TransactionDTO transaction = new TransactionDTO();
-                BlanceDTO blance = new BlanceDTO();
-                cart.Key = Guid.NewGuid();
-                cart.CartType = CartType.Main;
-                cart.ShabaAccountNumber = ShabaCartNumber.Text;
-                cart.BankID = BankCombo.SelectedIndex;
-                cart.CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value;
-                cart.ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
-                if (cart.ParentID != null)
+                try
                 {
-                    cart.AccountNumber = $"{AccountNumberTxt.Text} : {cart.CustomerID} : {cart.ParentID}";
+                    CartDTO cart = new CartDTO();
+                    TransactionDTO transaction = new TransactionDTO();
+                    BlanceDTO blance = new BlanceDTO();
+                    cart.Key = Guid.NewGuid();
+                    cart.CartType = CartType.Main;
+                    cart.ShabaAccountNumber = ShabaCartNumber.Text;
+                    cart.BankID = BankCombo.SelectedIndex;
+                    cart.CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value;
+                    cart.ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
+                    if (cart.ParentID != null)
+                    {
+                        cart.AccountNumber = $"{AccountNumberTxt.Text} : {cart.CustomerID} : {cart.ParentID}";
+                    }
+                    else
+                    {
+                        cart.AccountNumber = $"{AccountNumberTxt.Text}";
+                    }
+                    cart.BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value;
+                    cart.ExpireDate = (DateTime)ExpireDate.Value;
+                    var cartId = Pattern.CartService.Insert(cart);
+                    transaction.Cash = Convert.ToDouble(BlanceTxt.Text);
+                    transaction.TransactionType = TransactionType.Settlemant;
+                    transaction.CartID = (long)cartId;
+                    var tracId = Pattern.TransactionService.Insert(transaction);
+                    blance.BlanceCash = Convert.ToDouble(BlanceTxt.Text);
+                    blance.BlanceType = BlanceType.Banking;
+                    blance.TransactionID = (long)tracId;
+                    Pattern.BlanceService.Insert(blance);
+                    context.Commit();
+                    this.Close();
                 }
-                else
+                catch (Exception)
                 {
-                    cart.AccountNumber = $"{AccountNumberTxt.Text}";
+                    context.Rollback();
+                    throw;
                 }
-                cart.BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value;
-                cart.ExpireDate = (DateTime)ExpireDate.Value;
-                var cartId = Pattern.CartService.Insert(cart);
-                transaction.Cash = Convert.ToDouble(BlanceTxt.Text);
-                transaction.TransactionType = TransactionType.Settlemant;
-                transaction.CartID = (long)cartId;
-                var tracId = Pattern.TransactionService.Insert(transaction);
-                blance.BlanceCash = Convert.ToDouble(BlanceTxt.Text);
-                blance.BlanceType = BlanceType.Banking;
-                blance.TransactionID = (long)tracId;
-                Pattern.BlanceService.Insert(blance);
-                Pattern.UnitOfWork.Commit();
-                this.Close();
             }
-            catch (Exception)
-            {
-                Pattern.UnitOfWork.Rollback();
-                throw;
-            }
-            //}
 
         }
 

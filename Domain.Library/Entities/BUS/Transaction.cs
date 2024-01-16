@@ -20,9 +20,8 @@ namespace Domain.Library.Entities.BUS
         public long CartID { get; set; }
         public Cart Cart { get; set; }
 
-        public virtual Blance Blance { get; set; }
-
         public virtual ICollection<TransactionReport> TransactionReports { get; set; }
+        public virtual ICollection<CartHistory> CartHistories { get; set; }
 
     }
 

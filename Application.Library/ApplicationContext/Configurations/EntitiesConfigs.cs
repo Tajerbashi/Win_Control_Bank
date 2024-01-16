@@ -3,6 +3,7 @@ using Domain.Library.Entities.CNT;
 using Domain.Library.Entities.WEB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Xml.Linq;
 
 namespace Infrastructure.Library.ApplicationContext.Configurations
 {
@@ -22,57 +23,6 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
                 .WithOne(x => x.Bank)
                 .HasForeignKey(x => x.BankID)
                 .IsRequired();
-
-        }
-    }
-
-    public class BlanceConfiguration : IEntityTypeConfiguration<Blance>
-    {
-        public void Configure(EntityTypeBuilder<Blance> builder)
-        {
-            builder.HasOne(x => x.Transaction)
-                .WithOne(x => x.Blance)
-                .HasForeignKey<Blance>(x => x.TransactionID)
-                .IsRequired();
-
-            //  TODO Many To ONE
-            builder.HasMany(x => x.BlanceLogs)
-                .WithOne(x => x.Blance)
-                .HasForeignKey(x => x.BlanceID)
-                .IsRequired();
-        }
-    }
-
-    public class CartConfiguration : IEntityTypeConfiguration<Cart>
-    {
-        public void Configure(EntityTypeBuilder<Cart> builder)
-        {
-            builder.HasIndex(x => new
-            {
-                x.BankID,
-                x.AccountNumber,
-            }).IsUnique();
-            builder.HasOne(x => x.Bank)
-                .WithMany(x => x.Carts)
-                .HasForeignKey(x => x.BankID)
-                .IsRequired();
-
-            builder.HasOne(x => x.Customer)
-                .WithMany(x => x.Carts)
-                .HasForeignKey(x => x.CustomerID)
-                .IsRequired();
-
-            //  TODO Many To ONE
-        }
-    }
-
-    public class CartHistoryConfiguration : IEntityTypeConfiguration<CartHistory>
-    {
-        public void Configure(EntityTypeBuilder<CartHistory> builder)
-        {
-            builder.HasOne(x => x.Cart)
-                .WithMany(x => x.CartHistories)
-                .HasForeignKey(x => x.CartID);
         }
     }
 
@@ -87,23 +37,95 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
             }).IsUnique();
             builder.HasMany(x => x.Carts)
                 .WithOne(x => x.Customer);
+        }
+    }
+
+    public class CartConfiguration : IEntityTypeConfiguration<Cart>
+    {
+        public void Configure(EntityTypeBuilder<Cart> builder)
+        {
+            builder.HasIndex(x => new
+            {
+                x.BankID,
+                x.AccountNumber,
+            }).IsUnique();
+
+            builder.HasOne(x => x.Bank)
+                .WithMany(x => x.Carts)
+                .HasForeignKey(x => x.BankID)
+                .IsRequired();
+
+            builder.HasOne(x => x.Customer)
+                .WithMany(x => x.Carts)
+                .HasForeignKey(x => x.CustomerID)
+                .IsRequired();
+
+            builder.HasMany(x => x.Transactions)
+                .WithOne(y => y.Cart)
+                .HasForeignKey(f => f.CartID);
+
+            builder.HasMany(x => x.CartHistories)
+                .WithOne(y => y.Cart)
+                .HasForeignKey(f => f.CartID);
+        }
+    }
+    public class BlanceConfiguration : IEntityTypeConfiguration<Blance>
+    {
+        public void Configure(EntityTypeBuilder<Blance> builder)
+        {
+            builder.HasMany(x => x.BlanceLogs)
+                .WithOne(x => x.Blance)
+                .HasForeignKey(x => x.BlanceID)
+                .IsRequired();
+
+            builder.HasOne(x => x.Cart)
+                .WithOne(x => x.Blance)
+                .HasForeignKey<Blance>(f => f.CartID);
+
+            builder.HasMany(x => x.CartHistories)
+                .WithOne(y => y.Blance)
+                .HasForeignKey(f => f.BlanceID);
 
         }
     }
+
+
+
+    public class CartHistoryConfiguration : IEntityTypeConfiguration<CartHistory>
+    {
+        public void Configure(EntityTypeBuilder<CartHistory> builder)
+        {
+            builder.HasOne(x => x.Cart)
+                .WithMany(x => x.CartHistories)
+                .HasForeignKey(x => x.CartID)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(x => x.Transaction)
+               .WithMany(x => x.CartHistories)
+               .HasForeignKey(x => x.TransactionID)
+               .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(x => x.Blance)
+               .WithMany(x => x.CartHistories)
+               .HasForeignKey(x => x.BlanceID)
+               .OnDelete(DeleteBehavior.NoAction);
+        }
+    }
+
+
 
     public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
     {
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {
-            builder.HasOne(x => x.Blance)
-                .WithOne(x => x.Transaction)
-                .HasForeignKey<Blance>(x => x.TransactionID)
-                .OnDelete(DeleteBehavior.Cascade);
-
             builder.HasOne(x => x.Cart)
                 .WithMany(x => x.Transactions)
                 .HasForeignKey(x => x.CartID)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(x => x.CartHistories)
+                .WithOne(y => y.Transaction)
+                .HasForeignKey(f => f.TransactionID);
         }
     }
 
@@ -111,13 +133,13 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
 
     #region SEC
     #endregion
-    
+
     #region LOG
     #endregion
-    
+
     #region RPT
     #endregion
-    
+
     #region WEB
     public class WebServiceConfiguration : IEntityTypeConfiguration<WebService>
     {
@@ -126,7 +148,7 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
         }
     }
     #endregion
-    
+
     #region CNT
     public class ConstVariableConfiguration : IEntityTypeConfiguration<ConstVariable>
     {

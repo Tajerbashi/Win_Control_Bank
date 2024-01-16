@@ -22,13 +22,11 @@ namespace Infrastructure.Library.Repositories.BUS
         }
         public string GetBlance(long Id)
         {
-            var lastBlance = Context.Transactions.Include(x => x.Blance).Where(x => x.CartID == Id).OrderByDescending(x => x.ID).FirstOrDefault().Blance.BlanceCash;
-            return lastBlance != null ? lastBlance.ToString("N") : "";
+            return "";
         }
         public double GetBlanceCash(long Id)
         {
-            var result  = Context.Transactions.Include(x => x.Blance).Where(x => x.CartID == Id).OrderByDescending(x => x.ID).FirstOrDefault().Blance.BlanceCash;
-            return result;
+            return 788979;
         }
         public string Search(string value)
         {

@@ -15,10 +15,12 @@ namespace Domain.Library.Entities.BUS
         [Description("نوع موجودی")]
         public BlanceType BlanceType { get; set; }
 
-        [ForeignKey("Transaction")]
-        public long TransactionID { get; set; }
-        public virtual Transaction Transaction { get; set; }
+        [ForeignKey("Cart")]
+        public long CartID { get; set; }
+        public virtual Cart Cart { get; set; }
 
         public virtual ICollection<BlanceLog> BlanceLogs { get; set; }
+        public virtual ICollection<CartHistory> CartHistories { get; set; }
+
     }
 }
