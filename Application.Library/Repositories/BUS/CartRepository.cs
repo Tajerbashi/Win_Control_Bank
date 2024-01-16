@@ -23,7 +23,7 @@ FROM BUS.Carts C
 INNER JOIN BUS.Banks BN ON C.BankID = BN.ID
 INNER JOIN BUS.Customers CS ON C.CustomerID = CS.ID
 INNER JOIN BUS.Transactions T ON T.CartID = C.ID
-INNER JOIN BUS.Blances B ON B.TransactionID = T.ID
+INNER JOIN BUS.Blances B ON B.CartID = C.ID
 WHERE C.IsDeleted = 0
 ");
         }
@@ -62,7 +62,7 @@ FROM BUS.Carts C
 INNER JOIN BUS.Banks BN ON C.BankID = BN.ID
 INNER JOIN BUS.Customers CS ON C.CustomerID = CS.ID
 INNER JOIN BUS.Transactions T ON T.CartID = C.ID
-INNER JOIN BUS.Blances B ON B.TransactionID = T.ID
+INNER JOIN BUS.Blances B ON B.CartID = C.ID
 WHERE C.IsDeleted = 0
 ORDER BY C.ID DESC 
 {paging}

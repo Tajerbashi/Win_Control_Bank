@@ -21,10 +21,10 @@ namespace Domain.Library.Entities.BUS
         public bool IsCashable { get; set; }
 
         [Description("از کارت")]
-        public Guid FromCartKey { get; set; }
+        public Guid? FromCartKey { get; set; }
 
         [Description("به کارت")]
-        public Guid ToCartKey { get; set; }
+        public Guid? ToCartKey { get; set; }
 
         [Description("پیام")]
         public string Message { get; set; }

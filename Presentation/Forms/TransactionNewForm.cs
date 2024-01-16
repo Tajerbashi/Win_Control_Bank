@@ -84,7 +84,7 @@ namespace Presentation.Forms
                                 {
                                     BlanceCash = lastBlance - Convert.ToInt64(cash),
                                     BlanceType = Domain.Library.Enums.BlanceType.Banking,
-                                    TransactionID = (long)TransactionId,
+                                    CartID = fromCartChildId
                                 };
                                 Pattern.UnitOfWork.Commit();
                                 this.Close();

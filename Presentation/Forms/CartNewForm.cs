@@ -47,13 +47,13 @@ namespace Presentation.Forms
             {
                 try
                 {
+                    CartHistoryDTO history = new CartHistoryDTO();
                     CartDTO cart = new CartDTO();
                     TransactionDTO transaction = new TransactionDTO();
                     BlanceDTO blance = new BlanceDTO();
                     cart.Key = Guid.NewGuid();
                     cart.CartType = CartType.Main;
                     cart.ShabaAccountNumber = ShabaCartNumber.Text;
-                    cart.BankID = BankCombo.SelectedIndex;
                     cart.CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value;
                     cart.ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
                     if (cart.ParentID != null)
@@ -73,8 +73,17 @@ namespace Presentation.Forms
                     var tracId = Pattern.TransactionService.Insert(transaction);
                     blance.BlanceCash = Convert.ToDouble(BlanceTxt.Text);
                     blance.BlanceType = BlanceType.Banking;
-                    blance.TransactionID = (long)tracId;
-                    Pattern.BlanceService.Insert(blance);
+                    blance.CartID = (long)cartId;
+                    var blanceId = Pattern.BlanceService.Insert(blance);
+                    history.TransactionType = TransactionType.Settlemant;
+                    history.BlanceType = BlanceType.Banking;
+                    history.Cash = transaction.Cash;
+                    history.IsCashable = false;
+                    history.CartID = (long)cartId;
+                    history.BlanceID = (long)blanceId;
+                    history.TransactionID = (long)tracId;
+                    history.Message = history.ToString();
+                    var hisId = Pattern.CartHistoryService.Insert(history);
                     context.Commit();
                     this.Close();
                 }

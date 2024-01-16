@@ -9,6 +9,6 @@ namespace Infrastructure.Library.Models.DTOs.BUS
 
         public BlanceType BlanceType { get; set; }
 
-        public long TransactionID { get; set; }
+        public long CartID { get; set; }
     }
 }
