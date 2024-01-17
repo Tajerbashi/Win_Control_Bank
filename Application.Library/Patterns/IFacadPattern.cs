@@ -12,12 +12,9 @@ namespace Infrastructure.Library.Patterns
 {
     public interface IFacadPattern
     {
-        IUnitOfWork<ContextDbApplication> UnitOfWork { get; }
+        UnitOfWork<ContextDbApplication> UnitOfWork { get; set; }
         DataTable ExecuteQuery(string query);
         Paging Paging { get; }
-
-
-
 
         #region SEC
         UserService UserService { get; }
@@ -62,7 +59,12 @@ namespace Infrastructure.Library.Patterns
     }
     public class FacadPattern : IFacadPattern
     {
-        public IUnitOfWork<ContextDbApplication> UnitOfWork { get => new UnitOfWork<ContextDbApplication>(); }
+        private UnitOfWork<ContextDbApplication> _unitOfWork;
+        public UnitOfWork<ContextDbApplication> UnitOfWork { 
+            get => _unitOfWork = _unitOfWork ?? new UnitOfWork<ContextDbApplication>();
+            set => UnitOfWork=_unitOfWork;
+        }
+
         private IBaseQuery _gridQuery;
         protected IBaseQuery GridQuery { get => _gridQuery = _gridQuery ?? new BaseQuery(); }
 
@@ -135,6 +137,12 @@ namespace Infrastructure.Library.Patterns
 
         private Paging _paging;
         public Paging Paging => _paging ?? new Paging();
+
+
+
+
+
+
 
         #endregion
 

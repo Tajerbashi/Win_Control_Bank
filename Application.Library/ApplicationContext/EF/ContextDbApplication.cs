@@ -12,9 +12,9 @@ namespace Infrastructure.Library.ApplicationContext.EF
 {
     public interface IContextDbApplication : IDisposable
     {
-        IDbContextTransaction BeginTransaction();
-        void CommitTransaction();
-        void RollBackTransaction();
+        //IDbContextTransaction BeginTransaction();
+        //void CommitTransaction();
+        //void RollBackTransaction();
     }
     public class ContextDbApplication : DbContext, IContextDbApplication
     {
@@ -88,19 +88,19 @@ namespace Infrastructure.Library.ApplicationContext.EF
             modelBuilder.ApplyConfiguration(new WebServiceConfiguration());
         }
 
-        public IDbContextTransaction BeginTransaction()
-        {
-            return base.Database.BeginTransaction();
-        }
+        //public IDbContextTransaction BeginTransaction()
+        //{
+        //    return base.Database.BeginTransaction();
+        //}
 
-        public void CommitTransaction()
-        {
-            base.Database.CommitTransaction();
-        }
+        //public void CommitTransaction()
+        //{
+        //    base.Database.CommitTransaction();
+        //}
 
-        public void RollBackTransaction()
-        {
-            base.Database.RollbackTransaction();
-        }
+        //public void RollBackTransaction()
+        //{
+        //    base.Database.RollbackTransaction();
+        //}
     }
 }

@@ -2,10 +2,12 @@
 using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.Extentions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Infrastructure.Library.Patterns
 {
-    public interface IUnitOfWork<out TContext> where TContext : DbContext, IDisposable, new()
+    public interface IUnitOfWork<out TContext> 
+        where TContext : DbContext, IDisposable, new()
     {
         //The following Property is going to hold the context object
         TContext Context { get; }
@@ -20,78 +22,62 @@ namespace Infrastructure.Library.Patterns
         void Dispose();
 
         #region Config
-        Paging Paging { get; }
         DapperServices Dapper { get; }
 
         #endregion
 
 
-        //#region SEC
-        //GroupService GroupService { get; }
-        //GroupUserService GroupUserService { get; }
-        //RoleService RoleService { get; }
-        //UserService UserService { get; }
-        //UserRoleService UserRoleService { get; }
-        //#endregion
-
-        //#region BUS
-        //BankService BankService { get; }
-        //BlanceService BlanceService { get; }
-        //CartHistoryService CartHistoryService { get; }
-        //CartService CartService { get; }
-        //CustomerService CustomerService { get; }
-        //TransactionService TransactionService { get; }
-        //#endregion
-
-        //#region BUS
-        //WebServiceService WebServiceService { get; }
-
-        //#endregion
 
     }
     public class UnitOfWork<TContext> : IUnitOfWork<TContext>
         where TContext : ContextDbApplication, new()
     {
-        private TContext _Context;
-        public TContext Context { get => _Context ?? new TContext(); }
-
-        private Paging _Paging;
-        public Paging Paging { get => _Paging ?? new Paging(); }
-
+        private bool _disposed;
+        private IDbContextTransaction  _objTran;
+        public TContext Context { get; }
         private DapperServices _Dapper;
         public DapperServices Dapper { get => _Dapper ?? new DapperServices(); }
         public UnitOfWork()
         {
-            _Context = new TContext();
-            _Paging = new Paging();
+            Context = new TContext();
             _Dapper = new DapperServices();
         }
         public void BeginTransaction()
         {
             //Context.Database.BeginTransaction();
-            Context.BeginTransaction();
+            _objTran = Context.Database.BeginTransaction();
         }
 
         public void Commit()
         {
             //Context.Database.CommitTransaction();
-            Context.CommitTransaction();
+            _objTran.Commit();
         }
 
         public void Dispose()
         {
-            Context.Dispose();
+            _objTran.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         public void Rollback()
         {
             //Context.Database.RollbackTransaction();
-            Context.RollBackTransaction();
+            _objTran.Rollback();
+            Dispose();
         }
 
         public void Save()
         {
             Context.SaveChanges();
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+                if (disposing)
+                    Context.Dispose();
+            _disposed = true;
         }
     }
 }

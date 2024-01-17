@@ -90,7 +90,8 @@ namespace Infrastructure.Library.BaseService
                 model.IsDeleted = false;
                 model.IsActive = true;
                 Context.Entry(model).State = EntityState.Added;
-                Context.Set<TEntity>().Add(model);
+                //Context.Set<TEntity>().Add(model);
+                Entities.Add(model);
                 Context.SaveChanges();
                 return model.ID;
             }
