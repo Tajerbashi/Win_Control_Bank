@@ -13,7 +13,10 @@ namespace Infrastructure.Library.Repositories.BUS
         protected CartHistoryRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
-
+        protected CartHistoryRepository(ContextDbApplication context)
+           : base(context)
+        {
+        }
         public string GetCount()
         {
             throw new NotImplementedException();

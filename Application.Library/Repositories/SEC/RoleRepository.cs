@@ -14,6 +14,7 @@ namespace Infrastructure.Library.Repositories.SEC
         protected RoleRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
+        protected RoleRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

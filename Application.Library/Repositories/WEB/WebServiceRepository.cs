@@ -18,6 +18,7 @@ namespace Infrastructure.Library.Repositories.WEB
             //genericRepository = new GenericRepository<Employee>(unitOfWork);
             //employeeRepository = new EmployeeRepository(unitOfWork);
         }
+        protected WebServiceRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

@@ -13,6 +13,7 @@ namespace Infrastructure.Library.Repositories.LOG
         protected UserLogRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
+        protected UserLogRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

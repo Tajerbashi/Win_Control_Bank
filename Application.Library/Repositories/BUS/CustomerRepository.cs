@@ -13,7 +13,10 @@ namespace Infrastructure.Library.Repositories.BUS
         protected CustomerRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
-
+        protected CustomerRepository(ContextDbApplication context)
+          : base(context)
+        {
+        }
         public string GetCount()
         {
             return (@"

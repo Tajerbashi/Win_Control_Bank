@@ -15,6 +15,10 @@ namespace Infrastructure.Library.Repositories.BUS
         protected BlanceRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
+        protected BlanceRepository(ContextDbApplication context)
+            : base(context)
+        {
+        }
 
         public string GetCount()
         {
@@ -22,7 +26,8 @@ namespace Infrastructure.Library.Repositories.BUS
         }
         public string GetBlance(long Id)
         {
-            return "";
+            var res = Context.Blances.Where(c => c.CartID == Id).ToList();
+            return res.First().BlanceCash.ToString("N");
         }
         public double GetBlanceCash(long Id)
         {

@@ -13,7 +13,10 @@ namespace Infrastructure.Library.Repositories.BUS
         protected CartRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
-
+        protected CartRepository(ContextDbApplication context)
+          : base(context)
+        {
+        }
         public string GetCount()
         {
             return (@"
@@ -82,9 +85,17 @@ ORDER BY C.ID DESC
                 Value = x.ID
             });
         }
+        public IEnumerable<KeyValue<long>> TitleValuesAllParentCart()
+        {
+            return Context.Carts.Where(x => x.ParentID == null && !x.IsDeleted ).Select(x => new KeyValue<long>
+            {
+                Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Value = x.ID
+            });
+        }
         public IEnumerable<KeyValue<long>> TitleValuesAllCart()
         {
-            return Context.Carts.Where(x => x.ParentID == null).Select(x => new KeyValue<long>
+            return Context.Carts.Where(x => !x.IsDeleted).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID

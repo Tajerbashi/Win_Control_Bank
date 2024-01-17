@@ -13,7 +13,10 @@ namespace Infrastructure.Library.Repositories.BUS
         protected BankRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
-
+        protected BankRepository(ContextDbApplication context)
+            : base(context)
+        {
+        }
         public string GetCount()
         {
             return (@$"SELECT  COUNT(*) FROM    BUS.Banks WHERE   (IsDeleted = 0)");

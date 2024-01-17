@@ -13,6 +13,7 @@ namespace Infrastructure.Library.Repositories.CNT
         protected ConstVariableRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
+        protected ConstVariableRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

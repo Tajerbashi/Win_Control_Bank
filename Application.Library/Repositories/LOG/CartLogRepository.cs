@@ -13,6 +13,7 @@ namespace Infrastructure.Library.Repositories.LOG
         protected CartLogRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
+        protected CartLogRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

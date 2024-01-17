@@ -13,6 +13,7 @@ namespace Infrastructure.Library.Repositories.SEC
         protected UserRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
+        protected UserRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

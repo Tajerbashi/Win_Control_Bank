@@ -14,6 +14,7 @@ namespace Infrastructure.Library.Repositories.LOG
         protected BlanceLogRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
+        protected BlanceLogRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

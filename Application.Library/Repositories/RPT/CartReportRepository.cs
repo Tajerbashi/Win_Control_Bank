@@ -13,6 +13,7 @@ namespace Infrastructure.Library.Repositories.RPT
         protected CartReportRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
+        protected CartReportRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

@@ -13,6 +13,7 @@ namespace Infrastructure.Library.Repositories.RPT
         protected BankReportRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
+        protected BankReportRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

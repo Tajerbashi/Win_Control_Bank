@@ -14,6 +14,7 @@ namespace Infrastructure.Library.Repositories.RPT
         protected TransactionReportRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
+        protected TransactionReportRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

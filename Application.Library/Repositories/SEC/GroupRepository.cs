@@ -14,6 +14,7 @@ namespace Infrastructure.Library.Repositories.SEC
         protected GroupRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
+        protected GroupRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {
