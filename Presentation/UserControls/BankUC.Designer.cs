@@ -37,12 +37,14 @@
             SearchBtn = new Button();
             SearchTxt = new TextBox();
             label1 = new Label();
+            BankCombo = new ComboBox();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
             SuspendLayout();
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(BankCombo);
             groupBox2.Controls.Add(AddBtn);
             groupBox2.Controls.Add(GridData);
             groupBox2.Controls.Add(PageLbl);
@@ -65,7 +67,7 @@
             AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             AddBtn.FlatStyle = FlatStyle.Flat;
             AddBtn.ForeColor = Color.White;
-            AddBtn.Location = new Point(999, 24);
+            AddBtn.Location = new Point(486, 24);
             AddBtn.Name = "AddBtn";
             AddBtn.Size = new Size(121, 32);
             AddBtn.TabIndex = 14;
@@ -157,6 +159,7 @@
             // 
             // label1
             // 
+            label1.BackColor = Color.Black;
             label1.ForeColor = Color.White;
             label1.Location = new Point(9, 9);
             label1.Name = "label1";
@@ -165,10 +168,22 @@
             label1.Text = "اطلاعات بانکی";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // BankCombo
+            // 
+            BankCombo.Cursor = Cursors.Hand;
+            BankCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            BankCombo.FormattingEnabled = true;
+            BankCombo.Location = new Point(613, 23);
+            BankCombo.Name = "BankCombo";
+            BankCombo.RightToLeft = RightToLeft.Yes;
+            BankCombo.Size = new Size(507, 33);
+            BankCombo.TabIndex = 15;
+            // 
             // BankUC
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             Controls.Add(label1);
             Controls.Add(groupBox2);
             Font = new Font("IRANSansWeb", 11.25F);
@@ -193,5 +208,6 @@
         private TextBox SearchTxt;
         private Button AddBtn;
         private Label label1;
+        private ComboBox BankCombo;
     }
 }

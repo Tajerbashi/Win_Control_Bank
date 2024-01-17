@@ -30,6 +30,7 @@
         {
             label1 = new Label();
             groupBox2 = new GroupBox();
+            CartCombo = new ComboBox();
             AddBtn = new Button();
             GridData = new DataGridView();
             PageLbl = new Label();
@@ -43,6 +44,7 @@
             // 
             // label1
             // 
+            label1.BackColor = Color.Black;
             label1.ForeColor = Color.White;
             label1.Location = new Point(9, 6);
             label1.Name = "label1";
@@ -53,6 +55,8 @@
             // 
             // groupBox2
             // 
+            groupBox2.BackColor = Color.Transparent;
+            groupBox2.Controls.Add(CartCombo);
             groupBox2.Controls.Add(AddBtn);
             groupBox2.Controls.Add(GridData);
             groupBox2.Controls.Add(PageLbl);
@@ -66,6 +70,18 @@
             groupBox2.TabIndex = 13;
             groupBox2.TabStop = false;
             // 
+            // CartCombo
+            // 
+            CartCombo.Cursor = Cursors.Hand;
+            CartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            CartCombo.FormattingEnabled = true;
+            CartCombo.Location = new Point(613, 23);
+            CartCombo.Name = "CartCombo";
+            CartCombo.RightToLeft = RightToLeft.Yes;
+            CartCombo.Size = new Size(507, 33);
+            CartCombo.TabIndex = 16;
+            CartCombo.SelectedIndexChanged += CartCombo_SelectedIndexChanged;
+            // 
             // AddBtn
             // 
             AddBtn.Cursor = Cursors.Hand;
@@ -75,7 +91,7 @@
             AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             AddBtn.FlatStyle = FlatStyle.Flat;
             AddBtn.ForeColor = Color.White;
-            AddBtn.Location = new Point(999, 24);
+            AddBtn.Location = new Point(486, 24);
             AddBtn.Name = "AddBtn";
             AddBtn.Size = new Size(121, 32);
             AddBtn.TabIndex = 14;
@@ -169,12 +185,14 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             Controls.Add(label1);
             Controls.Add(groupBox2);
             Font = new Font("IRANSansWeb", 11.25F);
             Margin = new Padding(4, 5, 4, 5);
             Name = "TransactionUC";
             Size = new Size(1132, 743);
+            Load += TransactionUC_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).EndInit();
@@ -192,5 +210,6 @@
         private Button PrevBtn;
         private Button SearchBtn;
         private TextBox SearchTxt;
+        private ComboBox CartCombo;
     }
 }

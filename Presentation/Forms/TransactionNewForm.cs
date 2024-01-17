@@ -332,7 +332,7 @@ namespace Presentation.Forms
             TransactionKindCombo = ComboBoxGenerator.FillData(TransactionKindCombo, Pattern.TransactionService.TitleValue(), Convert.ToByte(TransactionKindCombo.Tag));
 
             FromCustomerCombo = ComboBoxGenerator.FillData(FromCustomerCombo, Pattern.CartService.TitleValuesParent(), Convert.ToByte(FromCustomerCombo.Tag));
-            ToCustomerCombo = ComboBoxGenerator.FillData(ToCustomerCombo, Pattern.CartService.TitleValuesAllCart(), Convert.ToByte(ToCustomerCombo.Tag));
+            ToCustomerCombo = ComboBoxGenerator.FillData(ToCustomerCombo, Pattern.CartService.TitleValuesAllParentCart(), Convert.ToByte(ToCustomerCombo.Tag));
 
             BlanceTypeCombo = ComboBoxGenerator.FillData(BlanceTypeCombo, Pattern.BlanceService.TitleValue(), Convert.ToByte(BlanceTypeCombo.Tag));
         }

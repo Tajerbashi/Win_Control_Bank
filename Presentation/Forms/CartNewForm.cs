@@ -43,57 +43,54 @@ namespace Presentation.Forms
             //using (var context = unitOfWork.BeginTransaction())
             //{
 
-            using (var context = Pattern.UnitOfWork.Context.BeginTransaction())
+            Pattern.UnitOfWork.BeginTransaction();
+            try
             {
-                try
+                CartHistoryDTO history = new CartHistoryDTO();
+                CartDTO cart = new CartDTO();
+                TransactionDTO transaction = new TransactionDTO();
+                BlanceDTO blance = new BlanceDTO();
+                cart.Key = Guid.NewGuid();
+                cart.CartType = CartType.Main;
+                cart.ShabaAccountNumber = ShabaCartNumber.Text;
+                cart.CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value;
+                cart.ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
+                if (cart.ParentID != null)
                 {
-                    CartHistoryDTO history = new CartHistoryDTO();
-                    CartDTO cart = new CartDTO();
-                    TransactionDTO transaction = new TransactionDTO();
-                    BlanceDTO blance = new BlanceDTO();
-                    cart.Key = Guid.NewGuid();
-                    cart.CartType = CartType.Main;
-                    cart.ShabaAccountNumber = ShabaCartNumber.Text;
-                    cart.CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value;
-                    cart.ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
-                    if (cart.ParentID != null)
-                    {
-                        cart.AccountNumber = $"{AccountNumberTxt.Text} : {cart.CustomerID} : {cart.ParentID}";
-                    }
-                    else
-                    {
-                        cart.AccountNumber = $"{AccountNumberTxt.Text}";
-                    }
-                    cart.BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value;
-                    cart.ExpireDate = (DateTime)ExpireDate.Value;
-                    var cartId = Pattern.CartService.Insert(cart);
-                    transaction.Cash = Convert.ToDouble(BlanceTxt.Text);
-                    transaction.TransactionType = TransactionType.Settlemant;
-                    transaction.CartID = (long)cartId;
-                    var tracId = Pattern.TransactionService.Insert(transaction);
-                    blance.BlanceCash = Convert.ToDouble(BlanceTxt.Text);
-                    blance.BlanceType = BlanceType.Banking;
-                    blance.CartID = (long)cartId;
-                    var blanceId = Pattern.BlanceService.Insert(blance);
-                    history.TransactionType = TransactionType.Settlemant;
-                    history.BlanceType = BlanceType.Banking;
-                    history.Cash = transaction.Cash;
-                    history.IsCashable = false;
-                    history.CartID = (long)cartId;
-                    history.BlanceID = (long)blanceId;
-                    history.TransactionID = (long)tracId;
-                    history.Message = history.ToString();
-                    var hisId = Pattern.CartHistoryService.Insert(history);
-                    context.Commit();
-                    this.Close();
+                    cart.AccountNumber = $"{AccountNumberTxt.Text} : {cart.CustomerID} : {cart.ParentID}";
                 }
-                catch (Exception)
+                else
                 {
-                    context.Rollback();
-                    throw;
+                    cart.AccountNumber = $"{AccountNumberTxt.Text}";
                 }
+                cart.BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value;
+                cart.ExpireDate = (DateTime)ExpireDate.Value;
+                var cartId = Pattern.CartService.Insert(cart);
+                transaction.Cash = Convert.ToDouble(BlanceTxt.Text);
+                transaction.TransactionType = TransactionType.Settlemant;
+                transaction.CartID = (long)cartId;
+                var tracId = Pattern.TransactionService.Insert(transaction);
+                blance.BlanceCash = Convert.ToDouble(BlanceTxt.Text);
+                blance.BlanceType = BlanceType.Banking;
+                blance.CartID = (long)cartId;
+                var blanceId = Pattern.BlanceService.Insert(blance);
+                history.TransactionType = TransactionType.Settlemant;
+                history.BlanceType = BlanceType.Banking;
+                history.Cash = transaction.Cash;
+                history.IsCashable = false;
+                history.CartID = (long)cartId;
+                history.BlanceID = (long)blanceId;
+                history.TransactionID = (long)tracId;
+                history.Message = history.ToString();
+                var hisId = Pattern.CartHistoryService.Insert(history);
+                Pattern.UnitOfWork.Commit();
+                this.Close();
             }
-
+            catch (Exception)
+            {
+                Pattern.UnitOfWork.Rollback();
+                throw;
+            }
         }
 
         private void CartNewForm_Load(object sender, EventArgs e)
@@ -102,7 +99,6 @@ namespace Presentation.Forms
             CustomerCombo = ComboBoxGenerator.FillData(CustomerCombo, Pattern.CustomerService.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
             ExpireDate.UsePersianFormat = true;
             ExpireDate.Value = DateTime.Now;
-            Pattern.UnitOfWork.Dispose();
         }
 
         private void CloseBtn_Click(object sender, EventArgs e)
