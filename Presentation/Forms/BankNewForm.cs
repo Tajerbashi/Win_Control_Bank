@@ -43,11 +43,7 @@ namespace Presentation.Forms
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            BankDTO bankDTO = new BankDTO();
-            bankDTO.BankName = BankNameTxt.Text;
-            bankDTO.Title = TitleTxt.Text;
-            bankDTO.Description = DescriptionTxt.Text;
-            Pattern.BankService.Insert(bankDTO);
+            Pattern.BankService.Insert(GetModel());
             this.Close();
 
         }
@@ -55,6 +51,17 @@ namespace Presentation.Forms
         private void CloseBtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private BankDTO GetModel()
+        {
+            //  Validation
+            return new BankDTO
+            {
+                BankName = BankNameTxt.Text,
+                Title = TitleTxt.Text,
+                Description = DescriptionTxt.Text,
+            };
         }
     }
 }

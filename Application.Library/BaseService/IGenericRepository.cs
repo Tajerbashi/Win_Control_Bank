@@ -71,7 +71,7 @@ namespace Infrastructure.Library.BaseService
         {
             return Mapper.Map<TDTO>(Entities.Find(id));
         }
-        public virtual object Insert(TDTO obj)
+        public virtual long Insert(TDTO obj)
         {
             try
             {

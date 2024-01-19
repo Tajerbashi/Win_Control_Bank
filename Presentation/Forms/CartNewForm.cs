@@ -1,9 +1,12 @@
-﻿using Domain.Library.Enums;
+﻿using Domain.Library.Entities.BUS;
+using Domain.Library.Enums;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Patterns;
 using Presentation.Generator;
+using Presentation.UserControls;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 namespace Presentation.Forms
 {
     public partial class CartNewForm : Form
@@ -46,42 +49,12 @@ namespace Presentation.Forms
             Pattern.UnitOfWork.BeginTransaction();
             try
             {
-                CartHistoryDTO history = new CartHistoryDTO();
-                CartDTO cart = new CartDTO();
-                TransactionDTO transaction = new TransactionDTO();
-                BlanceDTO blance = new BlanceDTO();
-                cart.Key = Guid.NewGuid();
-                cart.CartType = CartType.Main;
-                cart.ShabaAccountNumber = ShabaCartNumber.Text;
-                cart.CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value;
-                cart.ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
-                if (cart.ParentID != null)
-                {
-                    cart.AccountNumber = $"{AccountNumberTxt.Text} : {cart.CustomerID} : {cart.ParentID}";
-                }
-                else
-                {
-                    cart.AccountNumber = $"{AccountNumberTxt.Text}";
-                }
-                cart.BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value;
-                cart.ExpireDate = (DateTime)ExpireDate.Value;
-                var cartId = Pattern.CartService.Insert(cart);
-                transaction.Cash = Convert.ToDouble(BlanceTxt.Text);
-                transaction.TransactionType = TransactionType.Settlemant;
-                transaction.CartID = (long)cartId;
+                var cartId = Pattern.CartService.Insert(CartDTO());
+                var transaction = TransactionDTO(cartId);
                 var tracId = Pattern.TransactionService.Insert(transaction);
-                blance.BlanceCash = Convert.ToDouble(BlanceTxt.Text);
-                blance.BlanceType = BlanceType.Banking;
-                blance.CartID = (long)cartId;
+                var blance = BlanceDTO(cartId);
                 var blanceId = Pattern.BlanceService.Insert(blance);
-                history.TransactionType = TransactionType.Settlemant;
-                history.BlanceType = BlanceType.Banking;
-                history.Cash = transaction.Cash;
-                history.IsCashable = false;
-                history.CartID = (long)cartId;
-                history.BlanceID = (long)blanceId;
-                history.TransactionID = (long)tracId;
-                history.Message = history.ToString();
+                var history = CartHistoryDTO(transaction.Cash,cartId,blanceId,tracId);
                 var hisId = Pattern.CartHistoryService.Insert(history);
                 Pattern.UnitOfWork.Commit();
                 this.Close();
@@ -124,12 +97,6 @@ namespace Presentation.Forms
         private void ParentCartCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             var PId =  ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
-            AccountNumberTxt.Text = string.Empty;
-            AccountNumberTxt.Enabled = true;
-            ShabaCartNumber.Text = string.Empty;
-            ShabaCartNumber.Enabled = true;
-            ExpireDate.Value = DateTime.Now;
-            ShabaCartNumber.Enabled = true;
             if (PId != 0)
             {
                 var cartModel = Pattern.CartService.GetById(PId);
@@ -139,6 +106,16 @@ namespace Presentation.Forms
                 ShabaCartNumber.Enabled = false;
                 ExpireDate.Value = cartModel.ExpireDate;
                 ExpireDate.Enabled = false;
+            }
+            else
+            {
+                ExpireDate.Value = DateTime.Now;
+                AccountNumberTxt.Text = string.Empty;
+                AccountNumberTxt.Enabled = true;
+                ShabaCartNumber.Text = string.Empty;
+                ShabaCartNumber.Enabled = true;
+                ShabaCartNumber.Enabled = true;
+                ExpireDate.Enabled = true;
             }
         }
 
@@ -154,5 +131,58 @@ namespace Presentation.Forms
                 ParentCartCombo.Items.Clear();
             }
         }
+
+        #region Fill DTO Model
+
+        private CartHistoryDTO CartHistoryDTO(double transactionCash,long cartId,long blanceId,long transactionId)
+        {
+            return new CartHistoryDTO
+            {
+                TransactionType= TransactionType.Settlemant,
+                BlanceType = BlanceType.Banking,
+                Cash = transactionCash,
+                IsCashable = false,
+                CartID = cartId,
+                BlanceID = blanceId,
+                TransactionID = transactionId,
+                Message = ToString(),
+            };
+        }
+        private CartDTO CartDTO()
+        {
+            string accountNumber = $"{AccountNumberTxt.Text}";
+            return new CartDTO
+            {
+                AccountNumber = accountNumber,
+                Key = Guid.NewGuid(),
+                CartType = CartType.Main,
+                ShabaAccountNumber = ShabaCartNumber.Text,
+                CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value,
+                ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value,
+                BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value,
+                ExpireDate = (DateTime)ExpireDate.Value,
+
+            };
+        }
+        private TransactionDTO TransactionDTO(long cartID)
+        {
+            return new TransactionDTO
+            {
+                Cash = Convert.ToDouble(BlanceTxt.Text),
+                TransactionType = TransactionType.Settlemant,
+                CartID = cartID,
+            };
+        }
+        private BlanceDTO BlanceDTO(long cartID)
+        {
+            return new BlanceDTO
+            {
+                CartID = cartID,
+                BlanceCash = Convert.ToDouble(BlanceTxt.Text),
+                BlanceType= BlanceType.Banking
+            };
+        }
+
+        #endregion
     }
 }
