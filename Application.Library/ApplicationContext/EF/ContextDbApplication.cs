@@ -5,7 +5,10 @@ using Domain.Library.Entities.RPT;
 using Domain.Library.Entities.SEC;
 using Domain.Library.Entities.WEB;
 using Infrastructure.Library.ApplicationContext.Configurations;
+using Infrastructure.Library.ApplicationContext.Sql_Queries.Views.C_;
+using Infrastructure.Library.Models.Views.BUS;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Infrastructure.Library.ApplicationContext.EF
@@ -69,6 +72,10 @@ namespace Infrastructure.Library.ApplicationContext.EF
         #endregion
 
 
+
+        #region ViewBUS
+        public DbSet<CartHistoryView> CartHistoryViews { get; set; }
+        #endregion
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -78,6 +85,19 @@ namespace Infrastructure.Library.ApplicationContext.EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            
+            
+            
+            
+            ViewConfiguration.BUS_View(modelBuilder);
+
+
+
+
+
+
+
+
             modelBuilder.ApplyConfiguration(new BankConfiguration());
             modelBuilder.ApplyConfiguration(new BlanceConfiguration());
             modelBuilder.ApplyConfiguration(new CartConfiguration());

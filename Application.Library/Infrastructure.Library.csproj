@@ -24,4 +24,8 @@
     <ProjectReference Include="..\Domain.Library\Domain.Library.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ApplicationContext\Sql Queries\Views\SQL\" />
+  </ItemGroup>
+
 </Project>

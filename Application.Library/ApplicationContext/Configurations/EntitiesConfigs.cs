@@ -3,7 +3,6 @@ using Domain.Library.Entities.CNT;
 using Domain.Library.Entities.WEB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Xml.Linq;
 
 namespace Infrastructure.Library.ApplicationContext.Configurations
 {
