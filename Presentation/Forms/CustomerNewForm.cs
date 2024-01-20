@@ -19,18 +19,23 @@ namespace Presentation.Forms
         }
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            CustomerDTO customer = new CustomerDTO();
-            customer.FullName = FullNameTxt.Text;
-            customer.Title = TitleTxt.Text;
-            customer.Description = DescriptionTxt.Text;
-            customer.Key = Guid.NewGuid();
+            var customer = CustomerDTO();
             Pattern.CustomerService.Insert(customer);
-            Pattern.CustomerService.Save();
             MSG.Visible = true;
             MSG.Text = "عملیات با موفقیت انجام شد";
             this.Close();
         }
 
-        
+        private CustomerDTO CustomerDTO()
+        {
+            return new CustomerDTO
+            {
+                Description = DescriptionTxt.Text,
+                Key = Guid.NewGuid(),
+                FullName = FullNameTxt.Text,
+                Picture = "",
+                Title = TitleTxt.Text,
+            };
+        }
     }
 }

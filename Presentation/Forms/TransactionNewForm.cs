@@ -1,8 +1,14 @@
-﻿using Infrastructure.Library.Models.Controls;
+﻿using Domain.Library.Entities.BUS;
+using Domain.Library.Enums;
+using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Patterns;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Newtonsoft.Json.Linq;
 using Presentation.Generator;
+using Presentation.UserControls;
 using System.Runtime.InteropServices;
+using System.Security.Policy;
 
 namespace Presentation.Forms
 {
@@ -58,9 +64,9 @@ namespace Presentation.Forms
             if (TransactionValidation(type))
             {
                 var fromCartId = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
-                var fromCartChildId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
+                var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
 
-                var cash = CashTxt.Text;
+                var cash = Convert.ToDouble(CashTxt.Text);
 
                 switch (type)
                 {
@@ -71,23 +77,22 @@ namespace Presentation.Forms
                             Pattern.UnitOfWork.BeginTransaction();
                             try
                             {
-                                var CartChildData = Pattern.CartService.GetById(fromCartChildId);
-                                var transaction = new TransactionDTO
+                                var CartChildData = Pattern.CartService.GetById(fromAccountId);
+                                if (Pattern.CartService.ValidBankBlance(fromAccountId, cash))
                                 {
-                                    CartID = fromCartChildId,
-                                    Cash = Convert.ToInt64(cash),
-                                    TransactionType = Domain.Library.Enums.TransactionType.Harvesting
-                                };
-                                var TransactionId = Pattern.TransactionService.Insert(transaction);
-                                var lastBlance = Pattern.BlanceService.GetBlanceCash(fromCartChildId);
-                                var blance = new BlanceDTO
+                                    var lastBlance = Pattern.BlanceService.GetBlanceCartById(fromAccountId);
+                                    var blanceDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,false);
+                                    blanceDto.ID = Pattern.BlanceService.Insert(blanceDto);
+                                    var history = CartHistoryDTO(blanceDto.ID,0);
+                                    Pattern.CartHistoryService.Insert(history);
+                                    this.Close();
+                                    Pattern.UnitOfWork.Commit();
+                                }
+                                else
                                 {
-                                    BlanceCash = lastBlance - Convert.ToInt64(cash),
-                                    BlanceType = Domain.Library.Enums.BlanceType.Banking,
-                                    CartID = fromCartChildId
-                                };
-                                Pattern.UnitOfWork.Commit();
-                                this.Close();
+                                    MSG.Text = $"موجودی کافی نیست و این تراکنش انجام نمیشود";
+                                }
+
                             }
                             catch
                             {
@@ -117,7 +122,13 @@ namespace Presentation.Forms
                         }
                 }
             }
+            else
+            {
+                MSG.Text = $"موجودی کافی نیست و این تراکنش انجام نمیشود";
+            }
         }
+
+
 
         private void TransactionTypeCombo_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -180,20 +191,6 @@ namespace Presentation.Forms
             }
         }
 
-        private void NewUserCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            //if (NewUserCheck.Checked)
-            //{
-            //    PanelNewUser.Visible = true;
-            //}
-            //else
-            //{
-            //    PanelNewUser.Visible = false;
-            //}
-        }
-
-
-
         private void ToCustomerCombo_SelectedValueChanged(object sender, EventArgs e)
         {
             var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
@@ -208,7 +205,7 @@ namespace Presentation.Forms
             var Id = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                FromAccountLBL.Text = Pattern.BlanceService.GetBlance(Id);
+                FromAccountLBL.Text = Pattern.BlanceService.GetBlanceCartById(Id).ToString("N");
             }
 
         }
@@ -277,32 +274,11 @@ namespace Presentation.Forms
             Pattern.UnitOfWork.BeginTransaction();
             try
             {
-                var Custumer = new CustomerDTO
-                {
-                    FullName = NewCustomerNameTxt.Text,
-                    Description = NewCustomerNameTxt.Text,
-                    Title = NewCustomerNameTxt.Text,
-                    Key = Guid.NewGuid()
-                };
+                var Custumer = CustomerDTO();
                 var customeId = Pattern.CustomerService.Insert(Custumer);
-                var Bank = new BankDTO
-                {
-                    BankName = NewBankNameTxt.Text,
-                    Description = NewBankNameTxt.Text,
-                    Title = NewBankNameTxt.Text,
-                };
+                var Bank = BankDTO();
                 var bankId = Pattern.BankService.Insert(Bank);
-                var Cart = new CartDTO
-                {
-                    CartType  = Domain.Library.Enums.CartType.Custome,
-                    AccountNumber = NewCartNumberTxt.Text,
-                    CustomerID = (long)customeId,
-                    BankID = (long)bankId,
-                    ExpireDate = DateTime.Now,
-                    Key = Guid.NewGuid(),
-                    ShabaAccountNumber = Guid.NewGuid().ToString(),
-                    ParentID = null
-                };
+                var Cart = CartDTO(customeId,bankId);
                 Pattern.CartService.Insert(Cart);
                 Pattern.UnitOfWork.Commit();
                 UpdateComboBoxes();
@@ -328,8 +304,8 @@ namespace Presentation.Forms
         }
         private void UpdateComboBoxes()
         {
-            TransactionTypeCombo = ComboBoxGenerator.FillData(TransactionTypeCombo, Pattern.TransactionService.TitleValueKind(), Convert.ToByte(TransactionTypeCombo.Tag));
-            TransactionKindCombo = ComboBoxGenerator.FillData(TransactionKindCombo, Pattern.TransactionService.TitleValue(), Convert.ToByte(TransactionKindCombo.Tag));
+            TransactionTypeCombo = ComboBoxGenerator.FillData(TransactionTypeCombo, Pattern.BlanceService.TitleValue(), Convert.ToByte(TransactionTypeCombo.Tag));
+            TransactionKindCombo = ComboBoxGenerator.FillData(TransactionKindCombo, Pattern.BlanceService.TitleValue(), Convert.ToByte(TransactionKindCombo.Tag));
 
             FromCustomerCombo = ComboBoxGenerator.FillData(FromCustomerCombo, Pattern.CartService.TitleValuesParent(), Convert.ToByte(FromCustomerCombo.Tag));
             ToCustomerCombo = ComboBoxGenerator.FillData(ToCustomerCombo, Pattern.CartService.TitleValuesAllParentCart(), Convert.ToByte(ToCustomerCombo.Tag));
@@ -342,7 +318,7 @@ namespace Presentation.Forms
             var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                ToCustomerCombo.Text = Pattern.BlanceService.GetBlance(Id);
+                ToCustomerCombo.Text = Pattern.BlanceService.GetBlanceCartById(Id).ToString("N");
                 ToAccountCombo = ComboBoxGenerator.FillData(ToAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
             }
         }
@@ -352,11 +328,78 @@ namespace Presentation.Forms
             var Id = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                FromCustomerLBL.Text = Pattern.BlanceService.GetBlance(Id);
+                FromCustomerLBL.Text = Pattern.BlanceService.GetBlanceCartById(Id).ToString("N");
                 FromAccountCombo = ComboBoxGenerator.FillData(FromAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
 
             }
 
+        }
+
+        private BankDTO BankDTO()
+        {
+            return new BankDTO
+            {
+                BankName = NewBankNameTxt.Text,
+                Description = NewBankNameTxt.Text,
+                Title = NewBankNameTxt.Text,
+
+            };
+        }
+        private CartDTO CartDTO(long customeId, long bankId)
+        {
+            return new CartDTO
+            {
+                CartType = CartType.Custome,
+                AccountNumber = NewCartNumberTxt.Text,
+                CustomerID = customeId,
+                BankID = bankId,
+                ExpireDate = DateTime.Now,
+                Key = Guid.NewGuid(),
+                ShabaAccountNumber = Guid.NewGuid().ToString(),
+                ParentID = null
+            };
+        }
+        private BlanceDTO BlanceDTO(double lastblance, double cash, long cartId, bool sum = true)
+        {
+            double blanceCash = lastblance;
+            if (sum)
+                blanceCash = lastblance + Convert.ToInt64(cash);
+            else
+                blanceCash = lastblance - Convert.ToInt64(cash);
+            return new BlanceDTO
+            {
+                BlanceCash = blanceCash,
+                BlanceType = BlanceType.Banking,
+                CartID = cartId,
+                TransactionType = TransactionType.Harvesting
+            };
+        }
+        private CustomerDTO CustomerDTO()
+        {
+            return new CustomerDTO
+            {
+                FullName = NewCustomerNameTxt.Text,
+                Description = NewCustomerNameTxt.Text,
+                Title = NewCustomerNameTxt.Text,
+                Key = Guid.NewGuid()
+            };
+        }
+        private CartHistoryDTO CartHistoryDTO(long blanceId, int type)
+        {
+            var IsCashable = ((KeyValue<long>)BlanceTypeCombo.SelectedItem).Value == 1 ? true : false;
+
+            var model = new CartHistoryDTO
+            {
+                BlanceID = blanceId,
+                BlanceType = (BlanceType)((KeyValue<long>)BlanceTypeCombo.SelectedItem).Value,
+                TransactionType = (TransactionType)((KeyValue<long>)TransactionTypeCombo.SelectedItem).Value,
+                CartID = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value,
+                Cash = Convert.ToDouble(CashTxt.Text),
+                IsCashable = IsCashable,
+                BlanceCash = 000
+            };
+            model.Message = model.ToString();
+            return model;
         }
     }
 }

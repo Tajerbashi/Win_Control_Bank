@@ -43,7 +43,7 @@ namespace Presentation.Forms
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            Pattern.BankService.Insert(GetModel());
+            Pattern.BankService.Insert(BankDTO());
             this.Close();
 
         }
@@ -53,7 +53,7 @@ namespace Presentation.Forms
             this.Close();
         }
 
-        private BankDTO GetModel()
+        private BankDTO BankDTO()
         {
             //  Validation
             return new BankDTO

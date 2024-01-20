@@ -50,11 +50,9 @@ namespace Presentation.Forms
             try
             {
                 var cartId = Pattern.CartService.Insert(CartDTO());
-                var transaction = TransactionDTO(cartId);
-                var tracId = Pattern.TransactionService.Insert(transaction);
                 var blance = BlanceDTO(cartId);
                 var blanceId = Pattern.BlanceService.Insert(blance);
-                var history = CartHistoryDTO(transaction.Cash,cartId,blanceId,tracId);
+                var history = CartHistoryDTO(blance.Cash,blance.BlanceCash,cartId,blanceId);
                 var hisId = Pattern.CartHistoryService.Insert(history);
                 Pattern.UnitOfWork.Commit();
                 this.Close();
@@ -134,19 +132,21 @@ namespace Presentation.Forms
 
         #region Fill DTO Model
 
-        private CartHistoryDTO CartHistoryDTO(double transactionCash,long cartId,long blanceId,long transactionId)
+        private CartHistoryDTO CartHistoryDTO(double cash,double blanceCash,long cartId,long blanceId)
         {
-            return new CartHistoryDTO
+            var model = new CartHistoryDTO
             {
                 TransactionType= TransactionType.Settlemant,
                 BlanceType = BlanceType.Banking,
-                Cash = transactionCash,
+                Cash = cash,
+                BlanceCash = blanceCash,
                 IsCashable = false,
                 CartID = cartId,
                 BlanceID = blanceId,
-                TransactionID = transactionId,
                 Message = ToString(),
             };
+            model.Message = model.ToString();
+            return model;
         }
         private CartDTO CartDTO()
         {
@@ -162,15 +162,6 @@ namespace Presentation.Forms
                 BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value,
                 ExpireDate = (DateTime)ExpireDate.Value,
 
-            };
-        }
-        private TransactionDTO TransactionDTO(long cartID)
-        {
-            return new TransactionDTO
-            {
-                Cash = Convert.ToDouble(BlanceTxt.Text),
-                TransactionType = TransactionType.Settlemant,
-                CartID = cartID,
             };
         }
         private BlanceDTO BlanceDTO(long cartID)

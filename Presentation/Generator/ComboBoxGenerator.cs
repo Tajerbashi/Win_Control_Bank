@@ -2,7 +2,7 @@
 
 namespace Presentation.Generator
 {
-    public static class ComboBoxGenerator
+    public class ComboBoxGenerator
     {
         public static ComboBox FillData(ComboBox comboBox, IEnumerable<KeyValue<long>> data, long value = 0)
         {

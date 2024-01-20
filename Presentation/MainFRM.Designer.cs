@@ -71,7 +71,7 @@
             groupBox1.ForeColor = Color.White;
             groupBox1.Location = new Point(1162, 5);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(246, 763);
+            groupBox1.Size = new Size(254, 770);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "مدیریت";
@@ -329,9 +329,9 @@
             groupBox2.BackColor = Color.Transparent;
             groupBox2.Controls.Add(MainPanel);
             groupBox2.FlatStyle = FlatStyle.Flat;
-            groupBox2.Location = new Point(12, 5);
+            groupBox2.Location = new Point(4, 5);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1144, 770);
+            groupBox2.Size = new Size(1152, 770);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             // 
@@ -339,7 +339,7 @@
             // 
             MainPanel.Location = new Point(6, 20);
             MainPanel.Name = "MainPanel";
-            MainPanel.Size = new Size(1132, 743);
+            MainPanel.Size = new Size(1140, 741);
             MainPanel.TabIndex = 0;
             // 
             // MainFRM

@@ -48,9 +48,9 @@
             groupBox2.Controls.Add(PrevBtn);
             groupBox2.Controls.Add(SearchBtn);
             groupBox2.Controls.Add(SearchTxt);
-            groupBox2.Location = new Point(3, 91);
+            groupBox2.Location = new Point(1, 91);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1126, 647);
+            groupBox2.Size = new Size(1138, 647);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             // 
@@ -69,13 +69,13 @@
             GridData.Name = "GridData";
             GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridData.Size = new Size(1114, 544);
+            GridData.Size = new Size(1126, 544);
             GridData.TabIndex = 12;
             // 
             // PageLbl
             // 
             PageLbl.ForeColor = Color.White;
-            PageLbl.Location = new Point(188, 609);
+            PageLbl.Location = new Point(194, 609);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(751, 32);
             PageLbl.TabIndex = 11;
@@ -107,7 +107,7 @@
             PrevBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             PrevBtn.FlatStyle = FlatStyle.Flat;
             PrevBtn.ForeColor = Color.White;
-            PrevBtn.Location = new Point(1064, 609);
+            PrevBtn.Location = new Point(1076, 609);
             PrevBtn.Name = "PrevBtn";
             PrevBtn.Size = new Size(56, 32);
             PrevBtn.TabIndex = 2;
@@ -138,9 +138,9 @@
             // 
             // groupBox1
             // 
-            groupBox1.Location = new Point(3, 3);
+            groupBox1.Location = new Point(2, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1126, 82);
+            groupBox1.Size = new Size(1137, 82);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             // 
@@ -148,12 +148,13 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Transparent;
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Font = new Font("IRANSansWeb", 11.25F);
             Margin = new Padding(4, 5, 4, 5);
             Name = "CalculateUC";
-            Size = new Size(1132, 743);
+            Size = new Size(1140, 741);
             Load += CalculateUC_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();

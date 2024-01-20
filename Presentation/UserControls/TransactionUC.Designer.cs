@@ -31,13 +31,13 @@
             label1 = new Label();
             groupBox2 = new GroupBox();
             CartCombo = new ComboBox();
-            AddBtn = new Button();
             GridData = new DataGridView();
             PageLbl = new Label();
             NextBtn = new Button();
             PrevBtn = new Button();
             SearchBtn = new Button();
             SearchTxt = new TextBox();
+            AddBtn = new Button();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
             SuspendLayout();
@@ -46,9 +46,9 @@
             // 
             label1.BackColor = Color.Black;
             label1.ForeColor = Color.White;
-            label1.Location = new Point(9, 6);
+            label1.Location = new Point(238, 7);
             label1.Name = "label1";
-            label1.Size = new Size(1114, 32);
+            label1.Size = new Size(902, 32);
             label1.TabIndex = 14;
             label1.Text = "تراکنش های تمام حساب ها";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -57,7 +57,6 @@
             // 
             groupBox2.BackColor = Color.Transparent;
             groupBox2.Controls.Add(CartCombo);
-            groupBox2.Controls.Add(AddBtn);
             groupBox2.Controls.Add(GridData);
             groupBox2.Controls.Add(PageLbl);
             groupBox2.Controls.Add(NextBtn);
@@ -66,7 +65,7 @@
             groupBox2.Controls.Add(SearchTxt);
             groupBox2.Location = new Point(3, 41);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1126, 695);
+            groupBox2.Size = new Size(1137, 695);
             groupBox2.TabIndex = 13;
             groupBox2.TabStop = false;
             // 
@@ -75,29 +74,12 @@
             CartCombo.Cursor = Cursors.Hand;
             CartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             CartCombo.FormattingEnabled = true;
-            CartCombo.Location = new Point(613, 23);
+            CartCombo.Location = new Point(355, 21);
             CartCombo.Name = "CartCombo";
             CartCombo.RightToLeft = RightToLeft.Yes;
-            CartCombo.Size = new Size(507, 33);
+            CartCombo.Size = new Size(776, 33);
             CartCombo.TabIndex = 16;
             CartCombo.SelectedIndexChanged += CartCombo_SelectedIndexChanged;
-            // 
-            // AddBtn
-            // 
-            AddBtn.Cursor = Cursors.Hand;
-            AddBtn.FlatAppearance.BorderColor = Color.FromArgb(192, 255, 192);
-            AddBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            AddBtn.FlatAppearance.MouseDownBackColor = Color.Green;
-            AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
-            AddBtn.FlatStyle = FlatStyle.Flat;
-            AddBtn.ForeColor = Color.White;
-            AddBtn.Location = new Point(486, 24);
-            AddBtn.Name = "AddBtn";
-            AddBtn.Size = new Size(121, 32);
-            AddBtn.TabIndex = 14;
-            AddBtn.Text = "جدید";
-            AddBtn.UseVisualStyleBackColor = true;
-            AddBtn.Click += AddBtn_Click;
             // 
             // GridData
             // 
@@ -114,13 +96,13 @@
             GridData.Name = "GridData";
             GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridData.Size = new Size(1114, 589);
+            GridData.Size = new Size(1125, 589);
             GridData.TabIndex = 12;
             // 
             // PageLbl
             // 
             PageLbl.ForeColor = Color.White;
-            PageLbl.Location = new Point(188, 657);
+            PageLbl.Location = new Point(193, 657);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(751, 32);
             PageLbl.TabIndex = 11;
@@ -152,7 +134,7 @@
             PrevBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             PrevBtn.FlatStyle = FlatStyle.Flat;
             PrevBtn.ForeColor = Color.White;
-            PrevBtn.Location = new Point(1064, 657);
+            PrevBtn.Location = new Point(1075, 657);
             PrevBtn.Name = "PrevBtn";
             PrevBtn.Size = new Size(56, 32);
             PrevBtn.TabIndex = 2;
@@ -176,22 +158,40 @@
             // 
             // SearchTxt
             // 
-            SearchTxt.Location = new Point(87, 21);
+            SearchTxt.Location = new Point(87, 22);
             SearchTxt.Name = "SearchTxt";
             SearchTxt.Size = new Size(262, 32);
             SearchTxt.TabIndex = 0;
+            // 
+            // AddBtn
+            // 
+            AddBtn.Cursor = Cursors.Hand;
+            AddBtn.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            AddBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            AddBtn.FlatAppearance.MouseDownBackColor = Color.Green;
+            AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            AddBtn.FlatStyle = FlatStyle.Flat;
+            AddBtn.ForeColor = Color.White;
+            AddBtn.Location = new Point(9, 6);
+            AddBtn.Name = "AddBtn";
+            AddBtn.Size = new Size(223, 32);
+            AddBtn.TabIndex = 14;
+            AddBtn.Text = "جدید";
+            AddBtn.UseVisualStyleBackColor = true;
+            AddBtn.Click += AddBtn_Click;
             // 
             // TransactionUC
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
+            BackColor = Color.Transparent;
             Controls.Add(label1);
+            Controls.Add(AddBtn);
             Controls.Add(groupBox2);
             Font = new Font("IRANSansWeb", 11.25F);
             Margin = new Padding(4, 5, 4, 5);
             Name = "TransactionUC";
-            Size = new Size(1132, 743);
+            Size = new Size(1140, 741);
             Load += TransactionUC_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();

@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             groupBox2 = new GroupBox();
-            AddBtn = new Button();
             GridData = new DataGridView();
             PageLbl = new Label();
             NextBtn = new Button();
             PrevBtn = new Button();
             SearchBtn = new Button();
             SearchTxt = new TextBox();
+            AddBtn = new Button();
             label1 = new Label();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
@@ -43,35 +43,17 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(AddBtn);
             groupBox2.Controls.Add(GridData);
             groupBox2.Controls.Add(PageLbl);
             groupBox2.Controls.Add(NextBtn);
             groupBox2.Controls.Add(PrevBtn);
             groupBox2.Controls.Add(SearchBtn);
             groupBox2.Controls.Add(SearchTxt);
-            groupBox2.Location = new Point(3, 44);
+            groupBox2.Location = new Point(2, 44);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1126, 694);
+            groupBox2.Size = new Size(1137, 694);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
-            // 
-            // AddBtn
-            // 
-            AddBtn.Cursor = Cursors.Hand;
-            AddBtn.FlatAppearance.BorderColor = Color.White;
-            AddBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            AddBtn.FlatAppearance.MouseDownBackColor = Color.RoyalBlue;
-            AddBtn.FlatAppearance.MouseOverBackColor = Color.DarkBlue;
-            AddBtn.FlatStyle = FlatStyle.Flat;
-            AddBtn.ForeColor = Color.White;
-            AddBtn.Location = new Point(999, 20);
-            AddBtn.Name = "AddBtn";
-            AddBtn.Size = new Size(121, 32);
-            AddBtn.TabIndex = 15;
-            AddBtn.Text = "جدید";
-            AddBtn.UseVisualStyleBackColor = true;
-            AddBtn.Click += AddBtn_Click;
             // 
             // GridData
             // 
@@ -88,13 +70,13 @@
             GridData.Name = "GridData";
             GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridData.Size = new Size(1114, 588);
+            GridData.Size = new Size(1125, 588);
             GridData.TabIndex = 12;
             // 
             // PageLbl
             // 
             PageLbl.ForeColor = Color.White;
-            PageLbl.Location = new Point(188, 656);
+            PageLbl.Location = new Point(193, 656);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(751, 32);
             PageLbl.TabIndex = 11;
@@ -126,7 +108,7 @@
             PrevBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             PrevBtn.FlatStyle = FlatStyle.Flat;
             PrevBtn.ForeColor = Color.White;
-            PrevBtn.Location = new Point(1064, 656);
+            PrevBtn.Location = new Point(1075, 656);
             PrevBtn.Name = "PrevBtn";
             PrevBtn.Size = new Size(56, 32);
             PrevBtn.TabIndex = 2;
@@ -155,12 +137,30 @@
             SearchTxt.Size = new Size(262, 32);
             SearchTxt.TabIndex = 0;
             // 
+            // AddBtn
+            // 
+            AddBtn.Cursor = Cursors.Hand;
+            AddBtn.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            AddBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            AddBtn.FlatAppearance.MouseDownBackColor = Color.Green;
+            AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            AddBtn.FlatStyle = FlatStyle.Flat;
+            AddBtn.ForeColor = Color.White;
+            AddBtn.Location = new Point(3, 9);
+            AddBtn.Name = "AddBtn";
+            AddBtn.Size = new Size(223, 32);
+            AddBtn.TabIndex = 15;
+            AddBtn.Text = "جدید";
+            AddBtn.UseVisualStyleBackColor = true;
+            AddBtn.Click += AddBtn_Click;
+            // 
             // label1
             // 
+            label1.BackColor = Color.Black;
             label1.ForeColor = Color.White;
-            label1.Location = new Point(9, 9);
+            label1.Location = new Point(232, 10);
             label1.Name = "label1";
-            label1.Size = new Size(1114, 32);
+            label1.Size = new Size(908, 32);
             label1.TabIndex = 13;
             label1.Text = "اطلاعات کارت";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -169,13 +169,15 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Transparent;
+            Controls.Add(AddBtn);
             Controls.Add(label1);
             Controls.Add(groupBox2);
             Font = new Font("IRANSansWeb", 11.25F);
             Margin = new Padding(4, 5, 4, 5);
             Name = "CartUC";
             RightToLeft = RightToLeft.Yes;
-            Size = new Size(1132, 743);
+            Size = new Size(1140, 741);
             Load += CartUC_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();

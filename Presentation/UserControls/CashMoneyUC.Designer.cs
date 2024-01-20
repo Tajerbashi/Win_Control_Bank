@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox2 = new GroupBox();
+            AddBtn = new Button();
             GridData = new DataGridView();
             PageLbl = new Label();
             NextBtn = new Button();
@@ -36,7 +37,6 @@
             SearchBtn = new Button();
             SearchTxt = new TextBox();
             groupBox1 = new GroupBox();
-            AddBtn = new Button();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
             SuspendLayout();
@@ -50,11 +50,28 @@
             groupBox2.Controls.Add(PrevBtn);
             groupBox2.Controls.Add(SearchBtn);
             groupBox2.Controls.Add(SearchTxt);
-            groupBox2.Location = new Point(3, 91);
+            groupBox2.Location = new Point(2, 91);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1126, 647);
+            groupBox2.Size = new Size(1137, 647);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
+            // 
+            // AddBtn
+            // 
+            AddBtn.Cursor = Cursors.Hand;
+            AddBtn.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            AddBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            AddBtn.FlatAppearance.MouseDownBackColor = Color.Green;
+            AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            AddBtn.FlatStyle = FlatStyle.Flat;
+            AddBtn.ForeColor = Color.White;
+            AddBtn.Location = new Point(1010, 21);
+            AddBtn.Name = "AddBtn";
+            AddBtn.Size = new Size(121, 32);
+            AddBtn.TabIndex = 16;
+            AddBtn.Text = "جدید";
+            AddBtn.UseVisualStyleBackColor = true;
+            AddBtn.Click += AddBtn_Click;
             // 
             // GridData
             // 
@@ -71,13 +88,13 @@
             GridData.Name = "GridData";
             GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridData.Size = new Size(1114, 544);
+            GridData.Size = new Size(1125, 544);
             GridData.TabIndex = 12;
             // 
             // PageLbl
             // 
             PageLbl.ForeColor = Color.White;
-            PageLbl.Location = new Point(188, 609);
+            PageLbl.Location = new Point(193, 609);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(751, 32);
             PageLbl.TabIndex = 11;
@@ -109,7 +126,7 @@
             PrevBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             PrevBtn.FlatStyle = FlatStyle.Flat;
             PrevBtn.ForeColor = Color.White;
-            PrevBtn.Location = new Point(1064, 609);
+            PrevBtn.Location = new Point(1075, 609);
             PrevBtn.Name = "PrevBtn";
             PrevBtn.Size = new Size(56, 32);
             PrevBtn.TabIndex = 2;
@@ -140,39 +157,23 @@
             // 
             // groupBox1
             // 
-            groupBox1.Location = new Point(3, 3);
+            groupBox1.Location = new Point(2, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1126, 82);
+            groupBox1.Size = new Size(1137, 82);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
-            // 
-            // AddBtn
-            // 
-            AddBtn.Cursor = Cursors.Hand;
-            AddBtn.FlatAppearance.BorderColor = Color.White;
-            AddBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            AddBtn.FlatAppearance.MouseDownBackColor = Color.RoyalBlue;
-            AddBtn.FlatAppearance.MouseOverBackColor = Color.DarkBlue;
-            AddBtn.FlatStyle = FlatStyle.Flat;
-            AddBtn.ForeColor = Color.White;
-            AddBtn.Location = new Point(999, 24);
-            AddBtn.Name = "AddBtn";
-            AddBtn.Size = new Size(121, 32);
-            AddBtn.TabIndex = 16;
-            AddBtn.Text = "جدید";
-            AddBtn.UseVisualStyleBackColor = true;
-            AddBtn.Click += AddBtn_Click;
             // 
             // CashMoneyUC
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Transparent;
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Font = new Font("IRANSansWeb", 11.25F);
             Margin = new Padding(4, 5, 4, 5);
             Name = "CashMoneyUC";
-            Size = new Size(1132, 743);
+            Size = new Size(1140, 741);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).EndInit();

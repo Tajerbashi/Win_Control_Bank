@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             groupBox2 = new GroupBox();
-            AddBtn = new Button();
+            CustomerCombo = new ComboBox();
+            AccountCombo = new ComboBox();
             GridData = new DataGridView();
             PageLbl = new Label();
             NextBtn = new Button();
             PrevBtn = new Button();
             SearchBtn = new Button();
             SearchTxt = new TextBox();
+            AddBtn = new Button();
             label1 = new Label();
-            AccountCombo = new ComboBox();
-            CustomerCombo = new ComboBox();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
             SuspendLayout();
@@ -47,7 +47,6 @@
             // 
             groupBox2.Controls.Add(CustomerCombo);
             groupBox2.Controls.Add(AccountCombo);
-            groupBox2.Controls.Add(AddBtn);
             groupBox2.Controls.Add(GridData);
             groupBox2.Controls.Add(PageLbl);
             groupBox2.Controls.Add(NextBtn);
@@ -56,25 +55,31 @@
             groupBox2.Controls.Add(SearchTxt);
             groupBox2.Location = new Point(3, 41);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1126, 695);
+            groupBox2.Size = new Size(1134, 695);
             groupBox2.TabIndex = 13;
             groupBox2.TabStop = false;
             // 
-            // AddBtn
+            // CustomerCombo
             // 
-            AddBtn.Cursor = Cursors.Hand;
-            AddBtn.FlatAppearance.BorderColor = Color.FromArgb(192, 255, 192);
-            AddBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            AddBtn.FlatAppearance.MouseDownBackColor = Color.Green;
-            AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
-            AddBtn.FlatStyle = FlatStyle.Flat;
-            AddBtn.ForeColor = Color.White;
-            AddBtn.Location = new Point(355, 21);
-            AddBtn.Name = "AddBtn";
-            AddBtn.Size = new Size(121, 32);
-            AddBtn.TabIndex = 14;
-            AddBtn.Text = "جدید";
-            AddBtn.UseVisualStyleBackColor = true;
+            CustomerCombo.Cursor = Cursors.Hand;
+            CustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            CustomerCombo.FormattingEnabled = true;
+            CustomerCombo.Location = new Point(528, 22);
+            CustomerCombo.Name = "CustomerCombo";
+            CustomerCombo.RightToLeft = RightToLeft.Yes;
+            CustomerCombo.Size = new Size(297, 33);
+            CustomerCombo.TabIndex = 26;
+            // 
+            // AccountCombo
+            // 
+            AccountCombo.Cursor = Cursors.Hand;
+            AccountCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            AccountCombo.FormattingEnabled = true;
+            AccountCombo.Location = new Point(831, 22);
+            AccountCombo.Name = "AccountCombo";
+            AccountCombo.RightToLeft = RightToLeft.Yes;
+            AccountCombo.Size = new Size(297, 33);
+            AccountCombo.TabIndex = 25;
             // 
             // GridData
             // 
@@ -91,13 +96,13 @@
             GridData.Name = "GridData";
             GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridData.Size = new Size(1114, 589);
+            GridData.Size = new Size(1122, 589);
             GridData.TabIndex = 12;
             // 
             // PageLbl
             // 
             PageLbl.ForeColor = Color.White;
-            PageLbl.Location = new Point(188, 657);
+            PageLbl.Location = new Point(192, 657);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(751, 32);
             PageLbl.TabIndex = 11;
@@ -129,7 +134,7 @@
             PrevBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             PrevBtn.FlatStyle = FlatStyle.Flat;
             PrevBtn.ForeColor = Color.White;
-            PrevBtn.Location = new Point(1064, 657);
+            PrevBtn.Location = new Point(1072, 657);
             PrevBtn.Name = "PrevBtn";
             PrevBtn.Size = new Size(56, 32);
             PrevBtn.TabIndex = 2;
@@ -144,7 +149,7 @@
             SearchBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             SearchBtn.FlatStyle = FlatStyle.Flat;
             SearchBtn.ForeColor = Color.White;
-            SearchBtn.Location = new Point(6, 21);
+            SearchBtn.Location = new Point(6, 23);
             SearchBtn.Name = "SearchBtn";
             SearchBtn.Size = new Size(75, 32);
             SearchBtn.TabIndex = 1;
@@ -153,53 +158,50 @@
             // 
             // SearchTxt
             // 
-            SearchTxt.Location = new Point(87, 21);
+            SearchTxt.Location = new Point(87, 24);
             SearchTxt.Name = "SearchTxt";
             SearchTxt.Size = new Size(262, 32);
             SearchTxt.TabIndex = 0;
             // 
+            // AddBtn
+            // 
+            AddBtn.Cursor = Cursors.Hand;
+            AddBtn.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            AddBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            AddBtn.FlatAppearance.MouseDownBackColor = Color.Green;
+            AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            AddBtn.FlatStyle = FlatStyle.Flat;
+            AddBtn.ForeColor = Color.White;
+            AddBtn.Location = new Point(3, 6);
+            AddBtn.Name = "AddBtn";
+            AddBtn.Size = new Size(223, 32);
+            AddBtn.TabIndex = 14;
+            AddBtn.Text = "جدید";
+            AddBtn.UseVisualStyleBackColor = true;
+            // 
             // label1
             // 
+            label1.BackColor = Color.Black;
             label1.ForeColor = Color.White;
-            label1.Location = new Point(9, 6);
+            label1.Location = new Point(232, 6);
             label1.Name = "label1";
-            label1.Size = new Size(1114, 32);
+            label1.Size = new Size(905, 32);
             label1.TabIndex = 14;
             label1.Text = "اطلاعات موجودی مشترکین و حساب بانکی ها های سامانه";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // AccountCombo
-            // 
-            AccountCombo.Cursor = Cursors.Hand;
-            AccountCombo.DropDownStyle = ComboBoxStyle.DropDownList;
-            AccountCombo.FormattingEnabled = true;
-            AccountCombo.Location = new Point(823, 23);
-            AccountCombo.Name = "AccountCombo";
-            AccountCombo.RightToLeft = RightToLeft.Yes;
-            AccountCombo.Size = new Size(297, 33);
-            AccountCombo.TabIndex = 25;
-            // 
-            // CustomerCombo
-            // 
-            CustomerCombo.Cursor = Cursors.Hand;
-            CustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
-            CustomerCombo.FormattingEnabled = true;
-            CustomerCombo.Location = new Point(520, 23);
-            CustomerCombo.Name = "CustomerCombo";
-            CustomerCombo.RightToLeft = RightToLeft.Yes;
-            CustomerCombo.Size = new Size(297, 33);
-            CustomerCombo.TabIndex = 26;
             // 
             // BlanceUC
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Transparent;
             Controls.Add(groupBox2);
             Controls.Add(label1);
+            Controls.Add(AddBtn);
             Font = new Font("IRANSansWeb", 11.25F);
             Margin = new Padding(4, 5, 4, 5);
             Name = "BlanceUC";
-            Size = new Size(1132, 743);
+            Size = new Size(1140, 741);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).EndInit();
