@@ -45,11 +45,10 @@ namespace Domain.Library.Entities.BUS
         public virtual Customer Customer { get; set; }
         
         //  Child
-        public virtual Blance Blance { get; set; }
+        public virtual List<Blance> Blances { get; set; }
 
         
 
-        public virtual ICollection<Transaction> Transactions { get; set; }
         public virtual ICollection<CartHistory> CartHistories { get; set; }
         public virtual ICollection<CartLog> CartLogs { get; set; }
         public virtual ICollection<CartReport> CartReports { get; set; }

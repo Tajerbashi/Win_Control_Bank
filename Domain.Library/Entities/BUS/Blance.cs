@@ -15,6 +15,13 @@ namespace Domain.Library.Entities.BUS
         [Description("نوع موجودی")]
         public BlanceType BlanceType { get; set; }
 
+        [Description("مبلغ تراکنش")]
+        public double Cash { get; set; }
+
+        [Description("نوع تراکنش")]
+        public TransactionType TransactionType { get; set; }
+
+        [Description("کارت")]
         [ForeignKey("Cart")]
         public long CartID { get; set; }
         public virtual Cart Cart { get; set; }

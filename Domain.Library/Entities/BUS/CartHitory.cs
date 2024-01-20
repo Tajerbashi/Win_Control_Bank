@@ -37,9 +37,6 @@ namespace Domain.Library.Entities.BUS
         public long BlanceID { get; set; }
         public virtual Blance Blance { get; set; }
 
-        [ForeignKey("Transaction")]
-        public long TransactionID { get; set; }
-        public virtual Transaction Transaction { get; set; }
 
         public override string ToString()
         {
