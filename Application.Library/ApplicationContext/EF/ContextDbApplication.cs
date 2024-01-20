@@ -33,7 +33,6 @@ namespace Infrastructure.Library.ApplicationContext.EF
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartHistory> CartHistories { get; set; }
-        public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Bank> Banks { get; set; }
         public DbSet<Blance> Blances { get; set; }
         #endregion
@@ -51,13 +50,11 @@ namespace Infrastructure.Library.ApplicationContext.EF
         public DbSet<CartLog> CartLogs { get; set; }
         public DbSet<CustomerLog> CustomerLogs { get; set; }
         public DbSet<BlanceLog> BlanceLogs { get; set; }
-        public DbSet<TransactionLog> TransactionLogs { get; set; }
         #endregion
 
         #region RPT
         public DbSet<BankReport> BankReports { get; set; }
         public DbSet<CartReport> CartReports { get; set; }
-        public DbSet<TransactionReport> TransactionReports { get; set; }
         public DbSet<CustomerReport> CustomerReports { get; set; }
         #endregion
 
@@ -103,7 +100,6 @@ namespace Infrastructure.Library.ApplicationContext.EF
             modelBuilder.ApplyConfiguration(new CartConfiguration());
             modelBuilder.ApplyConfiguration(new CartHistoryConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
-            modelBuilder.ApplyConfiguration(new TransactionConfiguration());
             modelBuilder.ApplyConfiguration(new ConstVariableConfiguration());
             modelBuilder.ApplyConfiguration(new WebServiceConfiguration());
         }

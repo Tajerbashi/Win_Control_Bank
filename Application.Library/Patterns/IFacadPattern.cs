@@ -31,21 +31,18 @@ namespace Infrastructure.Library.Patterns
         CartService CartService { get; }
         CartHistoryService CartHistoryService { get; }
         CustomerService CustomerService { get; }
-        TransactionService TransactionService { get; }
         #endregion
 
 
         #region RPT
         BankReportService BankReportService { get; }
         CartReportService CartReportService { get; }
-        TransactionReportService TransactionReportService { get; }
         #endregion
 
 
         #region LOG
         BlanceLogService BlanceLogService { get; }
         CartLogService CartLogService { get; }
-        TransactionLogService TransactionLogService { get; }
         UserLogService UserLogService { get; }
         #endregion
 
@@ -101,8 +98,6 @@ namespace Infrastructure.Library.Patterns
         private CustomerService _customerService ;
         public CustomerService CustomerService => _customerService ?? new CustomerService(UnitOfWork);
 
-        private TransactionService _transactionService ;
-        public TransactionService TransactionService => _transactionService ?? new TransactionService(UnitOfWork);
         #endregion
 
         #region CNT
@@ -117,8 +112,6 @@ namespace Infrastructure.Library.Patterns
         private CartReportService _cartReportService ;
         public CartReportService CartReportService => _cartReportService ?? new CartReportService(UnitOfWork);
 
-        private TransactionReportService _transactionReportService ;
-        public TransactionReportService TransactionReportService => _transactionReportService ?? new TransactionReportService(UnitOfWork);
 
         #endregion
 
@@ -129,8 +122,6 @@ namespace Infrastructure.Library.Patterns
         private CartLogService _cartLogService ;
         public CartLogService CartLogService => _cartLogService ?? new CartLogService(UnitOfWork);
 
-        private TransactionLogService _transactionLogService ;
-        public TransactionLogService TransactionLogService => _transactionLogService ?? new TransactionLogService(UnitOfWork);
 
         private UserLogService _userLogService ;
         public UserLogService UserLogService => _userLogService ?? new UserLogService(UnitOfWork);

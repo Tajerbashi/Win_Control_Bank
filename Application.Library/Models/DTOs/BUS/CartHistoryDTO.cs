@@ -11,6 +11,7 @@ namespace Infrastructure.Library.Models.DTOs.BUS
         public BlanceType BlanceType { get; set; }
 
         public double Cash { get; set; }
+        public double BlanceCash { get; set; }
 
         public bool IsCashable { get; set; }
 
@@ -28,7 +29,7 @@ namespace Infrastructure.Library.Models.DTOs.BUS
 
         public override string ToString()
         {
-            return ($@"تراکنش {TransactionID} برای کارت {CartID} با موجودی {BlanceID} و مبلغ {Cash} با نوع موجود {EnumExtensionMethods.GetEnumDescription(BlanceType)} و نوع تراکنش {EnumExtensionMethods.GetEnumDescription(TransactionType)} انجام شد");
+            return ($@"تراکنش {TransactionID} برای کارت {CartID} با موجودی {BlanceID} و مبلغ {Cash} با نوع موجودی {EnumExtensionMethods.GetEnumDescription(BlanceType)} و نوع تراکنش {EnumExtensionMethods.GetEnumDescription(TransactionType)} انجام شد");
         }
     }
 }

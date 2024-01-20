@@ -13,7 +13,7 @@ namespace Infrastructure.Library.BaseService
     {
         IEnumerable<T> GetAll();
         T GetById(object id);
-        object Insert(T obj);
+        long Insert(T obj);
         void Update(T obj);
         void Delete(object id);
         void Delete(Guid guid);
@@ -107,8 +107,8 @@ namespace Infrastructure.Library.BaseService
                 var model = Mapper.Map<TEntity>(obj);
                 model.UpdateDate = DateTime.Now;
                 model.DeleteBy = 0;
-                Entities.Attach(model);
                 Context.Entry(model).State = EntityState.Modified;
+                Entities.Attach(model);
             }
             catch (Exception ex)
             {

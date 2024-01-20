@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Library.Entities.BUS;
+using Domain.Library.Enums;
 using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
@@ -24,14 +25,10 @@ namespace Infrastructure.Library.Repositories.BUS
         {
             throw new NotImplementedException();
         }
-        public string GetBlance(long Id)
+        public double GetBlanceCartById(long Id)
         {
-            var res = Context.Blances.Where(c => c.CartID == Id).ToList();
-            return res.First().BlanceCash.ToString("N");
-        }
-        public double GetBlanceCash(long Id)
-        {
-            return 788979;
+            var result = Context.Blances.Where(x => x.CartID == Id && x.BlanceType == BlanceType.Banking).Single().BlanceCash;
+            return result;
         }
         public string Search(string value)
         {
@@ -44,6 +41,14 @@ namespace Infrastructure.Library.Repositories.BUS
         }
 
         public string ShowFromTo(string from, string to)
+        {
+            throw new NotImplementedException();
+        } 
+        public string ShowAllByCartId(long Id, string paging)
+        {
+            throw new NotImplementedException();
+        }
+         public string Show50LastTransactions(string paging)
         {
             throw new NotImplementedException();
         }

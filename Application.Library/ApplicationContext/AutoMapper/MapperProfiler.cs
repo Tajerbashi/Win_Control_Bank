@@ -35,9 +35,6 @@ namespace Infrastructure.Library.ApplicationContext.AutoMapper
             CreateMap<CartHistory, CartHistoryDTO>().ReverseMap();
             CreateMap<CartHistory, CartHistoryView>().ReverseMap();
 
-            CreateMap<Transaction, TransactionDTO>().ReverseMap();
-            CreateMap<Transaction, TransactionView>().ReverseMap();
-
             CreateMap<Blance, BlanceDTO>().ReverseMap();
             CreateMap<Blance, BlanceView>().ReverseMap();
             #endregion

@@ -59,13 +59,13 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
                 .HasForeignKey(x => x.CustomerID)
                 .IsRequired();
 
-            builder.HasMany(x => x.Transactions)
-                .WithOne(y => y.Cart)
-                .HasForeignKey(f => f.CartID);
-
             builder.HasMany(x => x.CartHistories)
                 .WithOne(y => y.Cart)
                 .HasForeignKey(f => f.CartID);
+
+            builder.HasMany(x => x.Blances)
+                .WithOne(y => y.Cart)
+                .HasForeignKey(z => z.CartID);
         }
     }
     public class BlanceConfiguration : IEntityTypeConfiguration<Blance>
@@ -78,8 +78,8 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
                 .IsRequired();
 
             builder.HasOne(x => x.Cart)
-                .WithOne(x => x.Blance)
-                .HasForeignKey<Blance>(f => f.CartID);
+                .WithMany(y => y.Blances)
+                .HasForeignKey(z => z.CartID);
 
             builder.HasMany(x => x.CartHistories)
                 .WithOne(y => y.Blance)
@@ -99,11 +99,7 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
                 .HasForeignKey(x => x.CartID)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            builder.HasOne(x => x.Transaction)
-               .WithMany(x => x.CartHistories)
-               .HasForeignKey(x => x.TransactionID)
-               .OnDelete(DeleteBehavior.NoAction);
-
+          
             builder.HasOne(x => x.Blance)
                .WithMany(x => x.CartHistories)
                .HasForeignKey(x => x.BlanceID)
@@ -113,21 +109,7 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
 
 
 
-    public class TransactionConfiguration : IEntityTypeConfiguration<Transaction>
-    {
-        public void Configure(EntityTypeBuilder<Transaction> builder)
-        {
-            builder.HasOne(x => x.Cart)
-                .WithMany(x => x.Transactions)
-                .HasForeignKey(x => x.CartID)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasMany(x => x.CartHistories)
-                .WithOne(y => y.Transaction)
-                .HasForeignKey(f => f.TransactionID);
-        }
-    }
-
+  
     #endregion
 
     #region SEC

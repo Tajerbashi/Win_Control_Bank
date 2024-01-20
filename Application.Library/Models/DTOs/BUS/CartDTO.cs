@@ -23,7 +23,6 @@ namespace Infrastructure.Library.Models.DTOs.BUS
         public List<BlanceDTO> Blances { get; set; }
         public List<CartLogDTO> CartLogs { get; set; }
         public List<CartReportDTO> CartReports { get; set; }
-        public virtual ICollection<Transaction> Transactions { get; set; }
         /// <summary>
         /// CartType
         /// </summary>
