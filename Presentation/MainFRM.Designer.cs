@@ -88,7 +88,7 @@
             BankBtn.FlatStyle = FlatStyle.Flat;
             BankBtn.Font = new Font("IRANSansWeb", 14.25F);
             BankBtn.ForeColor = Color.White;
-            BankBtn.Location = new Point(126, 127);
+            BankBtn.Location = new Point(126, 166);
             BankBtn.Name = "BankBtn";
             BankBtn.Size = new Size(114, 40);
             BankBtn.TabIndex = 15;
@@ -107,7 +107,7 @@
             OnlineExchangeBtn.FlatStyle = FlatStyle.Flat;
             OnlineExchangeBtn.Font = new Font("IRANSansWeb", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             OnlineExchangeBtn.ForeColor = Color.White;
-            OnlineExchangeBtn.Location = new Point(6, 74);
+            OnlineExchangeBtn.Location = new Point(6, 113);
             OnlineExchangeBtn.Name = "OnlineExchangeBtn";
             OnlineExchangeBtn.Size = new Size(234, 47);
             OnlineExchangeBtn.TabIndex = 14;
@@ -117,7 +117,7 @@
             // 
             // label1
             // 
-            label1.BackColor = Color.MidnightBlue;
+            label1.BackColor = Color.FromArgb(0, 64, 64);
             label1.BorderStyle = BorderStyle.FixedSingle;
             label1.Cursor = Cursors.SizeAll;
             label1.FlatStyle = FlatStyle.Flat;
@@ -125,7 +125,7 @@
             label1.ForeColor = Color.White;
             label1.Location = new Point(6, 28);
             label1.Name = "label1";
-            label1.Size = new Size(234, 43);
+            label1.Size = new Size(234, 78);
             label1.TabIndex = 13;
             label1.Text = "مدیریت و حسابداری";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -276,7 +276,7 @@
             ReportBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             ReportBtn.FlatStyle = FlatStyle.Flat;
             ReportBtn.ForeColor = Color.White;
-            ReportBtn.Location = new Point(28, 578);
+            ReportBtn.Location = new Point(28, 489);
             ReportBtn.Name = "ReportBtn";
             ReportBtn.Size = new Size(190, 40);
             ReportBtn.TabIndex = 2;
@@ -296,7 +296,7 @@
             UserBtn.FlatStyle = FlatStyle.Flat;
             UserBtn.Font = new Font("IRANSansWeb", 14.25F);
             UserBtn.ForeColor = Color.White;
-            UserBtn.Location = new Point(6, 173);
+            UserBtn.Location = new Point(6, 212);
             UserBtn.Name = "UserBtn";
             UserBtn.Size = new Size(234, 50);
             UserBtn.TabIndex = 1;
@@ -316,7 +316,7 @@
             CartBtn.FlatStyle = FlatStyle.Flat;
             CartBtn.Font = new Font("IRANSansWeb", 14.25F);
             CartBtn.ForeColor = Color.White;
-            CartBtn.Location = new Point(6, 127);
+            CartBtn.Location = new Point(6, 166);
             CartBtn.Name = "CartBtn";
             CartBtn.Size = new Size(114, 40);
             CartBtn.TabIndex = 0;
