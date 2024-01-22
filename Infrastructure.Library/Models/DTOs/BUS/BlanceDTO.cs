@@ -1,6 +1,7 @@
-﻿using Domain.Library.Enums;
+﻿using Domain.Library.Entities.BUS;
+using Domain.Library.Entities.LOG;
+using Domain.Library.Enums;
 using Infrastructure.Library.BaseModels;
-using System.ComponentModel;
 
 namespace Infrastructure.Library.Models.DTOs.BUS
 {
@@ -27,5 +28,7 @@ namespace Infrastructure.Library.Models.DTOs.BUS
         /// کارت آیدی
         /// </summary>
         public long CartID { get; set; }
+        public virtual ICollection<BlanceLog> BlanceLogs { get; set; }
+        public virtual ICollection<CartHistory> CartHistories { get; set; }
     }
 }

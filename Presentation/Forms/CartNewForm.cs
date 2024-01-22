@@ -170,7 +170,9 @@ namespace Presentation.Forms
             {
                 CartID = cartID,
                 BlanceCash = Convert.ToDouble(BlanceTxt.Text),
-                BlanceType= BlanceType.Banking
+                BlanceType= BlanceType.Banking,
+                TransactionType = TransactionType.Settlemant,
+                Cash = Convert.ToDouble(BlanceTxt.Text),
             };
         }
 

@@ -363,15 +363,16 @@ namespace Presentation.Forms
         {
             double blanceCash = lastblance;
             if (sum)
-                blanceCash = lastblance + Convert.ToInt64(cash);
+                blanceCash = lastblance + cash;
             else
-                blanceCash = lastblance - Convert.ToInt64(cash);
+                blanceCash = lastblance - cash;
             return new BlanceDTO
             {
                 BlanceCash = blanceCash,
                 BlanceType = BlanceType.Banking,
                 CartID = cartId,
-                TransactionType = TransactionType.Harvesting
+                TransactionType = TransactionType.Harvesting,
+                Cash = cash,
             };
         }
         private CustomerDTO CustomerDTO()
@@ -396,7 +397,7 @@ namespace Presentation.Forms
                 CartID = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value,
                 Cash = Convert.ToDouble(CashTxt.Text),
                 IsCashable = IsCashable,
-                BlanceCash = 000
+                BlanceCash = 000,
             };
             model.Message = model.ToString();
             return model;
