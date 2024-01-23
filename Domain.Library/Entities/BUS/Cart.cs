@@ -1,6 +1,6 @@
 ﻿using Domain.Library.Bases;
+using Domain.Library.Entities.HSR;
 using Domain.Library.Entities.LOG;
-using Domain.Library.Entities.RPT;
 using Domain.Library.Enums;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -43,13 +43,10 @@ namespace Domain.Library.Entities.BUS
         [ForeignKey("Customer")]
         public long CustomerID { get; set; }
         public virtual Customer Customer { get; set; }
-        
+
         //  Child
         public virtual List<Blance> Blances { get; set; }
-
-        
-
         public virtual ICollection<CartLog> CartLogs { get; set; }
-
+        public virtual ICollection<CartHistory> CartHistories { get; set; }
     }
 }

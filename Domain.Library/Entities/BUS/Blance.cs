@@ -16,7 +16,7 @@ namespace Domain.Library.Entities.BUS
         public BlanceType BlanceType { get; set; }
 
         [Description("مبلغ تراکنش")]
-        public double Cash { get; set; }
+        public double CurrentBlance { get; set; }
 
         [Description("نوع تراکنش")]
         public TransactionType TransactionType { get; set; }

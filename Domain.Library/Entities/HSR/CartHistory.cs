@@ -4,23 +4,25 @@ using Domain.Library.Enums;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Library.Entities.LOG
+namespace Domain.Library.Entities.HSR
 {
-    [Table("CartLogs", Schema = "LOG")]
-    public class CartLog : GeneralEntity
+    [Table("CartHistories", Schema = "HSR")]
+    public class CartHistory : GeneralEntity
     {
         [Description("نوع تراکنش")]
         public TransactionType TransactionType { get; set; }
         [Description("نوع موجودی")]
         public BlanceType BlanceType { get; set; }
-        [Description("مالک حساب")]
-        public string Accounter { get; set; }
         [Description("موجودی فعلی")]
-        public double Blance { get; set; }
+        public double CashBlance { get; set; }
         [Description("مبلغ تراکنش")]
-        public double Cash { get; set; }
+        public double CashTransaction { get; set; }
         [Description("پیام")]
         public string Message { get; set; }
+        [Description("کلید تراکنش  و موجودی جدید")]
+        public long BlanceID { get; set; }
+
+
 
 
         [ForeignKey("Cart")]
