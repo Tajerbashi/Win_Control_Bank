@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Library.Models.DTOs.CNT
 {
-    public class ConstVariableDTO : GeneralBaseDTO
+    public class ConstVariableDTO : GeneralDTO
     {
     }
 }

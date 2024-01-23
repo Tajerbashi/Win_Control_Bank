@@ -17,11 +17,6 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
                 .WithOne(x => x.Bank)
                 .HasForeignKey(x => x.BankID)
                 .IsRequired();
-
-            builder.HasMany(x => x.BankReports)
-                .WithOne(x => x.Bank)
-                .HasForeignKey(x => x.BankID)
-                .IsRequired();
         }
     }
 
@@ -62,6 +57,10 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
             builder.HasMany(x => x.Blances)
                 .WithOne(y => y.Cart)
                 .HasForeignKey(z => z.CartID);
+
+            builder.HasMany(x => x.CartHistories)
+                .WithOne(y => y.Cart)
+                .HasForeignKey(x => x.CartID);
         }
     }
     public class BlanceConfiguration : IEntityTypeConfiguration<Blance>
@@ -80,13 +79,6 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
         }
     }
 
-
-
-
-
-
-
-  
     #endregion
 
     #region SEC

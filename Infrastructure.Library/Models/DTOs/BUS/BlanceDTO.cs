@@ -22,7 +22,7 @@ namespace Infrastructure.Library.Models.DTOs.BUS
         /// <summary>
         /// مبلغ تراکنش
         /// </summary>
-        public double Cash { get; set; }
+        public double CurrentBlance { get; set; }
 
         /// <summary>
         /// کارت آیدی

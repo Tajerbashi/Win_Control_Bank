@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Library.Models.DTOs.BUS
 {
-    public class BlanceCustomerDTO : GeneralBaseDTO
+    public class BlanceCustomerDTO : GeneralDTO
     {
     }
 }

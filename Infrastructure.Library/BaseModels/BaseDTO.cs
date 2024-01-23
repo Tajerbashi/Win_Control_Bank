@@ -4,7 +4,7 @@
     {
         public long ID { get; set; }
     }
-    public abstract class GeneralBaseDTO : BaseDTO
+    public abstract class GeneralDTO : BaseDTO
     {
         public string Title { get; set; }
         public string Description { get; set; }
