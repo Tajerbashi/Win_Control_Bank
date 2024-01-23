@@ -59,10 +59,6 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
                 .HasForeignKey(x => x.CustomerID)
                 .IsRequired();
 
-            builder.HasMany(x => x.CartHistories)
-                .WithOne(y => y.Cart)
-                .HasForeignKey(f => f.CartID);
-
             builder.HasMany(x => x.Blances)
                 .WithOne(y => y.Cart)
                 .HasForeignKey(z => z.CartID);
@@ -81,31 +77,12 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
                 .WithMany(y => y.Blances)
                 .HasForeignKey(z => z.CartID);
 
-            builder.HasMany(x => x.CartHistories)
-                .WithOne(y => y.Blance)
-                .HasForeignKey(f => f.BlanceID);
-
         }
     }
 
 
 
-    public class CartHistoryConfiguration : IEntityTypeConfiguration<CartHistory>
-    {
-        public void Configure(EntityTypeBuilder<CartHistory> builder)
-        {
-            builder.HasOne(x => x.Cart)
-                .WithMany(x => x.CartHistories)
-                .HasForeignKey(x => x.CartID)
-                .OnDelete(DeleteBehavior.NoAction);
 
-          
-            builder.HasOne(x => x.Blance)
-               .WithMany(x => x.CartHistories)
-               .HasForeignKey(x => x.BlanceID)
-               .OnDelete(DeleteBehavior.NoAction);
-        }
-    }
 
 
 

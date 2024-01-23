@@ -32,7 +32,6 @@ namespace Infrastructure.Library.ApplicationContext.EF
         #region BUS
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<CartHistory> CartHistories { get; set; }
         public DbSet<Bank> Banks { get; set; }
         public DbSet<Blance> Blances { get; set; }
         #endregion
@@ -71,7 +70,6 @@ namespace Infrastructure.Library.ApplicationContext.EF
 
 
         #region ViewBUS
-        public DbSet<CartHistoryView> CartHistoryViews { get; set; }
         #endregion
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -84,21 +82,12 @@ namespace Infrastructure.Library.ApplicationContext.EF
             base.OnModelCreating(modelBuilder);
             
             
-            
-            
             ViewConfiguration.BUS_View(modelBuilder);
-
-
-
-
-
-
 
 
             modelBuilder.ApplyConfiguration(new BankConfiguration());
             modelBuilder.ApplyConfiguration(new BlanceConfiguration());
             modelBuilder.ApplyConfiguration(new CartConfiguration());
-            modelBuilder.ApplyConfiguration(new CartHistoryConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new ConstVariableConfiguration());
             modelBuilder.ApplyConfiguration(new WebServiceConfiguration());

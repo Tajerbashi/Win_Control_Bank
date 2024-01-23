@@ -27,7 +27,6 @@ namespace Domain.Library.Entities.BUS
         public virtual Cart Cart { get; set; }
 
         public virtual ICollection<BlanceLog> BlanceLogs { get; set; }
-        public virtual ICollection<CartHistory> CartHistories { get; set; }
 
     }
 }

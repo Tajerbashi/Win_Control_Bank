@@ -83,8 +83,6 @@ namespace Presentation.Forms
                                     var lastBlance = Pattern.BlanceService.GetBlanceCartById(fromAccountId);
                                     var blanceDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,false);
                                     blanceDto.ID = Pattern.BlanceService.Insert(blanceDto);
-                                    var history = CartHistoryDTO(blanceDto.ID,0);
-                                    Pattern.CartHistoryService.Insert(history);
                                     this.Close();
                                     Pattern.UnitOfWork.Commit();
                                 }
@@ -384,23 +382,6 @@ namespace Presentation.Forms
                 Title = NewCustomerNameTxt.Text,
                 Key = Guid.NewGuid()
             };
-        }
-        private CartHistoryDTO CartHistoryDTO(long blanceId, int type)
-        {
-            var IsCashable = ((KeyValue<long>)BlanceTypeCombo.SelectedItem).Value == 1 ? true : false;
-
-            var model = new CartHistoryDTO
-            {
-                BlanceID = blanceId,
-                BlanceType = (BlanceType)((KeyValue<long>)BlanceTypeCombo.SelectedItem).Value,
-                TransactionType = (TransactionType)((KeyValue<long>)TransactionTypeCombo.SelectedItem).Value,
-                CartID = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value,
-                Cash = Convert.ToDouble(CashTxt.Text),
-                IsCashable = IsCashable,
-                BlanceCash = 000,
-            };
-            model.Message = model.ToString();
-            return model;
         }
     }
 }

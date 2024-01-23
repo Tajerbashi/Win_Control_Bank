@@ -29,7 +29,6 @@ namespace Infrastructure.Library.Patterns
         BankService BankService { get; }
         BlanceService BlanceService { get; }
         CartService CartService { get; }
-        CartHistoryService CartHistoryService { get; }
         CustomerService CustomerService { get; }
         #endregion
 
@@ -92,8 +91,6 @@ namespace Infrastructure.Library.Patterns
         private CartService _cartService ;
         public CartService CartService => _cartService ?? new CartService(UnitOfWork);
 
-        private CartHistoryService _cartHistoryService ;
-        public CartHistoryService CartHistoryService => _cartHistoryService ?? new CartHistoryService(UnitOfWork);
 
         private CustomerService _customerService ;
         public CustomerService CustomerService => _customerService ?? new CustomerService(UnitOfWork);

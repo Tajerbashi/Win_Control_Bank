@@ -29,6 +29,5 @@ namespace Infrastructure.Library.Models.DTOs.BUS
         /// </summary>
         public long CartID { get; set; }
         public virtual ICollection<BlanceLog> BlanceLogs { get; set; }
-        public virtual ICollection<CartHistory> CartHistories { get; set; }
     }
 }

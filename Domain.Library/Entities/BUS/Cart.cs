@@ -49,9 +49,7 @@ namespace Domain.Library.Entities.BUS
 
         
 
-        public virtual ICollection<CartHistory> CartHistories { get; set; }
         public virtual ICollection<CartLog> CartLogs { get; set; }
-        public virtual ICollection<CartReport> CartReports { get; set; }
 
     }
 }

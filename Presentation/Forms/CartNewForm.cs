@@ -52,8 +52,6 @@ namespace Presentation.Forms
                 var cartId = Pattern.CartService.Insert(CartDTO());
                 var blance = BlanceDTO(cartId);
                 var blanceId = Pattern.BlanceService.Insert(blance);
-                var history = CartHistoryDTO(blance.Cash,blance.BlanceCash,cartId,blanceId);
-                var hisId = Pattern.CartHistoryService.Insert(history);
                 Pattern.UnitOfWork.Commit();
                 this.Close();
             }
@@ -132,22 +130,6 @@ namespace Presentation.Forms
 
         #region Fill DTO Model
 
-        private CartHistoryDTO CartHistoryDTO(double cash,double blanceCash,long cartId,long blanceId)
-        {
-            var model = new CartHistoryDTO
-            {
-                TransactionType= TransactionType.Settlemant,
-                BlanceType = BlanceType.Banking,
-                Cash = cash,
-                BlanceCash = blanceCash,
-                IsCashable = false,
-                CartID = cartId,
-                BlanceID = blanceId,
-                Message = ToString(),
-            };
-            model.Message = model.ToString();
-            return model;
-        }
         private CartDTO CartDTO()
         {
             string accountNumber = $"{AccountNumberTxt.Text}";

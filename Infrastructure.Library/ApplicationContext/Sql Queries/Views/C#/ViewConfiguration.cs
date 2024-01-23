@@ -7,11 +7,11 @@ namespace Infrastructure.Library.ApplicationContext.Sql_Queries.Views.C_
     {
         public static void BUS_View(ModelBuilder builder)
         {
-            builder.Entity<CartHistoryView>(cfg =>
-            {
-                cfg.HasNoKey();
-                cfg.ToView("History");
-            });
+            //builder.Entity<CartHistoryView>(cfg =>
+            //{
+            //    cfg.HasNoKey();
+            //    cfg.ToView("History");
+            //});
         }
     }
 }
