@@ -370,7 +370,7 @@ namespace Presentation.Forms
                 BlanceType = BlanceType.Banking,
                 CartID = cartId,
                 TransactionType = TransactionType.Harvesting,
-                Cash = cash,
+                CurrentBlance = cash,
             };
         }
         private CustomerDTO CustomerDTO()
