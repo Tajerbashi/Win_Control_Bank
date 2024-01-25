@@ -1,8 +1,7 @@
-
-
 using AutoMapper;
 using Infrastructure.Library.ApplicationContext.AutoMapper;
-using static Dapper.SqlMapper;
+using Infrastructure.Library.Models.DTOs.LOG;
+using Microsoft.Extensions.Logging;
 namespace Presentation
 {
     internal static class Program
@@ -14,14 +13,9 @@ namespace Presentation
         static void Main()
         {
 
-            MapperConfiguration mapper = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(typeof(MapperProfiler));
-            });
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            MapperConfiguration mapper = new MapperConfiguration(cfg => cfg.AddProfile(typeof(MapperProfiler)));
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainFRM());
+            Application.Run(new MainFRM(new Logger<SystemLogDTO>(new LoggerFactory())));
         }
     }
 }

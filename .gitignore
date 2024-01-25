@@ -8,6 +8,9 @@ Domain.Library/obj
 Infrastructure.Library/bin
 Infrastructure.Library/obj
 
+Logger.Library/bin
+Logger.Library/obj
+
 Infrastructure.Library/Migrations
 
 Presentation/bin
