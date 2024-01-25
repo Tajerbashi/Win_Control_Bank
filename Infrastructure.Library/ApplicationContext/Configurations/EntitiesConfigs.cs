@@ -61,6 +61,12 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
             builder.HasMany(x => x.CartHistories)
                 .WithOne(y => y.Cart)
                 .HasForeignKey(x => x.CartID);
+
+            builder.HasMany(x => x.CartHistories)
+                .WithOne(y => y.Cart)
+                .HasForeignKey(x => x.CartID)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
         }
     }
     public class BlanceConfiguration : IEntityTypeConfiguration<Blance>
@@ -70,6 +76,7 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
             builder.HasOne(x => x.Cart)
                 .WithMany(y => y.Blances)
                 .HasForeignKey(z => z.CartID);
+
 
         }
     }

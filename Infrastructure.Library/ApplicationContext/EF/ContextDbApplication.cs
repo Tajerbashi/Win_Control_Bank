@@ -1,5 +1,6 @@
 ﻿using Domain.Library.Entities.BUS;
 using Domain.Library.Entities.CNT;
+using Domain.Library.Entities.HSR;
 using Domain.Library.Entities.LOG;
 using Domain.Library.Entities.RPT;
 using Domain.Library.Entities.SEC;
@@ -45,8 +46,16 @@ namespace Infrastructure.Library.ApplicationContext.EF
         #endregion
 
         #region LOG
-        public DbSet<SystemLog> SystemLogs { get; set; }
+        public DbSet<ApplicationLog> ApplicationLogs { get; set; }
         public DbSet<EventLog> EventLogs { get; set; }
+        public DbSet<SecurityLog> SecurityLogs { get; set; }
+        public DbSet<SetupLog> SetupLogs { get; set; }
+        public DbSet<SystemLog> SystemLogs { get; set; }
+        #endregion
+
+        #region HSR
+        public DbSet<CartHistory> CartHistories { get; set; }
+
         #endregion
 
         #region RPT
