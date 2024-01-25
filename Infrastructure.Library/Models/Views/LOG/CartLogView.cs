@@ -4,7 +4,7 @@ using Infrastructure.Library.BaseModels;
 
 namespace Infrastructure.Library.Models.Views.LOG
 {
-    public class CartLogView : BaseView
+    public class EventLogView : BaseView
     {
         public TransactionType TransactionType { get; set; }
 

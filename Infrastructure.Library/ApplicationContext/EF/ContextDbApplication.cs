@@ -45,10 +45,8 @@ namespace Infrastructure.Library.ApplicationContext.EF
         #endregion
 
         #region LOG
-        public DbSet<UserLog> UserLogs { get; set; }
-        public DbSet<CartLog> CartLogs { get; set; }
-        public DbSet<CustomerLog> CustomerLogs { get; set; }
-        public DbSet<BlanceLog> BlanceLogs { get; set; }
+        public DbSet<SystemLog> SystemLogs { get; set; }
+        public DbSet<EventLog> EventLogs { get; set; }
         #endregion
 
         #region RPT

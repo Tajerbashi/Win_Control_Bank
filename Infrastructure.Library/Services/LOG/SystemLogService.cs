@@ -5,9 +5,9 @@ using Infrastructure.Library.Repositories.LOG;
 
 namespace Infrastructure.Library.Services.LOG
 {
-    public class BlanceLogService : BlanceLogRepository
+    public class SystemLogService : SystemLogRepository
     {
-        public BlanceLogService(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        public SystemLogService(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
     }

@@ -44,7 +44,7 @@ namespace Infrastructure.Library.Models.DTOs.BUS
         /// </summary>
         public CartType CartType { get; set; }
         public List<BlanceDTO> Blances { get; set; }
-        public List<CartLogDTO> CartLogs { get; set; }
+        public List<EventLogDTO> CartLogs { get; set; }
         public List<CartReportDTO> CartReports { get; set; }
         
         //public string CartTypeTitle { get => CartType.; }

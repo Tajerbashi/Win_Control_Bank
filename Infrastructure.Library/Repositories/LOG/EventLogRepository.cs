@@ -8,12 +8,12 @@ using Infrastructure.Library.Patterns;
 
 namespace Infrastructure.Library.Repositories.LOG
 {
-    public abstract class UserLogRepository : GenericRepository<UserLog, UserLogDTO, UserLogView>, IGenericQueries
+    public abstract class EventLogRepository : GenericRepository<EventLog, EventLogDTO, EventLogView>, IGenericQueries
     {
-        protected UserLogRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected EventLogRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
-        protected UserLogRepository(ContextDbApplication context) : base(context) { }
+        protected EventLogRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

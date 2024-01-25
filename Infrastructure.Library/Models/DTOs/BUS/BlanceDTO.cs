@@ -28,6 +28,5 @@ namespace Infrastructure.Library.Models.DTOs.BUS
         /// کارت آیدی
         /// </summary>
         public long CartID { get; set; }
-        public virtual ICollection<BlanceLog> BlanceLogs { get; set; }
     }
 }

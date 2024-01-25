@@ -40,9 +40,8 @@ namespace Infrastructure.Library.Patterns
 
 
         #region LOG
-        BlanceLogService BlanceLogService { get; }
-        CartLogService CartLogService { get; }
-        UserLogService UserLogService { get; }
+        EventLogService EventLogService { get; }
+        SystemLogService SystemLogService { get; }
         #endregion
 
 
@@ -60,6 +59,9 @@ namespace Infrastructure.Library.Patterns
             get => _unitOfWork = _unitOfWork ?? new UnitOfWork<ContextDbApplication>();
             set => UnitOfWork=_unitOfWork;
         }
+        private Paging _paging;
+        public Paging Paging => _paging ?? new Paging();
+
 
         private IBaseQuery _gridQuery;
         protected IBaseQuery GridQuery { get => _gridQuery = _gridQuery ?? new BaseQuery(); }
@@ -113,21 +115,15 @@ namespace Infrastructure.Library.Patterns
         #endregion
 
         #region LOG
-        private BlanceLogService _blanceLogService ;
-        public BlanceLogService BlanceLogService => _blanceLogService ?? new BlanceLogService(UnitOfWork);
+        private SystemLogService _systemLogService ;
+        public SystemLogService SystemLogService => _systemLogService ?? new SystemLogService(UnitOfWork);
 
-        private CartLogService _cartLogService ;
-        public CartLogService CartLogService => _cartLogService ?? new CartLogService(UnitOfWork);
-
-
-        private UserLogService _userLogService ;
-        public UserLogService UserLogService => _userLogService ?? new UserLogService(UnitOfWork);
-
-        private Paging _paging;
-        public Paging Paging => _paging ?? new Paging();
+        private EventLogService _eventLogService ;
+        public EventLogService EventLogService => _eventLogService ?? new EventLogService(UnitOfWork);
 
 
 
+ 
 
 
 

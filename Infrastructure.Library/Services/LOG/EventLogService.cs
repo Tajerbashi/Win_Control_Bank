@@ -4,9 +4,9 @@ using Infrastructure.Library.Repositories.LOG;
 
 namespace Infrastructure.Library.Services.LOG
 {
-    public class UserLogService : UserLogRepository
+    public class EventLogService : EventLogRepository
     {
-        public UserLogService(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        public EventLogService(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
     }

@@ -5,7 +5,7 @@ using Infrastructure.Library.BaseModels;
 
 namespace Infrastructure.Library.Models.DTOs.LOG
 {
-    public class CartLogDTO : BaseDTO
+    public class EventLogDTO : BaseDTO
     {
         public TransactionType TransactionType { get; set; }
 

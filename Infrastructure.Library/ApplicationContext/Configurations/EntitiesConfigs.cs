@@ -67,11 +67,6 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
     {
         public void Configure(EntityTypeBuilder<Blance> builder)
         {
-            builder.HasMany(x => x.BlanceLogs)
-                .WithOne(x => x.Blance)
-                .HasForeignKey(x => x.BlanceID)
-                .IsRequired();
-
             builder.HasOne(x => x.Cart)
                 .WithMany(y => y.Blances)
                 .HasForeignKey(z => z.CartID);

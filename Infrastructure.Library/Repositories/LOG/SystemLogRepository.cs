@@ -1,4 +1,5 @@
-﻿using Domain.Library.Entities.LOG;
+﻿using AutoMapper;
+using Domain.Library.Entities.LOG;
 using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
@@ -8,12 +9,12 @@ using Infrastructure.Library.Patterns;
 
 namespace Infrastructure.Library.Repositories.LOG
 {
-    public abstract class CartLogRepository : GenericRepository<CartLog, CartLogDTO, CartLogView>, IGenericQueries
+    public abstract class SystemLogRepository : GenericRepository<SystemLog, SystemLogDTO, SystemLogView>, IGenericQueries
     {
-        protected CartLogRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected SystemLogRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
-        protected CartLogRepository(ContextDbApplication context) : base(context) { }
+        protected SystemLogRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {
