@@ -46,7 +46,6 @@ namespace Domain.Library.Entities.BUS
 
         //  Child
         public virtual List<Blance> Blances { get; set; }
-        public virtual ICollection<CartLog> CartLogs { get; set; }
         public virtual ICollection<CartHistory> CartHistories { get; set; }
     }
 }
