@@ -1,6 +1,4 @@
 ﻿using log4net;
-using log4net.Config;
-using System.Reflection;
 
 namespace Presentation.Extentions
 {
@@ -22,6 +20,10 @@ namespace Presentation.Extentions
         {
             log.Fatal(msg);
         }
+        public void FatalLog(Exception ex)
+        {
+            log.Fatal(ex.Message);
+        }
         public void InfoLog(string msg)
         {
             log.Info(msg);
@@ -35,6 +37,13 @@ namespace Presentation.Extentions
             log.Warn(msg);
         }
 
-
+        public void ExceptionLog(Exception ex)
+        {
+            log.Error("این یک خطا است");
+            log.Info("این یک انفو است");
+            log.Fatal("این یک فتال است");
+            log.Debug("این یک رفع است");
+            log.Warn("این یک هشدار است");
+        }
     }
 }

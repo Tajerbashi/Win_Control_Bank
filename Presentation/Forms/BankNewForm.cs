@@ -42,15 +42,16 @@ namespace Presentation.Forms
         {
             try
             {
-                throw new Exception("Error ...");
+                throw new LogException("خطا دسترسی اعمال شده است");
             }
-            catch (Exception EX)
+            catch (Exception ex)
             {
-                throw;
+                // Log
+                _loggerProvider.ExceptionLog(ex);
             }
             finally
             {
-                _loggerProvider.ErrorLog("Error Complete");
+                _loggerProvider.ExceptionLog(new LogException());
             }
         }
 
