@@ -40,7 +40,6 @@ namespace Infrastructure.Library.Patterns
 
 
         #region LOG
-        EventLogService EventLogService { get; }
         SystemLogService SystemLogService { get; }
         #endregion
 
@@ -118,8 +117,6 @@ namespace Infrastructure.Library.Patterns
         private SystemLogService _systemLogService ;
         public SystemLogService SystemLogService => _systemLogService ?? new SystemLogService(UnitOfWork);
 
-        private EventLogService _eventLogService ;
-        public EventLogService EventLogService => _eventLogService ?? new EventLogService(UnitOfWork);
 
 
 

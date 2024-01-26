@@ -84,8 +84,6 @@ namespace Infrastructure.Library.BaseService
                 model.UpdateBy = 0;
                 model.UpdateDate = null;
 
-                model.DeleteBy = 0;
-                model.DeleteDate = null;
 
                 model.IsDeleted = false;
                 model.IsActive = true;
@@ -106,9 +104,9 @@ namespace Infrastructure.Library.BaseService
             {
                 var model = Mapper.Map<TEntity>(obj);
                 model.UpdateDate = DateTime.Now;
-                model.DeleteBy = 0;
                 Context.Entry(model).State = EntityState.Modified;
                 Entities.Attach(model);
+                Context.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -119,16 +117,16 @@ namespace Infrastructure.Library.BaseService
         public virtual void Delete(object id)
         {
             TEntity existing = Entities.Find(id);
-            existing.DeleteDate = DateTime.Now;
             existing.IsDeleted = true;
             existing.IsActive = false;
+            Context.SaveChanges();
         }
         public virtual void Delete(Guid guid)
         {
             TEntity existing = Entities.Where(x => x.Guid.Equals(guid)).Single();
-            existing.DeleteDate = DateTime.Now;
             existing.IsDeleted = true;
             existing.IsActive = false;
+            Context.SaveChanges();
         }
         public virtual object Save()
         {
