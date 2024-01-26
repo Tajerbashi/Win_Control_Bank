@@ -1,11 +1,33 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Infrastructure.Library.ApplicationContext.AutoMapper;
-using Infrastructure.Library.Models.DTOs.LOG;
-using Microsoft.Extensions.Logging;
+using log4net;
+using log4net.Config;
 using Presentation.Extentions;
+using System.Reflection;
 namespace Presentation
 {
-    internal static class Program
+    #region ConsoleTest
+
+    //class Program
+    //{
+    //    private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+    //    static void Main(string[] args)
+    //    {
+    //        var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
+    //        XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
+    //        Console.WriteLine("Hello World !");
+    //        log.Info("Log Info");
+    //        log.Debug("Log Debug");
+    //        log.Error("Log Error");
+    //        log.Warn("Log Warn");
+    //        log.Fatal("Log Fatal");
+    //        Console.ReadLine();
+    //    }
+    //}
+
+    #endregion
+
+    internal class Program
     {
         /// <summary>
         ///  The main entry point for the application.
@@ -13,16 +35,11 @@ namespace Presentation
         [STAThread]
         static void Main()
         {
-            ILoggerFactory loggerFactory = LoggerFactory.Create(
-                builder =>
-                    builder.SetMinimumLevel(LogLevel.Trace));
-            ILogger logger = loggerFactory.CreateLogger(typeof(Program));
-            logger.LogInformation("Hello World ! {description}", "fun");
+            var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
+            XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
             MapperConfiguration mapper = new MapperConfiguration(cfg => cfg.AddProfile(typeof(MapperProfiler)));
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainFRM(new Logger<SystemLogDTO>(new LoggerFactory())));
+            Application.Run(new MainFRM());
         }
-
-
     }
 }

@@ -1,5 +1,4 @@
-﻿using Infrastructure.Library.Patterns;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Presentation.Extentions;
 using Presentation.UserControls;
 using System.Runtime.InteropServices;
@@ -8,6 +7,7 @@ namespace Presentation
 {
     public partial class MainFRM : Form
     {
+        LoggerProvider<MainFRM> loggerProvider = new LoggerProvider<MainFRM>();
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -27,9 +27,9 @@ namespace Presentation
         public static extern bool ReleaseCapture();
 
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
-        public MainFRM(ILogger logger)
+        public MainFRM()
         {
-            InitializeComponent(); 
+            InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             Timer.Tick += new EventHandler(timer_Tick);
@@ -43,8 +43,10 @@ namespace Presentation
         }
 
         #endregion
+
         private void MainFRM_Load(object sender, EventArgs e)
         {
+            loggerProvider.InfoLog("شروع نرم افزار");
             OnlineExchangeUC panel = new OnlineExchangeUC();
             if (MainPanel.Controls.Count > 0)
             {
@@ -174,7 +176,7 @@ namespace Presentation
             MainPanel.Controls.Add(panel);
         }
 
-     
+
         private void BalanceBtn_Click(object sender, EventArgs e)
         {
             BlanceUC panel = new BlanceUC();
