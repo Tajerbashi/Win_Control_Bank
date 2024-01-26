@@ -1,4 +1,7 @@
-﻿namespace Domain.Library.Bases
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Domain.Library.Bases
 {
     public interface IBaseEntity
     {
@@ -6,25 +9,24 @@
     }
     public abstract class BaseEntity<T> : IBaseEntity
     {
-        public Guid Guid { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public T ID { get; set; }
-        public DateTime CreateDate { get; set; }
-        public T CreateBy { get; set; }
-        public DateTime? UpdateDate { get; set; }
-        public T? UpdateBy { get; set; }
-        public DateTime? DeleteDate { get; set; }
-        public T? DeleteBy { get; set; }
-
-
+        public Guid Guid { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsActive { get; set; }
     }
     public abstract class BaseEntity : BaseEntity<long>
     {
-
+        public DateTime CreateDate { get; set; }
+        public long CreateBy { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public long? UpdateBy { get; set; }
     }
     public abstract class GeneralEntity : BaseEntity
     {
+        public DateTime? DeleteDate { get; set; }
+        public long? DeleteBy { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
     }
