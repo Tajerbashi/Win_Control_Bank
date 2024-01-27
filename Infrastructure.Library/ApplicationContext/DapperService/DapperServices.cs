@@ -3,7 +3,7 @@ using System.Data;
 
 namespace Infrastructure.Library.ApplicationContext.DapperService
 {
-    public class DapperServices
+    public sealed class DapperServices 
     {
         private readonly IDbConnection _connection;
         public DapperServices()
@@ -11,7 +11,9 @@ namespace Infrastructure.Library.ApplicationContext.DapperService
             //_connection = new SqlConnection(@"Data Source=RHG-DATABASE\DEV;Initial Catalog=Accounting_Db; User ID=sa; Password=soft157703ware;TrustServerCertificate=True;");
             _connection = new SqlConnection(@"Data Source=TAJERBASHI;Initial Catalog=Accounting_Db; User ID=sa; Password=123123;TrustServerCertificate=True;");
         }
-
         public IDbConnection Execute { get { return _connection; } }
+
+       
+
     }
 }

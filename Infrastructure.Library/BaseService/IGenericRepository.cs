@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Library.Bases;
 using Infrastructure.Library.ApplicationContext.AutoMapper;
+using Infrastructure.Library.ApplicationContext.DapperService;
 using Infrastructure.Library.ApplicationContext.EF;
 using Infrastructure.Library.BaseModels;
 using Infrastructure.Library.Patterns;
@@ -34,6 +35,8 @@ namespace Infrastructure.Library.BaseService
         public ContextDbApplication Context { get; set; }
         protected IMapper Mapper { get; }
 
+        protected IDbConnection DapperServices;
+
 
         public GenericRepository(IUnitOfWork<ContextDbApplication> unitOfWork)
             : this(unitOfWork.Context)
@@ -43,18 +46,21 @@ namespace Infrastructure.Library.BaseService
                 cfg.AddProfile(typeof(MapperProfiler));
             });
             Mapper = ConfigMapper.CreateMapper();
+            DapperServices = new DapperServices().Execute;
         }
 
         protected GenericRepository(ContextDbApplication context)
         {
             _isDisposed = false;
             this.Context = context;
+            DapperServices = new DapperServices().Execute;
         }
 
         protected virtual DbSet<TEntity> Entities
         {
             get { return _entities ?? (_entities = Context.Set<TEntity>()); }
         }
+
 
         public void Dispose()
         {
