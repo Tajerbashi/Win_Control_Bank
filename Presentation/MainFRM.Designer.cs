@@ -359,6 +359,7 @@
             RightToLeft = RightToLeft.Yes;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MainFORM";
+            FormClosing += MainFRM_FormClosing;
             Load += MainFRM_Load;
             groupBox1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);

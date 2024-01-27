@@ -129,6 +129,7 @@
             SearchBtn.TabIndex = 1;
             SearchBtn.Text = "جستجو";
             SearchBtn.UseVisualStyleBackColor = true;
+            SearchBtn.Click += SearchBtn_Click;
             // 
             // SearchTxt
             // 

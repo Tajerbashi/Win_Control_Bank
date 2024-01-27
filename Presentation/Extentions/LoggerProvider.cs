@@ -39,11 +39,8 @@ namespace Presentation.Extentions
 
         public void ExceptionLog(Exception ex)
         {
-            log.Error("این یک خطا است");
-            log.Info("این یک انفو است");
-            log.Fatal("این یک فتال است");
-            log.Debug("این یک رفع است");
-            log.Warn("این یک هشدار است");
+            log.Error(ex);
+            log.Error(ex.Message);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Library.Patterns;
+using Presentation.Extentions;
 using Presentation.Forms;
 using System.Data;
 
@@ -7,10 +8,12 @@ namespace Presentation.UserControls
     public partial class BankUC : UserControl
     {
         private IFacadPattern Pattern;
+        private readonly LoggerProvider<BankUC> loggerProvider;
         public BankUC()
         {
             InitializeComponent();
             Pattern = new FacadPattern();
+            loggerProvider = new LoggerProvider<BankUC>();
         }
         private void ShowDataGrid()
         {
@@ -31,6 +34,18 @@ namespace Presentation.UserControls
         private void BankUC_Load(object sender, EventArgs e)
         {
             ShowDataGrid();
+        }
+
+        private void SearchBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var data = Pattern.BankService.GetData();
+            }
+            catch (Exception ex)
+            {
+                loggerProvider.ExceptionLog(ex);
+            }
         }
     }
 }

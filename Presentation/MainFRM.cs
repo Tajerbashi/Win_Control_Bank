@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Common.Library.Utilities;
+using Microsoft.Extensions.Logging;
 using Presentation.Extentions;
 using Presentation.UserControls;
 using System.Runtime.InteropServices;
@@ -46,7 +47,7 @@ namespace Presentation
 
         private void MainFRM_Load(object sender, EventArgs e)
         {
-            loggerProvider.InfoLog("شروع نرم افزار");
+            loggerProvider.InfoLog($"شروع نرم افزار  {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
             OnlineExchangeUC panel = new OnlineExchangeUC();
             if (MainPanel.Controls.Count > 0)
             {
@@ -54,33 +55,6 @@ namespace Presentation
             }
             MainPanel.Controls.Add(panel);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         private void ExitBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -187,5 +161,9 @@ namespace Presentation
             MainPanel.Controls.Add(panel);
         }
 
+        private void MainFRM_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            loggerProvider.InfoLog($"بستن نرم افزار  {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
+        }
     }
 }
