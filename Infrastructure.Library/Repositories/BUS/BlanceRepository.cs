@@ -43,14 +43,21 @@ namespace Infrastructure.Library.Repositories.BUS
         public string ShowFromTo(string from, string to)
         {
             throw new NotImplementedException();
-        } 
+        }
         public string ShowAllByCartId(long Id, string paging)
         {
             throw new NotImplementedException();
         }
-         public string Show50LastTransactions(string paging)
+        public string Show50LastTransactions(string paging)
         {
-            throw new NotImplementedException();
+            return ($@"
+SELECT TOP 50 *
+FROM BUS.Carts C
+INNER JOIN BUS.Blances B ON B.CartID = C.ID
+WHERE C.IsDeleted = 0 
+ORDER BY B.ID DESC
+{paging}
+");
         }
 
         public IEnumerable<KeyValue<long>> TitleValue()

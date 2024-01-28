@@ -1,5 +1,4 @@
 ﻿using Domain.Library.Bases;
-using Domain.Library.Entities.LOG;
 using Domain.Library.Enums;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,7 +15,7 @@ namespace Domain.Library.Entities.BUS
         public BlanceType BlanceType { get; set; }
 
         [Description("مبلغ تراکنش")]
-        public double CurrentBlance { get; set; }
+        public double TransactionBlance { get; set; }
 
         [Description("نوع تراکنش")]
         public TransactionType TransactionType { get; set; }

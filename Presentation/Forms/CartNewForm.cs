@@ -154,7 +154,7 @@ namespace Presentation.Forms
                 BlanceCash = Convert.ToDouble(BlanceTxt.Text),
                 BlanceType= BlanceType.Banking,
                 TransactionType = TransactionType.Settlemant,
-                CurrentBlance = Convert.ToDouble(BlanceTxt.Text),
+                TransactionBlance = Convert.ToDouble(BlanceTxt.Text),
             };
         }
 
