@@ -27,7 +27,7 @@ namespace Infrastructure.Library.Repositories.BUS
         }
         public double GetBlanceCartById(long Id)
         {
-            var result = Context.Blances.Where(x => x.CartID == Id && x.BlanceType == BlanceType.Banking).Single().BlanceCash;
+            var result = Context.Blances.Where(x => x.CartID == Id && x.BlanceType == BlanceType.Banking).Single().NewBlanceCash;
             return result;
         }
         public string Search(string value)

@@ -6,9 +6,13 @@ namespace Infrastructure.Library.Models.DTOs.BUS
     public class BlanceDTO : BaseDTO
     {
         /// <summary>
-        /// مبلغ موجودی
+        /// مبلغ موجودی قبلی
         /// </summary>
-        public double BlanceCash { get; set; }
+        public double OldBlanceCash { get; set; }
+        /// <summary>
+        /// مبلغ موجودی جدید
+        /// </summary>
+        public double NewBlanceCash { get; set; }
         /// <summary>
         /// نوع موجودی
         /// </summary>
@@ -20,7 +24,7 @@ namespace Infrastructure.Library.Models.DTOs.BUS
         /// <summary>
         /// مبلغ تراکنش
         /// </summary>
-        public double TransactionBlance { get; set; }
+        public double TransactionCash { get; set; }
         /// <summary>
         /// کارت آیدی
         /// </summary>

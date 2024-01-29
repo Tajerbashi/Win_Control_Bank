@@ -366,11 +366,12 @@ namespace Presentation.Forms
                 blanceCash = lastblance - cash;
             return new BlanceDTO
             {
-                BlanceCash = blanceCash,
+                NewBlanceCash = blanceCash,
+                OldBlanceCash = blanceCash,
                 BlanceType = BlanceType.Banking,
                 CartID = cartId,
                 TransactionType = TransactionType.Harvesting,
-                TransactionBlance = cash,
+                TransactionCash = cash,
             };
         }
         private CustomerDTO CustomerDTO()

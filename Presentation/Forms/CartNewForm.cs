@@ -43,9 +43,6 @@ namespace Presentation.Forms
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            //using (var context = unitOfWork.BeginTransaction())
-            //{
-
             Pattern.UnitOfWork.BeginTransaction();
             try
             {
@@ -136,14 +133,13 @@ namespace Presentation.Forms
             return new CartDTO
             {
                 AccountNumber = accountNumber,
-                Key = Guid.NewGuid(),
-                CartType = CartType.Main,
                 ShabaAccountNumber = ShabaCartNumber.Text,
-                CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value,
-                ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value,
-                BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value,
+                CartType = CartType.Main,
+                Key = Guid.NewGuid(),
                 ExpireDate = (DateTime)ExpireDate.Value,
-
+                ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value,
+                CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value,
+                BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value,
             };
         }
         private BlanceDTO BlanceDTO(long cartID)
@@ -151,10 +147,11 @@ namespace Presentation.Forms
             return new BlanceDTO
             {
                 CartID = cartID,
-                BlanceCash = Convert.ToDouble(BlanceTxt.Text),
+                OldBlanceCash = Convert.ToDouble(BlanceTxt.Text),
+                NewBlanceCash  = Convert.ToDouble(BlanceTxt.Text),
                 BlanceType= BlanceType.Banking,
                 TransactionType = TransactionType.Settlemant,
-                TransactionBlance = Convert.ToDouble(BlanceTxt.Text),
+                TransactionCash = Convert.ToDouble(BlanceTxt.Text),
             };
         }
 

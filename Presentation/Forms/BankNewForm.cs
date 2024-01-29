@@ -37,22 +37,8 @@ namespace Presentation.Forms
             _loggerProvider = new LoggerProvider<BankNewForm>();
         }
         #endregion
-
         private void BankNewForm_Load(object sender, EventArgs e)
         {
-            try
-            {
-                throw new LogException("خطا دسترسی اعمال شده است");
-            }
-            catch (Exception ex)
-            {
-                // Log
-                _loggerProvider.ExceptionLog(ex);
-            }
-            finally
-            {
-                _loggerProvider.ExceptionLog(new LogException());
-            }
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
