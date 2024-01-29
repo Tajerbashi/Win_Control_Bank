@@ -7,7 +7,6 @@ using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Models.Views.BUS;
 using Infrastructure.Library.Patterns;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Library.Repositories.BUS
 {
@@ -135,12 +134,30 @@ ORDER BY BL.ID DESC
 ");
         }
 
-        public IEnumerable<KeyValue<long>> TitleValue()
+        public IEnumerable<KeyValue<long>> TitleValueBlanceType()
         {
             return new List<KeyValue<long>>()
             {
                 new KeyValue<long> { Value = 1 ,Key = "نقدی"},
                 new KeyValue<long> { Value = 2 ,Key = "بانکی"},
+            };
+        }
+        public IEnumerable<KeyValue<long>> TitleValueTransactionType()
+        {
+            return new List<KeyValue<long>>()
+            {
+                new KeyValue<long> { Value = 1 ,Key = "واریزی"},
+                new KeyValue<long> { Value = 2 ,Key = "برداشت"},
+            };
+        }
+
+        public IEnumerable<KeyValue<long>> TitleValue()
+        {
+            return new List<KeyValue<long>>()
+            {
+                new KeyValue<long> { Value = 1 ,Key = "برداشت از حساب"},
+                new KeyValue<long> { Value = 2 ,Key = "کارت به کارت"},
+                new KeyValue<long> { Value = 3 ,Key = "واریزی به حساب"},
             };
         }
     }

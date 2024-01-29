@@ -46,7 +46,7 @@
             // 
             label1.BackColor = Color.Black;
             label1.ForeColor = Color.White;
-            label1.Location = new Point(238, 7);
+            label1.Location = new Point(238, 6);
             label1.Name = "label1";
             label1.Size = new Size(902, 32);
             label1.TabIndex = 14;

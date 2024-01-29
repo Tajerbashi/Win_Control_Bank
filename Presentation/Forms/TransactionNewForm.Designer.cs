@@ -87,7 +87,7 @@
             // label6
             // 
             label6.ForeColor = Color.White;
-            label6.Location = new Point(1028, 18);
+            label6.Location = new Point(1022, 18);
             label6.Name = "label6";
             label6.Size = new Size(95, 32);
             label6.TabIndex = 31;
@@ -99,10 +99,10 @@
             TransactionTypeCombo.Cursor = Cursors.Hand;
             TransactionTypeCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             TransactionTypeCombo.FormattingEnabled = true;
-            TransactionTypeCombo.Location = new Point(844, 53);
+            TransactionTypeCombo.Location = new Point(759, 53);
             TransactionTypeCombo.Name = "TransactionTypeCombo";
             TransactionTypeCombo.RightToLeft = RightToLeft.Yes;
-            TransactionTypeCombo.Size = new Size(279, 33);
+            TransactionTypeCombo.Size = new Size(358, 33);
             TransactionTypeCombo.TabIndex = 0;
             TransactionTypeCombo.SelectedValueChanged += TransactionTypeCombo_SelectedValueChanged;
             // 
@@ -186,9 +186,9 @@
             NewDataBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             NewDataBtn.FlatStyle = FlatStyle.Flat;
             NewDataBtn.ForeColor = Color.FromArgb(0, 64, 0);
-            NewDataBtn.Location = new Point(6, 195);
+            NewDataBtn.Location = new Point(11, 194);
             NewDataBtn.Name = "NewDataBtn";
-            NewDataBtn.Size = new Size(32, 32);
+            NewDataBtn.Size = new Size(33, 33);
             NewDataBtn.TabIndex = 59;
             NewDataBtn.Text = "+";
             NewDataBtn.UseVisualStyleBackColor = false;
@@ -317,16 +317,16 @@
             TransactionKindCombo.Cursor = Cursors.Hand;
             TransactionKindCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             TransactionKindCombo.FormattingEnabled = true;
-            TransactionKindCombo.Location = new Point(6, 53);
+            TransactionKindCombo.Location = new Point(11, 53);
             TransactionKindCombo.Name = "TransactionKindCombo";
             TransactionKindCombo.RightToLeft = RightToLeft.Yes;
-            TransactionKindCombo.Size = new Size(555, 33);
+            TransactionKindCombo.Size = new Size(358, 33);
             TransactionKindCombo.TabIndex = 2;
             // 
             // label2
             // 
             label2.ForeColor = Color.White;
-            label2.Location = new Point(467, 18);
+            label2.Location = new Point(274, 18);
             label2.Name = "label2";
             label2.Size = new Size(95, 32);
             label2.TabIndex = 49;
@@ -338,10 +338,10 @@
             FromAccountCombo.Cursor = Cursors.Hand;
             FromAccountCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             FromAccountCombo.FormattingEnabled = true;
-            FromAccountCombo.Location = new Point(6, 124);
+            FromAccountCombo.Location = new Point(11, 124);
             FromAccountCombo.Name = "FromAccountCombo";
             FromAccountCombo.RightToLeft = RightToLeft.Yes;
-            FromAccountCombo.Size = new Size(556, 33);
+            FromAccountCombo.Size = new Size(545, 33);
             FromAccountCombo.TabIndex = 4;
             FromAccountCombo.SelectedValueChanged += FromAccountCombo_SelectedValueChanged;
             // 
@@ -358,11 +358,11 @@
             // label8
             // 
             label8.ForeColor = Color.White;
-            label8.Location = new Point(743, 18);
+            label8.Location = new Point(576, 18);
             label8.Name = "label8";
-            label8.Size = new Size(95, 32);
+            label8.Size = new Size(167, 32);
             label8.TabIndex = 46;
-            label8.Text = "موجودیت";
+            label8.Text = "نوع موجودی مالک کارت";
             label8.TextAlign = ContentAlignment.MiddleRight;
             // 
             // BlanceTypeCombo
@@ -370,10 +370,10 @@
             BlanceTypeCombo.Cursor = Cursors.Hand;
             BlanceTypeCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             BlanceTypeCombo.FormattingEnabled = true;
-            BlanceTypeCombo.Location = new Point(567, 53);
+            BlanceTypeCombo.Location = new Point(385, 53);
             BlanceTypeCombo.Name = "BlanceTypeCombo";
             BlanceTypeCombo.RightToLeft = RightToLeft.Yes;
-            BlanceTypeCombo.Size = new Size(271, 33);
+            BlanceTypeCombo.Size = new Size(358, 33);
             BlanceTypeCombo.TabIndex = 1;
             // 
             // ToAccountCombo
@@ -381,10 +381,10 @@
             ToAccountCombo.Cursor = Cursors.Hand;
             ToAccountCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             ToAccountCombo.FormattingEnabled = true;
-            ToAccountCombo.Location = new Point(42, 195);
+            ToAccountCombo.Location = new Point(50, 194);
             ToAccountCombo.Name = "ToAccountCombo";
             ToAccountCombo.RightToLeft = RightToLeft.Yes;
-            ToAccountCombo.Size = new Size(519, 33);
+            ToAccountCombo.Size = new Size(506, 33);
             ToAccountCombo.TabIndex = 6;
             ToAccountCombo.Visible = false;
             // 
@@ -407,7 +407,7 @@
             FromCustomerCombo.Location = new Point(567, 124);
             FromCustomerCombo.Name = "FromCustomerCombo";
             FromCustomerCombo.RightToLeft = RightToLeft.Yes;
-            FromCustomerCombo.Size = new Size(556, 33);
+            FromCustomerCombo.Size = new Size(550, 33);
             FromCustomerCombo.TabIndex = 3;
             FromCustomerCombo.SelectedIndexChanged += FromCustomerCombo_SelectedIndexChanged;
             // 
@@ -416,10 +416,10 @@
             ToCustomerCombo.Cursor = Cursors.Hand;
             ToCustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             ToCustomerCombo.FormattingEnabled = true;
-            ToCustomerCombo.Location = new Point(567, 195);
+            ToCustomerCombo.Location = new Point(567, 194);
             ToCustomerCombo.Name = "ToCustomerCombo";
             ToCustomerCombo.RightToLeft = RightToLeft.Yes;
-            ToCustomerCombo.Size = new Size(556, 33);
+            ToCustomerCombo.Size = new Size(550, 33);
             ToCustomerCombo.TabIndex = 5;
             ToCustomerCombo.Visible = false;
             ToCustomerCombo.SelectedIndexChanged += ToCustomerCombo_SelectedIndexChanged;

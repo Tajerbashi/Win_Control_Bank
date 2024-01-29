@@ -131,7 +131,7 @@ namespace Presentation.Forms
         private void TransactionTypeCombo_SelectedValueChanged(object sender, EventArgs e)
         {
             var type = ((KeyValue<long>)TransactionTypeCombo.SelectedItem).Value;
-            MSG.Text = type.ToString();
+            MSG.Text = ((KeyValue<long>)TransactionTypeCombo.SelectedItem).Key;
             switch (type)
             {
                 case 1:
@@ -143,17 +143,18 @@ namespace Presentation.Forms
                         NewDataBtn.Visible = false;
                         TransactionKindCombo.SelectedIndex = 2;
                         BlanceTypeCombo.SelectedIndex = 2;
+                        NewDataPanel.Visible = false;
                         break;
                     }
                 case 2:
                     {
-                        label5.Visible = false;
-                        ToCustomerCombo.Visible = false;
-                        label7.Visible = false;
-                        ToAccountCombo.Visible = false;
-                        NewDataBtn.Visible = false;
+                        label5.Visible = true;
+                        ToCustomerCombo.Visible = true;
+                        label7.Visible = true;
+                        ToAccountCombo.Visible = true;
+                        NewDataBtn.Visible = true;
                         TransactionKindCombo.SelectedIndex = 2;
-                        BlanceTypeCombo.SelectedIndex = 1;
+                        NewDataPanel.Visible = false;
                         break;
                     }
                 case 3:
@@ -163,16 +164,6 @@ namespace Presentation.Forms
                         label7.Visible = true;
                         ToAccountCombo.Visible = true;
                         NewDataBtn.Visible = true;
-                        TransactionKindCombo.SelectedIndex = 2;
-                        break;
-                    }
-                case 4:
-                    {
-                        label5.Visible = false;
-                        ToCustomerCombo.Visible = false;
-                        label7.Visible = false;
-                        ToAccountCombo.Visible = false;
-                        NewDataBtn.Visible = false;
                         TransactionKindCombo.SelectedIndex = 1;
                         BlanceTypeCombo.SelectedIndex = 2;
                         break;
@@ -303,12 +294,12 @@ namespace Presentation.Forms
         private void UpdateComboBoxes()
         {
             TransactionTypeCombo = ComboBoxGenerator.FillData(TransactionTypeCombo, Pattern.BlanceService.TitleValue(), Convert.ToByte(TransactionTypeCombo.Tag));
-            TransactionKindCombo = ComboBoxGenerator.FillData(TransactionKindCombo, Pattern.BlanceService.TitleValue(), Convert.ToByte(TransactionKindCombo.Tag));
+            TransactionKindCombo = ComboBoxGenerator.FillData(TransactionKindCombo, Pattern.BlanceService.TitleValueTransactionType(), Convert.ToByte(TransactionKindCombo.Tag));
 
             FromCustomerCombo = ComboBoxGenerator.FillData(FromCustomerCombo, Pattern.CartService.TitleValuesParent(), Convert.ToByte(FromCustomerCombo.Tag));
             ToCustomerCombo = ComboBoxGenerator.FillData(ToCustomerCombo, Pattern.CartService.TitleValuesAllParentCart(), Convert.ToByte(ToCustomerCombo.Tag));
 
-            BlanceTypeCombo = ComboBoxGenerator.FillData(BlanceTypeCombo, Pattern.BlanceService.TitleValue(), Convert.ToByte(BlanceTypeCombo.Tag));
+            BlanceTypeCombo = ComboBoxGenerator.FillData(BlanceTypeCombo, Pattern.BlanceService.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
         }
 
         private void ToCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -384,5 +375,6 @@ namespace Presentation.Forms
                 Key = Guid.NewGuid()
             };
         }
+        
     }
 }

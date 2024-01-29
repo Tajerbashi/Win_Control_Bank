@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            ExitBtn = new Button();
             BankBtn = new Button();
             OnlineExchangeBtn = new Button();
             label1 = new Label();
             LockBtn = new Button();
-            ExitBtn = new Button();
             ClockLbl = new Label();
             SettingBtn = new Button();
             BalanceBtn = new Button();
@@ -43,8 +43,10 @@
             ReportBtn = new Button();
             UserBtn = new Button();
             CartBtn = new Button();
+            progressBar2 = new ProgressBar();
             groupBox2 = new GroupBox();
             MainPanel = new Panel();
+            progressBar3 = new ProgressBar();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -53,11 +55,11 @@
             // 
             groupBox1.BackColor = Color.Transparent;
             groupBox1.BackgroundImageLayout = ImageLayout.None;
+            groupBox1.Controls.Add(ExitBtn);
             groupBox1.Controls.Add(BankBtn);
             groupBox1.Controls.Add(OnlineExchangeBtn);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(LockBtn);
-            groupBox1.Controls.Add(ExitBtn);
             groupBox1.Controls.Add(ClockLbl);
             groupBox1.Controls.Add(SettingBtn);
             groupBox1.Controls.Add(BalanceBtn);
@@ -67,6 +69,7 @@
             groupBox1.Controls.Add(ReportBtn);
             groupBox1.Controls.Add(UserBtn);
             groupBox1.Controls.Add(CartBtn);
+            groupBox1.Controls.Add(progressBar2);
             groupBox1.FlatStyle = FlatStyle.Flat;
             groupBox1.ForeColor = Color.White;
             groupBox1.Location = new Point(1162, 5);
@@ -75,6 +78,25 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "مدیریت";
+            // 
+            // ExitBtn
+            // 
+            ExitBtn.BackColor = Color.FromArgb(255, 192, 192);
+            ExitBtn.Cursor = Cursors.Hand;
+            ExitBtn.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 128);
+            ExitBtn.FlatAppearance.BorderSize = 2;
+            ExitBtn.FlatAppearance.CheckedBackColor = Color.Gray;
+            ExitBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 0, 0);
+            ExitBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 128);
+            ExitBtn.FlatStyle = FlatStyle.Flat;
+            ExitBtn.ForeColor = Color.Red;
+            ExitBtn.Location = new Point(131, 722);
+            ExitBtn.Name = "ExitBtn";
+            ExitBtn.Size = new Size(114, 39);
+            ExitBtn.TabIndex = 11;
+            ExitBtn.Text = "خروج";
+            ExitBtn.UseVisualStyleBackColor = false;
+            ExitBtn.Click += ExitBtn_Click;
             // 
             // BankBtn
             // 
@@ -88,7 +110,7 @@
             BankBtn.FlatStyle = FlatStyle.Flat;
             BankBtn.Font = new Font("IRANSansWeb", 14.25F);
             BankBtn.ForeColor = Color.White;
-            BankBtn.Location = new Point(126, 166);
+            BankBtn.Location = new Point(130, 179);
             BankBtn.Name = "BankBtn";
             BankBtn.Size = new Size(114, 40);
             BankBtn.TabIndex = 15;
@@ -107,7 +129,7 @@
             OnlineExchangeBtn.FlatStyle = FlatStyle.Flat;
             OnlineExchangeBtn.Font = new Font("IRANSansWeb", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             OnlineExchangeBtn.ForeColor = Color.White;
-            OnlineExchangeBtn.Location = new Point(6, 113);
+            OnlineExchangeBtn.Location = new Point(10, 126);
             OnlineExchangeBtn.Name = "OnlineExchangeBtn";
             OnlineExchangeBtn.Size = new Size(234, 47);
             OnlineExchangeBtn.TabIndex = 14;
@@ -123,7 +145,7 @@
             label1.FlatStyle = FlatStyle.Flat;
             label1.Font = new Font("IRANSansWeb", 17.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(6, 28);
+            label1.Location = new Point(10, 28);
             label1.Name = "label1";
             label1.Size = new Size(234, 78);
             label1.TabIndex = 13;
@@ -142,31 +164,12 @@
             LockBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             LockBtn.FlatStyle = FlatStyle.Flat;
             LockBtn.ForeColor = Color.White;
-            LockBtn.Location = new Point(10, 722);
+            LockBtn.Location = new Point(9, 722);
             LockBtn.Name = "LockBtn";
             LockBtn.Size = new Size(114, 39);
             LockBtn.TabIndex = 12;
             LockBtn.Text = "قفل";
             LockBtn.UseVisualStyleBackColor = false;
-            // 
-            // ExitBtn
-            // 
-            ExitBtn.BackColor = Color.FromArgb(255, 192, 192);
-            ExitBtn.Cursor = Cursors.Hand;
-            ExitBtn.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 128);
-            ExitBtn.FlatAppearance.BorderSize = 2;
-            ExitBtn.FlatAppearance.CheckedBackColor = Color.Gray;
-            ExitBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 0, 0);
-            ExitBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 128);
-            ExitBtn.FlatStyle = FlatStyle.Flat;
-            ExitBtn.ForeColor = Color.Red;
-            ExitBtn.Location = new Point(130, 722);
-            ExitBtn.Name = "ExitBtn";
-            ExitBtn.Size = new Size(114, 39);
-            ExitBtn.TabIndex = 11;
-            ExitBtn.Text = "خروج";
-            ExitBtn.UseVisualStyleBackColor = false;
-            ExitBtn.Click += ExitBtn_Click;
             // 
             // ClockLbl
             // 
@@ -206,7 +209,7 @@
             BalanceBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             BalanceBtn.FlatStyle = FlatStyle.Flat;
             BalanceBtn.ForeColor = Color.White;
-            BalanceBtn.Location = new Point(28, 398);
+            BalanceBtn.Location = new Point(32, 398);
             BalanceBtn.Name = "BalanceBtn";
             BalanceBtn.Size = new Size(190, 40);
             BalanceBtn.TabIndex = 6;
@@ -224,7 +227,7 @@
             TaransactionBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             TaransactionBtn.FlatStyle = FlatStyle.Flat;
             TaransactionBtn.ForeColor = Color.White;
-            TaransactionBtn.Location = new Point(28, 306);
+            TaransactionBtn.Location = new Point(32, 306);
             TaransactionBtn.Name = "TaransactionBtn";
             TaransactionBtn.Size = new Size(190, 40);
             TaransactionBtn.TabIndex = 5;
@@ -242,7 +245,7 @@
             CashMoneyBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             CashMoneyBtn.FlatStyle = FlatStyle.Flat;
             CashMoneyBtn.ForeColor = Color.White;
-            CashMoneyBtn.Location = new Point(28, 352);
+            CashMoneyBtn.Location = new Point(32, 352);
             CashMoneyBtn.Name = "CashMoneyBtn";
             CashMoneyBtn.Size = new Size(190, 40);
             CashMoneyBtn.TabIndex = 4;
@@ -260,7 +263,7 @@
             CalculateBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             CalculateBtn.FlatStyle = FlatStyle.Flat;
             CalculateBtn.ForeColor = Color.White;
-            CalculateBtn.Location = new Point(28, 443);
+            CalculateBtn.Location = new Point(32, 443);
             CalculateBtn.Name = "CalculateBtn";
             CalculateBtn.Size = new Size(190, 40);
             CalculateBtn.TabIndex = 3;
@@ -278,7 +281,7 @@
             ReportBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             ReportBtn.FlatStyle = FlatStyle.Flat;
             ReportBtn.ForeColor = Color.White;
-            ReportBtn.Location = new Point(28, 489);
+            ReportBtn.Location = new Point(32, 489);
             ReportBtn.Name = "ReportBtn";
             ReportBtn.Size = new Size(190, 40);
             ReportBtn.TabIndex = 2;
@@ -298,7 +301,7 @@
             UserBtn.FlatStyle = FlatStyle.Flat;
             UserBtn.Font = new Font("IRANSansWeb", 14.25F);
             UserBtn.ForeColor = Color.White;
-            UserBtn.Location = new Point(6, 212);
+            UserBtn.Location = new Point(10, 225);
             UserBtn.Name = "UserBtn";
             UserBtn.Size = new Size(234, 50);
             UserBtn.TabIndex = 1;
@@ -318,13 +321,23 @@
             CartBtn.FlatStyle = FlatStyle.Flat;
             CartBtn.Font = new Font("IRANSansWeb", 14.25F);
             CartBtn.ForeColor = Color.White;
-            CartBtn.Location = new Point(6, 166);
+            CartBtn.Location = new Point(10, 179);
             CartBtn.Name = "CartBtn";
             CartBtn.Size = new Size(114, 40);
             CartBtn.TabIndex = 0;
             CartBtn.Text = "کارت";
             CartBtn.UseVisualStyleBackColor = false;
             CartBtn.Click += CartBtn_Click;
+            // 
+            // progressBar2
+            // 
+            progressBar2.Location = new Point(-10, 110);
+            progressBar2.Name = "progressBar2";
+            progressBar2.Size = new Size(275, 10);
+            progressBar2.Step = 1;
+            progressBar2.Style = ProgressBarStyle.Continuous;
+            progressBar2.TabIndex = 17;
+            progressBar2.Value = 99;
             // 
             // groupBox2
             // 
@@ -344,6 +357,21 @@
             MainPanel.Size = new Size(1140, 741);
             MainPanel.TabIndex = 0;
             // 
+            // progressBar3
+            // 
+            progressBar3.BackColor = Color.DarkSlateGray;
+            progressBar3.Cursor = Cursors.SizeAll;
+            progressBar3.ForeColor = Color.White;
+            progressBar3.Location = new Point(-26, 5);
+            progressBar3.Name = "progressBar3";
+            progressBar3.RightToLeftLayout = true;
+            progressBar3.Size = new Size(1472, 5);
+            progressBar3.Step = 1;
+            progressBar3.Style = ProgressBarStyle.Continuous;
+            progressBar3.TabIndex = 18;
+            progressBar3.UseWaitCursor = true;
+            progressBar3.Value = 99;
+            // 
             // MainFRM
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
@@ -351,6 +379,7 @@
             BackColor = Color.Teal;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1420, 780);
+            Controls.Add(progressBar3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Font = new Font("IRANSansWeb", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -387,5 +416,7 @@
         private Label label1;
         private Button OnlineExchangeBtn;
         private Button BankBtn;
+        private ProgressBar progressBar2;
+        private ProgressBar progressBar3;
     }
 }

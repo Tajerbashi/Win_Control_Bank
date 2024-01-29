@@ -14,10 +14,11 @@ namespace Domain.Library.Entities.CNT
         [Description("کلید")]
         public string Key { get; set; }
 
+        [Description("نوع")]
+        public byte Type { get; set; }
+
         [Description("مقدار")]
         public string Value { get; set; }
 
-        [Description("مقدار")]
-        public byte Type { get; set; }
     }
 }
