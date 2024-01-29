@@ -23,7 +23,20 @@ namespace Infrastructure.Library.Repositories.BUS
 
         public string GetCount()
         {
-            throw new NotImplementedException();
+            return (@"
+SELECT   
+	COUNT(B.ID)
+FROM
+	BUS.Banks B
+	INNER JOIN BUS.Carts CT ON B.ID = CT.BankID 
+	INNER JOIN BUS.Customers CS ON CT.CustomerID = CS.ID 
+	INNER JOIN BUS.Blances BL ON CT.ID = BL.CartID
+WHERE        
+	(B.IsDeleted = 0)
+AND (CT.IsDeleted = 0) 
+AND (CS.IsDeleted = 0) 
+AND (BL.IsDeleted = 0)
+");
         }
         public double GetBlanceCartById(long Id)
         {
@@ -46,16 +59,78 @@ namespace Infrastructure.Library.Repositories.BUS
         }
         public string ShowAllByCartId(long Id, string paging)
         {
-            throw new NotImplementedException();
+            return ($@"
+SELECT   
+	BL.ID AS آیدی, 
+	B.BankName AS [نام بانک], 
+	CT.AccountNumber AS [شماره کارت], 
+	CS.FullName AS [مالک حساب], 
+	(
+		CASE BL.BlanceType
+			WHEN 1 THEN N'نقدی'
+			WHEN 2 THEN N'بانکی'
+			ELSE N'نامعلوم'
+		END
+	) AS [نوع حساب], 
+	(
+		CASE BL.TransactionType
+			WHEN 1 THEN N'واریزی'
+			WHEN 2 THEN N'برداشت'
+			ELSE N''
+			END
+	) AS [نوع تراکنش],
+	BL.OldBlanceCash AS [موجودی قبلی],
+	BL.TransactionCash AS [مبلغ تراکنش], 
+	BL.NewBlanceCash AS [موجودی جدید]
+FROM
+	BUS.Banks B
+	INNER JOIN BUS.Carts CT ON B.ID = CT.BankID AND CT.ID = {Id}
+	INNER JOIN BUS.Customers CS ON CT.CustomerID = CS.ID 
+	INNER JOIN BUS.Blances BL ON CT.ID = BL.CartID
+WHERE        
+	(B.IsDeleted = 0)
+AND (CT.IsDeleted = 0) 
+AND (CS.IsDeleted = 0) 
+AND (BL.IsDeleted = 0)
+ORDER BY BL.ID DESC
+{paging}");
         }
         public string Show50LastTransactions(string paging)
         {
             return ($@"
-SELECT TOP 50 *
-FROM BUS.Carts C
-INNER JOIN BUS.Blances B ON B.CartID = C.ID
-WHERE C.IsDeleted = 0 
-ORDER BY B.ID DESC
+SELECT   
+	BL.ID AS آیدی, 
+	B.BankName AS [نام بانک], 
+	CT.AccountNumber AS [شماره کارت], 
+	CS.FullName AS [مالک حساب], 
+	(
+		CASE BL.BlanceType
+			WHEN 1 THEN N'نقدی'
+			WHEN 2 THEN N'بانکی'
+			ELSE N'نامعلوم'
+		END
+	) AS [نوع حساب], 
+	(
+		CASE BL.TransactionType
+			WHEN 1 THEN N'واریزی'
+			WHEN 2 THEN N'برداشت'
+			ELSE N''
+			END
+	) AS [نوع تراکنش],
+	BL.OldBlanceCash AS [موجودی قبلی],
+	BL.TransactionCash AS [مبلغ تراکنش], 
+	BL.NewBlanceCash AS [موجودی جدید]
+FROM
+	BUS.Banks B
+	INNER JOIN BUS.Carts CT ON B.ID = CT.BankID 
+	INNER JOIN BUS.Customers CS ON CT.CustomerID = CS.ID 
+	INNER JOIN BUS.Blances BL ON CT.ID = BL.CartID
+WHERE        
+	(B.IsDeleted = 0)
+AND (CT.IsDeleted = 0) 
+AND (CS.IsDeleted = 0) 
+AND (BL.IsDeleted = 0)
+ORDER BY BL.ID DESC
 {paging}
 ");
         }

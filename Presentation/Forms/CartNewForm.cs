@@ -129,7 +129,12 @@ namespace Presentation.Forms
 
         private CartDTO CartDTO()
         {
+            var parent = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
             string accountNumber = $"{AccountNumberTxt.Text}";
+            if (parent != 0)
+            {
+                accountNumber = $"{AccountNumberTxt.Text} - {((KeyValue<long>)CustomerCombo.SelectedItem).Value}";
+            }
             return new CartDTO
             {
                 AccountNumber = accountNumber,
@@ -147,7 +152,7 @@ namespace Presentation.Forms
             return new BlanceDTO
             {
                 CartID = cartID,
-                OldBlanceCash = Convert.ToDouble(BlanceTxt.Text),
+                OldBlanceCash = 0,
                 NewBlanceCash  = Convert.ToDouble(BlanceTxt.Text),
                 BlanceType= BlanceType.Banking,
                 TransactionType = TransactionType.Settlemant,

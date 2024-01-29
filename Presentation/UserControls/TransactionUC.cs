@@ -25,7 +25,7 @@ namespace Presentation.UserControls
             {
                 GridData.DataSource = Pattern.ExecuteQuery(Pattern.BlanceService.ShowAllByCartId(cartId, Pattern.Paging.Order(Pattern.Paging.Page)));
             }
-            var count = (Pattern.ExecuteQuery(Pattern.BlanceService.GetCount())).Rows[0].Field<int>(0); ;
+            var count = (Pattern.ExecuteQuery(Pattern.BlanceService.GetCount())).Rows[0].Field<int>(0);
             PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {Pattern.Paging.Page + 1}";
         }
         private void AddBtn_Click(object sender, EventArgs e)

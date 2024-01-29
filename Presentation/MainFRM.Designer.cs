@@ -133,33 +133,34 @@
             // 
             // LockBtn
             // 
+            LockBtn.BackColor = Color.DodgerBlue;
             LockBtn.Cursor = Cursors.Hand;
-            LockBtn.FlatAppearance.BorderColor = Color.White;
+            LockBtn.FlatAppearance.BorderColor = Color.RoyalBlue;
             LockBtn.FlatAppearance.BorderSize = 2;
             LockBtn.FlatAppearance.CheckedBackColor = Color.Gray;
             LockBtn.FlatAppearance.MouseDownBackColor = SystemColors.HotTrack;
-            LockBtn.FlatAppearance.MouseOverBackColor = Color.Black;
+            LockBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             LockBtn.FlatStyle = FlatStyle.Flat;
             LockBtn.ForeColor = Color.White;
-            LockBtn.Location = new Point(6, 710);
+            LockBtn.Location = new Point(10, 722);
             LockBtn.Name = "LockBtn";
             LockBtn.Size = new Size(114, 39);
             LockBtn.TabIndex = 12;
             LockBtn.Text = "قفل";
-            LockBtn.UseVisualStyleBackColor = true;
+            LockBtn.UseVisualStyleBackColor = false;
             // 
             // ExitBtn
             // 
-            ExitBtn.BackColor = Color.Transparent;
+            ExitBtn.BackColor = Color.FromArgb(255, 192, 192);
             ExitBtn.Cursor = Cursors.Hand;
-            ExitBtn.FlatAppearance.BorderColor = Color.White;
+            ExitBtn.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 128);
             ExitBtn.FlatAppearance.BorderSize = 2;
             ExitBtn.FlatAppearance.CheckedBackColor = Color.Gray;
             ExitBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 0, 0);
-            ExitBtn.FlatAppearance.MouseOverBackColor = Color.White;
+            ExitBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 128);
             ExitBtn.FlatStyle = FlatStyle.Flat;
             ExitBtn.ForeColor = Color.Red;
-            ExitBtn.Location = new Point(126, 710);
+            ExitBtn.Location = new Point(130, 722);
             ExitBtn.Name = "ExitBtn";
             ExitBtn.Size = new Size(114, 39);
             ExitBtn.TabIndex = 11;
@@ -170,7 +171,7 @@
             // ClockLbl
             // 
             ClockLbl.ForeColor = Color.White;
-            ClockLbl.Location = new Point(6, 666);
+            ClockLbl.Location = new Point(10, 678);
             ClockLbl.Name = "ClockLbl";
             ClockLbl.Size = new Size(234, 41);
             ClockLbl.TabIndex = 10;
@@ -179,20 +180,21 @@
             // 
             // SettingBtn
             // 
+            SettingBtn.BackColor = Color.DarkSlateGray;
             SettingBtn.Cursor = Cursors.Hand;
             SettingBtn.FlatAppearance.BorderColor = Color.White;
             SettingBtn.FlatAppearance.BorderSize = 2;
             SettingBtn.FlatAppearance.CheckedBackColor = Color.Gray;
-            SettingBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 0, 192);
-            SettingBtn.FlatAppearance.MouseOverBackColor = Color.Black;
+            SettingBtn.FlatAppearance.MouseDownBackColor = Color.MediumAquamarine;
+            SettingBtn.FlatAppearance.MouseOverBackColor = Color.DarkCyan;
             SettingBtn.FlatStyle = FlatStyle.Flat;
-            SettingBtn.ForeColor = Color.FromArgb(192, 255, 255);
-            SettingBtn.Location = new Point(28, 623);
+            SettingBtn.ForeColor = Color.White;
+            SettingBtn.Location = new Point(33, 636);
             SettingBtn.Name = "SettingBtn";
             SettingBtn.Size = new Size(189, 39);
             SettingBtn.TabIndex = 9;
             SettingBtn.Text = "تنظیمات";
-            SettingBtn.UseVisualStyleBackColor = true;
+            SettingBtn.UseVisualStyleBackColor = false;
             // 
             // BalanceBtn
             // 

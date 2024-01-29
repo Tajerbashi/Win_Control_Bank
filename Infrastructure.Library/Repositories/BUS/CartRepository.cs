@@ -44,7 +44,7 @@ SELECT
 	C.AccountNumber AS [شماره حساب],
 	C.ShabaAccountNumber AS [شماره شبا],
 	FORMAT(C.[ExpireDate],'yyyy/MM/dd hh:mm','fa-ir') AS [تاریخ انقضاء],
-	FORMAT(CAST(B.BlanceCash as bigint),'###,###,###') AS [موجودی],
+	FORMAT(CAST(B.NewBlanceCash as bigint),'###,###,###') AS [موجودی],
 	Case B.TransactionType
 	WHEN 1 THEN N'واریز'
 	ELSE N'برداشت'
