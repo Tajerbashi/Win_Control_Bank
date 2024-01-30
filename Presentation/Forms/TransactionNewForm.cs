@@ -2,6 +2,7 @@
 using Domain.Library.Enums;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
+using Infrastructure.Library.Models.DTOs.HSR;
 using Infrastructure.Library.Patterns;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json.Linq;
@@ -82,6 +83,7 @@ namespace Presentation.Forms
                                     var blanceDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,false);
                                     blanceDto.ID = Pattern.BlanceService.Insert(blanceDto);
                                     this.Close();
+
                                     Pattern.UnitOfWork.Commit();
                                 }
                                 else
@@ -391,5 +393,21 @@ namespace Presentation.Forms
             };
         }
 
+        private CartHistoryDTO CartHistoryDTO()
+        {
+
+            return new CartHistoryDTO
+            {
+                BlanceID = 0,
+                CartID = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value,
+                FromCartID = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value,
+                ToCartID = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value,
+                BlanceType = 0,
+                CashBlance = 0,
+                CashTransaction = 0,
+                Message = "",
+                TransactionType = 0
+            };
+        }
     }
 }
