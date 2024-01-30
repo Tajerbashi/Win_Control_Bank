@@ -22,6 +22,10 @@ namespace Domain.Library.Entities.BUS
 
         [Description("نوع تراکنش")]
         public TransactionType TransactionType { get; set; }
+        
+        [Description("کلید تراکنش")]
+        public Guid TransactionId { get; set; }
+
 
         [Description("کارت")]
         [ForeignKey("Cart")]
