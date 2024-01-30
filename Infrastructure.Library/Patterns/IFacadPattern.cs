@@ -3,6 +3,7 @@ using Infrastructure.Library.ApplicationContext.GridDataConnection;
 using Infrastructure.Library.Extentions;
 using Infrastructure.Library.Services.BUS;
 using Infrastructure.Library.Services.CNT;
+using Infrastructure.Library.Services.HSR;
 using Infrastructure.Library.Services.LOG;
 using Infrastructure.Library.Services.RPT;
 using Infrastructure.Library.Services.SEC;
@@ -38,6 +39,9 @@ namespace Infrastructure.Library.Patterns
         CartReportService CartReportService { get; }
         #endregion
 
+        #region HSR
+        CartHistoryService CartHistoryService { get; }
+        #endregion
 
         #region LOG
         SystemLogService SystemLogService { get; }
@@ -120,7 +124,7 @@ namespace Infrastructure.Library.Patterns
 
 
 
- 
+
 
 
 
@@ -130,15 +134,10 @@ namespace Infrastructure.Library.Patterns
         #region WEB
         #endregion
 
-
-
-
-
-
-
-
-
-
+        #region HSR
+        private CartHistoryService _cartHistoryService ;
+        public CartHistoryService CartHistoryService => _cartHistoryService ?? new CartHistoryService(UnitOfWork);
+        #endregion
 
 
         public DataTable ExecuteQuery(string query)
