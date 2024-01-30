@@ -12,7 +12,7 @@ namespace Infrastructure.Library.Services.BUS
         }
         public bool ValidBankBlance(long id, double cash)
         {
-            var entity = Context.Blances.Where(x => x.CartID == id && !x.IsDeleted && x.BlanceType == BlanceType.Banking).Single();
+            var entity = Context.Blances.Where(x => x.CartID == id && !x.IsDeleted && x.BlanceType == BlanceType.Banking).OrderByDescending(x => x.ID).FirstOrDefault();
             if (entity.NewBlanceCash > cash)
                 return true;
             else

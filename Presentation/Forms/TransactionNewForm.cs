@@ -5,6 +5,7 @@ using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Patterns;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json.Linq;
+using Presentation.Extentions;
 using Presentation.Generator;
 using Presentation.UserControls;
 using System.Runtime.InteropServices;
@@ -15,6 +16,7 @@ namespace Presentation.Forms
     public partial class TransactionNewForm : Form
     {
         private IFacadPattern Pattern;
+        private readonly LoggerProvider<TransactionNewForm> logger;
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -36,6 +38,7 @@ namespace Presentation.Forms
         {
             InitializeComponent();
             Pattern = new FacadPattern();
+            logger = new LoggerProvider<TransactionNewForm>();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
@@ -45,25 +48,20 @@ namespace Presentation.Forms
         }
 
         #endregion
-
-
-
         private void TransactionNewForm_Load(object sender, EventArgs e)
         {
             UpdateComboBoxes();
         }
-
         private void CloseBtn_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             var type = ((KeyValue<long>)TransactionTypeCombo.SelectedItem).Value;
             if (TransactionValidation(type))
             {
-                var fromCartId = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
+                //var fromCartId = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
                 var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
 
                 var cash = Convert.ToDouble(CashTxt.Text);
@@ -77,7 +75,7 @@ namespace Presentation.Forms
                             Pattern.UnitOfWork.BeginTransaction();
                             try
                             {
-                                var CartChildData = Pattern.CartService.GetById(fromAccountId);
+                                //var CartChildData = Pattern.CartService.GetById(fromAccountId);
                                 if (Pattern.CartService.ValidBankBlance(fromAccountId, cash))
                                 {
                                     var lastBlance = Pattern.BlanceService.GetBlanceCartById(fromAccountId);
@@ -99,20 +97,47 @@ namespace Presentation.Forms
                             }
                             break;
                         }
-                    case 2: //  برداشت نقدی
+                    case 2: //  کارت به کارت
                         {
+                            var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
+                            var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
+                            if (Pattern.CartService.ValidBankBlance(fromAccountId, cash))
+                            {
+                                Pattern.UnitOfWork.BeginTransaction();
+                                //  کسر از حساب مبداء
+                                try
+                                {
+                                    var lastBlance = Pattern.BlanceService.GetBlanceCartById(fromAccountId);
+                                    var fromAccountDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,false);
+                                    fromAccountDto.ID = Pattern.BlanceService.Insert(fromAccountDto);
+                                    //  اضافه به حساب مقصد
+                                    var toCartlastBlance = Pattern.BlanceService.GetBlanceCartById(toCartAccountId);
+                                    var toAccountDto = BlanceDTO(toCartlastBlance,Convert.ToDouble(cash),toCartAccountId,true);
+                                    toAccountDto.ID = Pattern.BlanceService.Insert(toAccountDto);
+                                    Pattern.UnitOfWork.Commit();
+                                    this.Close();
+                                }
+                                catch (Exception ex)
+                                {
+                                    Pattern.UnitOfWork.Rollback();
+                                    logger.ExceptionLog(ex);
+                                    throw;
+                                }
+                            }
+                            else
+                            {
+                                MSG.Text = $"موجودی کافی نیست و این تراکنش انجام نمیشود";
+                            }
+
                             break;
                         }
-                    case 3: //  انتقال به کارت دیگر
+                    case 3: //  واریز به کارت
                         {
                             var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
                             var toCartChildId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
                             break;
                         }
-                    case 4: // واریزی به کارت
-                        {
-                            break;
-                        }
+
                     default:
                         {
                             MSG.Text = "هنوز هیچ نوع تراکنشی تایید نشده است";
@@ -125,9 +150,6 @@ namespace Presentation.Forms
                 MSG.Text = $"موجودی کافی نیست و این تراکنش انجام نمیشود";
             }
         }
-
-
-
         private void TransactionTypeCombo_SelectedValueChanged(object sender, EventArgs e)
         {
             var type = ((KeyValue<long>)TransactionTypeCombo.SelectedItem).Value;
@@ -179,7 +201,6 @@ namespace Presentation.Forms
                     }
             }
         }
-
         private void ToCustomerCombo_SelectedValueChanged(object sender, EventArgs e)
         {
             var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
@@ -188,7 +209,6 @@ namespace Presentation.Forms
                 ToAccountCombo = ComboBoxGenerator.FillData(ToAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
             }
         }
-
         private void FromAccountCombo_SelectedValueChanged(object sender, EventArgs e)
         {
             var Id = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
@@ -257,7 +277,6 @@ namespace Presentation.Forms
             }
             return true;
         }
-
         private void SaveNewDataBtn_Click(object sender, EventArgs e)
         {
             Pattern.UnitOfWork.BeginTransaction();
@@ -278,7 +297,6 @@ namespace Presentation.Forms
                 throw;
             }
         }
-
         private void NewDataBtn_Click(object sender, EventArgs e)
         {
             NewDataPanel.Visible = NewDataPanel.Visible ? false : true;
@@ -301,7 +319,6 @@ namespace Presentation.Forms
 
             BlanceTypeCombo = ComboBoxGenerator.FillData(BlanceTypeCombo, Pattern.BlanceService.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
         }
-
         private void ToCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
@@ -311,7 +328,6 @@ namespace Presentation.Forms
                 ToAccountCombo = ComboBoxGenerator.FillData(ToAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
             }
         }
-
         private void FromCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             var Id = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
@@ -323,7 +339,6 @@ namespace Presentation.Forms
             }
 
         }
-
         private BankDTO BankDTO()
         {
             return new BankDTO
@@ -358,10 +373,10 @@ namespace Presentation.Forms
             return new BlanceDTO
             {
                 NewBlanceCash = blanceCash,
-                OldBlanceCash = blanceCash,
+                OldBlanceCash = lastblance,
                 BlanceType = BlanceType.Banking,
                 CartID = cartId,
-                TransactionType = TransactionType.Harvesting,
+                TransactionType = sum ? TransactionType.Settlemant : TransactionType.Harvesting,
                 TransactionCash = cash,
             };
         }
@@ -375,6 +390,6 @@ namespace Presentation.Forms
                 Key = Guid.NewGuid()
             };
         }
-        
+
     }
 }

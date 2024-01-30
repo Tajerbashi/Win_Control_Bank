@@ -39,8 +39,8 @@ AND (BL.IsDeleted = 0)
         }
         public double GetBlanceCartById(long Id)
         {
-            var result = Context.Blances.Where(x => x.CartID == Id && x.BlanceType == BlanceType.Banking).Single().NewBlanceCash;
-            return result;
+            var result = Context.Blances.Where(x => x.CartID == Id && x.BlanceType == BlanceType.Banking).OrderByDescending(x => x.ID).FirstOrDefault();
+            return result.NewBlanceCash;
         }
         public string Search(string value)
         {
