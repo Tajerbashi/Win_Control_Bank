@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Library.Patterns;
 using Presentation.Extentions;
 using Presentation.Forms;
+using Presentation.Generator;
 using System.Data;
 
 namespace Presentation.UserControls
@@ -23,17 +24,10 @@ namespace Presentation.UserControls
 
         }
 
-        private void AddBtn_Click(object sender, EventArgs e)
-        {
-            BankNewForm bankNewForm = new BankNewForm();
-            bankNewForm.ShowDialog();
-            ShowDataGrid();
-
-        }
-
         private void BankUC_Load(object sender, EventArgs e)
         {
             ShowDataGrid();
+            BankCombo = ComboBoxGenerator<long>.FillData(BankCombo, Pattern.BankService.TitleValue(), Convert.ToByte(BankCombo.Tag));
         }
 
         private void SearchBtn_Click(object sender, EventArgs e)
@@ -46,6 +40,13 @@ namespace Presentation.UserControls
             {
                 loggerProvider.ExceptionLog(ex);
             }
+        }
+
+        private void AddBtn_Click(object sender, EventArgs e)
+        {
+            BankNewForm bankNewForm = new BankNewForm();
+            bankNewForm.ShowDialog();
+            ShowDataGrid();
         }
     }
 }

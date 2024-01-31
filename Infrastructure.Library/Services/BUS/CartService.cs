@@ -1,5 +1,7 @@
-﻿using Domain.Library.Enums;
+﻿using Dapper;
+using Domain.Library.Enums;
 using Infrastructure.Library.ApplicationContext.EF;
+using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Patterns;
 using Infrastructure.Library.Repositories.BUS;
 
@@ -17,6 +19,22 @@ namespace Infrastructure.Library.Services.BUS
                 return true;
             else
                 return false;
+        }
+
+        public CartDTO GetCartByAccountNumber(string accountNumber)
+        {
+            var result  = base.DapperServices.QueryFirstOrDefault<CartDTO>(@"
+SELECT *
+FROM BUS.Carts C
+WHERE C.AccountNumber LIKE @AccountNumber
+AND C.IsDeleted = 0
+AND C.IsActive = 1
+", new
+            {
+                AccountNumber = accountNumber,
+            });
+            //base.Search(name);
+            return result;
         }
     }
 }

@@ -101,7 +101,7 @@ ORDER BY C.ID DESC
         }
         public IEnumerable<KeyValue<long>> TitleValuesCartByBankId(long Id)
         {
-            return Context.Carts.Where(x => x.BankID == Id).Select(x => new KeyValue<long>
+            return Context.Carts.Where(x => x.BankID == Id && !x.IsDeleted && x.IsActive).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID

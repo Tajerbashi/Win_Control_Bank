@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Library.Patterns;
 using Presentation.Forms;
+using Presentation.Generator;
 using System.Data;
 
 namespace Presentation.UserControls
@@ -18,16 +19,18 @@ namespace Presentation.UserControls
             GridData.DataSource = Pattern.ExecuteQuery(Pattern.CartService.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
             var count = (Pattern.ExecuteQuery(Pattern.CartService.GetCount())).Rows[0].Field<int>(0); ;
             PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {Pattern.Paging.Page + 1}";
-        }
-        private void AddBtn_Click(object sender, EventArgs e)
-        {
-            CartNewForm cartNewForm = new CartNewForm();
-            cartNewForm.ShowDialog();
-            ShowDataGrid();
+            CartCombo = ComboBoxGenerator<long>.FillData(CartCombo, Pattern.CartService.TitleValuesAllParentCart(), Convert.ToByte(CartCombo.Tag));
         }
 
         private void CartUC_Load(object sender, EventArgs e)
         {
+            ShowDataGrid();
+        }
+
+        private void AddBtn_Click(object sender, EventArgs e)
+        {
+            CartNewForm cartNewForm = new CartNewForm();
+            cartNewForm.ShowDialog();
             ShowDataGrid();
         }
     }

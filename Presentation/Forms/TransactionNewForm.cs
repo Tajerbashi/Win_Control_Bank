@@ -282,11 +282,11 @@ namespace Presentation.Forms
             try
             {
                 var Custumer = CustomerDTO();
-                var customeId = Pattern.CustomerService.Insert(Custumer);
+                var customeId = Pattern.CustomerService.AddOrUpdate(Custumer);
                 var Bank = BankDTO();
-                var bankId = Pattern.BankService.Insert(Bank);
+                var bankId = Pattern.BankService.AddOrUpdate(Bank);
                 var Cart = CartDTO(customeId,bankId);
-                Pattern.CartService.Insert(Cart);
+                Pattern.CartService.AddOrUpdate(Cart);
                 Pattern.UnitOfWork.Commit();
                 UpdateComboBoxes();
             }
@@ -334,12 +334,15 @@ namespace Presentation.Forms
             {
                 FromCustomerLBL.Text = Pattern.BlanceService.GetBlanceCartById(Id).ToString("N");
                 FromAccountCombo = ComboBoxGenerator<long>.FillData(FromAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
-
             }
-
         }
         private BankDTO BankDTO()
         {
+            var entity = Pattern.BankService.GetBankByName(NewBankNameTxt.Text);
+            if (entity != null)
+            {
+                return entity;
+            }
             return new BankDTO
             {
                 BankName = NewBankNameTxt.Text,
@@ -350,9 +353,14 @@ namespace Presentation.Forms
         }
         private CartDTO CartDTO(long customeId, long bankId)
         {
+            var entity = Pattern.CartService.GetCartByAccountNumber(NewCartNumberTxt.Text);
+            if (entity != null)
+            {
+                return entity;
+            }
             return new CartDTO
             {
-                CartType = CartType.Custome,
+                CartType = CartType.Main,
                 AccountNumber = NewCartNumberTxt.Text,
                 CustomerID = customeId,
                 BankID = bankId,
@@ -377,11 +385,18 @@ namespace Presentation.Forms
                 CartID = cartId,
                 TransactionType = sum ? TransactionType.Settlemant : TransactionType.Harvesting,
                 TransactionCash = cash,
-                TransactionID = TransactionID
+                TransactionID = TransactionID,
+                Description = DescTxt.Text,
+                
             };
         }
         private CustomerDTO CustomerDTO()
         {
+            var entity = Pattern.CustomerService.GetCustomerByName(NewCustomerNameTxt.Text);
+            if (entity != null)
+            {
+                return entity;
+            }
             return new CustomerDTO
             {
                 FullName = NewCustomerNameTxt.Text,

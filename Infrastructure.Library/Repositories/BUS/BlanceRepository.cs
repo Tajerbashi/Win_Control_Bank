@@ -80,7 +80,8 @@ SELECT
 	) AS [نوع تراکنش],
 	BL.OldBlanceCash AS [موجودی قبلی],
 	BL.TransactionCash AS [مبلغ تراکنش], 
-	BL.NewBlanceCash AS [موجودی جدید]
+	BL.NewBlanceCash AS [موجودی جدید],
+    BL.Description AS [توضیحات]
 FROM
 	BUS.Banks B
 	INNER JOIN BUS.Carts CT ON B.ID = CT.BankID AND CT.ID = {Id}
@@ -118,7 +119,9 @@ SELECT
 	) AS [نوع تراکنش],
 	BL.OldBlanceCash AS [موجودی قبلی],
 	BL.TransactionCash AS [مبلغ تراکنش], 
-	BL.NewBlanceCash AS [موجودی جدید]
+	BL.NewBlanceCash AS [موجودی جدید],
+    BL.Description AS [توضیحات]
+
 FROM
 	BUS.Banks B
 	INNER JOIN BUS.Carts CT ON B.ID = CT.BankID 

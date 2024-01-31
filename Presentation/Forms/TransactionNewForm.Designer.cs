@@ -35,6 +35,7 @@
             CloseBtn = new Button();
             SaveBtn = new Button();
             groupBox1 = new GroupBox();
+            DescTxt = new TextBox();
             NewDataBtn = new Button();
             NewDataPanel = new Panel();
             SaveNewDataBtn = new Button();
@@ -116,11 +117,11 @@
             CloseBtn.FlatAppearance.MouseOverBackColor = Color.Maroon;
             CloseBtn.FlatStyle = FlatStyle.Flat;
             CloseBtn.ForeColor = Color.FromArgb(64, 0, 0);
-            CloseBtn.Location = new Point(377, 417);
+            CloseBtn.Location = new Point(414, 419);
             CloseBtn.Margin = new Padding(4, 5, 4, 5);
             CloseBtn.Name = "CloseBtn";
             CloseBtn.Size = new Size(121, 32);
-            CloseBtn.TabIndex = 9;
+            CloseBtn.TabIndex = 10;
             CloseBtn.Text = "لغو عملیات";
             CloseBtn.UseVisualStyleBackColor = false;
             CloseBtn.Click += CloseBtn_Click;
@@ -135,10 +136,10 @@
             SaveBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             SaveBtn.FlatStyle = FlatStyle.Flat;
             SaveBtn.ForeColor = Color.FromArgb(0, 64, 0);
-            SaveBtn.Location = new Point(631, 417);
+            SaveBtn.Location = new Point(593, 417);
             SaveBtn.Name = "SaveBtn";
             SaveBtn.Size = new Size(121, 32);
-            SaveBtn.TabIndex = 8;
+            SaveBtn.TabIndex = 9;
             SaveBtn.Text = "ذخیره اطلاعات";
             SaveBtn.UseVisualStyleBackColor = false;
             SaveBtn.Click += SaveBtn_Click;
@@ -146,6 +147,7 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(DescTxt);
             groupBox1.Controls.Add(NewDataBtn);
             groupBox1.Controls.Add(NewDataPanel);
             groupBox1.Controls.Add(FromAccountLBL);
@@ -175,6 +177,19 @@
             groupBox1.Size = new Size(1129, 461);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
+            // 
+            // DescTxt
+            // 
+            DescTxt.BackColor = Color.White;
+            DescTxt.BorderStyle = BorderStyle.FixedSingle;
+            DescTxt.Location = new Point(11, 347);
+            DescTxt.MaxLength = 500;
+            DescTxt.Multiline = true;
+            DescTxt.Name = "DescTxt";
+            DescTxt.PlaceholderText = "توضیحات مورد نظر را وارد کنید";
+            DescTxt.Size = new Size(799, 64);
+            DescTxt.TabIndex = 60;
+            DescTxt.TextAlign = HorizontalAlignment.Center;
             // 
             // NewDataBtn
             // 
@@ -207,7 +222,7 @@
             NewDataPanel.Location = new Point(6, 234);
             NewDataPanel.Name = "NewDataPanel";
             NewDataPanel.Size = new Size(1117, 107);
-            NewDataPanel.TabIndex = 52;
+            NewDataPanel.TabIndex = 0;
             NewDataPanel.Visible = false;
             // 
             // SaveNewDataBtn
@@ -223,7 +238,7 @@
             SaveNewDataBtn.Location = new Point(498, 72);
             SaveNewDataBtn.Name = "SaveNewDataBtn";
             SaveNewDataBtn.Size = new Size(121, 32);
-            SaveNewDataBtn.TabIndex = 58;
+            SaveNewDataBtn.TabIndex = 3;
             SaveNewDataBtn.Text = "ذخیره اطلاعات";
             SaveNewDataBtn.UseVisualStyleBackColor = false;
             SaveNewDataBtn.Click += SaveNewDataBtn_Click;
@@ -257,7 +272,7 @@
             NewCartNumberTxt.Name = "NewCartNumberTxt";
             NewCartNumberTxt.PlaceholderText = "شماره کارت را وارد کنید";
             NewCartNumberTxt.Size = new Size(358, 32);
-            NewCartNumberTxt.TabIndex = 55;
+            NewCartNumberTxt.TabIndex = 2;
             NewCartNumberTxt.TextAlign = HorizontalAlignment.Center;
             // 
             // NewBankNameTxt
@@ -269,7 +284,7 @@
             NewBankNameTxt.Name = "NewBankNameTxt";
             NewBankNameTxt.PlaceholderText = "نام بانک کارت مقصد را وارد کنید";
             NewBankNameTxt.Size = new Size(358, 32);
-            NewBankNameTxt.TabIndex = 54;
+            NewBankNameTxt.TabIndex = 1;
             NewBankNameTxt.TextAlign = HorizontalAlignment.Center;
             // 
             // NewCustomerNameTxt
@@ -281,7 +296,7 @@
             NewCustomerNameTxt.Name = "NewCustomerNameTxt";
             NewCustomerNameTxt.PlaceholderText = "نام مالک کارت را وارد کنید";
             NewCustomerNameTxt.Size = new Size(358, 32);
-            NewCustomerNameTxt.TabIndex = 53;
+            NewCustomerNameTxt.TabIndex = 0;
             NewCustomerNameTxt.TextAlign = HorizontalAlignment.Center;
             // 
             // label10
@@ -450,11 +465,11 @@
             // 
             CashTxt.BackColor = Color.White;
             CashTxt.BorderStyle = BorderStyle.FixedSingle;
-            CashTxt.Location = new Point(6, 379);
+            CashTxt.Location = new Point(816, 379);
             CashTxt.MaxLength = 15;
             CashTxt.Name = "CashTxt";
             CashTxt.PlaceholderText = "مبلغ مورد نظر را وارد کنید";
-            CashTxt.Size = new Size(1117, 32);
+            CashTxt.Size = new Size(307, 32);
             CashTxt.TabIndex = 7;
             CashTxt.TextAlign = HorizontalAlignment.Center;
             // 
@@ -525,5 +540,6 @@
         private Label label12;
         private Label label11;
         private Button NewDataBtn;
+        private TextBox DescTxt;
     }
 }

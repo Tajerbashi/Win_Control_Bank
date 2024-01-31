@@ -30,7 +30,7 @@
         {
             label1 = new Label();
             groupBox2 = new GroupBox();
-            CartCombo = new ComboBox();
+            BankCombo = new ComboBox();
             GridData = new DataGridView();
             PageLbl = new Label();
             NextBtn = new Button();
@@ -56,7 +56,7 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.Transparent;
-            groupBox2.Controls.Add(CartCombo);
+            groupBox2.Controls.Add(BankCombo);
             groupBox2.Controls.Add(GridData);
             groupBox2.Controls.Add(PageLbl);
             groupBox2.Controls.Add(NextBtn);
@@ -69,16 +69,16 @@
             groupBox2.TabIndex = 15;
             groupBox2.TabStop = false;
             // 
-            // CartCombo
+            // BankCombo
             // 
-            CartCombo.Cursor = Cursors.Hand;
-            CartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
-            CartCombo.FormattingEnabled = true;
-            CartCombo.Location = new Point(363, 20);
-            CartCombo.Name = "CartCombo";
-            CartCombo.RightToLeft = RightToLeft.Yes;
-            CartCombo.Size = new Size(776, 33);
-            CartCombo.TabIndex = 16;
+            BankCombo.Cursor = Cursors.Hand;
+            BankCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            BankCombo.FormattingEnabled = true;
+            BankCombo.Location = new Point(363, 20);
+            BankCombo.Name = "BankCombo";
+            BankCombo.RightToLeft = RightToLeft.Yes;
+            BankCombo.Size = new Size(776, 33);
+            BankCombo.TabIndex = 16;
             // 
             // GridData
             // 
@@ -177,6 +177,7 @@
             AddBtn.TabIndex = 17;
             AddBtn.Text = "جدید";
             AddBtn.UseVisualStyleBackColor = true;
+            AddBtn.Click += AddBtn_Click;
             // 
             // BankUC
             // 
@@ -201,7 +202,7 @@
 
         private Label label1;
         private GroupBox groupBox2;
-        private ComboBox CartCombo;
+        private ComboBox BankCombo;
         private DataGridView GridData;
         private Label PageLbl;
         private Button NextBtn;

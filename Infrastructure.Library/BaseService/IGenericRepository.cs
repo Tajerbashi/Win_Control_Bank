@@ -15,6 +15,7 @@ namespace Infrastructure.Library.BaseService
         IEnumerable<T> GetAll();
         T GetById(object id);
         long Insert(T obj);
+        long AddOrUpdate(T obj);
         void Update(T obj);
         void Delete(object id);
         void Delete(Guid guid);
@@ -72,7 +73,6 @@ namespace Infrastructure.Library.BaseService
         {
             return Mapper.Map<List<TDTO>>(Entities.ToList());
         }
-
         public virtual TDTO GetById(object id)
         {
             return Mapper.Map<TDTO>(Entities.Find(id));
@@ -155,6 +155,18 @@ namespace Infrastructure.Library.BaseService
             Context.SaveChanges();
         }
 
+        public long AddOrUpdate(TDTO obj)
+        {
+            if (obj.ID == 0)
+            {
+                obj.ID = this.Insert(obj);
+            }
+            else
+            {
+                this.Update(obj);
+            }
+            return obj.ID;
+        }
     }
 
 }

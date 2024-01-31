@@ -33,7 +33,10 @@ namespace Infrastructure.Library.Models.DTOs.BUS
         /// کلید تراکنش
         /// </summary>
         public Guid TransactionID { get; set; }
-
+        /// <summary>
+        /// توضیحات
+        /// </summary>
+        public string Description { get; set; }
 
     }
 }

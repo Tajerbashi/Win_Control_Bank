@@ -40,7 +40,7 @@ namespace Presentation.Forms
         private Guid TransactionID;
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            TransactionID = new Guid();
+            TransactionID = Guid.NewGuid();
             Pattern.UnitOfWork.BeginTransaction();
             try
             {

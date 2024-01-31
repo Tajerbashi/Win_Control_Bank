@@ -177,6 +177,7 @@
             AddBtn.TabIndex = 20;
             AddBtn.Text = "جدید";
             AddBtn.UseVisualStyleBackColor = true;
+            AddBtn.Click += AddBtn_Click;
             // 
             // TransactionUC
             // 

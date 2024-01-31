@@ -28,7 +28,7 @@ WHERE   IsDeleted = 0
 
         public string Search(string value)
         {
-            throw new NotImplementedException();
+            return ("");
         }
 
         public string ShowAll(string paging)
@@ -55,7 +55,7 @@ WHERE IsDeleted = 0
 
         public IEnumerable<KeyValue<long>> TitleValue()
         {
-            return Context.Customers.Select(x => new KeyValue<long>
+            return Context.Customers.Where(x => !x.IsDeleted).Select(x => new KeyValue<long>
             {
                 Key = x.FullName,
                 Value = x.ID

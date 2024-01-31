@@ -44,11 +44,9 @@
             UserBtn = new Button();
             CartBtn = new Button();
             progressBar2 = new ProgressBar();
-            groupBox2 = new GroupBox();
-            MainPanel = new Panel();
             progressBar3 = new ProgressBar();
+            MainPanel = new Panel();
             groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
@@ -340,24 +338,6 @@
             progressBar2.TabIndex = 17;
             progressBar2.Value = 99;
             // 
-            // groupBox2
-            // 
-            groupBox2.BackColor = Color.Transparent;
-            groupBox2.Controls.Add(MainPanel);
-            groupBox2.FlatStyle = FlatStyle.Flat;
-            groupBox2.Location = new Point(4, 5);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1152, 770);
-            groupBox2.TabIndex = 1;
-            groupBox2.TabStop = false;
-            // 
-            // MainPanel
-            // 
-            MainPanel.Location = new Point(3, 11);
-            MainPanel.Name = "MainPanel";
-            MainPanel.Size = new Size(1146, 759);
-            MainPanel.TabIndex = 0;
-            // 
             // progressBar3
             // 
             progressBar3.BackColor = Color.DarkSlateGray;
@@ -373,6 +353,13 @@
             progressBar3.UseWaitCursor = true;
             progressBar3.Value = 99;
             // 
+            // MainPanel
+            // 
+            MainPanel.Location = new Point(7, 17);
+            MainPanel.Name = "MainPanel";
+            MainPanel.Size = new Size(1146, 759);
+            MainPanel.TabIndex = 19;
+            // 
             // MainFRM
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
@@ -380,8 +367,8 @@
             BackColor = Color.Teal;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1420, 780);
+            Controls.Add(MainPanel);
             Controls.Add(progressBar3);
-            Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Font = new Font("IRANSansWeb", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ForeColor = Color.Black;
@@ -394,7 +381,6 @@
             FormClosing += MainFRM_FormClosing;
             Load += MainFRM_Load;
             groupBox1.ResumeLayout(false);
-            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -402,7 +388,6 @@
 
         private GroupBox groupBox1;
         private Button CartBtn;
-        private GroupBox groupBox2;
         private Label ClockLbl;
         private Button SettingBtn;
         private Button BalanceBtn;
@@ -411,7 +396,6 @@
         private Button CalculateBtn;
         private Button ReportBtn;
         private Button UserBtn;
-        private Panel MainPanel;
         private Button LockBtn;
         private Button ExitBtn;
         private Label label1;
@@ -419,5 +403,6 @@
         private Button BankBtn;
         private ProgressBar progressBar2;
         private ProgressBar progressBar3;
+        private Panel MainPanel;
     }
 }

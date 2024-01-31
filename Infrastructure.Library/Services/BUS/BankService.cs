@@ -36,5 +36,22 @@ namespace Infrastructure.Library.Services.BUS
                 throw;
             }
         }
+
+        public BankDTO GetBankByName(string name)
+        {
+            var result  = base.DapperServices.QueryFirstOrDefault<BankDTO>(@"
+SELECT *
+FROM BUS.Banks BN
+WHERE BN.IsDeleted = 0
+AND BN.IsActive = 1
+AND BN.BankName LIKE @Name
+", new
+            {
+                Name = name,
+            });
+            //base.Search(name);
+            return result;
+        }
+       
     }
 }

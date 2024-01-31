@@ -26,6 +26,8 @@ namespace Domain.Library.Entities.BUS
         [Description("کلید تراکنش")]
         public Guid TransactionId { get; set; }
 
+        [Description("توضیحات")]
+        public string Description { get; set; }
 
         [Description("کارت")]
         [ForeignKey("Cart")]
