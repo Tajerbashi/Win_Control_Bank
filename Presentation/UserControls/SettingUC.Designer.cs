@@ -28,216 +28,185 @@
         /// </summary>
         private void InitializeComponent()
         {
+            GridData = new DataGridView();
+            label1 = new Label();
             groupBox2 = new GroupBox();
-            MainController = new TabControl();
-            ConstTab = new TabPage();
-            AccessTab = new TabPage();
-            RoleTab = new TabPage();
-            vScrollBar1 = new VScrollBar();
-            UsersTab = new TabPage();
-            NewUserBtn = new Button();
-            NewRoleBtn = new Button();
-            NewConstBtn = new Button();
-            button1 = new Button();
-            vScrollBar2 = new VScrollBar();
+            CartCombo = new ComboBox();
+            PageLbl = new Label();
+            NextBtn = new Button();
+            PrevBtn = new Button();
+            SearchBtn = new Button();
+            SearchTxt = new TextBox();
+            AddBtn = new Button();
+            ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
             groupBox2.SuspendLayout();
-            MainController.SuspendLayout();
-            ConstTab.SuspendLayout();
-            AccessTab.SuspendLayout();
-            RoleTab.SuspendLayout();
-            UsersTab.SuspendLayout();
             SuspendLayout();
+            // 
+            // GridData
+            // 
+            GridData.AllowUserToAddRows = false;
+            GridData.AllowUserToOrderColumns = true;
+            GridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            GridData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            GridData.BackgroundColor = Color.White;
+            GridData.BorderStyle = BorderStyle.Fixed3D;
+            GridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            GridData.EditMode = DataGridViewEditMode.EditProgrammatically;
+            GridData.GridColor = Color.FromArgb(255, 224, 192);
+            GridData.Location = new Point(4, 59);
+            GridData.Name = "GridData";
+            GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            GridData.Size = new Size(1135, 627);
+            GridData.TabIndex = 12;
+            // 
+            // label1
+            // 
+            label1.BackColor = Color.Black;
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(243, 1);
+            label1.Name = "label1";
+            label1.Size = new Size(900, 32);
+            label1.TabIndex = 19;
+            label1.Text = "تنظیمات پیشرفته";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(MainController);
-            groupBox2.Location = new Point(2, -11);
+            groupBox2.BackColor = Color.Transparent;
+            groupBox2.Controls.Add(CartCombo);
+            groupBox2.Controls.Add(GridData);
+            groupBox2.Controls.Add(PageLbl);
+            groupBox2.Controls.Add(NextBtn);
+            groupBox2.Controls.Add(PrevBtn);
+            groupBox2.Controls.Add(SearchBtn);
+            groupBox2.Controls.Add(SearchTxt);
+            groupBox2.Location = new Point(2, 27);
             groupBox2.Name = "groupBox2";
-            groupBox2.RightToLeft = RightToLeft.Yes;
-            groupBox2.Size = new Size(1134, 746);
-            groupBox2.TabIndex = 15;
+            groupBox2.Size = new Size(1143, 731);
+            groupBox2.TabIndex = 18;
             groupBox2.TabStop = false;
             // 
-            // MainController
+            // CartCombo
             // 
-            MainController.Alignment = TabAlignment.Bottom;
-            MainController.AllowDrop = true;
-            MainController.Controls.Add(UsersTab);
-            MainController.Controls.Add(RoleTab);
-            MainController.Controls.Add(ConstTab);
-            MainController.Controls.Add(AccessTab);
-            MainController.Location = new Point(6, 17);
-            MainController.Multiline = true;
-            MainController.Name = "MainController";
-            MainController.RightToLeftLayout = true;
-            MainController.SelectedIndex = 0;
-            MainController.Size = new Size(1122, 723);
-            MainController.TabIndex = 12;
+            CartCombo.Cursor = Cursors.Hand;
+            CartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            CartCombo.FormattingEnabled = true;
+            CartCombo.Location = new Point(363, 20);
+            CartCombo.Name = "CartCombo";
+            CartCombo.RightToLeft = RightToLeft.Yes;
+            CartCombo.Size = new Size(776, 33);
+            CartCombo.TabIndex = 16;
             // 
-            // ConstTab
+            // PageLbl
             // 
-            ConstTab.Controls.Add(NewConstBtn);
-            ConstTab.Location = new Point(4, 4);
-            ConstTab.Name = "ConstTab";
-            ConstTab.Padding = new Padding(3);
-            ConstTab.Size = new Size(1114, 685);
-            ConstTab.TabIndex = 2;
-            ConstTab.Text = "ثابت ها";
-            ConstTab.UseVisualStyleBackColor = true;
+            PageLbl.ForeColor = Color.White;
+            PageLbl.Location = new Point(195, 692);
+            PageLbl.Name = "PageLbl";
+            PageLbl.Size = new Size(751, 32);
+            PageLbl.TabIndex = 11;
+            PageLbl.Text = "ساعت";
+            PageLbl.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // AccessTab
+            // NextBtn
             // 
-            AccessTab.Controls.Add(button1);
-            AccessTab.Location = new Point(4, 4);
-            AccessTab.Name = "AccessTab";
-            AccessTab.Padding = new Padding(3);
-            AccessTab.Size = new Size(1114, 685);
-            AccessTab.TabIndex = 8;
-            AccessTab.Text = "دسترسی";
-            AccessTab.UseVisualStyleBackColor = true;
+            NextBtn.Cursor = Cursors.Hand;
+            NextBtn.FlatAppearance.BorderColor = Color.Black;
+            NextBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            NextBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
+            NextBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
+            NextBtn.FlatStyle = FlatStyle.Flat;
+            NextBtn.ForeColor = Color.White;
+            NextBtn.Location = new Point(6, 692);
+            NextBtn.Name = "NextBtn";
+            NextBtn.Size = new Size(56, 32);
+            NextBtn.TabIndex = 3;
+            NextBtn.Text = "بعدی";
+            NextBtn.UseVisualStyleBackColor = true;
             // 
-            // RoleTab
+            // PrevBtn
             // 
-            RoleTab.Controls.Add(vScrollBar2);
-            RoleTab.Controls.Add(NewRoleBtn);
-            RoleTab.Location = new Point(4, 4);
-            RoleTab.Name = "RoleTab";
-            RoleTab.Padding = new Padding(3);
-            RoleTab.Size = new Size(1114, 685);
-            RoleTab.TabIndex = 1;
-            RoleTab.Text = "نقش";
-            RoleTab.UseVisualStyleBackColor = true;
+            PrevBtn.Cursor = Cursors.Hand;
+            PrevBtn.FlatAppearance.BorderColor = Color.Black;
+            PrevBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            PrevBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
+            PrevBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
+            PrevBtn.FlatStyle = FlatStyle.Flat;
+            PrevBtn.ForeColor = Color.White;
+            PrevBtn.Location = new Point(1079, 692);
+            PrevBtn.Name = "PrevBtn";
+            PrevBtn.Size = new Size(56, 32);
+            PrevBtn.TabIndex = 2;
+            PrevBtn.Text = "قبلی";
+            PrevBtn.UseVisualStyleBackColor = true;
             // 
-            // vScrollBar1
+            // SearchBtn
             // 
-            vScrollBar1.Location = new Point(1081, 52);
-            vScrollBar1.Name = "vScrollBar1";
-            vScrollBar1.Size = new Size(27, 628);
-            vScrollBar1.TabIndex = 0;
+            SearchBtn.Cursor = Cursors.Hand;
+            SearchBtn.FlatAppearance.BorderColor = Color.White;
+            SearchBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
+            SearchBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
+            SearchBtn.FlatStyle = FlatStyle.Flat;
+            SearchBtn.ForeColor = Color.White;
+            SearchBtn.Location = new Point(6, 21);
+            SearchBtn.Name = "SearchBtn";
+            SearchBtn.Size = new Size(75, 32);
+            SearchBtn.TabIndex = 1;
+            SearchBtn.Text = "جستجو";
+            SearchBtn.UseVisualStyleBackColor = true;
             // 
-            // UsersTab
+            // SearchTxt
             // 
-            UsersTab.BackColor = Color.Transparent;
-            UsersTab.Controls.Add(NewUserBtn);
-            UsersTab.Controls.Add(vScrollBar1);
-            UsersTab.Location = new Point(4, 4);
-            UsersTab.Name = "UsersTab";
-            UsersTab.Padding = new Padding(3);
-            UsersTab.Size = new Size(1114, 685);
-            UsersTab.TabIndex = 0;
-            UsersTab.Text = "کاربران";
+            SearchTxt.Location = new Point(87, 21);
+            SearchTxt.Name = "SearchTxt";
+            SearchTxt.Size = new Size(262, 32);
+            SearchTxt.TabIndex = 0;
             // 
-            // NewUserBtn
+            // AddBtn
             // 
-            NewUserBtn.BackColor = Color.DodgerBlue;
-            NewUserBtn.Cursor = Cursors.Hand;
-            NewUserBtn.FlatAppearance.BorderColor = Color.RoyalBlue;
-            NewUserBtn.FlatAppearance.BorderSize = 2;
-            NewUserBtn.FlatAppearance.CheckedBackColor = Color.Gray;
-            NewUserBtn.FlatAppearance.MouseDownBackColor = SystemColors.HotTrack;
-            NewUserBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
-            NewUserBtn.FlatStyle = FlatStyle.Flat;
-            NewUserBtn.ForeColor = Color.White;
-            NewUserBtn.Location = new Point(985, 10);
-            NewUserBtn.Name = "NewUserBtn";
-            NewUserBtn.Size = new Size(123, 39);
-            NewUserBtn.TabIndex = 13;
-            NewUserBtn.Text = "کاربر جدید";
-            NewUserBtn.UseVisualStyleBackColor = false;
-            // 
-            // NewRoleBtn
-            // 
-            NewRoleBtn.BackColor = Color.DodgerBlue;
-            NewRoleBtn.Cursor = Cursors.Hand;
-            NewRoleBtn.FlatAppearance.BorderColor = Color.RoyalBlue;
-            NewRoleBtn.FlatAppearance.BorderSize = 2;
-            NewRoleBtn.FlatAppearance.CheckedBackColor = Color.Gray;
-            NewRoleBtn.FlatAppearance.MouseDownBackColor = SystemColors.HotTrack;
-            NewRoleBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
-            NewRoleBtn.FlatStyle = FlatStyle.Flat;
-            NewRoleBtn.ForeColor = Color.White;
-            NewRoleBtn.Location = new Point(985, 10);
-            NewRoleBtn.Name = "NewRoleBtn";
-            NewRoleBtn.Size = new Size(123, 39);
-            NewRoleBtn.TabIndex = 14;
-            NewRoleBtn.Text = "نقش جدید";
-            NewRoleBtn.UseVisualStyleBackColor = false;
-            // 
-            // NewConstBtn
-            // 
-            NewConstBtn.BackColor = Color.DodgerBlue;
-            NewConstBtn.Cursor = Cursors.Hand;
-            NewConstBtn.FlatAppearance.BorderColor = Color.RoyalBlue;
-            NewConstBtn.FlatAppearance.BorderSize = 2;
-            NewConstBtn.FlatAppearance.CheckedBackColor = Color.Gray;
-            NewConstBtn.FlatAppearance.MouseDownBackColor = SystemColors.HotTrack;
-            NewConstBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
-            NewConstBtn.FlatStyle = FlatStyle.Flat;
-            NewConstBtn.ForeColor = Color.White;
-            NewConstBtn.Location = new Point(985, 10);
-            NewConstBtn.Name = "NewConstBtn";
-            NewConstBtn.Size = new Size(123, 39);
-            NewConstBtn.TabIndex = 14;
-            NewConstBtn.Text = "ثابت جدید";
-            NewConstBtn.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.DodgerBlue;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderColor = Color.RoyalBlue;
-            button1.FlatAppearance.BorderSize = 2;
-            button1.FlatAppearance.CheckedBackColor = Color.Gray;
-            button1.FlatAppearance.MouseDownBackColor = SystemColors.HotTrack;
-            button1.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(985, 10);
-            button1.Name = "button1";
-            button1.Size = new Size(123, 39);
-            button1.TabIndex = 15;
-            button1.Text = "ایجاد دسترسی";
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // vScrollBar2
-            // 
-            vScrollBar2.Location = new Point(1087, 52);
-            vScrollBar2.Name = "vScrollBar2";
-            vScrollBar2.Size = new Size(21, 630);
-            vScrollBar2.TabIndex = 15;
+            AddBtn.Cursor = Cursors.Hand;
+            AddBtn.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            AddBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            AddBtn.FlatAppearance.MouseDownBackColor = Color.Green;
+            AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            AddBtn.FlatStyle = FlatStyle.Flat;
+            AddBtn.ForeColor = Color.White;
+            AddBtn.Location = new Point(3, 1);
+            AddBtn.Name = "AddBtn";
+            AddBtn.Size = new Size(225, 32);
+            AddBtn.TabIndex = 20;
+            AddBtn.Text = "جدید";
+            AddBtn.UseVisualStyleBackColor = true;
             // 
             // SettingUC
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(AddBtn);
+            Controls.Add(label1);
             Controls.Add(groupBox2);
             Font = new Font("IRANSansWeb", 11.25F);
             Margin = new Padding(4, 5, 4, 5);
             Name = "SettingUC";
-            Size = new Size(1140, 741);
+            Size = new Size(1146, 759);
+            ((System.ComponentModel.ISupportInitialize)GridData).EndInit();
             groupBox2.ResumeLayout(false);
-            MainController.ResumeLayout(false);
-            ConstTab.ResumeLayout(false);
-            AccessTab.ResumeLayout(false);
-            RoleTab.ResumeLayout(false);
-            UsersTab.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
+        private DataGridView GridData;
+        private Label label1;
         private GroupBox groupBox2;
-        private TabControl MainController;
-        private TabPage UsersTab;
-        private VScrollBar vScrollBar1;
-        private TabPage RoleTab;
-        private TabPage ConstTab;
-        private TabPage AccessTab;
-        private Button NewUserBtn;
-        private Button NewRoleBtn;
-        private Button NewConstBtn;
-        private Button button1;
-        private VScrollBar vScrollBar2;
+        private ComboBox CartCombo;
+        private Label PageLbl;
+        private Button NextBtn;
+        private Button PrevBtn;
+        private Button SearchBtn;
+        private TextBox SearchTxt;
+        private Button AddBtn;
     }
 }

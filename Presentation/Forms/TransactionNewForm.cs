@@ -12,6 +12,8 @@ namespace Presentation.Forms
     {
         private IFacadPattern Pattern;
         private readonly LoggerProvider<TransactionNewForm> logger;
+        private Guid TransactionID;
+
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -53,6 +55,7 @@ namespace Presentation.Forms
         }
         private void SaveBtn_Click(object sender, EventArgs e)
         {
+            TransactionID = new Guid();
             var type = ((KeyValue<long>)TransactionTypeCombo.SelectedItem).Value;
             if (TransactionValidation(type))
             {
@@ -374,6 +377,7 @@ namespace Presentation.Forms
                 CartID = cartId,
                 TransactionType = sum ? TransactionType.Settlemant : TransactionType.Harvesting,
                 TransactionCash = cash,
+                TransactionID = TransactionID
             };
         }
         private CustomerDTO CustomerDTO()

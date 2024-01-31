@@ -28,58 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            GridData = new DataGridView();
             label1 = new Label();
             groupBox2 = new GroupBox();
             CartCombo = new ComboBox();
-            GridData = new DataGridView();
             PageLbl = new Label();
             NextBtn = new Button();
             PrevBtn = new Button();
             SearchBtn = new Button();
             SearchTxt = new TextBox();
             AddBtn = new Button();
-            groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
+            groupBox2.SuspendLayout();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.BackColor = Color.Black;
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(238, 6);
-            label1.Name = "label1";
-            label1.Size = new Size(902, 32);
-            label1.TabIndex = 14;
-            label1.Text = "تراکنش های تمام حساب ها";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // groupBox2
-            // 
-            groupBox2.BackColor = Color.Transparent;
-            groupBox2.Controls.Add(CartCombo);
-            groupBox2.Controls.Add(GridData);
-            groupBox2.Controls.Add(PageLbl);
-            groupBox2.Controls.Add(NextBtn);
-            groupBox2.Controls.Add(PrevBtn);
-            groupBox2.Controls.Add(SearchBtn);
-            groupBox2.Controls.Add(SearchTxt);
-            groupBox2.Location = new Point(3, 41);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1137, 695);
-            groupBox2.TabIndex = 13;
-            groupBox2.TabStop = false;
-            // 
-            // CartCombo
-            // 
-            CartCombo.Cursor = Cursors.Hand;
-            CartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
-            CartCombo.FormattingEnabled = true;
-            CartCombo.Location = new Point(355, 21);
-            CartCombo.Name = "CartCombo";
-            CartCombo.RightToLeft = RightToLeft.Yes;
-            CartCombo.Size = new Size(776, 33);
-            CartCombo.TabIndex = 16;
-            CartCombo.SelectedIndexChanged += CartCombo_SelectedIndexChanged;
             // 
             // GridData
             // 
@@ -92,17 +53,55 @@
             GridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             GridData.EditMode = DataGridViewEditMode.EditProgrammatically;
             GridData.GridColor = Color.FromArgb(255, 224, 192);
-            GridData.Location = new Point(6, 62);
+            GridData.Location = new Point(4, 59);
             GridData.Name = "GridData";
             GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridData.Size = new Size(1125, 589);
+            GridData.Size = new Size(1135, 627);
             GridData.TabIndex = 12;
+            // 
+            // label1
+            // 
+            label1.BackColor = Color.Black;
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(243, 1);
+            label1.Name = "label1";
+            label1.Size = new Size(900, 32);
+            label1.TabIndex = 19;
+            label1.Text = "اطلاعات تراکنش های برانکی براساس کارت مشترکین";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // groupBox2
+            // 
+            groupBox2.BackColor = Color.Transparent;
+            groupBox2.Controls.Add(CartCombo);
+            groupBox2.Controls.Add(GridData);
+            groupBox2.Controls.Add(PageLbl);
+            groupBox2.Controls.Add(NextBtn);
+            groupBox2.Controls.Add(PrevBtn);
+            groupBox2.Controls.Add(SearchBtn);
+            groupBox2.Controls.Add(SearchTxt);
+            groupBox2.Location = new Point(2, 27);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(1143, 731);
+            groupBox2.TabIndex = 18;
+            groupBox2.TabStop = false;
+            // 
+            // CartCombo
+            // 
+            CartCombo.Cursor = Cursors.Hand;
+            CartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            CartCombo.FormattingEnabled = true;
+            CartCombo.Location = new Point(363, 20);
+            CartCombo.Name = "CartCombo";
+            CartCombo.RightToLeft = RightToLeft.Yes;
+            CartCombo.Size = new Size(776, 33);
+            CartCombo.TabIndex = 16;
             // 
             // PageLbl
             // 
             PageLbl.ForeColor = Color.White;
-            PageLbl.Location = new Point(193, 657);
+            PageLbl.Location = new Point(195, 692);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(751, 32);
             PageLbl.TabIndex = 11;
@@ -118,7 +117,7 @@
             NextBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             NextBtn.FlatStyle = FlatStyle.Flat;
             NextBtn.ForeColor = Color.White;
-            NextBtn.Location = new Point(6, 657);
+            NextBtn.Location = new Point(6, 692);
             NextBtn.Name = "NextBtn";
             NextBtn.Size = new Size(56, 32);
             NextBtn.TabIndex = 3;
@@ -134,7 +133,7 @@
             PrevBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             PrevBtn.FlatStyle = FlatStyle.Flat;
             PrevBtn.ForeColor = Color.White;
-            PrevBtn.Location = new Point(1075, 657);
+            PrevBtn.Location = new Point(1079, 692);
             PrevBtn.Name = "PrevBtn";
             PrevBtn.Size = new Size(56, 32);
             PrevBtn.TabIndex = 2;
@@ -158,7 +157,7 @@
             // 
             // SearchTxt
             // 
-            SearchTxt.Location = new Point(87, 22);
+            SearchTxt.Location = new Point(87, 21);
             SearchTxt.Name = "SearchTxt";
             SearchTxt.Size = new Size(262, 32);
             SearchTxt.TabIndex = 0;
@@ -172,44 +171,43 @@
             AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             AddBtn.FlatStyle = FlatStyle.Flat;
             AddBtn.ForeColor = Color.White;
-            AddBtn.Location = new Point(9, 6);
+            AddBtn.Location = new Point(3, 1);
             AddBtn.Name = "AddBtn";
-            AddBtn.Size = new Size(223, 32);
-            AddBtn.TabIndex = 14;
+            AddBtn.Size = new Size(225, 32);
+            AddBtn.TabIndex = 20;
             AddBtn.Text = "جدید";
             AddBtn.UseVisualStyleBackColor = true;
-            AddBtn.Click += AddBtn_Click;
             // 
             // TransactionUC
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
-            Controls.Add(label1);
             Controls.Add(AddBtn);
+            Controls.Add(label1);
             Controls.Add(groupBox2);
             Font = new Font("IRANSansWeb", 11.25F);
             Margin = new Padding(4, 5, 4, 5);
             Name = "TransactionUC";
-            Size = new Size(1140, 741);
+            Size = new Size(1146, 759);
             Load += TransactionUC_Load;
+            ((System.ComponentModel.ISupportInitialize)GridData).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)GridData).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
+        private DataGridView GridData;
         private Label label1;
         private GroupBox groupBox2;
-        private Button AddBtn;
-        private DataGridView GridData;
+        private ComboBox CartCombo;
         private Label PageLbl;
         private Button NextBtn;
         private Button PrevBtn;
         private Button SearchBtn;
         private TextBox SearchTxt;
-        private ComboBox CartCombo;
+        private Button AddBtn;
     }
 }

@@ -206,9 +206,9 @@
             groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(label2);
-            groupBox2.Location = new Point(2, 25);
+            groupBox2.Location = new Point(1, 25);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1137, 717);
+            groupBox2.Size = new Size(1144, 717);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             // 
@@ -219,7 +219,7 @@
             Afg16.Cursor = Cursors.UpArrow;
             Afg16.FlatStyle = FlatStyle.Flat;
             Afg16.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg16.Location = new Point(29, 653);
+            Afg16.Location = new Point(33, 653);
             Afg16.Name = "Afg16";
             Afg16.Size = new Size(203, 32);
             Afg16.TabIndex = 97;
@@ -233,7 +233,7 @@
             Dollor16.Cursor = Cursors.UpArrow;
             Dollor16.FlatStyle = FlatStyle.Flat;
             Dollor16.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor16.Location = new Point(248, 653);
+            Dollor16.Location = new Point(252, 653);
             Dollor16.Name = "Dollor16";
             Dollor16.Size = new Size(203, 32);
             Dollor16.TabIndex = 96;
@@ -247,7 +247,7 @@
             Rial16.Cursor = Cursors.UpArrow;
             Rial16.FlatStyle = FlatStyle.Flat;
             Rial16.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial16.Location = new Point(467, 653);
+            Rial16.Location = new Point(471, 653);
             Rial16.Name = "Rial16";
             Rial16.Size = new Size(203, 32);
             Rial16.TabIndex = 95;
@@ -261,7 +261,7 @@
             B16.Cursor = Cursors.UpArrow;
             B16.FlatStyle = FlatStyle.Flat;
             B16.ForeColor = Color.FromArgb(192, 0, 0);
-            B16.Location = new Point(686, 653);
+            B16.Location = new Point(690, 653);
             B16.Name = "B16";
             B16.Size = new Size(203, 32);
             B16.TabIndex = 94;
@@ -275,7 +275,7 @@
             A16.Cursor = Cursors.UpArrow;
             A16.FlatStyle = FlatStyle.Flat;
             A16.ForeColor = Color.FromArgb(192, 0, 0);
-            A16.Location = new Point(905, 653);
+            A16.Location = new Point(909, 653);
             A16.Name = "A16";
             A16.Size = new Size(203, 32);
             A16.TabIndex = 93;
@@ -289,7 +289,7 @@
             Afg15.Cursor = Cursors.UpArrow;
             Afg15.FlatStyle = FlatStyle.Flat;
             Afg15.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg15.Location = new Point(29, 615);
+            Afg15.Location = new Point(33, 615);
             Afg15.Name = "Afg15";
             Afg15.Size = new Size(203, 32);
             Afg15.TabIndex = 92;
@@ -303,7 +303,7 @@
             Dollor15.Cursor = Cursors.UpArrow;
             Dollor15.FlatStyle = FlatStyle.Flat;
             Dollor15.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor15.Location = new Point(248, 615);
+            Dollor15.Location = new Point(252, 615);
             Dollor15.Name = "Dollor15";
             Dollor15.Size = new Size(203, 32);
             Dollor15.TabIndex = 91;
@@ -317,7 +317,7 @@
             Rial15.Cursor = Cursors.UpArrow;
             Rial15.FlatStyle = FlatStyle.Flat;
             Rial15.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial15.Location = new Point(467, 615);
+            Rial15.Location = new Point(471, 615);
             Rial15.Name = "Rial15";
             Rial15.Size = new Size(203, 32);
             Rial15.TabIndex = 90;
@@ -331,7 +331,7 @@
             B15.Cursor = Cursors.UpArrow;
             B15.FlatStyle = FlatStyle.Flat;
             B15.ForeColor = Color.FromArgb(192, 0, 0);
-            B15.Location = new Point(686, 615);
+            B15.Location = new Point(690, 615);
             B15.Name = "B15";
             B15.Size = new Size(203, 32);
             B15.TabIndex = 89;
@@ -345,7 +345,7 @@
             A15.Cursor = Cursors.UpArrow;
             A15.FlatStyle = FlatStyle.Flat;
             A15.ForeColor = Color.FromArgb(192, 0, 0);
-            A15.Location = new Point(905, 615);
+            A15.Location = new Point(909, 615);
             A15.Name = "A15";
             A15.Size = new Size(203, 32);
             A15.TabIndex = 88;
@@ -359,7 +359,7 @@
             Afg14.Cursor = Cursors.UpArrow;
             Afg14.FlatStyle = FlatStyle.Flat;
             Afg14.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg14.Location = new Point(29, 577);
+            Afg14.Location = new Point(33, 577);
             Afg14.Name = "Afg14";
             Afg14.Size = new Size(203, 32);
             Afg14.TabIndex = 87;
@@ -373,7 +373,7 @@
             Dollor14.Cursor = Cursors.UpArrow;
             Dollor14.FlatStyle = FlatStyle.Flat;
             Dollor14.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor14.Location = new Point(248, 577);
+            Dollor14.Location = new Point(252, 577);
             Dollor14.Name = "Dollor14";
             Dollor14.Size = new Size(203, 32);
             Dollor14.TabIndex = 86;
@@ -387,7 +387,7 @@
             Rial14.Cursor = Cursors.UpArrow;
             Rial14.FlatStyle = FlatStyle.Flat;
             Rial14.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial14.Location = new Point(467, 577);
+            Rial14.Location = new Point(471, 577);
             Rial14.Name = "Rial14";
             Rial14.Size = new Size(203, 32);
             Rial14.TabIndex = 85;
@@ -401,7 +401,7 @@
             B14.Cursor = Cursors.UpArrow;
             B14.FlatStyle = FlatStyle.Flat;
             B14.ForeColor = Color.FromArgb(192, 0, 0);
-            B14.Location = new Point(686, 577);
+            B14.Location = new Point(690, 577);
             B14.Name = "B14";
             B14.Size = new Size(203, 32);
             B14.TabIndex = 84;
@@ -415,7 +415,7 @@
             A14.Cursor = Cursors.UpArrow;
             A14.FlatStyle = FlatStyle.Flat;
             A14.ForeColor = Color.FromArgb(192, 0, 0);
-            A14.Location = new Point(905, 577);
+            A14.Location = new Point(909, 577);
             A14.Name = "A14";
             A14.Size = new Size(203, 32);
             A14.TabIndex = 83;
@@ -429,7 +429,7 @@
             Afg13.Cursor = Cursors.UpArrow;
             Afg13.FlatStyle = FlatStyle.Flat;
             Afg13.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg13.Location = new Point(29, 539);
+            Afg13.Location = new Point(33, 539);
             Afg13.Name = "Afg13";
             Afg13.Size = new Size(203, 32);
             Afg13.TabIndex = 82;
@@ -443,7 +443,7 @@
             Dollor13.Cursor = Cursors.UpArrow;
             Dollor13.FlatStyle = FlatStyle.Flat;
             Dollor13.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor13.Location = new Point(248, 539);
+            Dollor13.Location = new Point(252, 539);
             Dollor13.Name = "Dollor13";
             Dollor13.Size = new Size(203, 32);
             Dollor13.TabIndex = 81;
@@ -457,7 +457,7 @@
             Rial13.Cursor = Cursors.UpArrow;
             Rial13.FlatStyle = FlatStyle.Flat;
             Rial13.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial13.Location = new Point(467, 539);
+            Rial13.Location = new Point(471, 539);
             Rial13.Name = "Rial13";
             Rial13.Size = new Size(203, 32);
             Rial13.TabIndex = 80;
@@ -471,7 +471,7 @@
             B13.Cursor = Cursors.UpArrow;
             B13.FlatStyle = FlatStyle.Flat;
             B13.ForeColor = Color.FromArgb(192, 0, 0);
-            B13.Location = new Point(686, 539);
+            B13.Location = new Point(690, 539);
             B13.Name = "B13";
             B13.Size = new Size(203, 32);
             B13.TabIndex = 79;
@@ -485,7 +485,7 @@
             A13.Cursor = Cursors.UpArrow;
             A13.FlatStyle = FlatStyle.Flat;
             A13.ForeColor = Color.FromArgb(192, 0, 0);
-            A13.Location = new Point(905, 539);
+            A13.Location = new Point(909, 539);
             A13.Name = "A13";
             A13.Size = new Size(203, 32);
             A13.TabIndex = 78;
@@ -499,7 +499,7 @@
             Afg12.Cursor = Cursors.UpArrow;
             Afg12.FlatStyle = FlatStyle.Flat;
             Afg12.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg12.Location = new Point(29, 501);
+            Afg12.Location = new Point(33, 501);
             Afg12.Name = "Afg12";
             Afg12.Size = new Size(203, 32);
             Afg12.TabIndex = 77;
@@ -513,7 +513,7 @@
             Dollor12.Cursor = Cursors.UpArrow;
             Dollor12.FlatStyle = FlatStyle.Flat;
             Dollor12.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor12.Location = new Point(248, 501);
+            Dollor12.Location = new Point(252, 501);
             Dollor12.Name = "Dollor12";
             Dollor12.Size = new Size(203, 32);
             Dollor12.TabIndex = 76;
@@ -527,7 +527,7 @@
             Rial12.Cursor = Cursors.UpArrow;
             Rial12.FlatStyle = FlatStyle.Flat;
             Rial12.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial12.Location = new Point(467, 501);
+            Rial12.Location = new Point(471, 501);
             Rial12.Name = "Rial12";
             Rial12.Size = new Size(203, 32);
             Rial12.TabIndex = 75;
@@ -541,7 +541,7 @@
             B12.Cursor = Cursors.UpArrow;
             B12.FlatStyle = FlatStyle.Flat;
             B12.ForeColor = Color.FromArgb(192, 0, 0);
-            B12.Location = new Point(686, 501);
+            B12.Location = new Point(690, 501);
             B12.Name = "B12";
             B12.Size = new Size(203, 32);
             B12.TabIndex = 74;
@@ -555,7 +555,7 @@
             A12.Cursor = Cursors.UpArrow;
             A12.FlatStyle = FlatStyle.Flat;
             A12.ForeColor = Color.FromArgb(192, 0, 0);
-            A12.Location = new Point(905, 501);
+            A12.Location = new Point(909, 501);
             A12.Name = "A12";
             A12.Size = new Size(203, 32);
             A12.TabIndex = 73;
@@ -569,7 +569,7 @@
             Afg11.Cursor = Cursors.UpArrow;
             Afg11.FlatStyle = FlatStyle.Flat;
             Afg11.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg11.Location = new Point(29, 463);
+            Afg11.Location = new Point(33, 463);
             Afg11.Name = "Afg11";
             Afg11.Size = new Size(203, 32);
             Afg11.TabIndex = 72;
@@ -583,7 +583,7 @@
             Dollor11.Cursor = Cursors.UpArrow;
             Dollor11.FlatStyle = FlatStyle.Flat;
             Dollor11.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor11.Location = new Point(248, 463);
+            Dollor11.Location = new Point(252, 463);
             Dollor11.Name = "Dollor11";
             Dollor11.Size = new Size(203, 32);
             Dollor11.TabIndex = 71;
@@ -597,7 +597,7 @@
             Rial11.Cursor = Cursors.UpArrow;
             Rial11.FlatStyle = FlatStyle.Flat;
             Rial11.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial11.Location = new Point(467, 463);
+            Rial11.Location = new Point(471, 463);
             Rial11.Name = "Rial11";
             Rial11.Size = new Size(203, 32);
             Rial11.TabIndex = 70;
@@ -611,7 +611,7 @@
             B11.Cursor = Cursors.UpArrow;
             B11.FlatStyle = FlatStyle.Flat;
             B11.ForeColor = Color.FromArgb(192, 0, 0);
-            B11.Location = new Point(686, 463);
+            B11.Location = new Point(690, 463);
             B11.Name = "B11";
             B11.Size = new Size(203, 32);
             B11.TabIndex = 69;
@@ -625,7 +625,7 @@
             A11.Cursor = Cursors.UpArrow;
             A11.FlatStyle = FlatStyle.Flat;
             A11.ForeColor = Color.FromArgb(192, 0, 0);
-            A11.Location = new Point(905, 463);
+            A11.Location = new Point(909, 463);
             A11.Name = "A11";
             A11.Size = new Size(203, 32);
             A11.TabIndex = 68;
@@ -639,7 +639,7 @@
             Afg10.Cursor = Cursors.UpArrow;
             Afg10.FlatStyle = FlatStyle.Flat;
             Afg10.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg10.Location = new Point(29, 425);
+            Afg10.Location = new Point(33, 425);
             Afg10.Name = "Afg10";
             Afg10.Size = new Size(203, 32);
             Afg10.TabIndex = 67;
@@ -653,7 +653,7 @@
             Dollor10.Cursor = Cursors.UpArrow;
             Dollor10.FlatStyle = FlatStyle.Flat;
             Dollor10.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor10.Location = new Point(248, 425);
+            Dollor10.Location = new Point(252, 425);
             Dollor10.Name = "Dollor10";
             Dollor10.Size = new Size(203, 32);
             Dollor10.TabIndex = 66;
@@ -667,7 +667,7 @@
             Rial10.Cursor = Cursors.UpArrow;
             Rial10.FlatStyle = FlatStyle.Flat;
             Rial10.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial10.Location = new Point(467, 425);
+            Rial10.Location = new Point(471, 425);
             Rial10.Name = "Rial10";
             Rial10.Size = new Size(203, 32);
             Rial10.TabIndex = 65;
@@ -681,7 +681,7 @@
             B10.Cursor = Cursors.UpArrow;
             B10.FlatStyle = FlatStyle.Flat;
             B10.ForeColor = Color.FromArgb(192, 0, 0);
-            B10.Location = new Point(686, 425);
+            B10.Location = new Point(690, 425);
             B10.Name = "B10";
             B10.Size = new Size(203, 32);
             B10.TabIndex = 64;
@@ -695,7 +695,7 @@
             A10.Cursor = Cursors.UpArrow;
             A10.FlatStyle = FlatStyle.Flat;
             A10.ForeColor = Color.FromArgb(192, 0, 0);
-            A10.Location = new Point(905, 425);
+            A10.Location = new Point(909, 425);
             A10.Name = "A10";
             A10.Size = new Size(203, 32);
             A10.TabIndex = 63;
@@ -709,7 +709,7 @@
             Afg9.Cursor = Cursors.UpArrow;
             Afg9.FlatStyle = FlatStyle.Flat;
             Afg9.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg9.Location = new Point(29, 387);
+            Afg9.Location = new Point(33, 387);
             Afg9.Name = "Afg9";
             Afg9.Size = new Size(203, 32);
             Afg9.TabIndex = 62;
@@ -723,7 +723,7 @@
             Dollor9.Cursor = Cursors.UpArrow;
             Dollor9.FlatStyle = FlatStyle.Flat;
             Dollor9.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor9.Location = new Point(248, 387);
+            Dollor9.Location = new Point(252, 387);
             Dollor9.Name = "Dollor9";
             Dollor9.Size = new Size(203, 32);
             Dollor9.TabIndex = 61;
@@ -737,7 +737,7 @@
             Rial9.Cursor = Cursors.UpArrow;
             Rial9.FlatStyle = FlatStyle.Flat;
             Rial9.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial9.Location = new Point(467, 387);
+            Rial9.Location = new Point(471, 387);
             Rial9.Name = "Rial9";
             Rial9.Size = new Size(203, 32);
             Rial9.TabIndex = 60;
@@ -751,7 +751,7 @@
             B9.Cursor = Cursors.UpArrow;
             B9.FlatStyle = FlatStyle.Flat;
             B9.ForeColor = Color.FromArgb(192, 0, 0);
-            B9.Location = new Point(686, 387);
+            B9.Location = new Point(690, 387);
             B9.Name = "B9";
             B9.Size = new Size(203, 32);
             B9.TabIndex = 59;
@@ -765,7 +765,7 @@
             A9.Cursor = Cursors.UpArrow;
             A9.FlatStyle = FlatStyle.Flat;
             A9.ForeColor = Color.FromArgb(192, 0, 0);
-            A9.Location = new Point(905, 387);
+            A9.Location = new Point(909, 387);
             A9.Name = "A9";
             A9.Size = new Size(203, 32);
             A9.TabIndex = 58;
@@ -779,7 +779,7 @@
             Afg8.Cursor = Cursors.UpArrow;
             Afg8.FlatStyle = FlatStyle.Flat;
             Afg8.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg8.Location = new Point(29, 349);
+            Afg8.Location = new Point(33, 349);
             Afg8.Name = "Afg8";
             Afg8.Size = new Size(203, 32);
             Afg8.TabIndex = 57;
@@ -793,7 +793,7 @@
             Dollor8.Cursor = Cursors.UpArrow;
             Dollor8.FlatStyle = FlatStyle.Flat;
             Dollor8.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor8.Location = new Point(248, 349);
+            Dollor8.Location = new Point(252, 349);
             Dollor8.Name = "Dollor8";
             Dollor8.Size = new Size(203, 32);
             Dollor8.TabIndex = 56;
@@ -807,7 +807,7 @@
             Rial8.Cursor = Cursors.UpArrow;
             Rial8.FlatStyle = FlatStyle.Flat;
             Rial8.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial8.Location = new Point(467, 349);
+            Rial8.Location = new Point(471, 349);
             Rial8.Name = "Rial8";
             Rial8.Size = new Size(203, 32);
             Rial8.TabIndex = 55;
@@ -821,7 +821,7 @@
             B8.Cursor = Cursors.UpArrow;
             B8.FlatStyle = FlatStyle.Flat;
             B8.ForeColor = Color.FromArgb(192, 0, 0);
-            B8.Location = new Point(686, 349);
+            B8.Location = new Point(690, 349);
             B8.Name = "B8";
             B8.Size = new Size(203, 32);
             B8.TabIndex = 54;
@@ -835,7 +835,7 @@
             A8.Cursor = Cursors.UpArrow;
             A8.FlatStyle = FlatStyle.Flat;
             A8.ForeColor = Color.FromArgb(192, 0, 0);
-            A8.Location = new Point(905, 349);
+            A8.Location = new Point(909, 349);
             A8.Name = "A8";
             A8.Size = new Size(203, 32);
             A8.TabIndex = 53;
@@ -849,7 +849,7 @@
             Afg7.Cursor = Cursors.UpArrow;
             Afg7.FlatStyle = FlatStyle.Flat;
             Afg7.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg7.Location = new Point(29, 311);
+            Afg7.Location = new Point(33, 311);
             Afg7.Name = "Afg7";
             Afg7.Size = new Size(203, 32);
             Afg7.TabIndex = 52;
@@ -863,7 +863,7 @@
             Dollor7.Cursor = Cursors.UpArrow;
             Dollor7.FlatStyle = FlatStyle.Flat;
             Dollor7.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor7.Location = new Point(248, 311);
+            Dollor7.Location = new Point(252, 311);
             Dollor7.Name = "Dollor7";
             Dollor7.Size = new Size(203, 32);
             Dollor7.TabIndex = 51;
@@ -877,7 +877,7 @@
             Rial7.Cursor = Cursors.UpArrow;
             Rial7.FlatStyle = FlatStyle.Flat;
             Rial7.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial7.Location = new Point(467, 311);
+            Rial7.Location = new Point(471, 311);
             Rial7.Name = "Rial7";
             Rial7.Size = new Size(203, 32);
             Rial7.TabIndex = 50;
@@ -891,7 +891,7 @@
             B7.Cursor = Cursors.UpArrow;
             B7.FlatStyle = FlatStyle.Flat;
             B7.ForeColor = Color.FromArgb(192, 0, 0);
-            B7.Location = new Point(686, 311);
+            B7.Location = new Point(690, 311);
             B7.Name = "B7";
             B7.Size = new Size(203, 32);
             B7.TabIndex = 49;
@@ -905,7 +905,7 @@
             A7.Cursor = Cursors.UpArrow;
             A7.FlatStyle = FlatStyle.Flat;
             A7.ForeColor = Color.FromArgb(192, 0, 0);
-            A7.Location = new Point(905, 311);
+            A7.Location = new Point(909, 311);
             A7.Name = "A7";
             A7.Size = new Size(203, 32);
             A7.TabIndex = 48;
@@ -919,7 +919,7 @@
             Afg6.Cursor = Cursors.UpArrow;
             Afg6.FlatStyle = FlatStyle.Flat;
             Afg6.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg6.Location = new Point(29, 273);
+            Afg6.Location = new Point(33, 273);
             Afg6.Name = "Afg6";
             Afg6.Size = new Size(203, 32);
             Afg6.TabIndex = 47;
@@ -933,7 +933,7 @@
             Dollor6.Cursor = Cursors.UpArrow;
             Dollor6.FlatStyle = FlatStyle.Flat;
             Dollor6.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor6.Location = new Point(248, 273);
+            Dollor6.Location = new Point(252, 273);
             Dollor6.Name = "Dollor6";
             Dollor6.Size = new Size(203, 32);
             Dollor6.TabIndex = 46;
@@ -947,7 +947,7 @@
             Rial6.Cursor = Cursors.UpArrow;
             Rial6.FlatStyle = FlatStyle.Flat;
             Rial6.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial6.Location = new Point(467, 273);
+            Rial6.Location = new Point(471, 273);
             Rial6.Name = "Rial6";
             Rial6.Size = new Size(203, 32);
             Rial6.TabIndex = 45;
@@ -961,7 +961,7 @@
             B6.Cursor = Cursors.UpArrow;
             B6.FlatStyle = FlatStyle.Flat;
             B6.ForeColor = Color.FromArgb(192, 0, 0);
-            B6.Location = new Point(686, 273);
+            B6.Location = new Point(690, 273);
             B6.Name = "B6";
             B6.Size = new Size(203, 32);
             B6.TabIndex = 44;
@@ -975,7 +975,7 @@
             A6.Cursor = Cursors.UpArrow;
             A6.FlatStyle = FlatStyle.Flat;
             A6.ForeColor = Color.FromArgb(192, 0, 0);
-            A6.Location = new Point(905, 273);
+            A6.Location = new Point(909, 273);
             A6.Name = "A6";
             A6.Size = new Size(203, 32);
             A6.TabIndex = 43;
@@ -989,7 +989,7 @@
             Afg5.Cursor = Cursors.UpArrow;
             Afg5.FlatStyle = FlatStyle.Flat;
             Afg5.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg5.Location = new Point(29, 235);
+            Afg5.Location = new Point(33, 235);
             Afg5.Name = "Afg5";
             Afg5.Size = new Size(203, 32);
             Afg5.TabIndex = 42;
@@ -1003,7 +1003,7 @@
             Dollor5.Cursor = Cursors.UpArrow;
             Dollor5.FlatStyle = FlatStyle.Flat;
             Dollor5.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor5.Location = new Point(248, 235);
+            Dollor5.Location = new Point(252, 235);
             Dollor5.Name = "Dollor5";
             Dollor5.Size = new Size(203, 32);
             Dollor5.TabIndex = 41;
@@ -1017,7 +1017,7 @@
             Rial5.Cursor = Cursors.UpArrow;
             Rial5.FlatStyle = FlatStyle.Flat;
             Rial5.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial5.Location = new Point(467, 235);
+            Rial5.Location = new Point(471, 235);
             Rial5.Name = "Rial5";
             Rial5.Size = new Size(203, 32);
             Rial5.TabIndex = 40;
@@ -1031,7 +1031,7 @@
             B5.Cursor = Cursors.UpArrow;
             B5.FlatStyle = FlatStyle.Flat;
             B5.ForeColor = Color.FromArgb(192, 0, 0);
-            B5.Location = new Point(686, 235);
+            B5.Location = new Point(690, 235);
             B5.Name = "B5";
             B5.Size = new Size(203, 32);
             B5.TabIndex = 39;
@@ -1045,7 +1045,7 @@
             A5.Cursor = Cursors.UpArrow;
             A5.FlatStyle = FlatStyle.Flat;
             A5.ForeColor = Color.FromArgb(192, 0, 0);
-            A5.Location = new Point(905, 235);
+            A5.Location = new Point(909, 235);
             A5.Name = "A5";
             A5.Size = new Size(203, 32);
             A5.TabIndex = 38;
@@ -1059,7 +1059,7 @@
             Afg4.Cursor = Cursors.UpArrow;
             Afg4.FlatStyle = FlatStyle.Flat;
             Afg4.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg4.Location = new Point(29, 197);
+            Afg4.Location = new Point(33, 197);
             Afg4.Name = "Afg4";
             Afg4.Size = new Size(203, 32);
             Afg4.TabIndex = 37;
@@ -1073,7 +1073,7 @@
             Dollor4.Cursor = Cursors.UpArrow;
             Dollor4.FlatStyle = FlatStyle.Flat;
             Dollor4.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor4.Location = new Point(248, 197);
+            Dollor4.Location = new Point(252, 197);
             Dollor4.Name = "Dollor4";
             Dollor4.Size = new Size(203, 32);
             Dollor4.TabIndex = 36;
@@ -1087,7 +1087,7 @@
             Rial4.Cursor = Cursors.UpArrow;
             Rial4.FlatStyle = FlatStyle.Flat;
             Rial4.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial4.Location = new Point(467, 197);
+            Rial4.Location = new Point(471, 197);
             Rial4.Name = "Rial4";
             Rial4.Size = new Size(203, 32);
             Rial4.TabIndex = 35;
@@ -1101,7 +1101,7 @@
             B4.Cursor = Cursors.UpArrow;
             B4.FlatStyle = FlatStyle.Flat;
             B4.ForeColor = Color.FromArgb(192, 0, 0);
-            B4.Location = new Point(686, 197);
+            B4.Location = new Point(690, 197);
             B4.Name = "B4";
             B4.Size = new Size(203, 32);
             B4.TabIndex = 34;
@@ -1115,7 +1115,7 @@
             A4.Cursor = Cursors.UpArrow;
             A4.FlatStyle = FlatStyle.Flat;
             A4.ForeColor = Color.FromArgb(192, 0, 0);
-            A4.Location = new Point(905, 197);
+            A4.Location = new Point(909, 197);
             A4.Name = "A4";
             A4.Size = new Size(203, 32);
             A4.TabIndex = 33;
@@ -1129,7 +1129,7 @@
             Afg3.Cursor = Cursors.UpArrow;
             Afg3.FlatStyle = FlatStyle.Flat;
             Afg3.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg3.Location = new Point(29, 159);
+            Afg3.Location = new Point(33, 159);
             Afg3.Name = "Afg3";
             Afg3.Size = new Size(203, 32);
             Afg3.TabIndex = 32;
@@ -1143,7 +1143,7 @@
             Dollor3.Cursor = Cursors.UpArrow;
             Dollor3.FlatStyle = FlatStyle.Flat;
             Dollor3.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor3.Location = new Point(248, 159);
+            Dollor3.Location = new Point(252, 159);
             Dollor3.Name = "Dollor3";
             Dollor3.Size = new Size(203, 32);
             Dollor3.TabIndex = 31;
@@ -1157,7 +1157,7 @@
             Rial3.Cursor = Cursors.UpArrow;
             Rial3.FlatStyle = FlatStyle.Flat;
             Rial3.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial3.Location = new Point(467, 159);
+            Rial3.Location = new Point(471, 159);
             Rial3.Name = "Rial3";
             Rial3.Size = new Size(203, 32);
             Rial3.TabIndex = 30;
@@ -1171,7 +1171,7 @@
             B3.Cursor = Cursors.UpArrow;
             B3.FlatStyle = FlatStyle.Flat;
             B3.ForeColor = Color.FromArgb(192, 0, 0);
-            B3.Location = new Point(686, 159);
+            B3.Location = new Point(690, 159);
             B3.Name = "B3";
             B3.Size = new Size(203, 32);
             B3.TabIndex = 29;
@@ -1185,7 +1185,7 @@
             A3.Cursor = Cursors.UpArrow;
             A3.FlatStyle = FlatStyle.Flat;
             A3.ForeColor = Color.FromArgb(192, 0, 0);
-            A3.Location = new Point(905, 159);
+            A3.Location = new Point(909, 159);
             A3.Name = "A3";
             A3.Size = new Size(203, 32);
             A3.TabIndex = 28;
@@ -1199,7 +1199,7 @@
             Afg2.Cursor = Cursors.UpArrow;
             Afg2.FlatStyle = FlatStyle.Flat;
             Afg2.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg2.Location = new Point(29, 121);
+            Afg2.Location = new Point(33, 121);
             Afg2.Name = "Afg2";
             Afg2.Size = new Size(203, 32);
             Afg2.TabIndex = 27;
@@ -1213,7 +1213,7 @@
             Dollor2.Cursor = Cursors.UpArrow;
             Dollor2.FlatStyle = FlatStyle.Flat;
             Dollor2.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor2.Location = new Point(248, 121);
+            Dollor2.Location = new Point(252, 121);
             Dollor2.Name = "Dollor2";
             Dollor2.Size = new Size(203, 32);
             Dollor2.TabIndex = 26;
@@ -1227,7 +1227,7 @@
             Rial2.Cursor = Cursors.UpArrow;
             Rial2.FlatStyle = FlatStyle.Flat;
             Rial2.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial2.Location = new Point(467, 121);
+            Rial2.Location = new Point(471, 121);
             Rial2.Name = "Rial2";
             Rial2.Size = new Size(203, 32);
             Rial2.TabIndex = 25;
@@ -1241,7 +1241,7 @@
             B2.Cursor = Cursors.UpArrow;
             B2.FlatStyle = FlatStyle.Flat;
             B2.ForeColor = Color.FromArgb(192, 0, 0);
-            B2.Location = new Point(686, 121);
+            B2.Location = new Point(690, 121);
             B2.Name = "B2";
             B2.Size = new Size(203, 32);
             B2.TabIndex = 24;
@@ -1255,7 +1255,7 @@
             A2.Cursor = Cursors.UpArrow;
             A2.FlatStyle = FlatStyle.Flat;
             A2.ForeColor = Color.FromArgb(192, 0, 0);
-            A2.Location = new Point(905, 121);
+            A2.Location = new Point(909, 121);
             A2.Name = "A2";
             A2.Size = new Size(203, 32);
             A2.TabIndex = 23;
@@ -1269,7 +1269,7 @@
             Afg1.Cursor = Cursors.UpArrow;
             Afg1.FlatStyle = FlatStyle.Flat;
             Afg1.ForeColor = Color.FromArgb(192, 0, 0);
-            Afg1.Location = new Point(29, 83);
+            Afg1.Location = new Point(33, 83);
             Afg1.Name = "Afg1";
             Afg1.Size = new Size(203, 32);
             Afg1.TabIndex = 22;
@@ -1283,7 +1283,7 @@
             Dollor1.Cursor = Cursors.UpArrow;
             Dollor1.FlatStyle = FlatStyle.Flat;
             Dollor1.ForeColor = Color.FromArgb(192, 0, 0);
-            Dollor1.Location = new Point(248, 83);
+            Dollor1.Location = new Point(252, 83);
             Dollor1.Name = "Dollor1";
             Dollor1.Size = new Size(203, 32);
             Dollor1.TabIndex = 21;
@@ -1297,7 +1297,7 @@
             Rial1.Cursor = Cursors.UpArrow;
             Rial1.FlatStyle = FlatStyle.Flat;
             Rial1.ForeColor = Color.FromArgb(192, 0, 0);
-            Rial1.Location = new Point(467, 83);
+            Rial1.Location = new Point(471, 83);
             Rial1.Name = "Rial1";
             Rial1.Size = new Size(203, 32);
             Rial1.TabIndex = 20;
@@ -1311,7 +1311,7 @@
             B1.Cursor = Cursors.UpArrow;
             B1.FlatStyle = FlatStyle.Flat;
             B1.ForeColor = Color.FromArgb(192, 0, 0);
-            B1.Location = new Point(686, 83);
+            B1.Location = new Point(690, 83);
             B1.Name = "B1";
             B1.Size = new Size(203, 32);
             B1.TabIndex = 19;
@@ -1325,7 +1325,7 @@
             A1.Cursor = Cursors.UpArrow;
             A1.FlatStyle = FlatStyle.Flat;
             A1.ForeColor = Color.FromArgb(192, 0, 0);
-            A1.Location = new Point(905, 83);
+            A1.Location = new Point(909, 83);
             A1.Name = "A1";
             A1.Size = new Size(203, 32);
             A1.TabIndex = 18;
@@ -1338,7 +1338,7 @@
             label6.BorderStyle = BorderStyle.Fixed3D;
             label6.FlatStyle = FlatStyle.Flat;
             label6.ForeColor = Color.White;
-            label6.Location = new Point(29, 44);
+            label6.Location = new Point(33, 44);
             label6.Name = "label6";
             label6.Size = new Size(203, 32);
             label6.TabIndex = 17;
@@ -1351,7 +1351,7 @@
             label5.BorderStyle = BorderStyle.Fixed3D;
             label5.FlatStyle = FlatStyle.Flat;
             label5.ForeColor = Color.White;
-            label5.Location = new Point(248, 44);
+            label5.Location = new Point(252, 44);
             label5.Name = "label5";
             label5.Size = new Size(203, 32);
             label5.TabIndex = 16;
@@ -1364,7 +1364,7 @@
             label4.BorderStyle = BorderStyle.Fixed3D;
             label4.FlatStyle = FlatStyle.Flat;
             label4.ForeColor = Color.White;
-            label4.Location = new Point(467, 44);
+            label4.Location = new Point(471, 44);
             label4.Name = "label4";
             label4.Size = new Size(203, 32);
             label4.TabIndex = 15;
@@ -1377,7 +1377,7 @@
             label3.BorderStyle = BorderStyle.Fixed3D;
             label3.FlatStyle = FlatStyle.Flat;
             label3.ForeColor = Color.White;
-            label3.Location = new Point(686, 44);
+            label3.Location = new Point(690, 44);
             label3.Name = "label3";
             label3.Size = new Size(203, 32);
             label3.TabIndex = 14;
@@ -1390,7 +1390,7 @@
             label2.BorderStyle = BorderStyle.Fixed3D;
             label2.FlatStyle = FlatStyle.Flat;
             label2.ForeColor = Color.White;
-            label2.Location = new Point(905, 44);
+            label2.Location = new Point(909, 44);
             label2.Name = "label2";
             label2.Size = new Size(203, 32);
             label2.TabIndex = 13;
@@ -1402,7 +1402,7 @@
             label1.BackColor = Color.Black;
             label1.FlatStyle = FlatStyle.Flat;
             label1.ForeColor = Color.White;
-            label1.Location = new Point(0, 0);
+            label1.Location = new Point(3, 0);
             label1.Name = "label1";
             label1.Size = new Size(1140, 32);
             label1.TabIndex = 12;
@@ -1419,7 +1419,7 @@
             Font = new Font("IRANSansWeb", 11.25F);
             Margin = new Padding(4, 5, 4, 5);
             Name = "OnlineExchangeUC";
-            Size = new Size(1140, 741);
+            Size = new Size(1146, 759);
             Load += OnlineExchangeUC_Load;
             groupBox2.ResumeLayout(false);
             ResumeLayout(false);

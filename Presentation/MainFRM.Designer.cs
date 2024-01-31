@@ -353,9 +353,9 @@
             // 
             // MainPanel
             // 
-            MainPanel.Location = new Point(6, 20);
+            MainPanel.Location = new Point(3, 11);
             MainPanel.Name = "MainPanel";
-            MainPanel.Size = new Size(1140, 741);
+            MainPanel.Size = new Size(1146, 759);
             MainPanel.TabIndex = 0;
             // 
             // progressBar3

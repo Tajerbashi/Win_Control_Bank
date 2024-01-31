@@ -35,11 +35,12 @@ namespace Presentation.Forms
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
         #endregion
+
         private IFacadPattern Pattern;
-
-
+        private Guid TransactionID;
         private void SaveBtn_Click(object sender, EventArgs e)
         {
+            TransactionID = new Guid();
             Pattern.UnitOfWork.BeginTransaction();
             try
             {
@@ -154,6 +155,7 @@ namespace Presentation.Forms
                 BlanceType = BlanceType.Banking,
                 TransactionType = TransactionType.Settlemant,
                 TransactionCash = Convert.ToDouble(BlanceTxt.Text),
+                TransactionID = TransactionID
             };
         }
 
