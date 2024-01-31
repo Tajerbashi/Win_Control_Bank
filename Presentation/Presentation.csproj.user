@@ -45,6 +45,9 @@
     <Compile Update="UserControls\CustomerUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserControls\SettingUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControls\TransactionUC.cs">
       <SubType>UserControl</SubType>
     </Compile>

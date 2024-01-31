@@ -1,6 +1,5 @@
 ﻿using Domain.Library.Entities.BUS;
 using Domain.Library.Entities.CNT;
-using Domain.Library.Entities.HSR;
 using Domain.Library.Entities.LOG;
 using Domain.Library.Entities.RPT;
 using Domain.Library.Entities.SEC;
@@ -36,10 +35,6 @@ namespace Infrastructure.Library.ApplicationContext.EF
 
         #region CNT
         public DbSet<ConstVariable> ConstVariables { get; set; }
-        #endregion
-
-        #region HSR
-        public DbSet<CartHistory> CartHistories { get; set; }
         #endregion
 
         #region LOG

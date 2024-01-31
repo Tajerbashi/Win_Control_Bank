@@ -198,6 +198,7 @@
             SettingBtn.TabIndex = 9;
             SettingBtn.Text = "تنظیمات";
             SettingBtn.UseVisualStyleBackColor = false;
+            SettingBtn.Click += SettingBtn_Click;
             // 
             // BalanceBtn
             // 

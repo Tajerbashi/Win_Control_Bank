@@ -165,5 +165,15 @@ namespace Presentation
         {
             loggerProvider.InfoLog($"بستن نرم افزار  {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
         }
+
+        private void SettingBtn_Click(object sender, EventArgs e)
+        {
+            SettingUC panel = new SettingUC();
+            if (MainPanel.Controls.Count > 0)
+            {
+                MainPanel.Controls[0].Dispose();
+            }
+            MainPanel.Controls.Add(panel);
+        }
     }
 }
