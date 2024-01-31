@@ -29,6 +29,11 @@ namespace Infrastructure.Library.Models.DTOs.BUS
         /// کارت آیدی
         /// </summary>
         public long CartID { get; set; }
+        /// <summary>
+        /// کلید تراکنش
+        /// </summary>
+        public Guid TransactionId { get; set; }
+
 
     }
 }

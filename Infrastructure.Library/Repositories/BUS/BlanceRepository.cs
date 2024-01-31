@@ -134,20 +134,20 @@ ORDER BY BL.ID DESC
 ");
         }
 
-        public IEnumerable<KeyValue<long>> TitleValueBlanceType()
+        public IEnumerable<KeyValue<byte>> TitleValueBlanceType()
         {
-            return new List<KeyValue<long>>()
+            return new List<KeyValue<byte>>()
             {
-                new KeyValue<long> { Value = 1 ,Key = "نقدی"},
-                new KeyValue<long> { Value = 2 ,Key = "بانکی"},
+                new KeyValue<byte> { Value = 1 ,Key = "نقدی"},
+                new KeyValue<byte> { Value = 2 ,Key = "بانکی"},
             };
         }
-        public IEnumerable<KeyValue<long>> TitleValueTransactionType()
+        public IEnumerable<KeyValue<byte>> TitleValueTransactionType()
         {
-            return new List<KeyValue<long>>()
+            return new List<KeyValue<byte>>()
             {
-                new KeyValue<long> { Value = 1 ,Key = "واریزی"},
-                new KeyValue<long> { Value = 2 ,Key = "برداشت"},
+                new KeyValue<byte> { Value = 1 ,Key = "واریزی"},
+                new KeyValue<byte> { Value = 2 ,Key = "برداشت"},
             };
         }
 

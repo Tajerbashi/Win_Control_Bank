@@ -7,10 +7,7 @@ using Domain.Library.Entities.SEC;
 using Domain.Library.Entities.WEB;
 using Infrastructure.Library.ApplicationContext.Configurations;
 using Infrastructure.Library.ApplicationContext.Sql_Queries.Views.C_;
-using Infrastructure.Library.Models.Views.BUS;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Infrastructure.Library.ApplicationContext.EF
 {
@@ -37,12 +34,12 @@ namespace Infrastructure.Library.ApplicationContext.EF
         public DbSet<Blance> Blances { get; set; }
         #endregion
 
-        #region SEC
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserRole> UserRoles { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<Group> Groups { get; set; }
-        public DbSet<GroupUser> GroupUsers { get; set; }
+        #region CNT
+        public DbSet<ConstVariable> ConstVariables { get; set; }
+        #endregion
+
+        #region HSR
+        public DbSet<CartHistory> CartHistories { get; set; }
         #endregion
 
         #region LOG
@@ -53,31 +50,27 @@ namespace Infrastructure.Library.ApplicationContext.EF
         public DbSet<SystemLog> SystemLogs { get; set; }
         #endregion
 
-        #region HSR
-        public DbSet<CartHistory> CartHistories { get; set; }
-
-        #endregion
-
         #region RPT
         public DbSet<BankReport> BankReports { get; set; }
         public DbSet<CartReport> CartReports { get; set; }
         public DbSet<CustomerReport> CustomerReports { get; set; }
         #endregion
 
-        #region CNT
-        public DbSet<ConstVariable> ConstVariables { get; set; }
-
+        #region SEC
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<GroupUser> GroupUsers { get; set; }
         #endregion
 
         #region WEB
         public DbSet<WebService> WebServices { get; set; }
-
         #endregion
-
-
 
         #region ViewBUS
         #endregion
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -87,10 +80,8 @@ namespace Infrastructure.Library.ApplicationContext.EF
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
-            
-            ViewConfiguration.BUS_View(modelBuilder);
 
+            ViewConfiguration.BUS_View(modelBuilder);
 
             modelBuilder.ApplyConfiguration(new BankConfiguration());
             modelBuilder.ApplyConfiguration(new BlanceConfiguration());
@@ -100,19 +91,5 @@ namespace Infrastructure.Library.ApplicationContext.EF
             modelBuilder.ApplyConfiguration(new WebServiceConfiguration());
         }
 
-        //public IDbContextTransaction BeginTransaction()
-        //{
-        //    return base.Database.BeginTransaction();
-        //}
-
-        //public void CommitTransaction()
-        //{
-        //    base.Database.CommitTransaction();
-        //}
-
-        //public void RollBackTransaction()
-        //{
-        //    base.Database.RollbackTransaction();
-        //}
     }
 }
