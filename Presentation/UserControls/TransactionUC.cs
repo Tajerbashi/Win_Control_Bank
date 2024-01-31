@@ -37,7 +37,7 @@ namespace Presentation.UserControls
 
         private void TransactionUC_Load(object sender, EventArgs e)
         {
-            CartCombo = ComboBoxGenerator.FillData(CartCombo, Pattern.CartService.TitleValuesAllCart(), Convert.ToByte(CartCombo.Tag));
+            CartCombo = ComboBoxGenerator<long>.FillData(CartCombo, Pattern.CartService.TitleValuesAllCart(), Convert.ToByte(CartCombo.Tag));
         }
 
         private void CartCombo_SelectedIndexChanged(object sender, EventArgs e)

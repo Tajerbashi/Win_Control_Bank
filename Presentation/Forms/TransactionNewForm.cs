@@ -208,7 +208,7 @@ namespace Presentation.Forms
             var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                ToAccountCombo = ComboBoxGenerator.FillData(ToAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
+                ToAccountCombo = ComboBoxGenerator<long>.FillData(ToAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
             }
         }
         private void FromAccountCombo_SelectedValueChanged(object sender, EventArgs e)
@@ -313,13 +313,13 @@ namespace Presentation.Forms
         }
         private void UpdateComboBoxes()
         {
-            TransactionTypeCombo = ComboBoxGenerator.FillData(TransactionTypeCombo, Pattern.BlanceService.TitleValue(), Convert.ToByte(TransactionTypeCombo.Tag));
-            TransactionKindCombo = ComboBoxGenerator.FillData(TransactionKindCombo, Pattern.BlanceService.TitleValueTransactionType(), Convert.ToByte(TransactionKindCombo.Tag));
+            TransactionTypeCombo = ComboBoxGenerator<long>.FillData(TransactionTypeCombo, Pattern.BlanceService.TitleValue(), Convert.ToByte(TransactionTypeCombo.Tag));
+            TransactionKindCombo = ComboBoxGenerator<byte>.FillData(TransactionKindCombo, Pattern.BlanceService.TitleValueTransactionType(), Convert.ToByte(TransactionKindCombo.Tag));
 
-            FromCustomerCombo = ComboBoxGenerator.FillData(FromCustomerCombo, Pattern.CartService.TitleValuesParent(), Convert.ToByte(FromCustomerCombo.Tag));
-            ToCustomerCombo = ComboBoxGenerator.FillData(ToCustomerCombo, Pattern.CartService.TitleValuesAllParentCart(), Convert.ToByte(ToCustomerCombo.Tag));
+            FromCustomerCombo = ComboBoxGenerator<long>.FillData(FromCustomerCombo, Pattern.CartService.TitleValuesParent(), Convert.ToByte(FromCustomerCombo.Tag));
+            ToCustomerCombo = ComboBoxGenerator<long>.FillData(ToCustomerCombo, Pattern.CartService.TitleValuesAllParentCart(), Convert.ToByte(ToCustomerCombo.Tag));
 
-            BlanceTypeCombo = ComboBoxGenerator.FillData(BlanceTypeCombo, Pattern.BlanceService.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
+            BlanceTypeCombo = ComboBoxGenerator<byte>.FillData(BlanceTypeCombo, Pattern.BlanceService.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
         }
         private void ToCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -327,7 +327,7 @@ namespace Presentation.Forms
             if (Id != 0)
             {
                 ToCustomerCombo.Text = Pattern.BlanceService.GetBlanceCartById(Id).ToString("N");
-                ToAccountCombo = ComboBoxGenerator.FillData(ToAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
+                ToAccountCombo = ComboBoxGenerator<long>.FillData(ToAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
             }
         }
         private void FromCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -336,7 +336,7 @@ namespace Presentation.Forms
             if (Id != 0)
             {
                 FromCustomerLBL.Text = Pattern.BlanceService.GetBlanceCartById(Id).ToString("N");
-                FromAccountCombo = ComboBoxGenerator.FillData(FromAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
+                FromAccountCombo = ComboBoxGenerator<long>.FillData(FromAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
 
             }
 

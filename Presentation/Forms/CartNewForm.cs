@@ -61,8 +61,8 @@ namespace Presentation.Forms
 
         private void CartNewForm_Load(object sender, EventArgs e)
         {
-            BankCombo = ComboBoxGenerator.FillData(BankCombo, Pattern.BankService.TitleValue(), Convert.ToByte(BankCombo.Tag));
-            CustomerCombo = ComboBoxGenerator.FillData(CustomerCombo, Pattern.CustomerService.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
+            BankCombo = ComboBoxGenerator<long>.FillData(BankCombo, Pattern.BankService.TitleValue(), Convert.ToByte(BankCombo.Tag));
+            CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, Pattern.CustomerService.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
             ExpireDate.UsePersianFormat = true;
             ExpireDate.Value = DateTime.Now;
         }
@@ -117,7 +117,7 @@ namespace Presentation.Forms
             var Id = ((KeyValue<long>)BankCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                ParentCartCombo = ComboBoxGenerator.FillData(ParentCartCombo, Pattern.CartService.TitleValuesCartByBankId(Id), Convert.ToByte(ParentCartCombo.Tag));
+                ParentCartCombo = ComboBoxGenerator<long>.FillData(ParentCartCombo, Pattern.CartService.TitleValuesCartByBankId(Id), Convert.ToByte(ParentCartCombo.Tag));
             }
             else
             {

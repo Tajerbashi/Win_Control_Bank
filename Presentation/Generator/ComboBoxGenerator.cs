@@ -2,9 +2,9 @@
 
 namespace Presentation.Generator
 {
-    public class ComboBoxGenerator
+    public class ComboBoxGenerator<T>
     {
-        public static ComboBox FillData(ComboBox comboBox, IEnumerable<KeyValue<long>> data, long value = 0)
+        public static ComboBox FillData(ComboBox comboBox, IEnumerable<KeyValue<T>> data, long value = 0)
         {
             comboBox.Items.Clear();
             comboBox.Items.Add(new KeyValue<long>

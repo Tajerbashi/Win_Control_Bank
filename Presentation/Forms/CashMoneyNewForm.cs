@@ -48,7 +48,7 @@ namespace Presentation.Forms
 
         private void CashMoneyNewForm_Load(object sender, EventArgs e)
         {
-            AccountCombo = ComboBoxGenerator.FillData(AccountCombo, Pattern.CartService.TitleValue(), Convert.ToByte(AccountCombo.Tag));
+            AccountCombo = ComboBoxGenerator<long>.FillData(AccountCombo, Pattern.CartService.TitleValue(), Convert.ToByte(AccountCombo.Tag));
         }
 
         private void CashTxt_KeyPress(object sender, KeyPressEventArgs e)
