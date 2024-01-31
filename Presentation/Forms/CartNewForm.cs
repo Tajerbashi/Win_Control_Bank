@@ -1,13 +1,9 @@
-﻿using Domain.Library.Entities.BUS;
-using Domain.Library.Enums;
+﻿using Domain.Library.Enums;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
-using Infrastructure.Library.Models.DTOs.HSR;
 using Infrastructure.Library.Patterns;
 using Presentation.Generator;
-using Presentation.UserControls;
 using System.Runtime.InteropServices;
-using System.Security.Policy;
 namespace Presentation.Forms
 {
     public partial class CartNewForm : Form
@@ -154,14 +150,14 @@ namespace Presentation.Forms
             {
                 CartID = cartID,
                 OldBlanceCash = 0,
-                NewBlanceCash  = Convert.ToDouble(BlanceTxt.Text),
-                BlanceType= BlanceType.Banking,
+                NewBlanceCash = Convert.ToDouble(BlanceTxt.Text),
+                BlanceType = BlanceType.Banking,
                 TransactionType = TransactionType.Settlemant,
                 TransactionCash = Convert.ToDouble(BlanceTxt.Text),
             };
         }
 
-       
+
         #endregion
     }
 }

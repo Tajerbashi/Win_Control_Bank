@@ -1,16 +1,10 @@
-﻿using Domain.Library.Entities.BUS;
-using Domain.Library.Enums;
+﻿using Domain.Library.Enums;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
-using Infrastructure.Library.Models.DTOs.HSR;
 using Infrastructure.Library.Patterns;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Newtonsoft.Json.Linq;
 using Presentation.Extentions;
 using Presentation.Generator;
-using Presentation.UserControls;
 using System.Runtime.InteropServices;
-using System.Security.Policy;
 
 namespace Presentation.Forms
 {
@@ -393,21 +387,5 @@ namespace Presentation.Forms
             };
         }
 
-        private CartHistoryDTO CartHistoryDTO()
-        {
-
-            return new CartHistoryDTO
-            {
-                BlanceID = 0,
-                CartID = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value,
-                FromCartID = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value,
-                ToCartID = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value,
-                BlanceType = 0,
-                CashBlance = 0,
-                CashTransaction = 0,
-                Message = "",
-                TransactionType = 0
-            };
-        }
     }
 }

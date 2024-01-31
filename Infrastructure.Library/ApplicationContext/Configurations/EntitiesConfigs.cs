@@ -58,14 +58,6 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
                 .WithOne(y => y.Cart)
                 .HasForeignKey(z => z.CartID);
 
-            builder.HasMany(x => x.CartHistories)
-                .WithOne(y => y.Cart)
-                .HasForeignKey(x => x.CartID);
-
-            builder.HasMany(x => x.CartHistories)
-                .WithOne(y => y.Cart)
-                .HasForeignKey(x => x.CartID)
-                .OnDelete(DeleteBehavior.ClientCascade);
 
         }
     }
