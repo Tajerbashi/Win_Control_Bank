@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using Common.Library.Models;
+using System.Globalization;
 
 namespace Common.Library.Utilities
 {
@@ -32,6 +33,39 @@ namespace Common.Library.Utilities
             return result;
         }
 
+        public static Result<IEnumerable<KeyValueObject>> GetMonth()
+        {
+            var result = new List<KeyValueObject>
+            {
+                new KeyValueObject{ Title ="فروردین" , Value =1},
+                new KeyValueObject{ Title ="اردیبهشت" , Value =2},
+                new KeyValueObject{ Title ="خرداد" , Value =3},
+                new KeyValueObject{ Title ="تیر" , Value =4},
+                new KeyValueObject{ Title ="مرداد" , Value =5},
+                new KeyValueObject{ Title ="شهریور" , Value =6},
+                new KeyValueObject{ Title ="مهر" , Value =7},
+                new KeyValueObject{ Title ="آبان" , Value =8},
+                new KeyValueObject{ Title ="آذر" , Value =9},
+                new KeyValueObject{ Title ="دی" , Value =10},
+                new KeyValueObject{ Title ="بهمن" , Value =11},
+                new KeyValueObject{ Title ="اسفند" , Value =12},
+            };
+            return new Result<IEnumerable<KeyValueObject>> { Data = result };
+        }
+        public static Result<IEnumerable<KeyValueObject>> GetDaysOfWeek()
+        {
+            var result = new List<KeyValueObject>
+            {
+                new KeyValueObject{ Title ="شنبه" , Value =0},
+                new KeyValueObject{ Title ="یکشنبه" , Value =1},
+                new KeyValueObject{ Title ="دوشنبه" , Value =2},
+                new KeyValueObject{ Title ="سه شنبه" , Value =3},
+                new KeyValueObject{ Title ="چهارشنبه" , Value =4},
+                new KeyValueObject{ Title ="پنچشنبه" , Value =5},
+                new KeyValueObject{ Title ="جمعه" , Value =6},
+            };
+            return new Result<IEnumerable<KeyValueObject>> { Data = result };
+        }
     }
 
 }
