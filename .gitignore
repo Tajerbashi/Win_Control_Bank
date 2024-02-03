@@ -8,6 +8,12 @@ Domain.Library/obj
 Infrastructure.Library/bin
 Infrastructure.Library/obj
 
+Infrastructure.Test/bin
+Infrastructure.Test/obj
+
+Application.Test/bin
+Application.Test/obj
+
 Logger.Library/bin
 Logger.Library/obj
 
