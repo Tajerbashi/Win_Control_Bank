@@ -1,10 +1,8 @@
-﻿using static System.Collections.Specialized.BitVector32;
-
-namespace Infrastructure.Library.ApplicationContext.LINQ
+﻿namespace Infrastructure.Library.ApplicationContext.LINQ
 {
     public class LinqGenerator
     {
-        
+
 
     }
     public class DatabaseContext
