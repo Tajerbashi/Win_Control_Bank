@@ -5,6 +5,9 @@ Common.Library/obj
 Domain.Library/bin
 Domain.Library/obj
 
+Domain.Test/bin
+Domain.Test/obj
+
 Infrastructure.Library/bin
 Infrastructure.Library/obj
 
