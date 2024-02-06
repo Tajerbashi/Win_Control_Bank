@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Library.Patterns;
+using log4net.Util;
 using Presentation.Extentions;
 using Presentation.Forms;
 using Presentation.Generator;
@@ -38,7 +39,7 @@ namespace Presentation.UserControls
             }
             catch (Exception ex)
             {
-                loggerProvider.ExceptionLog(ex);
+                loggerProvider.Logger(Microsoft.Extensions.Logging.LogLevel.Warning,ex);
             }
         }
 

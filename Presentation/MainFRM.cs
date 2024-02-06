@@ -1,4 +1,5 @@
 ﻿using Common.Library.Utilities;
+using Infrastructure.Library.Models.DTOs.SEC;
 using Microsoft.Extensions.Logging;
 using Presentation.Extentions;
 using Presentation.UserControls;
@@ -47,7 +48,7 @@ namespace Presentation
 
         private void MainFRM_Load(object sender, EventArgs e)
         {
-            loggerProvider.InfoLog($"شروع نرم افزار  {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
+            loggerProvider.Logger(LogLevel.Information, $"شروع نرم افزار  {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
             OnlineExchangeUC panel = new OnlineExchangeUC();
             if (MainPanel.Controls.Count > 0)
             {
@@ -163,7 +164,9 @@ namespace Presentation
 
         private void MainFRM_FormClosing(object sender, FormClosingEventArgs e)
         {
-            loggerProvider.InfoLog($"بستن نرم افزار  {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
+            loggerProvider.Logger(LogLevel.Information, $"بستن نرم افزار  {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
+            loggerProvider.Logger(LogLevel.Error, $"بستن نرم افزار  {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
+            loggerProvider.Logger(LogLevel.Error, new Exception($"بستن نرم افزار  {DateTimeUtility.ToPersionFormat(DateTime.Now)}"));
         }
 
         private void SettingBtn_Click(object sender, EventArgs e)

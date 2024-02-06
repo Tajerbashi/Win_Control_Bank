@@ -1,46 +1,77 @@
-﻿using log4net;
+﻿using Infrastructure.Library.Models.DTOs.SEC;
+using log4net;
+using Microsoft.Extensions.Logging;
+using System;
 
 namespace Presentation.Extentions
 {
     public class LoggerProvider<T>
         where T : class
     {
+        private readonly ILog _log = LogManager.GetLogger(typeof(T));
+        public void Logger(LogLevel level, string Message)
+        {
+            switch (level)
+            {
+                case LogLevel.Debug:
+                    {
+                        _log.Debug(Message);
+                        break;
+                    }
+                case LogLevel.Information:
+                    {
+                        _log.Info(Message);
+                        break;
+                    }
+                case LogLevel.Error:
+                    {
+                        _log.Error(Message);
+                        break;
+                    }
+                case LogLevel.Warning:
+                    {
+                        _log.Warn(Message);
+                        break;
+                    }
+                default:
+                    {
+                        _log.Warn(Message);
+                        break;
+                    }
+            }
+        }
+        public void Logger(LogLevel level, Exception exception)
+        {
+            switch (level)
+            {
+                case LogLevel.Debug:
+                    {
+                        _log.Debug(exception);
+                        break;
+                    }
+                case LogLevel.Information:
+                    {
+                        _log.Info(exception);
+                        break;
+                    }
+                case LogLevel.Error:
+                    {
+                        _log.Error(exception);
+                        _log.Logger.Repository.Shutdown();
+                        break;
+                    }
+                case LogLevel.Warning:
+                    {
+                        _log.Warn(exception);
+                        break;
+                    }
+                default:
+                    {
+                        _log.Warn(exception);
+                        break;
+                    }
+            }
+        }
 
-        private readonly ILog log;
-        public LoggerProvider()
-        {
-            //log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-            log = LogManager.GetLogger(typeof(T));
-        }
-        public void DebugLog(string msg)
-        {
-            log.Debug(msg);
-        }
-        public void FatalLog(string msg)
-        {
-            log.Fatal(msg);
-        }
-        public void FatalLog(Exception ex)
-        {
-            log.Fatal(ex.Message);
-        }
-        public void InfoLog(string msg)
-        {
-            log.Info(msg);
-        }
-        public void ErrorLog(string msg)
-        {
-            log.Error(msg);
-        }
-        public void WarnLog(string msg)
-        {
-            log.Warn(msg);
-        }
-
-        public void ExceptionLog(Exception ex)
-        {
-            log.Error(ex);
-            log.Error(ex.Message);
-        }
     }
 }

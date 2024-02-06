@@ -119,7 +119,6 @@ namespace Presentation.Forms
                                 catch (Exception ex)
                                 {
                                     Pattern.UnitOfWork.Rollback();
-                                    logger.ExceptionLog(ex);
                                     throw;
                                 }
                             }
