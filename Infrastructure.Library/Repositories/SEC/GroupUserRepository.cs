@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Domain.Library.Entities.SEC;
-using Infrastructure.Library.ApplicationContext.EF;
+using Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Infrastructure.Library.BaseService;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.SEC;

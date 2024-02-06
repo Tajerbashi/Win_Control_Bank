@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Infrastructure.Library.ApplicationContext.EF;
+using Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Infrastructure.Library.Patterns;
 using Infrastructure.Library.Repositories.LOG;
 

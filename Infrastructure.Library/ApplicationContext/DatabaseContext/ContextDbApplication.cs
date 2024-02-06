@@ -8,7 +8,7 @@ using Infrastructure.Library.ApplicationContext.Configurations;
 using Infrastructure.Library.ApplicationContext.Sql_Queries.Views.C_;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Library.ApplicationContext.EF
+namespace Infrastructure.Library.ApplicationContext.DatabaseContext
 {
     public interface IContextDbApplication : IDisposable
     {

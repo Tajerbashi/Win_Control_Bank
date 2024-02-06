@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Infrastructure.Library.ApplicationContext.EF;
+﻿using Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Infrastructure.Library.Patterns;
 using Infrastructure.Library.Repositories.WEB;
 
@@ -11,7 +10,8 @@ namespace Infrastructure.Library.Services.WEB
         {
         }
 
-        public string GetOfflineData() {
+        public string GetOfflineData()
+        {
             return (@"
 {
     ""harat_naghdi_buy"": {

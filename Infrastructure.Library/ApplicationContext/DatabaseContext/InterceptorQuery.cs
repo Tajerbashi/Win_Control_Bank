@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using System.Data.Common;
 
-namespace Infrastructure.Library.ApplicationContext.EF
+namespace Infrastructure.Library.ApplicationContext.DatabaseContext
 {
     public class InterceptorQuery : DbCommandInterceptor
     {

@@ -1,4 +1,4 @@
-﻿using Infrastructure.Library.ApplicationContext.EF;
+﻿using Infrastructure.Library.ApplicationContext.DatabaseContext;
 
 namespace Infrastructure.Library.ApplicationContext.LINQ
 {
