@@ -1,5 +1,7 @@
 ﻿using Common.Library.Models;
 using Infrastructure.Library.Models.DTOs.BUS;
+using Infrastructure.Test.Events.BUS;
+using Infrastructure.Test.Exceptions;
 using Infrastructure.Test.Models;
 using Infrastructure.Test.Repositories.BUS;
 
@@ -7,9 +9,11 @@ namespace Infrastructure.Test.Services.BUS
 {
     public class CustomerTestService : ICustomerTestRepository
     {
-        public List<CustomerDTO> DataBase { get ; set ; }
+        public event EventHandler<CustomerStatusEventArgs>? StatusChanged;
+        public List<CustomerDTO> DataBase { get; set; }
         public CustomerTestService()
         {
+            DataBase = new List<CustomerDTO>();
             DataBase = this.GetAll().ToList();
         }
         public ResultTest<bool> Check_DuplicateCustomer_Model(CustomerDTO customer)
@@ -46,7 +50,7 @@ namespace Infrastructure.Test.Services.BUS
                     FullName = $"Customer FullName-{i}",
                     Title = $"Customer Title-{i}",
                     Description = $"Customer Description-{i}",
-                    Key =Guid.NewGuid(),
+                    Key = Guid.NewGuid(),
                     Picture = "",
                 });
             }
@@ -68,6 +72,30 @@ namespace Infrastructure.Test.Services.BUS
                 Result = true,
                 Message = MessagesResponse.Success(),
             };
+        }
+
+        public ResultTest<bool> FindData_CustomerGetById_Entity(long id)
+        {
+            if (id == 0)
+            {
+                throw new InvalidModelException("کلید درست نیست", 0);
+            }
+            return new ResultTest<bool>
+            {
+                Message = MessagesResponse.Success(),
+                Result = DataBase.Any(x => x.ID == id)
+            };
+        }
+
+        public void NotifyOfCustomerStatus(CustomerDTO customer)
+        {
+            OnStatusCallingLastResult(new CustomerStatusEventArgs(customer.Key));
+        }
+
+        protected virtual void OnStatusCallingLastResult
+            (CustomerStatusEventArgs eventArgs)
+        {
+            StatusChanged?.Invoke(this,eventArgs);
         }
     }
 }
