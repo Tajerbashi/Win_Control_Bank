@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Domain.Library.Entities.BUS
 {
     [Table("Customers", Schema = "BUS")]
-    public class Customer : GeneralEntity
+    public class Customer : BaseEntity
     {
         [Description("نام کامل")]
         public string FullName { get; set; }

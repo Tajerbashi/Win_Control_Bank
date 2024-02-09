@@ -1,5 +1,4 @@
-﻿using Domain.Library.Bases;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Library.Entities.LOG
@@ -18,7 +17,7 @@ namespace Domain.Library.Entities.LOG
         [MaxLength(255)]
         public string Logger { get; set; }
         [MaxLength(4000)]
-        public string Message { get; set; } 
+        public string Message { get; set; }
         [MaxLength(2000)]
         public string Exception { get; set; }
     }

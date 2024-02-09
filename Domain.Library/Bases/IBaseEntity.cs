@@ -5,19 +5,19 @@ namespace Domain.Library.Bases
 {
     public interface IBaseEntity
     {
-        Guid Guid { get; set; }
     }
     public abstract class BaseEntity<T> : IBaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public T ID { get; set; }
-        public Guid Guid { get; set; }
-        public bool IsDeleted { get; set; }
-        public bool IsActive { get; set; }
+
     }
     public abstract class BaseEntity : BaseEntity<long>
     {
+        public Guid Guid { get; set; }
+        public bool IsDeleted { get; set; }
+        public bool IsActive { get; set; }
         public DateTime CreateDate { get; set; }
         public long CreateBy { get; set; }
         public DateTime? UpdateDate { get; set; }
