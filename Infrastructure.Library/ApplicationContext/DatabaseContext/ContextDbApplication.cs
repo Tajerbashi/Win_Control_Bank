@@ -38,11 +38,8 @@ namespace Infrastructure.Library.ApplicationContext.DatabaseContext
         #endregion
 
         #region LOG
-        public DbSet<ApplicationLog> ApplicationLogs { get; set; }
+        public DbSet<NLog> NLogs { get; set; }
         public DbSet<EventLog> EventLogs { get; set; }
-        public DbSet<SecurityLog> SecurityLogs { get; set; }
-        public DbSet<SetupLog> SetupLogs { get; set; }
-        public DbSet<SystemLog> SystemLogs { get; set; }
         #endregion
 
         #region RPT

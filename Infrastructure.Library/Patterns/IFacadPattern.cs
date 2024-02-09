@@ -39,7 +39,7 @@ namespace Infrastructure.Library.Patterns
         #endregion
 
         #region LOG
-        SystemLogService SystemLogService { get; }
+        NLogService NLogService { get; }
         #endregion
 
 
@@ -114,8 +114,8 @@ namespace Infrastructure.Library.Patterns
         #endregion
 
         #region LOG
-        private SystemLogService _systemLogService ;
-        public SystemLogService SystemLogService => _systemLogService ?? new SystemLogService(UnitOfWork);
+        private NLogService _nLogService ;
+        public NLogService NLogService => _nLogService ?? new NLogService(UnitOfWork);
 
 
 

@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Library.Models.DTOs.LOG
 {
-    public class SystemLogDTO : BaseDTO
+    public class BlanceLogDTO : BaseDTO
     {
         public string Key { get; set; }
         public string Type { get; set; }

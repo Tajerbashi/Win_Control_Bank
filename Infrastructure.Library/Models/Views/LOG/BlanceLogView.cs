@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Library.Models.Views.LOG
 {
-    public class SystemLogView : BaseView
+    public class BlanceLogView : BaseView
     {
     }
 }

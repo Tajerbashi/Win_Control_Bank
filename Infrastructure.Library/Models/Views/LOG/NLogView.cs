@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Library.Models.Views.LOG
 {
-    public class CustomerLogView : BaseView
+    public class NLogView : BaseView
     {
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Library.Models.DTOs.LOG
 {
-    public class CustomerLogDTO : BaseDTO
+    public class NLogDTO : BaseDTO
     {
     }
 }

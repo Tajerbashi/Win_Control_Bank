@@ -27,7 +27,6 @@ namespace Infrastructure.Library.ApplicationContext.Configurations
             builder.HasIndex(x => new
             {
                 x.FullName,
-                x.Title,
             }).IsUnique();
             builder.HasMany(x => x.Carts)
                 .WithOne(x => x.Customer);

@@ -9,12 +9,11 @@ using Infrastructure.Library.Patterns;
 
 namespace Infrastructure.Library.Repositories.LOG
 {
-    public abstract class SystemLogRepository : GenericRepository<SystemLog, SystemLogDTO, SystemLogView>, IGenericQueries
+    public abstract class NLogRepository : GenericRepository<NLog, NLogDTO, NLogView>, IGenericQueries
     {
-        protected SystemLogRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected NLogRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
-        protected SystemLogRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {
@@ -38,11 +37,7 @@ namespace Infrastructure.Library.Repositories.LOG
 
         public IEnumerable<KeyValue<long>> TitleValue()
         {
-            return Context.Banks.Select(x => new KeyValue<long>
-            {
-                Key = x.BankName,
-                Value = x.ID
-            });
+            throw new NotImplementedException();
         }
     }
 }
