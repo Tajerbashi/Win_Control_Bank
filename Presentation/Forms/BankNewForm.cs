@@ -8,7 +8,6 @@ namespace Presentation.Forms
     public partial class BankNewForm : Form
     {
         private IFacadPattern Pattern;
-        private readonly LoggerProvider<BankNewForm> _loggerProvider;
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -34,7 +33,6 @@ namespace Presentation.Forms
             Pattern = new FacadPattern();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
-            _loggerProvider = new LoggerProvider<BankNewForm>();
         }
         #endregion
         private void BankNewForm_Load(object sender, EventArgs e)

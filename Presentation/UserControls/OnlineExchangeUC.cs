@@ -1,13 +1,10 @@
-﻿using Infrastructure.Library.Models.DTOs.SEC;
-using Infrastructure.Library.Patterns;
-using Presentation.Extentions;
+﻿using Infrastructure.Library.Patterns;
 
 namespace Presentation.UserControls
 {
     public partial class OnlineExchangeUC : UserControl
     {
         private IFacadPattern Pattern;
-        private readonly LoggerProvider<OnlineExchangeUC> loggerProvider = new LoggerProvider<OnlineExchangeUC>();
 
         public OnlineExchangeUC()
         {

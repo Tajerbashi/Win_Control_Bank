@@ -1,5 +1,6 @@
 ﻿using Common.Library.Utilities;
 using Infrastructure.Library.Models.DTOs.SEC;
+using log4net;
 using Microsoft.Extensions.Logging;
 using Presentation.Extentions;
 using Presentation.UserControls;
@@ -9,7 +10,7 @@ namespace Presentation
 {
     public partial class MainFRM : Form
     {
-        LoggerProvider<MainFRM> loggerProvider = new LoggerProvider<MainFRM>();
+        private readonly LoggerProvider _loggerProvider;
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -31,6 +32,8 @@ namespace Presentation
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
         public MainFRM()
         {
+            _loggerProvider = new LoggerProvider();
+            _loggerProvider.Log.Info($"ساعت ورود کاربر ادمین : {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
@@ -45,10 +48,9 @@ namespace Presentation
         }
 
         #endregion
-
+        
         private void MainFRM_Load(object sender, EventArgs e)
         {
-            loggerProvider.Logger(LogLevel.Information, $"شروع نرم افزار  {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
             OnlineExchangeUC panel = new OnlineExchangeUC();
             if (MainPanel.Controls.Count > 0)
             {
@@ -79,7 +81,6 @@ namespace Presentation
                 MainPanel.Controls[0].Dispose();
             }
             MainPanel.Controls.Add(panel);
-
         }
 
         private void ReportBtn_Click(object sender, EventArgs e)
@@ -164,9 +165,7 @@ namespace Presentation
 
         private void MainFRM_FormClosing(object sender, FormClosingEventArgs e)
         {
-            loggerProvider.Logger(LogLevel.Information, $"بستن نرم افزار  {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
-            loggerProvider.Logger(LogLevel.Error, $"بستن نرم افزار  {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
-            loggerProvider.Logger(LogLevel.Error, new Exception($"بستن نرم افزار  {DateTimeUtility.ToPersionFormat(DateTime.Now)}"));
+            _loggerProvider.Log.Info($"ساعت خروج کاربر ادمین : {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
         }
 
         private void SettingBtn_Click(object sender, EventArgs e)

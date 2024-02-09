@@ -2,7 +2,6 @@
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Patterns;
-using Presentation.Extentions;
 using Presentation.Generator;
 using System.Runtime.InteropServices;
 
@@ -11,7 +10,6 @@ namespace Presentation.Forms
     public partial class TransactionNewForm : Form
     {
         private IFacadPattern Pattern;
-        private readonly LoggerProvider<TransactionNewForm> logger;
         private Guid TransactionID;
 
         #region Code
@@ -35,7 +33,6 @@ namespace Presentation.Forms
         {
             InitializeComponent();
             Pattern = new FacadPattern();
-            logger = new LoggerProvider<TransactionNewForm>();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
@@ -386,7 +383,7 @@ namespace Presentation.Forms
                 TransactionCash = cash,
                 TransactionID = TransactionID,
                 Description = DescTxt.Text,
-                
+
             };
         }
         private CustomerDTO CustomerDTO()

@@ -10,12 +10,10 @@ namespace Presentation.UserControls
     public partial class BankUC : UserControl
     {
         private IFacadPattern Pattern;
-        private readonly LoggerProvider<BankUC> loggerProvider;
         public BankUC()
         {
             InitializeComponent();
             Pattern = new FacadPattern();
-            loggerProvider = new LoggerProvider<BankUC>();
         }
         private void ShowDataGrid()
         {
@@ -39,7 +37,6 @@ namespace Presentation.UserControls
             }
             catch (Exception ex)
             {
-                loggerProvider.Logger(Microsoft.Extensions.Logging.LogLevel.Warning,ex);
             }
         }
 
