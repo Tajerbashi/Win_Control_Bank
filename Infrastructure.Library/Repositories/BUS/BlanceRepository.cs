@@ -78,9 +78,9 @@ SELECT
 			ELSE N''
 			END
 	) AS [نوع تراکنش],
-	BL.OldBlanceCash AS [موجودی قبلی],
-	BL.TransactionCash AS [مبلغ تراکنش], 
-	BL.NewBlanceCash AS [موجودی جدید],
+	FORMAT(CAST(BL.OldBlanceCash as bigint),'###,###,###') AS [موجودی قبلی],
+	FORMAT(CAST(BL.TransactionCash as bigint),'###,###,###') AS [مبلغ تراکنش], 
+	FORMAT(CAST(BL.NewBlanceCash as bigint),'###,###,###') AS [موجودی جدید],
     BL.Description AS [توضیحات]
 FROM
 	BUS.Banks B
@@ -117,9 +117,9 @@ SELECT
 			ELSE N''
 			END
 	) AS [نوع تراکنش],
-	BL.OldBlanceCash AS [موجودی قبلی],
-	BL.TransactionCash AS [مبلغ تراکنش], 
-	BL.NewBlanceCash AS [موجودی جدید],
+	FORMAT(CAST(BL.OldBlanceCash as bigint),'###,###,###') AS [موجودی قبلی],
+	FORMAT(CAST(BL.TransactionCash as bigint),'###,###,###') AS [مبلغ تراکنش], 
+	FORMAT(CAST(BL.NewBlanceCash as bigint),'###,###,###') AS [موجودی جدید],
     BL.Description AS [توضیحات]
 
 FROM

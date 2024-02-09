@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Infrastructure.Library.Models.DTOs.BUS
 {
-    public class CustomerDTO : GeneralDTO
+    public class CustomerDTO : BaseDTO
     {
         /// <summary>
         /// نام کامل
