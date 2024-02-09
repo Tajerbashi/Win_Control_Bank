@@ -9,17 +9,17 @@ namespace Infrastructure.Test.TestServices.BUS
         public void Create_Test()
         {
             //  Arrange
-            BankServiceTest bankServiceTest = new BankServiceTest();
+            BankTestService bankServiceTest = new BankTestService();
             //  Act
-            var TestModel = bankServiceTest.CreateModel(new BankDTO
+            var TestModel = bankServiceTest.Create_InsertBankData_Model(new BankDTO
             {
-                ID = 1,
+                ID = 11,
                 BankName = "Test",
                 Description = "Test",
                 Title = "Test",
             });
             //  Assert
-            Assert.True(TestModel);
+            Assert.True(TestModel.Result,TestModel.Message);
 
         }
     }
