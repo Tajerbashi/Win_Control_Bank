@@ -48,7 +48,7 @@
             // 
             // CloseBtn
             // 
-            CloseBtn.BackColor = Color.FromArgb(255, 128, 128);
+            CloseBtn.BackColor = Color.Crimson;
             CloseBtn.Cursor = Cursors.Hand;
             CloseBtn.FlatAppearance.BorderColor = Color.Red;
             CloseBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
@@ -67,7 +67,7 @@
             // 
             // SaveBtn
             // 
-            SaveBtn.BackColor = Color.LimeGreen;
+            SaveBtn.BackColor = Color.ForestGreen;
             SaveBtn.Cursor = Cursors.Hand;
             SaveBtn.FlatAppearance.BorderColor = Color.Green;
             SaveBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
@@ -97,9 +97,9 @@
             groupBox1.Controls.Add(CloseBtn);
             groupBox1.Controls.Add(SaveBtn);
             groupBox1.FlatStyle = FlatStyle.Popup;
-            groupBox1.Location = new Point(5, 47);
+            groupBox1.Location = new Point(5, 40);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(730, 340);
+            groupBox1.Size = new Size(730, 349);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             // 
@@ -114,7 +114,7 @@
             // 
             // DescriptionTxt
             // 
-            DescriptionTxt.BackColor = Color.White;
+            DescriptionTxt.BackColor = Color.FromArgb(240, 236, 229);
             DescriptionTxt.BorderStyle = BorderStyle.FixedSingle;
             DescriptionTxt.Location = new Point(253, 195);
             DescriptionTxt.MaxLength = 5000;
@@ -166,7 +166,7 @@
             // 
             // TitleTxt
             // 
-            TitleTxt.BackColor = Color.White;
+            TitleTxt.BackColor = Color.FromArgb(240, 236, 229);
             TitleTxt.BorderStyle = BorderStyle.FixedSingle;
             TitleTxt.Location = new Point(253, 125);
             TitleTxt.Name = "TitleTxt";
@@ -176,7 +176,7 @@
             // 
             // FullNameTxt
             // 
-            FullNameTxt.BackColor = Color.White;
+            FullNameTxt.BackColor = Color.FromArgb(240, 236, 229);
             FullNameTxt.BorderStyle = BorderStyle.FixedSingle;
             FullNameTxt.Location = new Point(253, 57);
             FullNameTxt.Name = "FullNameTxt";
@@ -186,11 +186,11 @@
             // 
             // label3
             // 
-            label3.BackColor = Color.DarkSlateGray;
+            label3.BackColor = Color.FromArgb(49, 48, 77);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(11, 9);
+            label3.Location = new Point(5, 9);
             label3.Name = "label3";
-            label3.Size = new Size(718, 35);
+            label3.Size = new Size(730, 35);
             label3.TabIndex = 24;
             label3.Text = "ثبت اطلاعات مشترک";
             label3.TextAlign = ContentAlignment.MiddleCenter;
@@ -199,7 +199,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Teal;
+            BackColor = Color.FromArgb(22, 26, 48);
             ClientSize = new Size(741, 395);
             Controls.Add(label3);
             Controls.Add(groupBox1);

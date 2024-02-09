@@ -67,7 +67,7 @@
             // 
             // label3
             // 
-            label3.BackColor = Color.DarkSlateGray;
+            label3.BackColor = Color.FromArgb(49, 48, 77);
             label3.ForeColor = Color.White;
             label3.Location = new Point(12, 9);
             label3.Name = "label3";
@@ -88,7 +88,7 @@
             // label6
             // 
             label6.ForeColor = Color.White;
-            label6.Location = new Point(1022, 18);
+            label6.Location = new Point(1025, 18);
             label6.Name = "label6";
             label6.Size = new Size(95, 32);
             label6.TabIndex = 31;
@@ -97,6 +97,7 @@
             // 
             // TransactionTypeCombo
             // 
+            TransactionTypeCombo.BackColor = Color.FromArgb(240, 236, 229);
             TransactionTypeCombo.Cursor = Cursors.Hand;
             TransactionTypeCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             TransactionTypeCombo.FormattingEnabled = true;
@@ -109,15 +110,15 @@
             // 
             // CloseBtn
             // 
-            CloseBtn.BackColor = Color.FromArgb(255, 128, 128);
+            CloseBtn.BackColor = Color.Crimson;
             CloseBtn.Cursor = Cursors.Hand;
             CloseBtn.FlatAppearance.BorderColor = Color.Red;
             CloseBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
             CloseBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 0, 0);
             CloseBtn.FlatAppearance.MouseOverBackColor = Color.Maroon;
             CloseBtn.FlatStyle = FlatStyle.Flat;
-            CloseBtn.ForeColor = Color.FromArgb(64, 0, 0);
-            CloseBtn.Location = new Point(414, 419);
+            CloseBtn.ForeColor = Color.White;
+            CloseBtn.Location = new Point(301, 499);
             CloseBtn.Margin = new Padding(4, 5, 4, 5);
             CloseBtn.Name = "CloseBtn";
             CloseBtn.Size = new Size(121, 32);
@@ -128,15 +129,15 @@
             // 
             // SaveBtn
             // 
-            SaveBtn.BackColor = Color.LimeGreen;
+            SaveBtn.BackColor = Color.ForestGreen;
             SaveBtn.Cursor = Cursors.Hand;
             SaveBtn.FlatAppearance.BorderColor = Color.DarkGreen;
             SaveBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
             SaveBtn.FlatAppearance.MouseDownBackColor = Color.Green;
             SaveBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             SaveBtn.FlatStyle = FlatStyle.Flat;
-            SaveBtn.ForeColor = Color.FromArgb(0, 64, 0);
-            SaveBtn.Location = new Point(593, 417);
+            SaveBtn.ForeColor = Color.White;
+            SaveBtn.Location = new Point(707, 499);
             SaveBtn.Name = "SaveBtn";
             SaveBtn.Size = new Size(121, 32);
             SaveBtn.TabIndex = 9;
@@ -174,33 +175,33 @@
             groupBox1.FlatStyle = FlatStyle.Popup;
             groupBox1.Location = new Point(12, 47);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(1129, 461);
+            groupBox1.Size = new Size(1129, 542);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             // 
             // DescTxt
             // 
-            DescTxt.BackColor = Color.White;
+            DescTxt.BackColor = Color.FromArgb(240, 236, 229);
             DescTxt.BorderStyle = BorderStyle.FixedSingle;
-            DescTxt.Location = new Point(11, 347);
+            DescTxt.Location = new Point(8, 427);
             DescTxt.MaxLength = 500;
             DescTxt.Multiline = true;
             DescTxt.Name = "DescTxt";
             DescTxt.PlaceholderText = "توضیحات مورد نظر را وارد کنید";
-            DescTxt.Size = new Size(799, 64);
-            DescTxt.TabIndex = 60;
+            DescTxt.Size = new Size(1112, 64);
+            DescTxt.TabIndex = 8;
             DescTxt.TextAlign = HorizontalAlignment.Center;
             // 
             // NewDataBtn
             // 
-            NewDataBtn.BackColor = Color.LimeGreen;
+            NewDataBtn.BackColor = Color.ForestGreen;
             NewDataBtn.Cursor = Cursors.Hand;
             NewDataBtn.FlatAppearance.BorderColor = Color.DarkGreen;
             NewDataBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
             NewDataBtn.FlatAppearance.MouseDownBackColor = Color.Green;
             NewDataBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             NewDataBtn.FlatStyle = FlatStyle.Flat;
-            NewDataBtn.ForeColor = Color.FromArgb(0, 64, 0);
+            NewDataBtn.ForeColor = Color.White;
             NewDataBtn.Location = new Point(11, 194);
             NewDataBtn.Name = "NewDataBtn";
             NewDataBtn.Size = new Size(33, 33);
@@ -219,25 +220,25 @@
             NewDataPanel.Controls.Add(NewBankNameTxt);
             NewDataPanel.Controls.Add(NewCustomerNameTxt);
             NewDataPanel.Controls.Add(label10);
-            NewDataPanel.Location = new Point(6, 234);
+            NewDataPanel.Location = new Point(6, 303);
             NewDataPanel.Name = "NewDataPanel";
-            NewDataPanel.Size = new Size(1117, 107);
+            NewDataPanel.Size = new Size(1117, 118);
             NewDataPanel.TabIndex = 0;
             NewDataPanel.Visible = false;
             // 
             // SaveNewDataBtn
             // 
-            SaveNewDataBtn.BackColor = Color.LimeGreen;
+            SaveNewDataBtn.BackColor = Color.ForestGreen;
             SaveNewDataBtn.Cursor = Cursors.Hand;
             SaveNewDataBtn.FlatAppearance.BorderColor = Color.DarkGreen;
             SaveNewDataBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
             SaveNewDataBtn.FlatAppearance.MouseDownBackColor = Color.Green;
             SaveNewDataBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             SaveNewDataBtn.FlatStyle = FlatStyle.Flat;
-            SaveNewDataBtn.ForeColor = Color.FromArgb(0, 64, 0);
-            SaveNewDataBtn.Location = new Point(498, 72);
+            SaveNewDataBtn.ForeColor = Color.White;
+            SaveNewDataBtn.Location = new Point(447, 78);
             SaveNewDataBtn.Name = "SaveNewDataBtn";
-            SaveNewDataBtn.Size = new Size(121, 32);
+            SaveNewDataBtn.Size = new Size(222, 32);
             SaveNewDataBtn.TabIndex = 3;
             SaveNewDataBtn.Text = "ذخیره اطلاعات";
             SaveNewDataBtn.UseVisualStyleBackColor = false;
@@ -265,7 +266,7 @@
             // 
             // NewCartNumberTxt
             // 
-            NewCartNumberTxt.BackColor = Color.White;
+            NewCartNumberTxt.BackColor = Color.FromArgb(240, 236, 229);
             NewCartNumberTxt.BorderStyle = BorderStyle.FixedSingle;
             NewCartNumberTxt.Location = new Point(5, 37);
             NewCartNumberTxt.MaxLength = 16;
@@ -277,7 +278,7 @@
             // 
             // NewBankNameTxt
             // 
-            NewBankNameTxt.BackColor = Color.White;
+            NewBankNameTxt.BackColor = Color.FromArgb(240, 236, 229);
             NewBankNameTxt.BorderStyle = BorderStyle.FixedSingle;
             NewBankNameTxt.Location = new Point(379, 37);
             NewBankNameTxt.MaxLength = 25;
@@ -289,7 +290,7 @@
             // 
             // NewCustomerNameTxt
             // 
-            NewCustomerNameTxt.BackColor = Color.White;
+            NewCustomerNameTxt.BackColor = Color.FromArgb(240, 236, 229);
             NewCustomerNameTxt.BorderStyle = BorderStyle.FixedSingle;
             NewCustomerNameTxt.Location = new Point(753, 37);
             NewCustomerNameTxt.MaxLength = 50;
@@ -329,6 +330,7 @@
             // 
             // TransactionKindCombo
             // 
+            TransactionKindCombo.BackColor = Color.FromArgb(240, 236, 229);
             TransactionKindCombo.Cursor = Cursors.Hand;
             TransactionKindCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             TransactionKindCombo.FormattingEnabled = true;
@@ -350,6 +352,7 @@
             // 
             // FromAccountCombo
             // 
+            FromAccountCombo.BackColor = Color.FromArgb(240, 236, 229);
             FromAccountCombo.Cursor = Cursors.Hand;
             FromAccountCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             FromAccountCombo.FormattingEnabled = true;
@@ -382,6 +385,7 @@
             // 
             // BlanceTypeCombo
             // 
+            BlanceTypeCombo.BackColor = Color.FromArgb(240, 236, 229);
             BlanceTypeCombo.Cursor = Cursors.Hand;
             BlanceTypeCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             BlanceTypeCombo.FormattingEnabled = true;
@@ -393,6 +397,7 @@
             // 
             // ToAccountCombo
             // 
+            ToAccountCombo.BackColor = Color.FromArgb(240, 236, 229);
             ToAccountCombo.Cursor = Cursors.Hand;
             ToAccountCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             ToAccountCombo.FormattingEnabled = true;
@@ -416,6 +421,7 @@
             // 
             // FromCustomerCombo
             // 
+            FromCustomerCombo.BackColor = Color.FromArgb(240, 236, 229);
             FromCustomerCombo.Cursor = Cursors.Hand;
             FromCustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             FromCustomerCombo.FormattingEnabled = true;
@@ -428,6 +434,7 @@
             // 
             // ToCustomerCombo
             // 
+            ToCustomerCombo.BackColor = Color.FromArgb(240, 236, 229);
             ToCustomerCombo.Cursor = Cursors.Hand;
             ToCustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             ToCustomerCombo.FormattingEnabled = true;
@@ -443,7 +450,7 @@
             // label5
             // 
             label5.ForeColor = Color.White;
-            label5.Location = new Point(1000, 160);
+            label5.Location = new Point(997, 160);
             label5.Name = "label5";
             label5.Size = new Size(123, 32);
             label5.TabIndex = 38;
@@ -454,7 +461,7 @@
             // label4
             // 
             label4.ForeColor = Color.White;
-            label4.Location = new Point(1028, 344);
+            label4.Location = new Point(1025, 230);
             label4.Name = "label4";
             label4.Size = new Size(95, 32);
             label4.TabIndex = 37;
@@ -463,20 +470,20 @@
             // 
             // CashTxt
             // 
-            CashTxt.BackColor = Color.White;
+            CashTxt.BackColor = Color.FromArgb(240, 236, 229);
             CashTxt.BorderStyle = BorderStyle.FixedSingle;
-            CashTxt.Location = new Point(816, 379);
+            CashTxt.Location = new Point(11, 265);
             CashTxt.MaxLength = 15;
             CashTxt.Name = "CashTxt";
             CashTxt.PlaceholderText = "مبلغ مورد نظر را وارد کنید";
-            CashTxt.Size = new Size(307, 32);
+            CashTxt.Size = new Size(1106, 32);
             CashTxt.TabIndex = 7;
             CashTxt.TextAlign = HorizontalAlignment.Center;
             // 
             // label1
             // 
             label1.ForeColor = Color.White;
-            label1.Location = new Point(1028, 89);
+            label1.Location = new Point(1025, 89);
             label1.Name = "label1";
             label1.Size = new Size(95, 32);
             label1.TabIndex = 32;
@@ -487,8 +494,8 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Teal;
-            ClientSize = new Size(1153, 520);
+            BackColor = Color.FromArgb(22, 26, 48);
+            ClientSize = new Size(1153, 600);
             Controls.Add(label3);
             Controls.Add(groupBox1);
             Font = new Font("IRANSansWeb", 11.25F);

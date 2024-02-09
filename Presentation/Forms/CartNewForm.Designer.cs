@@ -74,7 +74,7 @@
             groupBox1.Controls.Add(CloseBtn);
             groupBox1.Controls.Add(SaveBtn);
             groupBox1.FlatStyle = FlatStyle.Popup;
-            groupBox1.Location = new Point(12, 47);
+            groupBox1.Location = new Point(8, 47);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(717, 537);
             groupBox1.TabIndex = 0;
@@ -82,7 +82,7 @@
             // 
             // label9
             // 
-            label9.ForeColor = Color.White;
+            label9.ForeColor = Color.FromArgb(240, 236, 229);
             label9.Location = new Point(616, 131);
             label9.Name = "label9";
             label9.Size = new Size(95, 32);
@@ -92,6 +92,7 @@
             // 
             // ParentCartCombo
             // 
+            ParentCartCombo.BackColor = Color.FromArgb(240, 236, 229);
             ParentCartCombo.Cursor = Cursors.Hand;
             ParentCartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             ParentCartCombo.FormattingEnabled = true;
@@ -104,7 +105,7 @@
             // 
             // ShabaCartNumber
             // 
-            ShabaCartNumber.BackColor = Color.White;
+            ShabaCartNumber.BackColor = Color.FromArgb(240, 236, 229);
             ShabaCartNumber.BorderStyle = BorderStyle.FixedSingle;
             ShabaCartNumber.Location = new Point(6, 378);
             ShabaCartNumber.MaxLength = 40;
@@ -117,7 +118,7 @@
             // 
             // label1
             // 
-            label1.ForeColor = Color.White;
+            label1.ForeColor = Color.FromArgb(240, 236, 229);
             label1.Location = new Point(578, 343);
             label1.Name = "label1";
             label1.Size = new Size(133, 32);
@@ -127,14 +128,15 @@
             // 
             // ExpireDate
             // 
-            ExpireDate.Location = new Point(418, 448);
+            ExpireDate.BackColor = Color.FromArgb(240, 236, 229);
+            ExpireDate.Location = new Point(362, 447);
             ExpireDate.Name = "ExpireDate";
-            ExpireDate.Size = new Size(293, 33);
+            ExpireDate.Size = new Size(349, 33);
             ExpireDate.TabIndex = 4;
             // 
             // CartPic
             // 
-            CartPic.BackColor = Color.WhiteSmoke;
+            CartPic.BackColor = Color.FromArgb(240, 236, 229);
             CartPic.Location = new Point(6, 70);
             CartPic.Name = "CartPic";
             CartPic.Size = new Size(305, 139);
@@ -153,20 +155,20 @@
             // 
             // BlanceTxt
             // 
-            BlanceTxt.BackColor = Color.White;
+            BlanceTxt.BackColor = Color.FromArgb(240, 236, 229);
             BlanceTxt.BorderStyle = BorderStyle.FixedSingle;
-            BlanceTxt.Location = new Point(7, 448);
+            BlanceTxt.Location = new Point(6, 448);
             BlanceTxt.MaxLength = 15;
             BlanceTxt.Name = "BlanceTxt";
             BlanceTxt.PlaceholderText = "قیمت اولیه را وارد کنید";
-            BlanceTxt.Size = new Size(291, 32);
+            BlanceTxt.Size = new Size(349, 32);
             BlanceTxt.TabIndex = 5;
             BlanceTxt.TextAlign = HorizontalAlignment.Center;
             BlanceTxt.KeyPress += BlanceTxt_KeyPress;
             // 
             // label7
             // 
-            label7.ForeColor = Color.White;
+            label7.ForeColor = Color.FromArgb(240, 236, 229);
             label7.Location = new Point(616, 413);
             label7.Name = "label7";
             label7.Size = new Size(95, 32);
@@ -176,8 +178,8 @@
             // 
             // MSG
             // 
-            MSG.BackColor = Color.FromArgb(224, 224, 224);
-            MSG.ForeColor = Color.Black;
+            MSG.BackColor = Color.FromArgb(240, 236, 229);
+            MSG.ForeColor = Color.Coral;
             MSG.Location = new Point(6, 28);
             MSG.Name = "MSG";
             MSG.Size = new Size(705, 32);
@@ -187,7 +189,7 @@
             // 
             // label6
             // 
-            label6.ForeColor = Color.White;
+            label6.ForeColor = Color.FromArgb(240, 236, 229);
             label6.Location = new Point(616, 273);
             label6.Name = "label6";
             label6.Size = new Size(95, 32);
@@ -197,7 +199,7 @@
             // 
             // AccountNumberTxt
             // 
-            AccountNumberTxt.BackColor = Color.White;
+            AccountNumberTxt.BackColor = Color.FromArgb(240, 236, 229);
             AccountNumberTxt.BorderStyle = BorderStyle.FixedSingle;
             AccountNumberTxt.Location = new Point(6, 308);
             AccountNumberTxt.MaxLength = 16;
@@ -210,7 +212,7 @@
             // 
             // label5
             // 
-            label5.ForeColor = Color.White;
+            label5.ForeColor = Color.FromArgb(240, 236, 229);
             label5.Location = new Point(616, 202);
             label5.Name = "label5";
             label5.Size = new Size(95, 32);
@@ -220,6 +222,7 @@
             // 
             // CustomerCombo
             // 
+            CustomerCombo.BackColor = Color.FromArgb(240, 236, 229);
             CustomerCombo.Cursor = Cursors.Hand;
             CustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             CustomerCombo.FormattingEnabled = true;
@@ -231,7 +234,7 @@
             // 
             // label4
             // 
-            label4.ForeColor = Color.White;
+            label4.ForeColor = Color.FromArgb(240, 236, 229);
             label4.Location = new Point(616, 60);
             label4.Name = "label4";
             label4.Size = new Size(95, 32);
@@ -241,6 +244,7 @@
             // 
             // BankCombo
             // 
+            BankCombo.BackColor = Color.FromArgb(240, 236, 229);
             BankCombo.Cursor = Cursors.Hand;
             BankCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             BankCombo.FormattingEnabled = true;
@@ -253,7 +257,7 @@
             // 
             // CloseBtn
             // 
-            CloseBtn.BackColor = Color.FromArgb(255, 128, 128);
+            CloseBtn.BackColor = Color.Crimson;
             CloseBtn.Cursor = Cursors.Hand;
             CloseBtn.FlatAppearance.BorderColor = Color.Red;
             CloseBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
@@ -272,7 +276,7 @@
             // 
             // SaveBtn
             // 
-            SaveBtn.BackColor = Color.LimeGreen;
+            SaveBtn.BackColor = Color.ForestGreen;
             SaveBtn.Cursor = Cursors.Hand;
             SaveBtn.FlatAppearance.BorderColor = Color.Green;
             SaveBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
@@ -290,9 +294,9 @@
             // 
             // label3
             // 
-            label3.BackColor = Color.DarkSlateGray;
+            label3.BackColor = Color.FromArgb(49, 48, 77);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(11, 9);
+            label3.Location = new Point(7, 9);
             label3.Name = "label3";
             label3.Size = new Size(718, 35);
             label3.TabIndex = 25;
@@ -303,8 +307,8 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Teal;
-            ClientSize = new Size(741, 595);
+            BackColor = Color.FromArgb(22, 26, 48);
+            ClientSize = new Size(732, 595);
             Controls.Add(label3);
             Controls.Add(groupBox1);
             Font = new Font("IRANSansWeb", 11.25F);

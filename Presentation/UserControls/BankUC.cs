@@ -26,7 +26,6 @@ namespace Presentation.UserControls
         private void BankUC_Load(object sender, EventArgs e)
         {
             ShowDataGrid();
-            BankCombo = ComboBoxGenerator<long>.FillData(BankCombo, Pattern.BankService.TitleValue(), Convert.ToByte(BankCombo.Tag));
         }
 
         private void SearchBtn_Click(object sender, EventArgs e)

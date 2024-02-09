@@ -342,8 +342,6 @@ namespace Presentation.Forms
             return new BankDTO
             {
                 BankName = NewBankNameTxt.Text,
-                Description = NewBankNameTxt.Text,
-                Title = NewBankNameTxt.Text,
 
             };
         }

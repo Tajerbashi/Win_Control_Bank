@@ -1,6 +1,5 @@
 ﻿using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Patterns;
-using Presentation.Extentions;
 using System.Runtime.InteropServices;
 
 namespace Presentation.Forms
@@ -21,9 +20,9 @@ namespace Presentation.Forms
             int nWidthEllipse, // width of ellipse
             int nHeightEllipse // height of ellipse
         );
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
@@ -57,8 +56,6 @@ namespace Presentation.Forms
             return new BankDTO
             {
                 BankName = BankNameTxt.Text,
-                Title = TitleTxt.Text,
-                Description = DescriptionTxt.Text,
             };
         }
     }

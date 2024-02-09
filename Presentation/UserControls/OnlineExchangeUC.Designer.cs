@@ -206,9 +206,9 @@
             groupBox2.Controls.Add(label4);
             groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(label2);
-            groupBox2.Location = new Point(1, 25);
+            groupBox2.Location = new Point(1, 26);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(1144, 717);
+            groupBox2.Size = new Size(1144, 734);
             groupBox2.TabIndex = 3;
             groupBox2.TabStop = false;
             // 
@@ -1334,8 +1334,7 @@
             // 
             // label6
             // 
-            label6.BackColor = Color.FromArgb(64, 64, 64);
-            label6.BorderStyle = BorderStyle.Fixed3D;
+            label6.BackColor = Color.OrangeRed;
             label6.FlatStyle = FlatStyle.Flat;
             label6.ForeColor = Color.White;
             label6.Location = new Point(33, 44);
@@ -1347,8 +1346,7 @@
             // 
             // label5
             // 
-            label5.BackColor = Color.FromArgb(64, 64, 64);
-            label5.BorderStyle = BorderStyle.Fixed3D;
+            label5.BackColor = Color.OrangeRed;
             label5.FlatStyle = FlatStyle.Flat;
             label5.ForeColor = Color.White;
             label5.Location = new Point(252, 44);
@@ -1360,8 +1358,7 @@
             // 
             // label4
             // 
-            label4.BackColor = Color.FromArgb(64, 64, 64);
-            label4.BorderStyle = BorderStyle.Fixed3D;
+            label4.BackColor = Color.OrangeRed;
             label4.FlatStyle = FlatStyle.Flat;
             label4.ForeColor = Color.White;
             label4.Location = new Point(471, 44);
@@ -1373,8 +1370,7 @@
             // 
             // label3
             // 
-            label3.BackColor = Color.FromArgb(64, 64, 64);
-            label3.BorderStyle = BorderStyle.Fixed3D;
+            label3.BackColor = Color.OrangeRed;
             label3.FlatStyle = FlatStyle.Flat;
             label3.ForeColor = Color.White;
             label3.Location = new Point(690, 44);
@@ -1386,8 +1382,7 @@
             // 
             // label2
             // 
-            label2.BackColor = Color.FromArgb(64, 64, 64);
-            label2.BorderStyle = BorderStyle.Fixed3D;
+            label2.BackColor = Color.OrangeRed;
             label2.FlatStyle = FlatStyle.Flat;
             label2.ForeColor = Color.White;
             label2.Location = new Point(909, 44);

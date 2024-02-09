@@ -44,7 +44,7 @@
             // 
             // label3
             // 
-            label3.BackColor = Color.DarkSlateGray;
+            label3.BackColor = Color.FromArgb(49, 48, 77);
             label3.ForeColor = Color.White;
             label3.Location = new Point(12, 9);
             label3.Name = "label3";
@@ -74,6 +74,7 @@
             // 
             // AccountCombo
             // 
+            AccountCombo.BackColor = Color.FromArgb(240, 236, 229);
             AccountCombo.Cursor = Cursors.Hand;
             AccountCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             AccountCombo.FormattingEnabled = true;
@@ -95,7 +96,7 @@
             // 
             // DescriptionTxt
             // 
-            DescriptionTxt.BackColor = Color.White;
+            DescriptionTxt.BackColor = Color.FromArgb(240, 236, 229);
             DescriptionTxt.BorderStyle = BorderStyle.FixedSingle;
             DescriptionTxt.Location = new Point(9, 195);
             DescriptionTxt.MaxLength = 5000;
@@ -137,7 +138,7 @@
             // 
             // CashTxt
             // 
-            CashTxt.BackColor = Color.White;
+            CashTxt.BackColor = Color.FromArgb(240, 236, 229);
             CashTxt.BorderStyle = BorderStyle.FixedSingle;
             CashTxt.Location = new Point(9, 125);
             CashTxt.Name = "CashTxt";
@@ -149,7 +150,7 @@
             // 
             // CloseBtn
             // 
-            CloseBtn.BackColor = Color.FromArgb(255, 128, 128);
+            CloseBtn.BackColor = Color.Crimson;
             CloseBtn.Cursor = Cursors.Hand;
             CloseBtn.FlatAppearance.BorderColor = Color.Red;
             CloseBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
@@ -167,7 +168,7 @@
             // 
             // SaveBtn
             // 
-            SaveBtn.BackColor = Color.LimeGreen;
+            SaveBtn.BackColor = Color.ForestGreen;
             SaveBtn.Cursor = Cursors.Hand;
             SaveBtn.FlatAppearance.BorderColor = Color.Green;
             SaveBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
@@ -187,7 +188,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Teal;
+            BackColor = Color.FromArgb(22, 26, 48);
             ClientSize = new Size(653, 401);
             Controls.Add(groupBox1);
             Controls.Add(label3);

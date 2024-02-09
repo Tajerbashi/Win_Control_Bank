@@ -28,16 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             label1 = new Label();
+            AddBtn = new Button();
             groupBox2 = new GroupBox();
-            BankCombo = new ComboBox();
             GridData = new DataGridView();
+            CartCombo = new ComboBox();
             PageLbl = new Label();
             NextBtn = new Button();
             PrevBtn = new Button();
             SearchBtn = new Button();
             SearchTxt = new TextBox();
-            AddBtn = new Button();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
             SuspendLayout();
@@ -46,62 +51,122 @@
             // 
             label1.BackColor = Color.Black;
             label1.ForeColor = Color.White;
-            label1.Location = new Point(243, 1);
+            label1.Location = new Point(231, 1);
             label1.Name = "label1";
-            label1.Size = new Size(900, 32);
+            label1.Size = new Size(915, 32);
             label1.TabIndex = 16;
             label1.Text = "اطلاعات بانک";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // AddBtn
+            // 
+            AddBtn.Cursor = Cursors.Hand;
+            AddBtn.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            AddBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            AddBtn.FlatAppearance.MouseDownBackColor = Color.Green;
+            AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            AddBtn.FlatStyle = FlatStyle.Flat;
+            AddBtn.ForeColor = Color.White;
+            AddBtn.Location = new Point(0, 1);
+            AddBtn.Name = "AddBtn";
+            AddBtn.Size = new Size(225, 32);
+            AddBtn.TabIndex = 17;
+            AddBtn.Text = "جدید";
+            AddBtn.UseVisualStyleBackColor = true;
+            AddBtn.Click += AddBtn_Click;
+            // 
             // groupBox2
             // 
             groupBox2.BackColor = Color.Transparent;
-            groupBox2.Controls.Add(BankCombo);
             groupBox2.Controls.Add(GridData);
+            groupBox2.Controls.Add(CartCombo);
             groupBox2.Controls.Add(PageLbl);
             groupBox2.Controls.Add(NextBtn);
             groupBox2.Controls.Add(PrevBtn);
             groupBox2.Controls.Add(SearchBtn);
             groupBox2.Controls.Add(SearchTxt);
-            groupBox2.Location = new Point(2, 27);
+            groupBox2.Location = new Point(2, 29);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(1143, 731);
-            groupBox2.TabIndex = 15;
+            groupBox2.TabIndex = 18;
             groupBox2.TabStop = false;
-            // 
-            // BankCombo
-            // 
-            BankCombo.Cursor = Cursors.Hand;
-            BankCombo.DropDownStyle = ComboBoxStyle.DropDownList;
-            BankCombo.FormattingEnabled = true;
-            BankCombo.Location = new Point(363, 20);
-            BankCombo.Name = "BankCombo";
-            BankCombo.RightToLeft = RightToLeft.Yes;
-            BankCombo.Size = new Size(776, 33);
-            BankCombo.TabIndex = 16;
             // 
             // GridData
             // 
+            GridData.AllowDrop = true;
             GridData.AllowUserToAddRows = false;
             GridData.AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(18, 18, 18);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Maroon;
+            GridData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             GridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             GridData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            GridData.BackgroundColor = Color.White;
-            GridData.BorderStyle = BorderStyle.Fixed3D;
+            GridData.BackgroundColor = Color.FromArgb(39, 40, 41);
+            GridData.BorderStyle = BorderStyle.None;
+            GridData.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
+            GridData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(39, 40, 41);
+            dataGridViewCellStyle2.Font = new Font("IRANSansWeb", 11.25F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Black;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            GridData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             GridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            GridData.Cursor = Cursors.PanWest;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(39, 40, 41);
+            dataGridViewCellStyle3.Font = new Font("IRANSansWeb", 11.25F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MidnightBlue;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            GridData.DefaultCellStyle = dataGridViewCellStyle3;
             GridData.EditMode = DataGridViewEditMode.EditProgrammatically;
-            GridData.GridColor = Color.FromArgb(255, 224, 192);
-            GridData.Location = new Point(4, 59);
+            GridData.GridColor = Color.FromArgb(224, 224, 224);
+            GridData.Location = new Point(4, 60);
             GridData.Name = "GridData";
+            GridData.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(39, 40, 41);
+            dataGridViewCellStyle4.Font = new Font("IRANSansWeb", 11.25F);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.MidnightBlue;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            GridData.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(39, 40, 41);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = Color.MidnightBlue;
+            GridData.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            GridData.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.OrangeRed;
+            GridData.RowTemplate.ReadOnly = true;
+            GridData.RowTemplate.Resizable = DataGridViewTriState.True;
             GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridData.Size = new Size(1135, 627);
-            GridData.TabIndex = 12;
+            GridData.Size = new Size(1135, 629);
+            GridData.TabIndex = 17;
+            GridData.VirtualMode = true;
+            // 
+            // CartCombo
+            // 
+            CartCombo.BackColor = Color.FromArgb(240, 236, 229);
+            CartCombo.Cursor = Cursors.Hand;
+            CartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            CartCombo.FormattingEnabled = true;
+            CartCombo.Location = new Point(355, 21);
+            CartCombo.Name = "CartCombo";
+            CartCombo.RightToLeft = RightToLeft.Yes;
+            CartCombo.Size = new Size(782, 33);
+            CartCombo.TabIndex = 16;
             // 
             // PageLbl
             // 
             PageLbl.ForeColor = Color.White;
-            PageLbl.Location = new Point(195, 692);
+            PageLbl.Location = new Point(196, 695);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(751, 32);
             PageLbl.TabIndex = 11;
@@ -111,13 +176,13 @@
             // NextBtn
             // 
             NextBtn.Cursor = Cursors.Hand;
-            NextBtn.FlatAppearance.BorderColor = Color.Black;
+            NextBtn.FlatAppearance.BorderColor = Color.FromArgb(49, 48, 77);
             NextBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
             NextBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
             NextBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             NextBtn.FlatStyle = FlatStyle.Flat;
             NextBtn.ForeColor = Color.White;
-            NextBtn.Location = new Point(6, 692);
+            NextBtn.Location = new Point(3, 695);
             NextBtn.Name = "NextBtn";
             NextBtn.Size = new Size(56, 32);
             NextBtn.TabIndex = 3;
@@ -127,13 +192,13 @@
             // PrevBtn
             // 
             PrevBtn.Cursor = Cursors.Hand;
-            PrevBtn.FlatAppearance.BorderColor = Color.Black;
+            PrevBtn.FlatAppearance.BorderColor = Color.FromArgb(49, 48, 77);
             PrevBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
             PrevBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 192, 255);
             PrevBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             PrevBtn.FlatStyle = FlatStyle.Flat;
             PrevBtn.ForeColor = Color.White;
-            PrevBtn.Location = new Point(1079, 692);
+            PrevBtn.Location = new Point(1084, 695);
             PrevBtn.Name = "PrevBtn";
             PrevBtn.Size = new Size(56, 32);
             PrevBtn.TabIndex = 2;
@@ -157,35 +222,21 @@
             // 
             // SearchTxt
             // 
+            SearchTxt.BackColor = Color.FromArgb(240, 236, 229);
             SearchTxt.Location = new Point(87, 21);
             SearchTxt.Name = "SearchTxt";
+            SearchTxt.PlaceholderText = "جستجو کنید ...";
+            SearchTxt.RightToLeft = RightToLeft.Yes;
             SearchTxt.Size = new Size(262, 32);
             SearchTxt.TabIndex = 0;
-            // 
-            // AddBtn
-            // 
-            AddBtn.Cursor = Cursors.Hand;
-            AddBtn.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
-            AddBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            AddBtn.FlatAppearance.MouseDownBackColor = Color.Green;
-            AddBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
-            AddBtn.FlatStyle = FlatStyle.Flat;
-            AddBtn.ForeColor = Color.White;
-            AddBtn.Location = new Point(3, 1);
-            AddBtn.Name = "AddBtn";
-            AddBtn.Size = new Size(225, 32);
-            AddBtn.TabIndex = 17;
-            AddBtn.Text = "جدید";
-            AddBtn.UseVisualStyleBackColor = true;
-            AddBtn.Click += AddBtn_Click;
             // 
             // BankUC
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
-            Controls.Add(label1);
             Controls.Add(AddBtn);
+            Controls.Add(label1);
             Controls.Add(groupBox2);
             Font = new Font("IRANSansWeb", 11.25F);
             Margin = new Padding(4, 5, 4, 5);
@@ -201,14 +252,14 @@
         #endregion
 
         private Label label1;
+        private Button AddBtn;
         private GroupBox groupBox2;
-        private ComboBox BankCombo;
         private DataGridView GridData;
+        private ComboBox CartCombo;
         private Label PageLbl;
         private Button NextBtn;
         private Button PrevBtn;
         private Button SearchBtn;
         private TextBox SearchTxt;
-        private Button AddBtn;
     }
 }
