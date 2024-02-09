@@ -104,7 +104,6 @@
             GridData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             GridData.BackgroundColor = Color.FromArgb(39, 40, 41);
             GridData.BorderStyle = BorderStyle.None;
-            GridData.CellBorderStyle = DataGridViewCellBorderStyle.Custom;
             GridData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(39, 40, 41);
@@ -162,6 +161,7 @@
             CartCombo.RightToLeft = RightToLeft.Yes;
             CartCombo.Size = new Size(782, 33);
             CartCombo.TabIndex = 16;
+            CartCombo.SelectedIndexChanged += CartCombo_SelectedIndexChanged;
             // 
             // PageLbl
             // 

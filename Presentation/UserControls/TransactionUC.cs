@@ -36,16 +36,19 @@ namespace Presentation.UserControls
             ShowDataGrid();
         }
 
-        private void CartCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ShowDataGrid();
-        }
+
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
             TransactionNewForm transaction = new TransactionNewForm();
             transaction.ShowDialog();
             ShowDataGrid();
+        }
+
+        private void CartCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowDataGrid();
+
         }
     }
 }

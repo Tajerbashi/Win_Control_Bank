@@ -33,12 +33,8 @@
             SaveBtn = new Button();
             groupBox1 = new GroupBox();
             MSG = new Label();
-            DescriptionTxt = new RichTextBox();
             UserPicture = new PictureBox();
-            label2 = new Label();
-            label1 = new Label();
             PageLbl = new Label();
-            TitleTxt = new TextBox();
             FullNameTxt = new TextBox();
             timer1 = new System.Windows.Forms.Timer(components);
             label3 = new Label();
@@ -56,7 +52,7 @@
             CloseBtn.FlatAppearance.MouseOverBackColor = Color.Maroon;
             CloseBtn.FlatStyle = FlatStyle.Flat;
             CloseBtn.ForeColor = Color.White;
-            CloseBtn.Location = new Point(175, 298);
+            CloseBtn.Location = new Point(227, 158);
             CloseBtn.Margin = new Padding(4, 5, 4, 5);
             CloseBtn.Name = "CloseBtn";
             CloseBtn.Size = new Size(121, 32);
@@ -75,7 +71,7 @@
             SaveBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             SaveBtn.FlatStyle = FlatStyle.Flat;
             SaveBtn.ForeColor = Color.White;
-            SaveBtn.Location = new Point(434, 298);
+            SaveBtn.Location = new Point(381, 158);
             SaveBtn.Name = "SaveBtn";
             SaveBtn.Size = new Size(121, 32);
             SaveBtn.TabIndex = 3;
@@ -87,100 +83,57 @@
             // 
             groupBox1.BackColor = Color.Transparent;
             groupBox1.Controls.Add(MSG);
-            groupBox1.Controls.Add(DescriptionTxt);
             groupBox1.Controls.Add(UserPicture);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(PageLbl);
-            groupBox1.Controls.Add(TitleTxt);
             groupBox1.Controls.Add(FullNameTxt);
             groupBox1.Controls.Add(CloseBtn);
             groupBox1.Controls.Add(SaveBtn);
             groupBox1.FlatStyle = FlatStyle.Popup;
             groupBox1.Location = new Point(5, 40);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(730, 349);
+            groupBox1.Size = new Size(640, 209);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             // 
             // MSG
             // 
             MSG.ForeColor = Color.Black;
-            MSG.Location = new Point(150, 22);
+            MSG.Location = new Point(165, 22);
             MSG.Name = "MSG";
-            MSG.Size = new Size(431, 32);
+            MSG.Size = new Size(461, 32);
             MSG.TabIndex = 23;
             MSG.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // DescriptionTxt
-            // 
-            DescriptionTxt.BackColor = Color.FromArgb(240, 236, 229);
-            DescriptionTxt.BorderStyle = BorderStyle.FixedSingle;
-            DescriptionTxt.Location = new Point(253, 195);
-            DescriptionTxt.MaxLength = 5000;
-            DescriptionTxt.Name = "DescriptionTxt";
-            DescriptionTxt.RightToLeft = RightToLeft.Yes;
-            DescriptionTxt.Size = new Size(451, 87);
-            DescriptionTxt.TabIndex = 2;
-            DescriptionTxt.Text = "";
             // 
             // UserPicture
             // 
             UserPicture.BorderStyle = BorderStyle.FixedSingle;
             UserPicture.Cursor = Cursors.Hand;
-            UserPicture.Location = new Point(26, 57);
+            UserPicture.Location = new Point(10, 22);
             UserPicture.Name = "UserPicture";
-            UserPicture.Size = new Size(195, 225);
+            UserPicture.Size = new Size(149, 177);
             UserPicture.TabIndex = 21;
             UserPicture.TabStop = false;
-            // 
-            // label2
-            // 
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(609, 160);
-            label2.Name = "label2";
-            label2.Size = new Size(95, 32);
-            label2.TabIndex = 19;
-            label2.Text = "توضیحات";
-            label2.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label1
-            // 
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(609, 90);
-            label1.Name = "label1";
-            label1.Size = new Size(95, 32);
-            label1.TabIndex = 18;
-            label1.Text = "عنوان";
-            label1.TextAlign = ContentAlignment.MiddleRight;
+            UserPicture.MouseClick += UserPicture_MouseClick;
             // 
             // PageLbl
             // 
             PageLbl.ForeColor = Color.White;
-            PageLbl.Location = new Point(609, 22);
+            PageLbl.Location = new Point(531, 54);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(95, 32);
             PageLbl.TabIndex = 17;
             PageLbl.Text = "نام کامل";
             PageLbl.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // TitleTxt
-            // 
-            TitleTxt.BackColor = Color.FromArgb(240, 236, 229);
-            TitleTxt.BorderStyle = BorderStyle.FixedSingle;
-            TitleTxt.Location = new Point(253, 125);
-            TitleTxt.Name = "TitleTxt";
-            TitleTxt.Size = new Size(451, 32);
-            TitleTxt.TabIndex = 1;
-            TitleTxt.TextAlign = HorizontalAlignment.Center;
-            // 
             // FullNameTxt
             // 
             FullNameTxt.BackColor = Color.FromArgb(240, 236, 229);
             FullNameTxt.BorderStyle = BorderStyle.FixedSingle;
-            FullNameTxt.Location = new Point(253, 57);
+            FullNameTxt.Location = new Point(165, 89);
             FullNameTxt.Name = "FullNameTxt";
-            FullNameTxt.Size = new Size(451, 32);
+            FullNameTxt.PlaceholderText = "نام مشترک را وارد کنید";
+            FullNameTxt.RightToLeft = RightToLeft.Yes;
+            FullNameTxt.Size = new Size(461, 32);
             FullNameTxt.TabIndex = 0;
             FullNameTxt.TextAlign = HorizontalAlignment.Center;
             // 
@@ -190,7 +143,7 @@
             label3.ForeColor = Color.White;
             label3.Location = new Point(5, 9);
             label3.Name = "label3";
-            label3.Size = new Size(730, 35);
+            label3.Size = new Size(640, 35);
             label3.TabIndex = 24;
             label3.Text = "ثبت اطلاعات مشترک";
             label3.TextAlign = ContentAlignment.MiddleCenter;
@@ -200,7 +153,7 @@
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(22, 26, 48);
-            ClientSize = new Size(741, 395);
+            ClientSize = new Size(651, 256);
             Controls.Add(label3);
             Controls.Add(groupBox1);
             Font = new Font("IRANSansWeb", 11.25F);
@@ -222,12 +175,8 @@
         private Button SaveBtn;
         private GroupBox groupBox1;
         private TextBox FullNameTxt;
-        private TextBox TitleTxt;
-        private Label label2;
-        private Label label1;
         private Label PageLbl;
         private PictureBox UserPicture;
-        private RichTextBox DescriptionTxt;
         private Label MSG;
         private System.Windows.Forms.Timer timer1;
         private Label label3;

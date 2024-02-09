@@ -52,7 +52,7 @@ namespace Presentation.Forms
         }
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            TransactionID = new Guid();
+            TransactionID = Guid.NewGuid();
             var type = ((KeyValue<long>)TransactionTypeCombo.SelectedItem).Value;
             if (TransactionValidation(type))
             {
@@ -75,6 +75,7 @@ namespace Presentation.Forms
                                 {
                                     var lastBlance = Pattern.BlanceService.GetBlanceCartById(fromAccountId);
                                     var blanceDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,false);
+                                    Pattern.BlanceService.DisActiveLastBlanceOfCartById(blanceDto.CartID);
                                     blanceDto.ID = Pattern.BlanceService.Insert(blanceDto);
                                     this.Close();
 
@@ -394,8 +395,6 @@ namespace Presentation.Forms
             return new CustomerDTO
             {
                 FullName = NewCustomerNameTxt.Text,
-                Description = NewCustomerNameTxt.Text,
-                Title = NewCustomerNameTxt.Text,
                 Key = Guid.NewGuid()
             };
         }

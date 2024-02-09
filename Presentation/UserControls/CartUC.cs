@@ -1,4 +1,5 @@
-﻿using Infrastructure.Library.Patterns;
+﻿using Infrastructure.Library.Models.Controls;
+using Infrastructure.Library.Patterns;
 using Presentation.Forms;
 using Presentation.Generator;
 using System.Data;
@@ -32,6 +33,15 @@ namespace Presentation.UserControls
             CartNewForm cartNewForm = new CartNewForm();
             cartNewForm.ShowDialog();
             ShowDataGrid();
+        }
+
+        private void CartCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var Id = ((KeyValue<long>)CartCombo.SelectedItem).Value;
+            if (Id != 0)
+                GridData.DataSource = Pattern.ExecuteQuery(Pattern.CartService.SearchByCartId(Id, Pattern.Paging.Order(Pattern.Paging.Page)));
+            else
+                GridData.DataSource = Pattern.ExecuteQuery(Pattern.CartService.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
         }
     }
 }

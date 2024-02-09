@@ -162,6 +162,7 @@
             CartCombo.RightToLeft = RightToLeft.Yes;
             CartCombo.Size = new Size(782, 33);
             CartCombo.TabIndex = 16;
+            CartCombo.SelectedIndexChanged += CartCombo_SelectedIndexChanged;
             // 
             // PageLbl
             // 
