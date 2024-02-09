@@ -15,8 +15,6 @@ namespace Infrastructure.Test.TestServices.BUS
             {
                 ID = 11,
                 BankName = "Test",
-                Description = "Test",
-                Title = "Test",
             });
             //  Assert
             Assert.True(TestModel.Result,TestModel.Message);

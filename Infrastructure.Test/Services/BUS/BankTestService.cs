@@ -48,8 +48,6 @@ namespace Infrastructure.Test.Services.BUS
                 {
                     ID = i,
                     BankName = $"Bank Name-{i}",
-                    Title = $"Bank Title-{i}",
-                    Description = $"Bank Description-{i}",
                 });
             }
 
