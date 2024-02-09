@@ -48,8 +48,6 @@ namespace Infrastructure.Test.Services.BUS
                 {
                     ID = i,
                     FullName = $"Customer FullName-{i}",
-                    Title = $"Customer Title-{i}",
-                    Description = $"Customer Description-{i}",
                     Key = Guid.NewGuid(),
                     Picture = "",
                 });

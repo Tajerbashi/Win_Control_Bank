@@ -19,8 +19,6 @@ namespace Infrastructure.Test.TestServices.BUS
                 ID=0,
                 Key = Guid.NewGuid(),
                 FullName = "Test",
-                Title = "Test",
-                Description = "Test",
 
             });
             //  Asserts
