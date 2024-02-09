@@ -40,8 +40,6 @@ SELECT
     FORMAT(CreateDate,'yyyy-mm-dd','fa') AS [تاریخ ثبت], 
     UpdateDate AS [آخرین ویرایش],   
     CASE IsActive WHEN 1 THEN N'فعال' ELSE N'غیر فعال' END AS وضعیت,
-    Description AS توضیحات, 
-    Title AS عنوان, 
     Picture AS نصویر
 FROM            BUS.Customers
 WHERE IsDeleted = 0
