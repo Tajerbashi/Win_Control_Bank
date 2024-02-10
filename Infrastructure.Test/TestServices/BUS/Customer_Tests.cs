@@ -1,20 +1,25 @@
 ﻿using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Test.Events.BUS;
 using Infrastructure.Test.Exceptions;
+using Infrastructure.Test.Fixture;
 using Infrastructure.Test.Services.BUS;
 
 namespace Infrastructure.Test.TestServices.BUS
 {
-    public class Customer_Tests
+    [Collection("CustomerServiceCollection")]
+    public class Customer_Tests //: IClassFixture<CustomerServiceFixture>
     {
+        private readonly CustomerServiceFixture _fixture;
+        public Customer_Tests(CustomerServiceFixture fixture)
+        {
+            _fixture = fixture;
+        }
+
         [Fact]
         public void Create_NewCustomer_Enttiy()
         {
-            //  Arrange
-            CustomerTestService service = new CustomerTestService();
-
             //  Act
-            var result = service.Create_NewCustomer_Model(new CustomerDTO
+            var result = _fixture.customerTestRepository.Create_NewCustomer_Model(new CustomerDTO
             {
                 ID=0,
                 Key = Guid.NewGuid(),
@@ -24,6 +29,7 @@ namespace Infrastructure.Test.TestServices.BUS
             //  Asserts
             Assert.True(result.Result, result.Message);
         }
+        
         [Fact]
         public void CustomerException_CheckId_AddOrUpdate()
         {
@@ -34,21 +40,19 @@ namespace Infrastructure.Test.TestServices.BUS
             //  Assert
             Assert.Throws<InvalidModelException>(() =>
             {
-                service.FindData_CustomerGetById_Entity(0);
+                _fixture.customerTestRepository.FindData_CustomerGetById_Entity(0);
             });
         }
+        
         [Fact]
         public void CustomerEvent_CheckStatusEvent_Key()
         {
-            //  Arrange
-            CustomerTestService service = new CustomerTestService();
-
             //  Act
             //  Assert
             Assert.Raises<CustomerStatusEventArgs>(
-                handler => service.StatusChanged += handler,
-                handler => service.StatusChanged -= handler,
-                () => service.NotifyOfCustomerStatus(service.GetById(2))
+                handler => _fixture.customerTestRepository.StatusChanged += handler,
+                handler => _fixture.customerTestRepository.StatusChanged -= handler,
+                () => _fixture.customerTestRepository.NotifyOfCustomerStatus(_fixture.customerTestRepository.GetById(2))
                 );
         }
     }
