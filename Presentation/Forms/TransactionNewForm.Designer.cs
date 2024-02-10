@@ -35,6 +35,8 @@
             CloseBtn = new Button();
             SaveBtn = new Button();
             groupBox1 = new GroupBox();
+            ToAccountLBL = new Label();
+            ToCustomerLBL = new Label();
             DescTxt = new TextBox();
             NewDataBtn = new Button();
             NewDataPanel = new Panel();
@@ -148,6 +150,8 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(ToAccountLBL);
+            groupBox1.Controls.Add(ToCustomerLBL);
             groupBox1.Controls.Add(DescTxt);
             groupBox1.Controls.Add(NewDataBtn);
             groupBox1.Controls.Add(NewDataPanel);
@@ -178,6 +182,24 @@
             groupBox1.Size = new Size(1129, 542);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
+            // 
+            // ToAccountLBL
+            // 
+            ToAccountLBL.ForeColor = Color.FromArgb(255, 192, 192);
+            ToAccountLBL.Location = new Point(50, 230);
+            ToAccountLBL.Name = "ToAccountLBL";
+            ToAccountLBL.Size = new Size(409, 32);
+            ToAccountLBL.TabIndex = 61;
+            ToAccountLBL.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // ToCustomerLBL
+            // 
+            ToCustomerLBL.ForeColor = Color.FromArgb(255, 192, 192);
+            ToCustomerLBL.Location = new Point(567, 230);
+            ToCustomerLBL.Name = "ToCustomerLBL";
+            ToCustomerLBL.Size = new Size(436, 32);
+            ToCustomerLBL.TabIndex = 60;
+            ToCustomerLBL.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // DescTxt
             // 
@@ -407,6 +429,7 @@
             ToAccountCombo.Size = new Size(506, 33);
             ToAccountCombo.TabIndex = 6;
             ToAccountCombo.Visible = false;
+            ToAccountCombo.SelectedIndexChanged += ToAccountCombo_SelectedIndexChanged;
             // 
             // label7
             // 
@@ -548,5 +571,7 @@
         private Label label11;
         private Button NewDataBtn;
         private TextBox DescTxt;
+        private Label ToAccountLBL;
+        private Label ToCustomerLBL;
     }
 }

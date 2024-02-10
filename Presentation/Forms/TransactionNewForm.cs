@@ -1,4 +1,6 @@
-﻿using Domain.Library.Enums;
+﻿using Common.Library.Extentions;
+using Domain.Library.Enums;
+using Infrastructure.Library.Exceptions;
 using Infrastructure.Library.Models.Controls;
 using Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Library.Patterns;
@@ -58,7 +60,6 @@ namespace Presentation.Forms
             {
                 //var fromCartId = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
                 var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
-
                 var cash = Convert.ToDouble(CashTxt.Text);
 
                 switch (type)
@@ -74,7 +75,7 @@ namespace Presentation.Forms
                                 if (Pattern.CartService.ValidBankBlance(fromAccountId, cash))
                                 {
                                     var lastBlance = Pattern.BlanceService.GetBlanceCartById(fromAccountId);
-                                    var blanceDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,false);
+                                    var blanceDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,TransactionType.Harvesting);
                                     Pattern.BlanceService.DisActiveLastBlanceOfCartById(blanceDto.CartID);
                                     blanceDto.ID = Pattern.BlanceService.Insert(blanceDto);
                                     this.Close();
@@ -105,11 +106,11 @@ namespace Presentation.Forms
                                 try
                                 {
                                     var lastBlance = Pattern.BlanceService.GetBlanceCartById(fromAccountId);
-                                    var fromAccountDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,false);
+                                    var fromAccountDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,TransactionType.Harvesting);
                                     fromAccountDto.ID = Pattern.BlanceService.Insert(fromAccountDto);
                                     //  اضافه به حساب مقصد
                                     var toCartlastBlance = Pattern.BlanceService.GetBlanceCartById(toCartAccountId);
-                                    var toAccountDto = BlanceDTO(toCartlastBlance,Convert.ToDouble(cash),toCartAccountId,true);
+                                    var toAccountDto = BlanceDTO(toCartlastBlance,Convert.ToDouble(cash),toCartAccountId,TransactionType.Settlemant);
                                     toAccountDto.ID = Pattern.BlanceService.Insert(toAccountDto);
                                     Pattern.UnitOfWork.Commit();
                                     this.Close();
@@ -122,28 +123,66 @@ namespace Presentation.Forms
                             }
                             else
                             {
-                                MSG.Text = $"موجودی کافی نیست و این تراکنش انجام نمیشود";
+                                MSG.Text = MessageProject.NotEnughBlance();
                             }
 
                             break;
                         }
                     case 3: //  واریز به کارت
                         {
-                            var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
-                            var toCartChildId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
+                            Pattern.UnitOfWork.BeginTransaction();
+                            try
+                            {
+                                //var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
+                                var toAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
+
+                                //  From Account
+                                if (fromAccountId > 0)
+                                {
+                                    if (Pattern.CartService.ValidBankBlance(fromAccountId, cash))
+                                    {
+                                        var lastBlance = Pattern.BlanceService.GetBlanceCartById(fromAccountId);
+                                        var BlanceDTO = this.BlanceDTO(lastBlance,cash,fromAccountId,TransactionType.Harvesting);
+                                        Pattern.BlanceService.Insert(BlanceDTO);
+                                    }
+                                    else
+                                    {
+                                        MSG.Text = MessageProject.NotEnughBlance();
+                                    }
+                                }
+                                //  To Account
+                                if (toAccountId > 0)
+                                {
+                                    var lastBlance = Pattern.BlanceService.GetBlanceCartById(toAccountId);
+                                    var BlanceDTO = this.BlanceDTO(lastBlance,cash,toAccountId,TransactionType.Settlemant);
+                                    Pattern.BlanceService.Insert(BlanceDTO);
+                                }
+                                else
+                                {
+                                    MSG.Text = MessageProject.NotFound();
+                                }
+                                Pattern.UnitOfWork.Commit();
+                            }
+                            catch
+                            {
+                                Pattern.UnitOfWork.Rollback();
+                                throw new InvalidModelException(MessageProject.Faild());
+                            }
+
+
                             break;
                         }
 
                     default:
                         {
-                            MSG.Text = "هنوز هیچ نوع تراکنشی تایید نشده است";
+                            MSG.Text = MessageProject.NotSelectTransaction();
                             break;
                         }
                 }
             }
             else
             {
-                MSG.Text = $"موجودی کافی نیست و این تراکنش انجام نمیشود";
+                MSG.Text = MessageProject.NotSelectTransaction();
             }
         }
         private void TransactionTypeCombo_SelectedValueChanged(object sender, EventArgs e)
@@ -311,21 +350,24 @@ namespace Presentation.Forms
             TransactionKindCombo = ComboBoxGenerator<byte>.FillData(TransactionKindCombo, Pattern.BlanceService.TitleValueTransactionType(), Convert.ToByte(TransactionKindCombo.Tag));
 
             FromCustomerCombo = ComboBoxGenerator<long>.FillData(FromCustomerCombo, Pattern.CartService.TitleValuesParent(), Convert.ToByte(FromCustomerCombo.Tag));
-            ToCustomerCombo = ComboBoxGenerator<long>.FillData(ToCustomerCombo, Pattern.CartService.TitleValuesAllParentCart(), Convert.ToByte(ToCustomerCombo.Tag));
 
+            ToCustomerCombo = ComboBoxGenerator<long>.FillData(ToCustomerCombo, Pattern.CartService.TitleValuesAllParentCart(), Convert.ToByte(ToCustomerCombo.Tag));
+            
             BlanceTypeCombo = ComboBoxGenerator<byte>.FillData(BlanceTypeCombo, Pattern.BlanceService.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
         }
         private void ToCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ToCustomerLBL.Text = "";
             var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                ToCustomerCombo.Text = Pattern.BlanceService.GetBlanceCartById(Id).ToString("N");
+                ToCustomerLBL.Text = Pattern.BlanceService.GetBlanceCartById(Id).ToString("N");
                 ToAccountCombo = ComboBoxGenerator<long>.FillData(ToAccountCombo, Pattern.CartService.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
             }
         }
         private void FromCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            FromCustomerLBL.Text = "";
             var Id = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
             if (Id != 0)
             {
@@ -365,10 +407,10 @@ namespace Presentation.Forms
                 ParentID = null
             };
         }
-        private BlanceDTO BlanceDTO(double lastblance, double cash, long cartId, bool sum = true)
+        private BlanceDTO BlanceDTO(double lastblance, double cash, long cartId, TransactionType transaction)
         {
             double blanceCash = lastblance;
-            if (sum)
+            if (transaction == TransactionType.Settlemant)
                 blanceCash = lastblance + cash;
             else
                 blanceCash = lastblance - cash;
@@ -378,7 +420,7 @@ namespace Presentation.Forms
                 OldBlanceCash = lastblance,
                 BlanceType = BlanceType.Banking,
                 CartID = cartId,
-                TransactionType = sum ? TransactionType.Settlemant : TransactionType.Harvesting,
+                TransactionType = transaction,
                 TransactionCash = cash,
                 TransactionID = TransactionID,
                 Description = DescTxt.Text,
@@ -399,5 +441,14 @@ namespace Presentation.Forms
             };
         }
 
+        private void ToAccountCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ToAccountLBL.Text = "";
+            var Id = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
+            if (Id != 0)
+            {
+                ToAccountLBL.Text = Pattern.BlanceService.GetBlanceCartById(Id).ToString("N");
+            }
+        }
     }
 }
