@@ -14,8 +14,8 @@ namespace Account.Presentation.UserControls
         public BankUC()
         {
 
-            InitializeComponent();
             Pattern = new FacadPattern();
+            InitializeComponent();
         }
         private void ShowDataGrid()
         {

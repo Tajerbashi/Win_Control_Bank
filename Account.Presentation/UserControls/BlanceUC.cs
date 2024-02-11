@@ -8,6 +8,7 @@ namespace Account.Presentation.UserControls
         public BlanceUC()
         {
             InitializeComponent();
+            Pattern = new FacadPattern();
         }
     }
 }

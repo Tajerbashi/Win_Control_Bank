@@ -14,8 +14,12 @@ namespace Account.Application.Library.Patterns
 
     public class FacadPattern : IFacadPattern
     {
-        private UnitOfWork<ContextDbApplication> _unitOfWork;
-        public IUnitOfWork UnitOfWork { get => _unitOfWork = _unitOfWork ?? new UnitOfWork<ContextDbApplication>(); }
+        public IUnitOfWork UnitOfWork { get => new UnitOfWork<ContextDbApplication>(); }
+        public UnitOfWork<ContextDbApplication> _unitOfWork;
+        public FacadPattern()
+        {
+            _unitOfWork = new UnitOfWork<ContextDbApplication>();
+        }
 
         public Paging Paging { get => new Paging(); }
 

@@ -24,7 +24,7 @@ namespace Account.Application.Library.Repositories.BUS
 
         public string GetCount()
         {
-            throw new NotImplementedException();
+            return (@$"SELECT  COUNT(*) FROM    BUS.Banks WHERE   (IsDeleted = 0)");
         }
 
         public string Search(string value)
@@ -34,7 +34,19 @@ namespace Account.Application.Library.Repositories.BUS
 
         public string ShowAll(string paging)
         {
-            throw new NotImplementedException();
+            return (@$"
+SELECT        
+ID AS آیدی, 
+BankName AS [نام بانک], 
+FORMAT(CreateDate,'yyyy-mm-dd','fa') AS [تاریخ ثبت], 
+UpdateDate AS [تاریخ ویرایش], 
+Title AS عنوان, Description AS توضیحات, 
+CASE IsActive WHEN 1 THEN N'فعال' ELSE N'غیر فعال' END AS وضعیت
+FROM            BUS.Banks
+WHERE        (IsDeleted = 0)
+ORDER BY ID DESC 
+{paging}
+");
         }
 
         public string ShowFromTo(string from, string to)
@@ -44,7 +56,11 @@ namespace Account.Application.Library.Repositories.BUS
 
         public IEnumerable<KeyValue<long>> TitleValue()
         {
-            throw new NotImplementedException();
+            return Context.Banks.Select(x => new KeyValue<long>
+            {
+                Key = x.BankName,
+                Value = x.ID
+            });
         }
     }
 }

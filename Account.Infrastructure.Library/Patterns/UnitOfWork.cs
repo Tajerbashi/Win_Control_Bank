@@ -79,7 +79,7 @@ namespace Account.Application.Library.Patterns
 
         public IGenericRepository<TEntity, TDTO, TView> Repository<TEntity, TDTO, TView>()
             where TEntity : BaseEntity, new()
-            where TDTO : BaseDTO , new()
+            where TDTO : BaseDTO, new()
             where TView : BaseView, new()
         {
             if (_repositories == null)

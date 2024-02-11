@@ -1,4 +1,6 @@
-﻿using Account.Application.Library.IDatabaseContext.AutoMapper;
+﻿using Account.Application.Library.ApplicationContext.DatabaseContext;
+using Account.Application.Library.IDatabaseContext.AutoMapper;
+using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.SEC;
 using AutoMapper;
 using log4net;
@@ -37,13 +39,14 @@ namespace Presentation
         [STAThread]
         static void Main()
         {
+            ApplicationConfiguration.Initialize();
             var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
             XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
-            var mapper =
-                new MapperConfiguration(cfg => cfg.AddProfile(typeof(MapperProfiler)));
-            ApplicationConfiguration.Initialize();
+            var mapper = new MapperConfiguration(cfg => cfg.AddProfile(typeof(MapperProfiler)));
+
             var host = CreateHostBuilder().Build();
             ServiceProvider = host.Services;
+
             Application.Run(ServiceProvider.GetRequiredService<MainFRM>());
             //Application.Run(new MainFRM());
         }
@@ -53,8 +56,8 @@ namespace Presentation
             var builder = Host.CreateDefaultBuilder()
                 .ConfigureServices((context,services) =>
                 {
-                    services.AddScoped<IUserRepository,UserRepository>();
-                    services.AddScoped<MainFRM>();
+                    services.AddSingleton<MainFRM>();
+                    services.AddScoped<IUnitOfWork,UnitOfWork<ContextDbApplication>>();
 
                 });
             return builder;
