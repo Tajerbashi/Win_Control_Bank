@@ -1,8 +1,8 @@
-﻿using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Account.Infrastructure.Library.Patterns;
-using Account.Infrastructure.Library.Repositories.SEC;
+﻿using Account.Application.Library.ApplicationContext.DatabaseContext;
+using Account.Application.Library.Patterns;
+using Account.Application.Library.Repositories.SEC;
 
-namespace Account.Infrastructure.Library.Services.SEC
+namespace Account.Application.Library.Services.SEC
 {
     public class UserService : UserRepository
     {

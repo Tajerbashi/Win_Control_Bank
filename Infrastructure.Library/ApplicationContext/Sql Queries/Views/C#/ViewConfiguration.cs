@@ -1,7 +1,7 @@
-﻿using Account.Infrastructure.Library.Models.Views.BUS;
+﻿using Account.Application.Library.Models.Views.BUS;
 using Microsoft.EntityFrameworkCore;
 
-namespace Account.Infrastructure.Library.ApplicationContext.Sql_Queries.Views.C_
+namespace Account.Application.Library.ApplicationContext.Sql_Queries.Views.C_
 {
     public class ViewConfiguration
     {

@@ -1,4 +1,4 @@
-﻿namespace Account.Infrastructure.Library.ApplicationContext.Configurations
+﻿namespace Account.Application.Library.ApplicationContext.Configurations
 {
     public class SeedData
     {

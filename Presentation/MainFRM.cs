@@ -1,5 +1,5 @@
 ﻿using Account.Common.Library.Utilities;
-using Account.Infrastructure.Library.Models.DTOs.SEC;
+using Account.Application.Library.Models.DTOs.SEC;
 using log4net;
 using Microsoft.Extensions.Logging;
 using Account.Presentation.Extentions;

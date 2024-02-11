@@ -1,4 +1,4 @@
-﻿namespace Account.Infrastructure.Library.Logger
+﻿namespace Account.Application.Library.Logger
 {
     public static class LoggerService
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
 
-namespace Account.Infrastructure.Library.ApplicationContext.DapperService
+namespace Account.Application.Library.ApplicationContext.DapperService
 {
     public sealed class DapperServices 
     {

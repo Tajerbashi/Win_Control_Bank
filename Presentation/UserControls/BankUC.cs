@@ -1,4 +1,4 @@
-﻿using Account.Infrastructure.Library.Patterns;
+﻿using Account.Application.Library.Patterns;
 using log4net.Util;
 using Account.Presentation.Extentions;
 using Account.Presentation.Forms;

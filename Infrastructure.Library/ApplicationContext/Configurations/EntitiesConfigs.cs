@@ -4,7 +4,7 @@ using Account.Domain.Library.Entities.WEB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Account.Infrastructure.Library.ApplicationContext.Configurations
+namespace Account.Application.Library.ApplicationContext.Configurations
 {
     #region BUS
     public class BankConfiguration : IEntityTypeConfiguration<Bank>

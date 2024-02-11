@@ -1,14 +1,14 @@
 ﻿using Account.Domain.Library.Entities.RPT;
-using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Models.Controls;
-using Account.Infrastructure.Library.Models.DTOs.RPT;
-using Account.Infrastructure.Library.Models.Views.RPT;
-using Account.Infrastructure.Library.Patterns;
+using Account.Application.Library.ApplicationContext.DatabaseContext;
+using Account.Application.Library.BaseService;
+using Account.Application.Library.Models.Controls;
+using Account.Application.Library.Models.DTOs.RPT;
+using Account.Application.Library.Models.Views.RPT;
+using Account.Application.Library.Patterns;
 
-namespace Account.Infrastructure.Library.Repositories.RPT
+namespace Account.Application.Library.Repositories.RPT
 {
-    public abstract class BankReportRepository : GenericRepository<BankReport, BankReportDTO, BankReportView>, IGenericQueries
+    public abstract class BankReportRepository : GenericRepository<BankReport, BankReportDTO, BankReportView>, IBaseQueries
     {
         protected BankReportRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {

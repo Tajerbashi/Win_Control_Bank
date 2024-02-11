@@ -20,7 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure.Library\Account.Infrastructure.Library.csproj" />
+    <ProjectReference Include="..\Account.Applicatino.Library\Account.Applicatino.Library.csproj" />
+    <ProjectReference Include="..\Infrastructure.Library\Account.Application.Library.csproj" />
   </ItemGroup>
 
   <ItemGroup>

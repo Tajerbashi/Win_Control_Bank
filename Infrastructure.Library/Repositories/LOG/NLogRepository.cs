@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
 using Account.Domain.Library.Entities.LOG;
-using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Models.Controls;
-using Account.Infrastructure.Library.Models.DTOs.LOG;
-using Account.Infrastructure.Library.Models.Views.LOG;
-using Account.Infrastructure.Library.Patterns;
+using Account.Application.Library.ApplicationContext.DatabaseContext;
+using Account.Application.Library.BaseService;
+using Account.Application.Library.Models.Controls;
+using Account.Application.Library.Models.DTOs.LOG;
+using Account.Application.Library.Models.Views.LOG;
+using Account.Application.Library.Patterns;
 
-namespace Account.Infrastructure.Library.Repositories.LOG
+namespace Account.Application.Library.Repositories.LOG
 {
-    public abstract class NLogRepository : GenericRepository<NLog, NLogDTO, NLogView>, IGenericQueries
+    public abstract class NLogRepository : GenericRepository<NLog, NLogDTO, NLogView>, IBaseQueries
     {
         protected NLogRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {

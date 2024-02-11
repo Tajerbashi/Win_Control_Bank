@@ -4,18 +4,14 @@ using Account.Domain.Library.Entities.LOG;
 using Account.Domain.Library.Entities.RPT;
 using Account.Domain.Library.Entities.SEC;
 using Account.Domain.Library.Entities.WEB;
-using Account.Infrastructure.Library.ApplicationContext.Configurations;
-using Account.Infrastructure.Library.ApplicationContext.Sql_Queries.Views.C_;
+using Account.Application.Library.ApplicationContext.Configurations;
+using Account.Application.Library.ApplicationContext.Sql_Queries.Views.C_;
 using Microsoft.EntityFrameworkCore;
+using Account.Applicatino.Library.IDatabaseContext.DatabaseContext;
 
-namespace Account.Infrastructure.Library.ApplicationContext.DatabaseContext
+namespace Account.Application.Library.ApplicationContext.DatabaseContext
 {
-    public interface IContextDbApplication : IDisposable
-    {
-        //IDbContextTransaction BeginTransaction();
-        //void CommitTransaction();
-        //void RollBackTransaction();
-    }
+   
     public class ContextDbApplication : DbContext, IContextDbApplication
     {
         public ContextDbApplication(DbContextOptions<ContextDbApplication> option) : base(option)

@@ -1,25 +1,59 @@
-﻿using Account.Domain.Library.Entities.BUS;
-using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Models.Controls;
-using Account.Infrastructure.Library.Models.DTOs.BUS;
-using Account.Infrastructure.Library.Models.Views.BUS;
-using Account.Infrastructure.Library.Patterns;
+﻿using Account.Application.Library.BaseService;
+using Account.Application.Library.Models.Controls;
+using Account.Domain.Library.Entities.BUS;
 
-namespace Account.Infrastructure.Library.Repositories.BUS
+namespace Account.Application.Library.Repositories.BUS
 {
-    public abstract class BankRepository : GenericRepository<Bank, BankDTO, BankView>, IGenericQueries
+    public abstract class BankRepository : IBankRepository, IBaseQueries
     {
-        protected BankRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        public void Active(Guid guid)
         {
+            throw new NotImplementedException();
         }
-        protected BankRepository(ContextDbApplication context)
-            : base(context)
+
+        public long AddOrUpdate(Bank obj)
         {
+            throw new NotImplementedException();
         }
+
+        public void Delete(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Guid guid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DisActive(Guid guid)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Bank> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Bank GetById(object id)
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetCount()
         {
-            return (@$"SELECT  COUNT(*) FROM    BUS.Banks WHERE   (IsDeleted = 0)");
+            throw new NotImplementedException();
+        }
+
+        public long Insert(Bank obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Save()
+        {
+            throw new NotImplementedException();
         }
 
         public string Search(string value)
@@ -29,18 +63,7 @@ namespace Account.Infrastructure.Library.Repositories.BUS
 
         public string ShowAll(string paging)
         {
-            return (@$"
-SELECT        
-ID AS آیدی, 
-BankName AS [نام بانک], 
-FORMAT(CreateDate,'yyyy-mm-dd','fa') AS [تاریخ ثبت], 
-UpdateDate AS [تاریخ ویرایش], 
-CASE IsActive WHEN 1 THEN N'فعال' ELSE N'غیر فعال' END AS وضعیت
-FROM            BUS.Banks
-WHERE        (IsDeleted = 0)
-ORDER BY ID DESC 
-{paging}
-");
+            throw new NotImplementedException();
         }
 
         public string ShowFromTo(string from, string to)
@@ -50,11 +73,12 @@ ORDER BY ID DESC
 
         public IEnumerable<KeyValue<long>> TitleValue()
         {
-            return Context.Banks.Select(x => new KeyValue<long>
-            {
-                Key = x.BankName,
-                Value = x.ID
-            });
+            throw new NotImplementedException();
+        }
+
+        public void Update(Bank obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

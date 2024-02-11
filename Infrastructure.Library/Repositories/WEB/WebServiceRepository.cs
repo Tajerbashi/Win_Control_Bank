@@ -1,14 +1,14 @@
 ﻿using Account.Domain.Library.Entities.WEB;
-using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Models.Controls;
-using Account.Infrastructure.Library.Models.DTOs.WEB;
-using Account.Infrastructure.Library.Models.Views.WEB;
-using Account.Infrastructure.Library.Patterns;
+using Account.Application.Library.ApplicationContext.DatabaseContext;
+using Account.Application.Library.BaseService;
+using Account.Application.Library.Models.Controls;
+using Account.Application.Library.Models.DTOs.WEB;
+using Account.Application.Library.Models.Views.WEB;
+using Account.Application.Library.Patterns;
 
-namespace Account.Infrastructure.Library.Repositories.WEB
+namespace Account.Application.Library.Repositories.WEB
 {
-    public abstract class WebServiceRepository : GenericRepository<WebService, WebServiceDTO, WebServiceView>, IGenericQueries
+    public abstract class WebServiceRepository : GenericRepository<WebService, WebServiceDTO, WebServiceView>, IBaseQueries
     {
         private readonly UnitOfWork<ContextDbApplication> unitOfWork = new UnitOfWork<ContextDbApplication>();
         //private GenericRepository<Employee> genericRepository;

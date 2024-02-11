@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Account.Infrastructure.Library.ApplicationContext.AutoMapper;
 using log4net;
 using log4net.Config;
 using Account.Presentation.Extentions;
 using System.Reflection;
+using Account.Applicatino.Library.IDatabaseContext.AutoMapper;
 namespace Presentation
 {
     #region ConsoleTest

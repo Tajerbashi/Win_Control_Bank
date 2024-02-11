@@ -1,4 +1,4 @@
-﻿using Account.Infrastructure.Library.Patterns;
+﻿using Account.Application.Library.Patterns;
 
 namespace Account.Presentation.UserControls
 {

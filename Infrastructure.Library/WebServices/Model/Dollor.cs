@@ -1,6 +1,6 @@
-﻿using Account.Infrastructure.Library.Models.DTOs.WEB;
+﻿using Account.Application.Library.Models.DTOs.WEB;
 
-namespace Account.Infrastructure.Library.WebServices.Model
+namespace Account.Application.Library.WebServices.Model
 {
     public class WebServiceExchange
     {

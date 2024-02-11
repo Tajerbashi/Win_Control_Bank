@@ -1,4 +1,4 @@
-﻿using Account.Infrastructure.Library.Models.Controls;
+﻿using Account.Application.Library.Models.Controls;
 
 namespace Account.Presentation.Generator
 {

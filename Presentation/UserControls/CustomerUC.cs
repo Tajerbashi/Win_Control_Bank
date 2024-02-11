@@ -1,6 +1,6 @@
 ﻿using Dapper;
-using Account.Infrastructure.Library.Models.DTOs.SEC;
-using Account.Infrastructure.Library.Patterns;
+using Account.Application.Library.Models.DTOs.SEC;
+using Account.Application.Library.Patterns;
 using Account.Presentation.Forms;
 using Account.Presentation.Generator;
 using System.Data;

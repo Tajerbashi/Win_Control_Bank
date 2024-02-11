@@ -1,57 +1,46 @@
-﻿using Dapper;
-using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Account.Infrastructure.Library.Models.DTOs.BUS;
-using Account.Infrastructure.Library.Patterns;
-using Account.Infrastructure.Library.Repositories.BUS;
+﻿using Account.Application.Library.ApplicationContext.DatabaseContext;
+using Account.Application.Library.Models.Controls;
+using Account.Application.Library.Models.DTOs.BUS;
+using Account.Application.Library.Models.Views.BUS;
+using Account.Application.Library.Patterns;
+using Account.Application.Library.Repositories.BUS;
+using Account.Domain.Library.Entities.BUS;
+using Account.Infrastructure.Library.BaseService;
 
-namespace Account.Infrastructure.Library.Services.BUS
+namespace Account.Application.Library.Services.BUS
 {
-    public class BankService : BankRepository
+    public class BankService : GenericRepository<Bank, BankDTO, BankView>, IBankRepository
     {
-
-        public BankService(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        public BankService(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
-        public (List<BankDTO>, List<CartDTO>) GetData()
+        public BankService(ContextDbApplication context) : base(context)
         {
-            try
-            {
-                var banks = new List<BankDTO>();
-                var carts = new List<CartDTO>();
-                var bankData = base.DapperServices.Query<BankDTO>("SELECT * FROM BUS.Banks",new
-                {
-
-                });
-                var CartData = base.DapperServices.Query<CartDTO>("SELECT * FROM BUS.Carts",new
-                {
-
-                });
-                banks.AddRange(bankData);
-                carts.AddRange(CartData);
-                return (banks, carts);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
         }
 
-        public BankDTO GetBankByName(string name)
+        public string GetCount()
         {
-            var result  = base.DapperServices.QueryFirstOrDefault<BankDTO>(@"
-SELECT *
-FROM BUS.Banks BN
-WHERE BN.IsDeleted = 0
-AND BN.IsActive = 1
-AND BN.BankName LIKE @Name
-", new
-            {
-                Name = name,
-            });
-            //base.Search(name);
-            return result;
+            throw new NotImplementedException();
         }
-       
+
+        public string Search(string value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ShowAll(string paging)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ShowFromTo(string from, string to)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<KeyValue<long>> TitleValue()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

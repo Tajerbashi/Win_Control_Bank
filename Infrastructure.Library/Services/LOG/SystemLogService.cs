@@ -1,8 +1,8 @@
-﻿using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Account.Infrastructure.Library.Patterns;
-using Account.Infrastructure.Library.Repositories.LOG;
+﻿using Account.Application.Library.ApplicationContext.DatabaseContext;
+using Account.Application.Library.Patterns;
+using Account.Application.Library.Repositories.LOG;
 
-namespace Account.Infrastructure.Library.Services.LOG
+namespace Account.Application.Library.Services.LOG
 {
     public class NLogService : NLogRepository
     {

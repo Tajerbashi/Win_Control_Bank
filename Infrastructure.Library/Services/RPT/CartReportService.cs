@@ -1,8 +1,8 @@
-﻿using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Account.Infrastructure.Library.Patterns;
-using Account.Infrastructure.Library.Repositories.RPT;
+﻿using Account.Application.Library.ApplicationContext.DatabaseContext;
+using Account.Application.Library.Patterns;
+using Account.Application.Library.Repositories.RPT;
 
-namespace Account.Infrastructure.Library.Services.RPT
+namespace Account.Application.Library.Services.RPT
 {
     public class CartReportService : CartReportRepository
     {

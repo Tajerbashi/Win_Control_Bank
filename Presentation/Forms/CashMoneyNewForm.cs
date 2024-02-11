@@ -1,5 +1,5 @@
-﻿using Account.Infrastructure.Library.Models.DTOs.BUS;
-using Account.Infrastructure.Library.Patterns;
+﻿using Account.Application.Library.Models.DTOs.BUS;
+using Account.Application.Library.Patterns;
 using Account.Presentation.Generator;
 using System;
 using System.Collections.Generic;

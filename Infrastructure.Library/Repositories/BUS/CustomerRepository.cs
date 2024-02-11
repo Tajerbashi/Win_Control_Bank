@@ -1,14 +1,14 @@
 ﻿using Account.Domain.Library.Entities.BUS;
-using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Models.Controls;
-using Account.Infrastructure.Library.Models.DTOs.BUS;
-using Account.Infrastructure.Library.Models.Views.BUS;
-using Account.Infrastructure.Library.Patterns;
+using Account.Application.Library.ApplicationContext.DatabaseContext;
+using Account.Application.Library.BaseService;
+using Account.Application.Library.Models.Controls;
+using Account.Application.Library.Models.DTOs.BUS;
+using Account.Application.Library.Models.Views.BUS;
+using Account.Application.Library.Patterns;
 
-namespace Account.Infrastructure.Library.Repositories.BUS
+namespace Account.Application.Library.Repositories.BUS
 {
-    public abstract class CustomerRepository : GenericRepository<Customer, CustomerDTO, CustomerView>, IGenericQueries
+    public abstract class CustomerRepository : GenericRepository<Customer, CustomerDTO, CustomerView>, IBaseQueries
     {
         protected CustomerRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {

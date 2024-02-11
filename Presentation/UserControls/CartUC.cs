@@ -1,5 +1,5 @@
-﻿using Account.Infrastructure.Library.Models.Controls;
-using Account.Infrastructure.Library.Patterns;
+﻿using Account.Application.Library.Models.Controls;
+using Account.Application.Library.Patterns;
 using Account.Presentation.Forms;
 using Account.Presentation.Generator;
 using System.Data;

@@ -1,6 +1,6 @@
 ﻿using Account.Common.Library.Utilities;
 
-namespace Account.Infrastructure.Library.Services.BCK
+namespace Account.Application.Library.Services.BCK
 {
     public sealed class BackupService
     {
