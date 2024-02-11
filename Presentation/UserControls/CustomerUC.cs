@@ -1,5 +1,4 @@
-﻿using Dapper;
-using Account.Application.Library.Models.DTOs.SEC;
+﻿using Account.Applicatino.Library.Patterns;
 using Account.Application.Library.Patterns;
 using Account.Presentation.Forms;
 using Account.Presentation.Generator;
@@ -18,9 +17,9 @@ namespace Account.Presentation.UserControls
         }
         private void ShowDataGrid()
         {
-            CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, Pattern.CustomerService.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
-            GridData.DataSource = Pattern.ExecuteQuery(Pattern.CustomerService.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
-            var count = (Pattern.ExecuteQuery(Pattern.CustomerService.GetCount())).Rows[0].Field<int>(0); ;
+            CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, Pattern.CustomerRepository.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
+            GridData.DataSource = Pattern.ExecuteQuery(Pattern.CustomerRepository.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
+            var count = (Pattern.ExecuteQuery(Pattern.CustomerRepository.GetCount())).Rows[0].Field<int>(0); ;
             PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {Pattern.Paging.Page + 1}";
         }
 

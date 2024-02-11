@@ -21,11 +21,6 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Infrastructure.Library\Account.Application.Library.csproj" />
-  </ItemGroup>
-
   <ItemGroup>
     <None Update="ExternalHandler\CustomerData.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

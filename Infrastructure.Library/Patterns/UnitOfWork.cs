@@ -1,4 +1,4 @@
-﻿using Account.Applicatino.Library.Patterns;
+﻿using Account.Application.Library.Patterns;
 using Account.Application.Library.ApplicationContext.DapperService;
 using Account.Application.Library.ApplicationContext.DatabaseContext;
 using Account.Application.Library.BaseModels;
@@ -7,6 +7,7 @@ using Account.Domain.Library.Bases;
 using Account.Infrastructure.Library.BaseService;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Collections;
+using Account.Applicatino.Library.Patterns;
 
 namespace Account.Application.Library.Patterns
 {
@@ -79,8 +80,8 @@ namespace Account.Application.Library.Patterns
 
         public IGenericRepository<TEntity, TDTO, TView> Repository<TEntity, TDTO, TView>()
             where TEntity : BaseEntity, new()
-            where TDTO : BaseDTO
-            where TView : BaseView
+            where TDTO : BaseDTO , new()
+            where TView : BaseView, new()
         {
             if (_repositories == null)
                 _repositories = new Hashtable();

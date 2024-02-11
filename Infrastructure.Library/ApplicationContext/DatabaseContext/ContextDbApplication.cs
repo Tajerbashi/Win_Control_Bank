@@ -1,17 +1,17 @@
-﻿using Account.Domain.Library.Entities.BUS;
+﻿using Account.Applicatino.Library.IDatabaseContext.DatabaseContext;
+using Account.Application.Library.ApplicationContext.Configurations;
+using Account.Application.Library.ApplicationContext.Sql_Queries.Views.C_;
+using Account.Domain.Library.Entities.BUS;
 using Account.Domain.Library.Entities.CNT;
 using Account.Domain.Library.Entities.LOG;
 using Account.Domain.Library.Entities.RPT;
 using Account.Domain.Library.Entities.SEC;
 using Account.Domain.Library.Entities.WEB;
-using Account.Application.Library.ApplicationContext.Configurations;
-using Account.Application.Library.ApplicationContext.Sql_Queries.Views.C_;
 using Microsoft.EntityFrameworkCore;
-using Account.Applicatino.Library.IDatabaseContext.DatabaseContext;
 
 namespace Account.Application.Library.ApplicationContext.DatabaseContext
 {
-   
+
     public class ContextDbApplication : DbContext, IContextDbApplication
     {
         public ContextDbApplication(DbContextOptions<ContextDbApplication> option) : base(option)

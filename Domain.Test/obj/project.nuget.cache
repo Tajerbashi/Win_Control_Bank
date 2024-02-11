@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+Ow5ldJTkJvVEFPUMhm2C8p0g86alX8VG7RdVUkCtIWmmbeBfLAuYsbdNXvAoaF55h96B6OIbBedOCc6B9zEOQ==",
+  "dgSpecHash": "RkS4N6ZFc3zkLdksoHVRDFyQQ7KdNT9H2+erlYQ5tDOvlvlrfXUWFQJKuS7c2tYrNPXlmgWfwa/WnUWMIRMLiQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Domain.Test\\Domain.Test.csproj",
+  "projectFilePath": "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Domain.Test\\Account.Domain.Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tajer\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\Tajer\\.nuget\\packages\\microsoft.codecoverage\\17.6.0\\microsoft.codecoverage.17.6.0.nupkg.sha512",

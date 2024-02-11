@@ -5,12 +5,13 @@ using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Models.Views.BUS;
 using Account.Application.Library.Patterns;
+using Account.Infrastructure.Library.BaseService;
 
 namespace Account.Application.Library.Repositories.BUS
 {
-    public abstract class CustomerRepository : GenericRepository<Customer, CustomerDTO, CustomerView>, IBaseQueries
+    public abstract class CustomerRepository : GenericRepository<Customer, CustomerDTO, CustomerView>, ICustomerRepository
     {
-        protected CustomerRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected CustomerRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
         protected CustomerRepository(ContextDbApplication context)
@@ -24,6 +25,11 @@ SELECT  COUNT(*)
 FROM    BUS.Customers
 WHERE   IsDeleted = 0
 ");
+        }
+
+        public CustomerDTO GetCustomerByName(string name)
+        {
+            throw new NotImplementedException();
         }
 
         public string Search(string value)

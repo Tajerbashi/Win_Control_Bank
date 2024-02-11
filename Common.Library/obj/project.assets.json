@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Common.Library\\Common.Library.csproj",
-      "projectName": "Common.Library",
-      "projectPath": "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Common.Library\\Common.Library.csproj",
+      "projectUniqueName": "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Common.Library\\Account.Common.Library.csproj",
+      "projectName": "Account.Common.Library",
+      "projectPath": "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Common.Library\\Account.Common.Library.csproj",
       "packagesPath": "C:\\Users\\Tajer\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Common.Library\\obj\\",
       "projectStyle": "PackageReference",

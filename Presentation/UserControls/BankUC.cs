@@ -1,8 +1,6 @@
-﻿using Account.Application.Library.Patterns;
-using log4net.Util;
-using Account.Presentation.Extentions;
+﻿using Account.Applicatino.Library.Patterns;
+using Account.Application.Library.Patterns;
 using Account.Presentation.Forms;
-using Account.Presentation.Generator;
 using System.Data;
 
 namespace Account.Presentation.UserControls
@@ -17,8 +15,8 @@ namespace Account.Presentation.UserControls
         }
         private void ShowDataGrid()
         {
-            GridData.DataSource = Pattern.ExecuteQuery(Pattern.BankService.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
-            var count = (Pattern.ExecuteQuery(Pattern.BankService.GetCount())).Rows[0].Field<int>(0); ;
+            GridData.DataSource = Pattern.ExecuteQuery(Pattern.BankRepository.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
+            var count = (Pattern.ExecuteQuery(Pattern.BankRepository.GetCount())).Rows[0].Field<int>(0); ;
             PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {Pattern.Paging.Page + 1}";
 
         }
@@ -30,13 +28,7 @@ namespace Account.Presentation.UserControls
 
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var data = Pattern.BankService.GetData();
-            }
-            catch (Exception ex)
-            {
-            }
+            
         }
 
         private void AddBtn_Click(object sender, EventArgs e)

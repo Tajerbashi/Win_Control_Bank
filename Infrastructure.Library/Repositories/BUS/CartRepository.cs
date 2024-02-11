@@ -5,12 +5,13 @@ using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Models.Views.BUS;
 using Account.Application.Library.Patterns;
+using Account.Infrastructure.Library.BaseService;
 
 namespace Account.Application.Library.Repositories.BUS
 {
-    public abstract class CartRepository : GenericRepository<Cart, CartDTO, CartView>, IBaseQueries
+    public abstract class CartRepository : GenericRepository<Cart, CartDTO, CartView>, ICartRepository
     {
-        protected CartRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected CartRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
         protected CartRepository(ContextDbApplication context)
@@ -166,6 +167,16 @@ ORDER BY C.ID DESC
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
             });
+        }
+
+        public CartDTO GetCartByAccountNumber(string number)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ValidBankBlance(long cartId, double cash)
+        {
+            throw new NotImplementedException();
         }
     }
 }

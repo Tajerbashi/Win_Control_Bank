@@ -5,12 +5,13 @@ using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.RPT;
 using Account.Application.Library.Models.Views.RPT;
 using Account.Application.Library.Patterns;
+using Account.Infrastructure.Library.BaseService;
 
 namespace Account.Application.Library.Repositories.RPT
 {
-    public abstract class CartReportRepository : GenericRepository<CartReport, CartReportDTO, CartReportView>, IBaseQueries
+    public abstract class CartReportRepository : GenericRepository<CartReport, CartReportDTO, CartReportView>, ICartReportRepository
     {
-        protected CartReportRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected CartReportRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
         protected CartReportRepository(ContextDbApplication context) : base(context) { }

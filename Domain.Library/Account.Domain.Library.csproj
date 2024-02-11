@@ -5,9 +5,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Common.Library\Account.Common.Library.csproj" />
-  </ItemGroup>
-
 </Project>

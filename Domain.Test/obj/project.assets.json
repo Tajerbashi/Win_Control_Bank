@@ -1713,27 +1713,14 @@
           "build/netcoreapp3.1/xunit.runner.visualstudio.props": {}
         }
       },
-      "Common.Library/1.0.0": {
+      "Account.Domain.Library/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "compile": {
-          "bin/placeholder/Common.Library.dll": {}
+          "bin/placeholder/Account.Domain.Library.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Common.Library.dll": {}
-        }
-      },
-      "Domain.Library/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Common.Library": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Domain.Library.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Domain.Library.dll": {}
+          "bin/placeholder/Account.Domain.Library.dll": {}
         }
       }
     }
@@ -5531,20 +5518,15 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "Common.Library/1.0.0": {
+    "Account.Domain.Library/1.0.0": {
       "type": "project",
-      "path": "../Common.Library/Common.Library.csproj",
-      "msbuildProject": "../Common.Library/Common.Library.csproj"
-    },
-    "Domain.Library/1.0.0": {
-      "type": "project",
-      "path": "../Domain.Library/Domain.Library.csproj",
-      "msbuildProject": "../Domain.Library/Domain.Library.csproj"
+      "path": "../Domain.Library/Account.Domain.Library.csproj",
+      "msbuildProject": "../Domain.Library/Account.Domain.Library.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "Domain.Library >= 1.0.0",
+      "Account.Domain.Library >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.6.0",
       "coverlet.collector >= 6.0.0",
       "xunit >= 2.4.2",
@@ -5558,9 +5540,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Domain.Test\\Domain.Test.csproj",
-      "projectName": "Domain.Test",
-      "projectPath": "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Domain.Test\\Domain.Test.csproj",
+      "projectUniqueName": "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Domain.Test\\Account.Domain.Test.csproj",
+      "projectName": "Account.Domain.Test",
+      "projectPath": "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Domain.Test\\Account.Domain.Test.csproj",
       "packagesPath": "C:\\Users\\Tajer\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Domain.Test\\obj\\",
       "projectStyle": "PackageReference",
@@ -5584,8 +5566,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Domain.Library\\Domain.Library.csproj": {
-              "projectPath": "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Domain.Library\\Domain.Library.csproj"
+            "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Domain.Library\\Account.Domain.Library.csproj": {
+              "projectPath": "C:\\Users\\Tajer\\Desktop\\Visual Studio\\Solutions\\Git KTajerbashi\\Accounting\\Domain.Library\\Account.Domain.Library.csproj"
             }
           }
         }

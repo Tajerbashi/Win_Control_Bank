@@ -1,57 +1,28 @@
-﻿using Account.Application.Library.BaseService;
+﻿using Account.Application.Library.ApplicationContext.DatabaseContext;
 using Account.Application.Library.Models.Controls;
+using Account.Application.Library.Models.DTOs.BUS;
+using Account.Application.Library.Models.Views.BUS;
+using Account.Application.Library.Patterns;
 using Account.Domain.Library.Entities.BUS;
+using Account.Infrastructure.Library.BaseService;
 
 namespace Account.Application.Library.Repositories.BUS
 {
-    public abstract class BankRepository : IBankRepository, IBaseQueries
+    public abstract class BankRepository : GenericRepository<Bank, BankDTO, BankView>, IBankRepository
     {
-        public void Active(Guid guid)
+        protected BankRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
-            throw new NotImplementedException();
+        }
+        protected BankRepository(ContextDbApplication context) : base(context)
+        {
         }
 
-        public long AddOrUpdate(Bank obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(object id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Guid guid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DisActive(Guid guid)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Bank> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Bank GetById(object id)
+        public BankDTO GetBankByName(string name)
         {
             throw new NotImplementedException();
         }
 
         public string GetCount()
-        {
-            throw new NotImplementedException();
-        }
-
-        public long Insert(Bank obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object Save()
         {
             throw new NotImplementedException();
         }
@@ -72,11 +43,6 @@ namespace Account.Application.Library.Repositories.BUS
         }
 
         public IEnumerable<KeyValue<long>> TitleValue()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Bank obj)
         {
             throw new NotImplementedException();
         }

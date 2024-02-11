@@ -7,12 +7,13 @@ using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Models.Views.BUS;
 using Account.Application.Library.Patterns;
+using Account.Infrastructure.Library.BaseService;
 
 namespace Account.Application.Library.Repositories.BUS
 {
-    public abstract class BlanceRepository : GenericRepository<Blance, BlanceDTO, BlanceView>, IBaseQueries
+    public abstract class BlanceRepository : GenericRepository<Blance, BlanceDTO, BlanceView>, IBlanceRepository
     {
-        protected BlanceRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected BlanceRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
         protected BlanceRepository(ContextDbApplication context)
@@ -162,6 +163,21 @@ ORDER BY BL.ID DESC
                 new KeyValue<long> { Value = 2 ,Key = "کارت به کارت"},
                 new KeyValue<long> { Value = 3 ,Key = "واریزی به حساب"},
             };
+        }
+
+        public void DisActiveLastBlanceOfCartById(long cartId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<KeyValue<long>> TitleValueTransactionType(int cartId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<KeyValue<long>> TitleValueBlanceType(int cartId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

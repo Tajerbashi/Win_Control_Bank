@@ -1,4 +1,5 @@
-﻿using Account.Application.Library.Patterns;
+﻿using Account.Applicatino.Library.Patterns;
+using Account.Application.Library.Patterns;
 using System.Data;
 
 namespace Account.Presentation.UserControls
@@ -14,8 +15,8 @@ namespace Account.Presentation.UserControls
         }
         private void ShowDataGrid()
         {
-            GridData.DataSource = Pattern.ExecuteQuery(Pattern.CustomerService.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
-            var count = (Pattern.ExecuteQuery(Pattern.CustomerService.GetCount())).Rows[0].Field<int>(0); ;
+            GridData.DataSource = Pattern.ExecuteQuery(Pattern.CustomerRepository.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
+            var count = (Pattern.ExecuteQuery(Pattern.CustomerRepository.GetCount())).Rows[0].Field<int>(0); ;
             PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {Pattern.Paging.Page + 1}";
         }
     }

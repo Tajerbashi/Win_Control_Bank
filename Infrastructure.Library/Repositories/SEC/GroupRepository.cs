@@ -1,17 +1,17 @@
-﻿using AutoMapper;
-using Account.Domain.Library.Entities.SEC;
-using Account.Application.Library.ApplicationContext.DatabaseContext;
+﻿using Account.Application.Library.ApplicationContext.DatabaseContext;
 using Account.Application.Library.BaseService;
 using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.SEC;
 using Account.Application.Library.Models.Views.SEC;
 using Account.Application.Library.Patterns;
+using Account.Domain.Library.Entities.SEC;
+using Account.Infrastructure.Library.BaseService;
 
 namespace Account.Application.Library.Repositories.SEC
 {
-    public abstract class GroupRepository : GenericRepository<Group, GroupDTO, GroupView>, IBaseQueries
+    public abstract class GroupRepository : GenericRepository<Group, GroupDTO, GroupView>, IGroupRepository
     {
-        protected GroupRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected GroupRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
         protected GroupRepository(ContextDbApplication context) : base(context) { }

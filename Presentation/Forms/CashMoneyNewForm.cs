@@ -1,4 +1,5 @@
-﻿using Account.Application.Library.Models.DTOs.BUS;
+﻿using Account.Applicatino.Library.Patterns;
+using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
 using Account.Presentation.Generator;
 using System;
@@ -48,7 +49,8 @@ namespace Account.Presentation.Forms
 
         private void CashMoneyNewForm_Load(object sender, EventArgs e)
         {
-            AccountCombo = ComboBoxGenerator<long>.FillData(AccountCombo, Pattern.CartService.TitleValue(), Convert.ToByte(AccountCombo.Tag));
+            AccountCombo = ComboBoxGenerator<long>.FillData(AccountCombo, Pattern.CartRepository.TitleValue(), Convert.ToByte(AccountCombo.Tag));
+
         }
 
         private void CashTxt_KeyPress(object sender, KeyPressEventArgs e)

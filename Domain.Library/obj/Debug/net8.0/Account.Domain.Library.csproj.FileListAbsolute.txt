@@ -1,0 +1,12 @@
+C:\Users\Tajer\Desktop\Visual Studio\Solutions\Git KTajerbashi\Accounting\Domain.Library\bin\Debug\net8.0\Account.Domain.Library.deps.json
+C:\Users\Tajer\Desktop\Visual Studio\Solutions\Git KTajerbashi\Accounting\Domain.Library\bin\Debug\net8.0\Account.Domain.Library.dll
+C:\Users\Tajer\Desktop\Visual Studio\Solutions\Git KTajerbashi\Accounting\Domain.Library\bin\Debug\net8.0\Account.Domain.Library.pdb
+C:\Users\Tajer\Desktop\Visual Studio\Solutions\Git KTajerbashi\Accounting\Domain.Library\obj\Debug\net8.0\Account.Domain.Library.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tajer\Desktop\Visual Studio\Solutions\Git KTajerbashi\Accounting\Domain.Library\obj\Debug\net8.0\Account.Domain.Library.AssemblyInfoInputs.cache
+C:\Users\Tajer\Desktop\Visual Studio\Solutions\Git KTajerbashi\Accounting\Domain.Library\obj\Debug\net8.0\Account.Domain.Library.AssemblyInfo.cs
+C:\Users\Tajer\Desktop\Visual Studio\Solutions\Git KTajerbashi\Accounting\Domain.Library\obj\Debug\net8.0\Account.Domain.Library.csproj.CoreCompileInputs.cache
+C:\Users\Tajer\Desktop\Visual Studio\Solutions\Git KTajerbashi\Accounting\Domain.Library\obj\Debug\net8.0\Account.Domain.Library.sourcelink.json
+C:\Users\Tajer\Desktop\Visual Studio\Solutions\Git KTajerbashi\Accounting\Domain.Library\obj\Debug\net8.0\Account.Domain.Library.dll
+C:\Users\Tajer\Desktop\Visual Studio\Solutions\Git KTajerbashi\Accounting\Domain.Library\obj\Debug\net8.0\refint\Account.Domain.Library.dll
+C:\Users\Tajer\Desktop\Visual Studio\Solutions\Git KTajerbashi\Accounting\Domain.Library\obj\Debug\net8.0\Account.Domain.Library.pdb
+C:\Users\Tajer\Desktop\Visual Studio\Solutions\Git KTajerbashi\Accounting\Domain.Library\obj\Debug\net8.0\ref\Account.Domain.Library.dll

@@ -1,4 +1,5 @@
-﻿using Account.Application.Library.Models.DTOs.BUS;
+﻿using Account.Applicatino.Library.Patterns;
+using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
 using System.Runtime.InteropServices;
 
@@ -40,7 +41,7 @@ namespace Account.Presentation.Forms
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            Pattern.BankService.Insert(BankDTO());
+            Pattern.BankRepository.Insert(BankDTO());
             this.Close();
 
         }

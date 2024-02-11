@@ -1,6 +1,8 @@
-﻿using Account.Application.Library.Models.DTOs.BUS;
+﻿using Account.Applicatino.Library.Patterns;
+using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
 using Account.Presentation.Extentions;
+using Presentation.Extentions;
 
 namespace Account.Presentation.Forms
 {
@@ -22,7 +24,7 @@ namespace Account.Presentation.Forms
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             var customer = CustomerDTO();
-            Pattern.CustomerService.Insert(customer);
+            Pattern.CustomerRepository.Insert(customer);
             MSG.Visible = true;
             MSG.Text = "عملیات با موفقیت انجام شد";
             this.Close();

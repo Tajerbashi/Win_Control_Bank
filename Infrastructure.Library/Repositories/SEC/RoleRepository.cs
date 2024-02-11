@@ -6,12 +6,13 @@ using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.SEC;
 using Account.Application.Library.Models.Views.SEC;
 using Account.Application.Library.Patterns;
+using Account.Infrastructure.Library.BaseService;
 
 namespace Account.Application.Library.Repositories.SEC
 {
-    public abstract class RoleRepository : GenericRepository<Role, RoleDTO, RoleView>, IBaseQueries
+    public abstract class RoleRepository : GenericRepository<Role, RoleDTO, RoleView>, IRoleRepository
     {
-        protected RoleRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected RoleRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
         protected RoleRepository(ContextDbApplication context) : base(context) { }

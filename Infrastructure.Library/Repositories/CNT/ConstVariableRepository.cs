@@ -5,12 +5,13 @@ using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.CNT;
 using Account.Application.Library.Models.Views.CNT;
 using Account.Application.Library.Patterns;
+using Account.Infrastructure.Library.BaseService;
 
 namespace Account.Application.Library.Repositories.CNT
 {
-    public abstract class ConstVariableRepository : GenericRepository<ConstVariable, ConstVariableDTO, ConstVariableView>, IBaseQueries
+    public abstract class ConstVariableRepository : GenericRepository<ConstVariable, ConstVariableDTO, ConstVariableView>, IConstVariableRepository
     {
-        protected ConstVariableRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected ConstVariableRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
         protected ConstVariableRepository(ContextDbApplication context) : base(context) { }

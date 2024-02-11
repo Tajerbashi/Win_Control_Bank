@@ -6,12 +6,13 @@ using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.SEC;
 using Account.Application.Library.Models.Views.SEC;
 using Account.Application.Library.Patterns;
+using Account.Infrastructure.Library.BaseService;
 
 namespace Account.Application.Library.Repositories.SEC
 {
-    public abstract class GroupUserRepository : GenericRepository<GroupUser, GroupUserDTO, GroupUserView>, IBaseQueries
+    public abstract class GroupUserRepository : GenericRepository<GroupUser, GroupUserDTO, GroupUserView>, IGroupUserRepository
     {
-        protected GroupUserRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected GroupUserRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
         protected GroupUserRepository(ContextDbApplication context) : base(context) { }

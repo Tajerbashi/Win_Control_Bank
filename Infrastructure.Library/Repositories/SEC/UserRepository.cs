@@ -5,12 +5,13 @@ using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.SEC;
 using Account.Application.Library.Models.Views.SEC;
 using Account.Application.Library.Patterns;
+using Account.Infrastructure.Library.BaseService;
 
 namespace Account.Application.Library.Repositories.SEC
 {
-    public abstract class UserRepository : GenericRepository<User, UserDTO, UserView>, IBaseQueries
+    public abstract class UserRepository : GenericRepository<User, UserDTO, UserView>, IUserRepository
     {
-        protected UserRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected UserRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
         }
         protected UserRepository(ContextDbApplication context) : base(context) { }

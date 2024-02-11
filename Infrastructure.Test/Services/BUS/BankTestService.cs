@@ -1,5 +1,4 @@
 ﻿using Account.Application.Library.Models.DTOs.BUS;
-using Infrastructure.Test.BaseTests;
 using Infrastructure.Test.Models;
 using Infrastructure.Test.Repositories.BUS;
 
@@ -12,7 +11,7 @@ namespace Infrastructure.Test.Services.BUS
             this.DataBase = this.GetAll().ToList();
         }
 
-        public List<BankDTO> DataBase { get; set ; }
+        public List<BankDTO> DataBase { get; set; }
 
         public ResultTest<bool> Create_InsertBankData_Model(BankDTO bankDTO)
         {

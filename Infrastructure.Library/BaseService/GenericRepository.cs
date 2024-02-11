@@ -14,8 +14,8 @@ namespace Account.Infrastructure.Library.BaseService
     public abstract class GenericRepository<TEntity, TDTO, TView>
         : IGenericRepository<TEntity, TDTO, TView>, IDisposable
          where TEntity : BaseEntity, new()
-         where TDTO : BaseDTO
-         where TView : BaseView
+         where TDTO : BaseDTO, new()
+         where TView : BaseView, new()
     {
         private DbSet<TEntity> _entities;
         private string _errorMessage = string.Empty;
@@ -58,17 +58,17 @@ namespace Account.Infrastructure.Library.BaseService
             _isDisposed = true;
         }
 
-        public virtual IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TDTO> GetAll()
         {
-            return Mapper.Map<List<TEntity>>(Entities.ToList());
+            return Mapper.Map<List<TDTO>>(Entities.ToList());
         }
 
-        public virtual TEntity GetById(object id)
+        public virtual TDTO GetById(object id)
         {
-            return Mapper.Map<TEntity>(Entities.Find(id));
+            return Mapper.Map<TDTO>(Entities.Find(id));
         }
 
-        public virtual long Insert(TEntity obj)
+        public virtual long Insert(TDTO obj)
         {
             try
             {
@@ -96,7 +96,7 @@ namespace Account.Infrastructure.Library.BaseService
             }
         }
 
-        public virtual void Update(TEntity obj)
+        public virtual void Update(TDTO obj)
         {
             try
             {
@@ -150,7 +150,7 @@ namespace Account.Infrastructure.Library.BaseService
             Context.SaveChanges();
         }
 
-        public long AddOrUpdate(TEntity obj)
+        public long AddOrUpdate(TDTO obj)
         {
             if (obj.ID == 0)
             {

@@ -1,12 +1,13 @@
 ﻿using Account.Applicatino.Library.Patterns;
 using Account.Application.Library.ApplicationContext.DatabaseContext;
-using Account.Application.Library.ApplicationContext.GridDataConnection;
 using Account.Application.Library.Extentions;
-using Account.Application.Library.Services.BUS;
-using Account.Application.Library.Services.CNT;
-using Account.Application.Library.Services.LOG;
-using Account.Application.Library.Services.RPT;
-using Account.Application.Library.Services.SEC;
+using Account.Application.Library.IDatabaseContext.DatabaseContext;
+using Account.Application.Library.Repositories.BUS;
+using Account.Application.Library.Repositories.CNT;
+using Account.Application.Library.Repositories.LOG;
+using Account.Application.Library.Repositories.RPT;
+using Account.Application.Library.Repositories.SEC;
+using Account.Infrastructure.Library.ApplicationContext.GridDataConnection;
 using System.Data;
 
 namespace Account.Application.Library.Patterns
@@ -15,88 +16,52 @@ namespace Account.Application.Library.Patterns
     public class FacadPattern : IFacadPattern
     {
         private UnitOfWork<ContextDbApplication> _unitOfWork;
-        public UnitOfWork<ContextDbApplication> UnitOfWork
-        {
-            get => _unitOfWork = _unitOfWork ?? new UnitOfWork<ContextDbApplication>();
-            set => UnitOfWork = _unitOfWork;
-        }
-        private Paging _paging;
-        public Paging Paging => _paging ?? new Paging();
 
+        public Paging Paging { get; set; }
 
-        private IBaseQuery _gridQuery;
-        protected IBaseQuery GridQuery { get => _gridQuery = _gridQuery ?? new BaseQuery(); }
+        private UserRepository _userRepository;
+        public IUserRepository UserRepository { get => _userRepository; }
 
-        #region SEC
-        private UserService _userService;
-        public UserService UserService => _userService ?? new UserService(UnitOfWork);
+        private RoleRepository _roleRepository;
+        public IRoleRepository RoleRepository { get => _roleRepository; }
 
-        private RoleService _roleService;
-        public RoleService RoleService => _roleService ?? new RoleService(UnitOfWork);
+        private UserRoleRepository _userRoleRepository;
+        public IUserRoleRepository UserRoleRepository { get => _userRoleRepository; }
 
-        private UserRoleService _userRoleService ;
-        public UserRoleService UserRoleService => _userRoleService ?? new UserRoleService(UnitOfWork);
+        private GroupRepository _groupRepository;
+        public IGroupRepository GroupRepository { get => _groupRepository; }
 
-        private GroupService _groupService ;
-        public GroupService GroupService => _groupService ?? new GroupService(UnitOfWork);
+        private BankRepository _bankRepository;
+        public IBankRepository BankRepository { get => _bankRepository; }
 
-        private GroupUserService _groupUserService ;
-        public GroupUserService GroupUserService => _groupUserService ?? new GroupUserService(UnitOfWork);
-        #endregion
+        private BlanceRepository _blanceRepository;
+        public IBlanceRepository BlanceRepository { get => _blanceRepository; }
 
-        #region BUS
-        private BankService _bankService ;
-        public BankService BankService => _bankService ?? new BankService(UnitOfWork);
+        private CartRepository _cartRepository;
+        public ICartRepository CartRepository { get => _cartRepository; }
 
-        private BlanceService _blanceService ;
-        public BlanceService BlanceService => _blanceService ?? new BlanceService(UnitOfWork);
+        private CustomerRepository _customerRepository;
+        public ICustomerRepository CustomerRepository { get => _customerRepository; }
 
-        private CartService _cartService ;
-        public CartService CartService => _cartService ?? new CartService(UnitOfWork);
+        private BankReportRepository _bankReportRepository;
+        public IBankReportRepository BankReportRepository { get => _bankReportRepository; }
 
+        private CartReportRepository _cartReportRepository;
+        public ICartReportRepository CartReportRepository { get => _cartReportRepository; }
 
-        private CustomerService _customerService ;
-        public CustomerService CustomerService => _customerService ?? new CustomerService(UnitOfWork);
+        private NLogRepository _nLogRepository;
+        public INLogRepository NLogRepository { get => _nLogRepository; }
 
-        #endregion
+        private ConstVariableRepository _constVariableRepository;
+        public IConstVariableRepository ConstVariableRepository { get => _constVariableRepository; }
 
-        #region CNT
-        private ConstVariableService _constVariableService ;
-        public ConstVariableService ConstVariableService => _constVariableService ?? new ConstVariableService(UnitOfWork);
-        #endregion
+        public IExecuteDataTableQuery ExecuteQueryGrid { get; set; }
 
-        #region RPT
-        private BankReportService _bankReportService ;
-        public BankReportService BankReportService => _bankReportService ?? new BankReportService(UnitOfWork);
-
-        private CartReportService _cartReportService ;
-        public CartReportService CartReportService => _cartReportService ?? new CartReportService(UnitOfWork);
-
-
-        #endregion
-
-        #region LOG
-        private NLogService _nLogService ;
-        public NLogService NLogService => _nLogService ?? new NLogService(UnitOfWork);
-
-
-
-
-
-
-
-
-
-        #endregion
-
-        #region WEB
-        #endregion
-
-
+        public IUnitOfWork UnitOfWork { get => _unitOfWork; }
 
         public DataTable ExecuteQuery(string query)
         {
-            return GridQuery.Execute(query);
+            return ExecuteQueryGrid.Execute(query);
         }
 
 

@@ -15,13 +15,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.OLE.Interop" Version="17.8.37221" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Account.Applicatino.Library\Account.Applicatino.Library.csproj" />
-    <ProjectReference Include="..\Infrastructure.Library\Account.Application.Library.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,5 +51,10 @@
   <ItemGroup>
     <Folder Include="Validation\" />
   </ItemGroup>
-
+  
+  <ItemGroup>
+    <ProjectReference Include="..\Account.Application.Library\Account.Application.Library.csproj" />
+    <ProjectReference Include="..\Common.Library\Account.Common.Library.csproj" />
+    <ProjectReference Include="..\Infrastructure.Library\Account.Infrastructure.Library.csproj" />
+  </ItemGroup>
 </Project>

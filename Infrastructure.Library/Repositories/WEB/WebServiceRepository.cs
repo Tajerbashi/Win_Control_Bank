@@ -5,6 +5,7 @@ using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.WEB;
 using Account.Application.Library.Models.Views.WEB;
 using Account.Application.Library.Patterns;
+using Account.Infrastructure.Library.BaseService;
 
 namespace Account.Application.Library.Repositories.WEB
 {
@@ -13,7 +14,7 @@ namespace Account.Application.Library.Repositories.WEB
         private readonly UnitOfWork<ContextDbApplication> unitOfWork = new UnitOfWork<ContextDbApplication>();
         //private GenericRepository<Employee> genericRepository;
         //private IEmployeeRepository employeeRepository;
-        protected WebServiceRepository(IUnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected WebServiceRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
             //genericRepository = new GenericRepository<Employee>(unitOfWork);
             //employeeRepository = new EmployeeRepository(unitOfWork);

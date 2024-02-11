@@ -1,4 +1,5 @@
-﻿using Account.Application.Library.Patterns;
+﻿using Account.Applicatino.Library.Patterns;
+using Account.Application.Library.Patterns;
 using Account.Presentation.Forms;
 using System.Data;
 
@@ -15,8 +16,8 @@ namespace Account.Presentation.UserControls
         }
         private void ShowDataGrid()
         {
-            GridData.DataSource = Pattern.ExecuteQuery(Pattern.BlanceService.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
-            var count = (Pattern.ExecuteQuery(Pattern.BlanceService.GetCount())).Rows[0].Field<int>(0); ;
+            GridData.DataSource = Pattern.ExecuteQuery(Pattern.BlanceRepository.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
+            var count = (Pattern.ExecuteQuery(Pattern.BlanceRepository.GetCount())).Rows[0].Field<int>(0); ;
             PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {Pattern.Paging.Page + 1}";
         }
 

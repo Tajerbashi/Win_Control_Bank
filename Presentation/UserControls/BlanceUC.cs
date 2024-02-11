@@ -1,4 +1,5 @@
-﻿using Account.Application.Library.Patterns;
+﻿using Account.Applicatino.Library.Patterns;
+using Account.Application.Library.Patterns;
 
 namespace Account.Presentation.UserControls
 {
@@ -8,7 +9,6 @@ namespace Account.Presentation.UserControls
         public BlanceUC()
         {
             InitializeComponent();
-            Pattern = new FacadPattern();
         }
     }
 }
