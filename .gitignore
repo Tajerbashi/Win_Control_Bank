@@ -1,27 +1,30 @@
 .vs
-Common.Library/bin
-Common.Library/obj
+Account.Application.Library/bin
+Account.Application.Library/obj
 
-Domain.Library/bin
-Domain.Library/obj
+Account.Common.Library/bin
+Account.Common.Library/obj
 
-Domain.Test/bin
-Domain.Test/obj
+Account.Domain.Library/bin
+Account.Domain.Library/obj
 
-Infrastructure.Library/bin
-Infrastructure.Library/obj
+Account.Domain.Test/bin
+Account.Domain.Test/obj
 
-Infrastructure.Test/bin
-Infrastructure.Test/obj
+Account.Infrastructure.Library/bin
+Account.Infrastructure.Library/obj
 
-Application.Test/bin
-Application.Test/obj
+Account.Infrastructure.Test/bin
+Account.Infrastructure.Test/obj
 
-Logger.Library/bin
-Logger.Library/obj
+Account.Application.Test/bin
+Account.Application.Test/obj
 
-Infrastructure.Library/Migrations
+Account.Logger.Library/bin
+Account.Logger.Library/obj
 
-Presentation/bin
-Presentation/obj
-Presentation/Pictures
+Account.Infrastructure.Library/Migrations
+
+Account.Presentation/bin
+Account.Presentation/obj
+Account.Presentation/Pictures
