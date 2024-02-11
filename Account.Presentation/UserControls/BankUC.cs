@@ -1,8 +1,8 @@
-﻿using Account.Application.Library.Models.DTOs.BUS;
-using Account.Application.Library.Models.Views.BUS;
+﻿using Account.Application.Library.ApplicationContext.DatabaseContext;
+using Account.Application.Library.IDatabaseContext.DatabaseContext;
 using Account.Application.Library.Patterns;
-using Account.Application.Library.Repositories.SEC;
-using Account.Domain.Library.Entities.BUS;
+using Account.Application.Library.Repositories.BUS;
+using Account.Infrastructure.Library.ApplicationContext.GridDataConnection;
 using Account.Presentation.Forms;
 using System.Data;
 
@@ -10,16 +10,21 @@ namespace Account.Presentation.UserControls
 {
     public partial class BankUC : UserControl
     {
-        private IFacadPattern Pattern;
+        private readonly UnitOfWork<ContextDbApplication> _unitOfWork;
+        private readonly IBankRepository _bankRepository;
+        private readonly IExecuteDataTableQuery _executeDataTable;
+        //private IFacadPattern Pattern;
         public BankUC()
         {
-
-            Pattern = new FacadPattern();
             InitializeComponent();
+            //Pattern = new FacadPattern();
+            _unitOfWork = new UnitOfWork<ContextDbApplication>();
+            _bankRepository = new BankRepository(_unitOfWork);
+            _executeDataTable = new ExecuteDataTableQuery();
         }
         private void ShowDataGrid()
         {
-            GridData.DataSource = Pattern.ExecuteQuery(Pattern.BankRepository.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
+            GridData.DataSource = _executeDataTable.Execute(_bankRepository.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
             var count = (Pattern.ExecuteQuery(Pattern.BankRepository.GetCount())).Rows[0].Field<int>(0); ;
             PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {Pattern.Paging.Page + 1}";
 

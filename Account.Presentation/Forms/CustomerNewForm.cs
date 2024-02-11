@@ -1,6 +1,5 @@
-﻿using Account.Application.Library.Patterns;
-using Account.Application.Library.Models.DTOs.BUS;
-using Account.Presentation.Extentions;
+﻿using Account.Application.Library.Models.DTOs.BUS;
+using Account.Application.Library.Patterns;
 using Presentation.Extentions;
 
 namespace Account.Presentation.Forms
@@ -8,12 +7,11 @@ namespace Account.Presentation.Forms
     public partial class CustomerNewForm : Form
     {
         private IFacadPattern Pattern;
-        private IFacadPattern _Pattern;
 
         public CustomerNewForm()
         {
             InitializeComponent();
-            Pattern = _Pattern;
+            Pattern = new FacadPattern();
         }
         OpenFileDialog ofd = new OpenFileDialog();
         Image pic;
@@ -36,7 +34,7 @@ namespace Account.Presentation.Forms
             {
                 Key = Guid.NewGuid(),
                 FullName = FullNameTxt.Text,
-                Picture = FileHandler.SavePic(FullNameTxt.Text,ofd),
+                Picture = FileHandler.SavePic(FullNameTxt.Text, ofd),
             };
         }
 
@@ -56,6 +54,6 @@ namespace Account.Presentation.Forms
             }
 
         }
-        
+
     }
 }

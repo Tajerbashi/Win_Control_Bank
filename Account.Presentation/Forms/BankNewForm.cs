@@ -7,7 +7,6 @@ namespace Account.Presentation.Forms
     public partial class BankNewForm : Form
     {
         private IFacadPattern Pattern;
-        private IFacadPattern _Pattern;
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -30,13 +29,14 @@ namespace Account.Presentation.Forms
         public BankNewForm()
         {
             InitializeComponent();
-            Pattern = _Pattern;
+            Pattern = new FacadPattern();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
         #endregion
         private void BankNewForm_Load(object sender, EventArgs e)
         {
+            
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)

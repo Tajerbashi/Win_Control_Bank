@@ -37,7 +37,6 @@
             AddBtn = new Button();
             groupBox2 = new GroupBox();
             GridData = new DataGridView();
-            CartCombo = new ComboBox();
             PageLbl = new Label();
             NextBtn = new Button();
             PrevBtn = new Button();
@@ -79,7 +78,6 @@
             // 
             groupBox2.BackColor = Color.Transparent;
             groupBox2.Controls.Add(GridData);
-            groupBox2.Controls.Add(CartCombo);
             groupBox2.Controls.Add(PageLbl);
             groupBox2.Controls.Add(NextBtn);
             groupBox2.Controls.Add(PrevBtn);
@@ -150,18 +148,6 @@
             GridData.Size = new Size(1135, 629);
             GridData.TabIndex = 17;
             GridData.VirtualMode = true;
-            // 
-            // CartCombo
-            // 
-            CartCombo.BackColor = Color.FromArgb(240, 236, 229);
-            CartCombo.Cursor = Cursors.Hand;
-            CartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
-            CartCombo.FormattingEnabled = true;
-            CartCombo.Location = new Point(355, 21);
-            CartCombo.Name = "CartCombo";
-            CartCombo.RightToLeft = RightToLeft.Yes;
-            CartCombo.Size = new Size(782, 33);
-            CartCombo.TabIndex = 16;
             // 
             // PageLbl
             // 
@@ -255,7 +241,6 @@
         private Button AddBtn;
         private GroupBox groupBox2;
         private DataGridView GridData;
-        private ComboBox CartCombo;
         private Label PageLbl;
         private Button NextBtn;
         private Button PrevBtn;

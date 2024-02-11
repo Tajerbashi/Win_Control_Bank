@@ -21,22 +21,25 @@ namespace Account.Infrastructure.Library.BaseService
         private string _errorMessage = string.Empty;
         private bool _isDisposed;
         //private ContextDbApplication context;
-
+        private MapperConfiguration ConfigMapper = new MapperConfiguration(cfg =>
+            {
+            cfg.AddProfile(typeof(MapperProfiler));
+        });
+            
         public ContextDbApplication Context { get; set; }
 
         protected IMapper Mapper { get; }
 
-        protected IDbConnection DapperServices;
+        protected IDbConnection DapperServices = new DapperServices().Execute;
 
         public GenericRepository(UnitOfWork<ContextDbApplication> unitOfWork)
             : this(unitOfWork.Context)
         {
-            MapperConfiguration ConfigMapper = new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(typeof(MapperProfiler));
-            });
             Mapper = ConfigMapper.CreateMapper();
-            DapperServices = new DapperServices().Execute;
+        }
+        public GenericRepository(IUnitOfWork unitOfWork)
+        {
+            Mapper = ConfigMapper.CreateMapper();
         }
 
         protected GenericRepository(ContextDbApplication context)

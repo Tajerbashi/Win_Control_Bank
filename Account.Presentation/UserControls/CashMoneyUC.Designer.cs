@@ -51,9 +51,9 @@
             // 
             label1.BackColor = Color.Black;
             label1.ForeColor = Color.White;
-            label1.Location = new Point(243, 1);
+            label1.Location = new Point(234, 1);
             label1.Name = "label1";
-            label1.Size = new Size(900, 32);
+            label1.Size = new Size(909, 32);
             label1.TabIndex = 16;
             label1.Text = "تراکنش های تمام حساب ها";
             label1.TextAlign = ContentAlignment.MiddleCenter;

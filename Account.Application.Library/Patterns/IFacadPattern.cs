@@ -11,7 +11,7 @@ namespace Account.Application.Library.Patterns
 {
     public interface IFacadPattern
     {
-        IUnitOfWork UnitOfWork { get; }
+        IUnitOfWork UnitOfWork { get; set; }
         DataTable ExecuteQuery(string query);
         Paging Paging { get; }
 
