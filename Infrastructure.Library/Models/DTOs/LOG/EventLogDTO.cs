@@ -1,9 +1,9 @@
-﻿using Common.Library.Utilities;
-using Domain.Library.Entities.BUS;
-using Domain.Library.Enums;
-using Infrastructure.Library.BaseModels;
+﻿using Account.Common.Library.Utilities;
+using Account.Domain.Library.Entities.BUS;
+using Account.Domain.Library.Enums;
+using Account.Infrastructure.Library.BaseModels;
 
-namespace Infrastructure.Library.Models.DTOs.LOG
+namespace Account.Infrastructure.Library.Models.DTOs.LOG
 {
     public class EventLogDTO : BaseDTO
     {

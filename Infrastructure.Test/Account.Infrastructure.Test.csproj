@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -23,7 +23,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain.Library\Domain.Library.csproj" />
+    <ProjectReference Include="..\Infrastructure.Library\Account.Infrastructure.Library.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ExternalHandler\CustomerData.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

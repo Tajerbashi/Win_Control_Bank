@@ -1,6 +1,6 @@
-﻿using Infrastructure.Library.BaseModels;
+﻿using Account.Infrastructure.Library.BaseModels;
 
-namespace Infrastructure.Library.Models.Views.SEC
+namespace Account.Infrastructure.Library.Models.Views.SEC
 {
     public class UserRoleView : BaseView
     {

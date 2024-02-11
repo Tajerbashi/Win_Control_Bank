@@ -1,7 +1,7 @@
-﻿using Infrastructure.Library.Patterns;
+﻿using Account.Infrastructure.Library.Patterns;
 using System.Data;
 
-namespace Presentation.UserControls
+namespace Account.Presentation.UserControls
 {
     public partial class ReportUC : UserControl
     {

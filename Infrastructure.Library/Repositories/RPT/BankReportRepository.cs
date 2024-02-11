@@ -1,12 +1,12 @@
-﻿using Domain.Library.Entities.RPT;
-using Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Infrastructure.Library.BaseService;
-using Infrastructure.Library.Models.Controls;
-using Infrastructure.Library.Models.DTOs.RPT;
-using Infrastructure.Library.Models.Views.RPT;
-using Infrastructure.Library.Patterns;
+﻿using Account.Domain.Library.Entities.RPT;
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.BaseService;
+using Account.Infrastructure.Library.Models.Controls;
+using Account.Infrastructure.Library.Models.DTOs.RPT;
+using Account.Infrastructure.Library.Models.Views.RPT;
+using Account.Infrastructure.Library.Patterns;
 
-namespace Infrastructure.Library.Repositories.RPT
+namespace Account.Infrastructure.Library.Repositories.RPT
 {
     public abstract class BankReportRepository : GenericRepository<BankReport, BankReportDTO, BankReportView>, IGenericQueries
     {

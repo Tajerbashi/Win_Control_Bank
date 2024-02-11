@@ -1,8 +1,8 @@
-﻿using Domain.Library.Bases;
+﻿using Account.Domain.Library.Bases;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Library.Entities.SEC
+namespace Account.Domain.Library.Entities.SEC
 {
     [Table("Users", Schema = "SEC")]
     public class User : BaseEntity

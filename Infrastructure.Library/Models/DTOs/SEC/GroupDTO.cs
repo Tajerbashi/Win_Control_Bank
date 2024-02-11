@@ -1,6 +1,6 @@
-﻿using Infrastructure.Library.BaseModels;
+﻿using Account.Infrastructure.Library.BaseModels;
 
-namespace Infrastructure.Library.Models.DTOs.SEC
+namespace Account.Infrastructure.Library.Models.DTOs.SEC
 {
     public class GroupDTO : BaseDTO
     {

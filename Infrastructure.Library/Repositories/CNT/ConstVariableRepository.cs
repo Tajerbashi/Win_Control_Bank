@@ -1,12 +1,12 @@
-﻿using Domain.Library.Entities.CNT;
-using Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Infrastructure.Library.BaseService;
-using Infrastructure.Library.Models.Controls;
-using Infrastructure.Library.Models.DTOs.CNT;
-using Infrastructure.Library.Models.Views.CNT;
-using Infrastructure.Library.Patterns;
+﻿using Account.Domain.Library.Entities.CNT;
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.BaseService;
+using Account.Infrastructure.Library.Models.Controls;
+using Account.Infrastructure.Library.Models.DTOs.CNT;
+using Account.Infrastructure.Library.Models.Views.CNT;
+using Account.Infrastructure.Library.Patterns;
 
-namespace Infrastructure.Library.Repositories.CNT
+namespace Account.Infrastructure.Library.Repositories.CNT
 {
     public abstract class ConstVariableRepository : GenericRepository<ConstVariable, ConstVariableDTO, ConstVariableView>, IGenericQueries
     {

@@ -1,4 +1,4 @@
-﻿namespace Presentation.Generator
+﻿namespace Account.Presentation.Generator
 {
     public static class DateTimePersionGenerator
     {

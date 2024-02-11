@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using Domain.Library.Bases;
-using Infrastructure.Library.ApplicationContext.AutoMapper;
-using Infrastructure.Library.ApplicationContext.DapperService;
-using Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Infrastructure.Library.BaseModels;
-using Infrastructure.Library.Patterns;
+using Account.Domain.Library.Bases;
+using Account.Infrastructure.Library.ApplicationContext.AutoMapper;
+using Account.Infrastructure.Library.ApplicationContext.DapperService;
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.BaseModels;
+using Account.Infrastructure.Library.Patterns;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 
-namespace Infrastructure.Library.BaseService
+namespace Account.Infrastructure.Library.BaseService
 {
     public interface IGenericRepository<T> where T : BaseDTO
     {

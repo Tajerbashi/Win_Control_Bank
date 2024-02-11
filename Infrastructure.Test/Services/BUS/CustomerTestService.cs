@@ -1,5 +1,5 @@
-﻿using Common.Library.Models;
-using Infrastructure.Library.Models.DTOs.BUS;
+﻿using Account.Common.Library.Models;
+using Account.Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Test.Events.BUS;
 using Infrastructure.Test.Exceptions;
 using Infrastructure.Test.Models;

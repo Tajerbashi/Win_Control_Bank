@@ -1,6 +1,6 @@
 ﻿using log4net;
 
-namespace Presentation.Extentions
+namespace Account.Presentation.Extentions
 {
     public class LoggerProvider
     {

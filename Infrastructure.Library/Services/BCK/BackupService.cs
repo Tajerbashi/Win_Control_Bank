@@ -1,6 +1,6 @@
-﻿using Common.Library.Utilities;
+﻿using Account.Common.Library.Utilities;
 
-namespace Infrastructure.Library.Services.BCK
+namespace Account.Infrastructure.Library.Services.BCK
 {
     public sealed class BackupService
     {

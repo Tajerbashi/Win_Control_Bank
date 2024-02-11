@@ -1,6 +1,6 @@
-﻿using Infrastructure.Library.Patterns;
+﻿using Account.Infrastructure.Library.Patterns;
 
-namespace Presentation.UserControls
+namespace Account.Presentation.UserControls
 {
     public partial class BlanceUC : UserControl
     {

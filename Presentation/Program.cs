@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Infrastructure.Library.ApplicationContext.AutoMapper;
+using Account.Infrastructure.Library.ApplicationContext.AutoMapper;
 using log4net;
 using log4net.Config;
-using Presentation.Extentions;
+using Account.Presentation.Extentions;
 using System.Reflection;
 namespace Presentation
 {

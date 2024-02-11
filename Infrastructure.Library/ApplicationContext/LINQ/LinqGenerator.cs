@@ -1,6 +1,6 @@
-﻿using Infrastructure.Library.ApplicationContext.DatabaseContext;
+﻿using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 
-namespace Infrastructure.Library.ApplicationContext.LINQ
+namespace Account.Infrastructure.Library.ApplicationContext.LINQ
 {
     public class LinqGenerator
     {

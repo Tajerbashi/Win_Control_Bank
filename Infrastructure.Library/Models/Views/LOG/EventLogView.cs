@@ -1,8 +1,8 @@
-﻿using Common.Library.Utilities;
-using Domain.Library.Enums;
-using Infrastructure.Library.BaseModels;
+﻿using Account.Common.Library.Utilities;
+using Account.Domain.Library.Enums;
+using Account.Infrastructure.Library.BaseModels;
 
-namespace Infrastructure.Library.Models.Views.LOG
+namespace Account.Infrastructure.Library.Models.Views.LOG
 {
     public class EventLogView : BaseView
     {

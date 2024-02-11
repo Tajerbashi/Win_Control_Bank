@@ -1,7 +1,7 @@
-﻿using Common.Library.Models;
+﻿using Account.Common.Library.Models;
 using System.Globalization;
 
-namespace Common.Library.Utilities
+namespace Account.Common.Library.Utilities
 {
     public static class DateTimeUtility
     {

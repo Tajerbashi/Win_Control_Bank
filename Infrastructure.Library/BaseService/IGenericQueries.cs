@@ -1,6 +1,6 @@
-﻿using Infrastructure.Library.Models.Controls;
+﻿using Account.Infrastructure.Library.Models.Controls;
 
-namespace Infrastructure.Library.BaseService
+namespace Account.Infrastructure.Library.BaseService
 {
     public interface IGenericQueries
     {

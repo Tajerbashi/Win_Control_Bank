@@ -1,11 +1,11 @@
-﻿using Infrastructure.Library.Patterns;
+﻿using Account.Infrastructure.Library.Patterns;
 using log4net.Util;
-using Presentation.Extentions;
-using Presentation.Forms;
-using Presentation.Generator;
+using Account.Presentation.Extentions;
+using Account.Presentation.Forms;
+using Account.Presentation.Generator;
 using System.Data;
 
-namespace Presentation.UserControls
+namespace Account.Presentation.UserControls
 {
     public partial class BankUC : UserControl
     {

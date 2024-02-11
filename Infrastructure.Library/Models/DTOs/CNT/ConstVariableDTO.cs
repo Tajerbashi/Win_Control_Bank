@@ -1,6 +1,6 @@
-﻿using Infrastructure.Library.BaseModels;
+﻿using Account.Infrastructure.Library.BaseModels;
 
-namespace Infrastructure.Library.Models.DTOs.CNT
+namespace Account.Infrastructure.Library.Models.DTOs.CNT
 {
     public class ConstVariableDTO : GeneralDTO
     {

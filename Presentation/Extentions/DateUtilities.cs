@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Presentation.Extentions
+namespace Account.Presentation.Extentions
 {
     public static class DateUtilities
     {

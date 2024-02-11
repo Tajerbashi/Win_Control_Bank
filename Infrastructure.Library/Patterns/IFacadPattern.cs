@@ -1,14 +1,14 @@
-﻿using Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Infrastructure.Library.ApplicationContext.GridDataConnection;
-using Infrastructure.Library.Extentions;
-using Infrastructure.Library.Services.BUS;
-using Infrastructure.Library.Services.CNT;
-using Infrastructure.Library.Services.LOG;
-using Infrastructure.Library.Services.RPT;
-using Infrastructure.Library.Services.SEC;
+﻿using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.ApplicationContext.GridDataConnection;
+using Account.Infrastructure.Library.Extentions;
+using Account.Infrastructure.Library.Services.BUS;
+using Account.Infrastructure.Library.Services.CNT;
+using Account.Infrastructure.Library.Services.LOG;
+using Account.Infrastructure.Library.Services.RPT;
+using Account.Infrastructure.Library.Services.SEC;
 using System.Data;
 
-namespace Infrastructure.Library.Patterns
+namespace Account.Infrastructure.Library.Patterns
 {
     public interface IFacadPattern
     {

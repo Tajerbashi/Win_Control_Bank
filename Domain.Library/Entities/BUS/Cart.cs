@@ -1,9 +1,9 @@
-﻿using Domain.Library.Bases;
-using Domain.Library.Enums;
+﻿using Account.Domain.Library.Bases;
+using Account.Domain.Library.Enums;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Library.Entities.BUS
+namespace Account.Domain.Library.Entities.BUS
 {
     [Table("Carts", Schema = "BUS")]
     public class Cart : BaseEntity

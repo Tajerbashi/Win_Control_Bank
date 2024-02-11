@@ -1,4 +1,4 @@
-﻿namespace Presentation.Forms
+﻿namespace Account.Presentation.Forms
 {
     partial class CartNewForm
     {

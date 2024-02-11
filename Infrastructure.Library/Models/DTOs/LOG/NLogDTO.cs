@@ -1,6 +1,6 @@
-﻿using Infrastructure.Library.BaseModels;
+﻿using Account.Infrastructure.Library.BaseModels;
 
-namespace Infrastructure.Library.Models.DTOs.LOG
+namespace Account.Infrastructure.Library.Models.DTOs.LOG
 {
     public class NLogDTO : BaseDTO
     {

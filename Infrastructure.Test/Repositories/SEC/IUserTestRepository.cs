@@ -1,4 +1,4 @@
-﻿using Infrastructure.Library.Models.DTOs.SEC;
+﻿using Account.Infrastructure.Library.Models.DTOs.SEC;
 using Infrastructure.Test.BaseTests;
 
 namespace Infrastructure.Test.Repositories.SEC

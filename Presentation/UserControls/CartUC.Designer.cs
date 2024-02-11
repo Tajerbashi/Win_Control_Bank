@@ -1,4 +1,4 @@
-﻿namespace Presentation.UserControls
+﻿namespace Account.Presentation.UserControls
 {
     partial class CartUC
     {

@@ -1,9 +1,9 @@
-﻿using Common.Library.Utilities;
-using Infrastructure.Library.Models.DTOs.SEC;
+﻿using Account.Common.Library.Utilities;
+using Account.Infrastructure.Library.Models.DTOs.SEC;
 using log4net;
 using Microsoft.Extensions.Logging;
-using Presentation.Extentions;
-using Presentation.UserControls;
+using Account.Presentation.Extentions;
+using Account.Presentation.UserControls;
 using System.Runtime.InteropServices;
 
 namespace Presentation

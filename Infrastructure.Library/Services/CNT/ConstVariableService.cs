@@ -1,8 +1,8 @@
-﻿using Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Infrastructure.Library.Patterns;
-using Infrastructure.Library.Repositories.CNT;
+﻿using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.Patterns;
+using Account.Infrastructure.Library.Repositories.CNT;
 
-namespace Infrastructure.Library.Services.CNT
+namespace Account.Infrastructure.Library.Services.CNT
 {
     public class ConstVariableService : ConstVariableRepository
     {

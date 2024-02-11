@@ -1,9 +1,9 @@
-﻿using Domain.Library.Bases;
-using Domain.Library.Entities.BUS;
-using Domain.Library.Entities.SEC;
+﻿using Account.Domain.Library.Bases;
+using Account.Domain.Library.Entities.BUS;
+using Account.Domain.Library.Entities.SEC;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Library.Entities.RPT
+namespace Account.Domain.Library.Entities.RPT
 {
     [Table("CartReports", Schema = "RPT")]
     public class CartReport : GeneralEntity

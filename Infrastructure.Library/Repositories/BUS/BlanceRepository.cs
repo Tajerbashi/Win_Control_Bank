@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using Domain.Library.Entities.BUS;
-using Domain.Library.Enums;
-using Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Infrastructure.Library.BaseService;
-using Infrastructure.Library.Models.Controls;
-using Infrastructure.Library.Models.DTOs.BUS;
-using Infrastructure.Library.Models.Views.BUS;
-using Infrastructure.Library.Patterns;
+using Account.Domain.Library.Entities.BUS;
+using Account.Domain.Library.Enums;
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.BaseService;
+using Account.Infrastructure.Library.Models.Controls;
+using Account.Infrastructure.Library.Models.DTOs.BUS;
+using Account.Infrastructure.Library.Models.Views.BUS;
+using Account.Infrastructure.Library.Patterns;
 
-namespace Infrastructure.Library.Repositories.BUS
+namespace Account.Infrastructure.Library.Repositories.BUS
 {
     public abstract class BlanceRepository : GenericRepository<Blance, BlanceDTO, BlanceView>, IGenericQueries
     {

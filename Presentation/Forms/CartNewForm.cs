@@ -1,10 +1,10 @@
-﻿using Domain.Library.Enums;
-using Infrastructure.Library.Models.Controls;
-using Infrastructure.Library.Models.DTOs.BUS;
-using Infrastructure.Library.Patterns;
-using Presentation.Generator;
+﻿using Account.Domain.Library.Enums;
+using Account.Infrastructure.Library.Models.Controls;
+using Account.Infrastructure.Library.Models.DTOs.BUS;
+using Account.Infrastructure.Library.Patterns;
+using Account.Presentation.Generator;
 using System.Runtime.InteropServices;
-namespace Presentation.Forms
+namespace Account.Presentation.Forms
 {
     public partial class CartNewForm : Form
     {

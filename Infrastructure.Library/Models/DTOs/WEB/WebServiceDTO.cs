@@ -1,6 +1,6 @@
-﻿using Infrastructure.Library.BaseModels;
+﻿using Account.Infrastructure.Library.BaseModels;
 
-namespace Infrastructure.Library.Models.DTOs.WEB
+namespace Account.Infrastructure.Library.Models.DTOs.WEB
 {
     public class WebServiceDTO : BaseDTO
     {

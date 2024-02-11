@@ -1,14 +1,14 @@
-﻿using Domain.Library.Entities.BUS;
-using Domain.Library.Entities.CNT;
-using Domain.Library.Entities.LOG;
-using Domain.Library.Entities.RPT;
-using Domain.Library.Entities.SEC;
-using Domain.Library.Entities.WEB;
-using Infrastructure.Library.ApplicationContext.Configurations;
-using Infrastructure.Library.ApplicationContext.Sql_Queries.Views.C_;
+﻿using Account.Domain.Library.Entities.BUS;
+using Account.Domain.Library.Entities.CNT;
+using Account.Domain.Library.Entities.LOG;
+using Account.Domain.Library.Entities.RPT;
+using Account.Domain.Library.Entities.SEC;
+using Account.Domain.Library.Entities.WEB;
+using Account.Infrastructure.Library.ApplicationContext.Configurations;
+using Account.Infrastructure.Library.ApplicationContext.Sql_Queries.Views.C_;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Library.ApplicationContext.DatabaseContext
+namespace Account.Infrastructure.Library.ApplicationContext.DatabaseContext
 {
     public interface IContextDbApplication : IDisposable
     {
@@ -66,8 +66,8 @@ namespace Infrastructure.Library.ApplicationContext.DatabaseContext
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            //optionsBuilder.UseSqlServer(@"Data Source=RHG-DATABASE\DEV;Initial Catalog=Accounting_Db; User ID=sa; Password=soft157703ware;TrustServerCertificate=True;");
-            optionsBuilder.UseSqlServer("Data Source=TAJERBASHI;Initial Catalog=Accounting_Db; User ID=sa; Password=123123;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer(@"Data Source=RHG-DATABASE\DEV;Initial Catalog=Accounting_Db; User ID=sa; Password=soft157703ware;TrustServerCertificate=True;");
+            //optionsBuilder.UseSqlServer("Data Source=TAJERBASHI;Initial Catalog=Accounting_Db; User ID=sa; Password=123123;TrustServerCertificate=True;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

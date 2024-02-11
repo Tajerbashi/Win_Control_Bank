@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using Domain.Library.Entities.SEC;
-using Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Infrastructure.Library.BaseService;
-using Infrastructure.Library.Models.Controls;
-using Infrastructure.Library.Models.DTOs.SEC;
-using Infrastructure.Library.Models.Views.SEC;
-using Infrastructure.Library.Patterns;
+using Account.Domain.Library.Entities.SEC;
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.BaseService;
+using Account.Infrastructure.Library.Models.Controls;
+using Account.Infrastructure.Library.Models.DTOs.SEC;
+using Account.Infrastructure.Library.Models.Views.SEC;
+using Account.Infrastructure.Library.Patterns;
 
-namespace Infrastructure.Library.Repositories.SEC
+namespace Account.Infrastructure.Library.Repositories.SEC
 {
     public abstract class GroupRepository : GenericRepository<Group, GroupDTO, GroupView>, IGenericQueries
     {

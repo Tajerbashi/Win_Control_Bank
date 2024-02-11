@@ -1,11 +1,11 @@
 ﻿using Dapper;
-using Infrastructure.Library.Models.DTOs.SEC;
-using Infrastructure.Library.Patterns;
-using Presentation.Forms;
-using Presentation.Generator;
+using Account.Infrastructure.Library.Models.DTOs.SEC;
+using Account.Infrastructure.Library.Patterns;
+using Account.Presentation.Forms;
+using Account.Presentation.Generator;
 using System.Data;
 
-namespace Presentation.UserControls
+namespace Account.Presentation.UserControls
 {
     public partial class CustomerUS : UserControl
     {

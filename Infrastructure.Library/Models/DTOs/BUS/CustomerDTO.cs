@@ -1,7 +1,7 @@
-﻿using Infrastructure.Library.BaseModels;
+﻿using Account.Infrastructure.Library.BaseModels;
 using System.ComponentModel;
 
-namespace Infrastructure.Library.Models.DTOs.BUS
+namespace Account.Infrastructure.Library.Models.DTOs.BUS
 {
     public class CustomerDTO : BaseDTO
     {

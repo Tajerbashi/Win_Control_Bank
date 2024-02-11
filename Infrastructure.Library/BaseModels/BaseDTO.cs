@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Library.BaseModels
+﻿namespace Account.Infrastructure.Library.BaseModels
 {
     public abstract class BaseDTO
     {

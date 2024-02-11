@@ -1,4 +1,4 @@
-﻿namespace Common.Library.Models
+﻿namespace Account.Common.Library.Models
 {
     public class KeyValueObject
     {

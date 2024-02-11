@@ -1,9 +1,9 @@
-﻿using Domain.Library.Bases;
-using Domain.Library.Enums;
+﻿using Account.Domain.Library.Bases;
+using Account.Domain.Library.Enums;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Library.Entities.BUS
+namespace Account.Domain.Library.Entities.BUS
 {
     [Table("Blances", Schema = "BUS")]
     public class Blance : BaseEntity
@@ -22,7 +22,7 @@ namespace Domain.Library.Entities.BUS
 
         [Description("نوع تراکنش")]
         public TransactionType TransactionType { get; set; }
-        
+
         [Description("کلید تراکنش")]
         public Guid TransactionId { get; set; }
 

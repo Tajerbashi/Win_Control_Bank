@@ -1,6 +1,6 @@
-﻿using Infrastructure.Library.Models.DTOs.BUS;
-using Infrastructure.Library.Patterns;
-using Presentation.Generator;
+﻿using Account.Infrastructure.Library.Models.DTOs.BUS;
+using Account.Infrastructure.Library.Patterns;
+using Account.Presentation.Generator;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Presentation.Forms
+namespace Account.Presentation.Forms
 {
     public partial class CashMoneyNewForm : Form
     {

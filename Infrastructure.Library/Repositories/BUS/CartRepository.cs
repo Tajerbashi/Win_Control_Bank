@@ -1,12 +1,12 @@
-﻿using Domain.Library.Entities.BUS;
-using Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Infrastructure.Library.BaseService;
-using Infrastructure.Library.Models.Controls;
-using Infrastructure.Library.Models.DTOs.BUS;
-using Infrastructure.Library.Models.Views.BUS;
-using Infrastructure.Library.Patterns;
+﻿using Account.Domain.Library.Entities.BUS;
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.BaseService;
+using Account.Infrastructure.Library.Models.Controls;
+using Account.Infrastructure.Library.Models.DTOs.BUS;
+using Account.Infrastructure.Library.Models.Views.BUS;
+using Account.Infrastructure.Library.Patterns;
 
-namespace Infrastructure.Library.Repositories.BUS
+namespace Account.Infrastructure.Library.Repositories.BUS
 {
     public abstract class CartRepository : GenericRepository<Cart, CartDTO, CartView>, IGenericQueries
     {
@@ -112,7 +112,7 @@ ORDER BY C.ID DESC
 
         public IEnumerable<KeyValue<long>> TitleValuesParent()
         {
-            return Context.Carts.Where(x => x.ParentID == null && x.CartType == Domain.Library.Enums.CartType.Main).Select(x => new KeyValue<long>
+            return Context.Carts.Where(x => x.ParentID == null && x.CartType == Account.Domain.Library.Enums.CartType.Main).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID

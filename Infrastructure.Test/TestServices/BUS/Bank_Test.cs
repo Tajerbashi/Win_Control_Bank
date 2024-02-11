@@ -1,4 +1,4 @@
-﻿using Infrastructure.Library.Models.DTOs.BUS;
+﻿using Account.Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Test.Services.BUS;
 
 namespace Infrastructure.Test.TestServices.BUS

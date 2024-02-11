@@ -1,10 +1,10 @@
-﻿using Domain.Library.Entities.BUS;
-using Domain.Library.Entities.CNT;
-using Domain.Library.Entities.WEB;
+﻿using Account.Domain.Library.Entities.BUS;
+using Account.Domain.Library.Entities.CNT;
+using Account.Domain.Library.Entities.WEB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Library.ApplicationContext.Configurations
+namespace Account.Infrastructure.Library.ApplicationContext.Configurations
 {
     #region BUS
     public class BankConfiguration : IEntityTypeConfiguration<Bank>

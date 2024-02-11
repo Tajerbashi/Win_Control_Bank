@@ -1,9 +1,9 @@
-﻿using Domain.Library.Enums;
-using Infrastructure.Library.BaseModels;
-using Infrastructure.Library.Models.DTOs.LOG;
-using Infrastructure.Library.Models.DTOs.RPT;
+﻿using Account.Domain.Library.Enums;
+using Account.Infrastructure.Library.BaseModels;
+using Account.Infrastructure.Library.Models.DTOs.LOG;
+using Account.Infrastructure.Library.Models.DTOs.RPT;
 
-namespace Infrastructure.Library.Models.DTOs.BUS
+namespace Account.Infrastructure.Library.Models.DTOs.BUS
 {
     public class CartDTO : BaseDTO
     {

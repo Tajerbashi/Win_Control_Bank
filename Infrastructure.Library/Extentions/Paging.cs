@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Library.Extentions
+﻿namespace Account.Infrastructure.Library.Extentions
 {
     public class Paging
     {

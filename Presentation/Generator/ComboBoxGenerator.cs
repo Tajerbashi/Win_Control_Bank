@@ -1,6 +1,6 @@
-﻿using Infrastructure.Library.Models.Controls;
+﻿using Account.Infrastructure.Library.Models.Controls;
 
-namespace Presentation.Generator
+namespace Account.Presentation.Generator
 {
     public class ComboBoxGenerator<T>
     {

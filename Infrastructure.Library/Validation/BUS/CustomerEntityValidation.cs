@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Library.Validation.BUS
+﻿namespace Account.Infrastructure.Library.Validation.BUS
 {
     public class CustomerEntityValidation
     {

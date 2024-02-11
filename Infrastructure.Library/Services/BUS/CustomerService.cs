@@ -1,9 +1,9 @@
 ﻿using Dapper;
-using Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Infrastructure.Library.Models.DTOs.BUS;
-using Infrastructure.Library.Patterns;
-using Infrastructure.Library.Repositories.BUS;
-namespace Infrastructure.Library.Services.BUS
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.Models.DTOs.BUS;
+using Account.Infrastructure.Library.Patterns;
+using Account.Infrastructure.Library.Repositories.BUS;
+namespace Account.Infrastructure.Library.Services.BUS
 {
     public class CustomerService : CustomerRepository
     {

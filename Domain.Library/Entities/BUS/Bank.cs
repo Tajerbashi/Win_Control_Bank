@@ -1,8 +1,8 @@
-﻿using Domain.Library.Bases;
+﻿using Account.Domain.Library.Bases;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Library.Entities.BUS
+namespace Account.Domain.Library.Entities.BUS
 {
     [Table("Banks", Schema = "BUS")]
     public class Bank : BaseEntity

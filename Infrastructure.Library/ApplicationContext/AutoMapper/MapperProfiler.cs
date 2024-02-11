@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
-using Domain.Library.Entities.BUS;
-using Domain.Library.Entities.SEC;
-using Domain.Library.Entities.WEB;
-using Infrastructure.Library.Models.DTOs.BUS;
-using Infrastructure.Library.Models.DTOs.SEC;
-using Infrastructure.Library.Models.DTOs.WEB;
-using Infrastructure.Library.Models.Views.BUS;
-using Infrastructure.Library.Models.Views.SEC;
-using Infrastructure.Library.Models.Views.WEB;
+using Account.Domain.Library.Entities.BUS;
+using Account.Domain.Library.Entities.SEC;
+using Account.Domain.Library.Entities.WEB;
+using Account.Infrastructure.Library.Models.DTOs.BUS;
+using Account.Infrastructure.Library.Models.DTOs.SEC;
+using Account.Infrastructure.Library.Models.DTOs.WEB;
+using Account.Infrastructure.Library.Models.Views.BUS;
+using Account.Infrastructure.Library.Models.Views.SEC;
+using Account.Infrastructure.Library.Models.Views.WEB;
 
-namespace Infrastructure.Library.ApplicationContext.AutoMapper
+namespace Account.Infrastructure.Library.ApplicationContext.AutoMapper
 {
     public class MapperProfiler : Profile
     {

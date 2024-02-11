@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Library.Exceptions
+﻿namespace Account.Infrastructure.Library.Exceptions
 {
     public class InvalidModelException : Exception
     {

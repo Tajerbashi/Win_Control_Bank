@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Domain.Library.Enums
+namespace Account.Domain.Library.Enums
 {
     public enum TransactionType : byte
     {

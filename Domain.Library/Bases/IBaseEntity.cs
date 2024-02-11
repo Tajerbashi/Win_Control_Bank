@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Library.Bases
+namespace Account.Domain.Library.Bases
 {
     public interface IBaseEntity
     {

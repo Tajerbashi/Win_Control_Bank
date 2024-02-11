@@ -1,4 +1,4 @@
-﻿using Infrastructure.Library.Models.DTOs.BUS;
+﻿using Account.Infrastructure.Library.Models.DTOs.BUS;
 using Infrastructure.Test.BaseTests;
 using Infrastructure.Test.Events.BUS;
 using Infrastructure.Test.Models;

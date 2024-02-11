@@ -1,8 +1,8 @@
-﻿using Domain.Library.Bases;
-using Domain.Library.Enums;
+﻿using Account.Domain.Library.Bases;
+using Account.Domain.Library.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Library.Entities.WEB
+namespace Account.Domain.Library.Entities.WEB
 {
     [Table("WebServices", Schema = "WEB")]
     public class WebService : GeneralEntity

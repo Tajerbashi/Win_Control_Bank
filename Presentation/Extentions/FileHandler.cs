@@ -1,4 +1,4 @@
-﻿namespace Presentation.Extentions
+﻿namespace Account.Presentation.Extentions
 {
     public static class FileHandler
     {

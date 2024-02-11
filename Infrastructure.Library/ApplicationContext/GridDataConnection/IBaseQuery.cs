@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
 
-namespace Infrastructure.Library.ApplicationContext.GridDataConnection
+namespace Account.Infrastructure.Library.ApplicationContext.GridDataConnection
 {
     public interface IBaseQuery
     {

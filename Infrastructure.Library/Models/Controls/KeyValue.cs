@@ -1,6 +1,6 @@
 ﻿using static System.Net.Mime.MediaTypeNames;
 
-namespace Infrastructure.Library.Models.Controls
+namespace Account.Infrastructure.Library.Models.Controls
 {
     public class KeyValue<T>
     {

@@ -1,6 +1,6 @@
-﻿using Infrastructure.Library.BaseModels;
+﻿using Account.Infrastructure.Library.BaseModels;
 
-namespace Infrastructure.Library.Models.Views.WEB
+namespace Account.Infrastructure.Library.Models.Views.WEB
 {
     public class WebServiceView : BaseView
     {

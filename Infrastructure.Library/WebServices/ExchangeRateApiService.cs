@@ -1,8 +1,8 @@
-﻿using Infrastructure.Library.Patterns;
-using Infrastructure.Library.WebServices.Model;
+﻿using Account.Infrastructure.Library.Patterns;
+using Account.Infrastructure.Library.WebServices.Model;
 using Newtonsoft.Json;
 
-namespace Infrastructure.Library.WebServices
+namespace Account.Infrastructure.Library.WebServices
 {
     public static class ExchangeRateApiService
     {

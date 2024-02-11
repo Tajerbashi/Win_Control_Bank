@@ -1,8 +1,8 @@
-﻿using Infrastructure.Library.Models.DTOs.BUS;
-using Infrastructure.Library.Patterns;
+﻿using Account.Infrastructure.Library.Models.DTOs.BUS;
+using Account.Infrastructure.Library.Patterns;
 using System.Runtime.InteropServices;
 
-namespace Presentation.Forms
+namespace Account.Presentation.Forms
 {
     public partial class BankNewForm : Form
     {

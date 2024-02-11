@@ -1,8 +1,8 @@
-﻿using Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Infrastructure.Library.Patterns;
-using Infrastructure.Library.Repositories.SEC;
+﻿using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.Patterns;
+using Account.Infrastructure.Library.Repositories.SEC;
 
-namespace Infrastructure.Library.Services.SEC
+namespace Account.Infrastructure.Library.Services.SEC
 {
     public class UserRoleService : UserRoleRepository
     {

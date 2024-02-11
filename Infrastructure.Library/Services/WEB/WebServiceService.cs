@@ -1,8 +1,8 @@
-﻿using Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Infrastructure.Library.Patterns;
-using Infrastructure.Library.Repositories.WEB;
+﻿using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.Patterns;
+using Account.Infrastructure.Library.Repositories.WEB;
 
-namespace Infrastructure.Library.Services.WEB
+namespace Account.Infrastructure.Library.Services.WEB
 {
     public class WebServiceService : WebServiceRepository
     {

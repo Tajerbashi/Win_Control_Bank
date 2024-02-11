@@ -1,8 +1,8 @@
-﻿using Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Infrastructure.Library.Patterns;
-using Infrastructure.Library.Repositories.BUS;
+﻿using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.Patterns;
+using Account.Infrastructure.Library.Repositories.BUS;
 
-namespace Infrastructure.Library.Services.BUS
+namespace Account.Infrastructure.Library.Services.BUS
 {
     public class BlanceService : BlanceRepository
     {

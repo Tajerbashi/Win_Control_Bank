@@ -1,6 +1,6 @@
-﻿using Infrastructure.Library.BaseModels;
+﻿using Account.Infrastructure.Library.BaseModels;
 
-namespace Infrastructure.Library.Models.Views.BUS
+namespace Account.Infrastructure.Library.Models.Views.BUS
 {
     public class BlanceCustomerView : BaseView
     {

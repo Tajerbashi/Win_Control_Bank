@@ -1,8 +1,8 @@
-﻿using Infrastructure.Library.Patterns;
-using Presentation.Forms;
+﻿using Account.Infrastructure.Library.Patterns;
+using Account.Presentation.Forms;
 using System.Data;
 
-namespace Presentation.UserControls
+namespace Account.Presentation.UserControls
 {
     public partial class CashMoneyUC : UserControl
     {

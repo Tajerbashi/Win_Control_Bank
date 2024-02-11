@@ -1,5 +1,5 @@
 ﻿
-namespace Common.Library.Extentions
+namespace Account.Common.Library.Extentions
 {
     public static class MessageProject
     {

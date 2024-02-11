@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Presentation.UserControls
+namespace Account.Presentation.UserControls
 {
     public partial class SettingUC : UserControl
     {

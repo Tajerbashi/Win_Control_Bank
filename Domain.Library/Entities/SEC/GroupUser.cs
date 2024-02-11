@@ -1,7 +1,7 @@
-﻿using Domain.Library.Bases;
+﻿using Account.Domain.Library.Bases;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Domain.Library.Entities.SEC
+namespace Account.Domain.Library.Entities.SEC
 {
     [Table("GroupUsers", Schema = "SEC")]
     public class GroupUser : BaseEntity

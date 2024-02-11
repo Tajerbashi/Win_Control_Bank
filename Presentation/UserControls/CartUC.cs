@@ -1,10 +1,10 @@
-﻿using Infrastructure.Library.Models.Controls;
-using Infrastructure.Library.Patterns;
-using Presentation.Forms;
-using Presentation.Generator;
+﻿using Account.Infrastructure.Library.Models.Controls;
+using Account.Infrastructure.Library.Patterns;
+using Account.Presentation.Forms;
+using Account.Presentation.Generator;
 using System.Data;
 
-namespace Presentation.UserControls
+namespace Account.Presentation.UserControls
 {
     public partial class CartUC : UserControl
     {

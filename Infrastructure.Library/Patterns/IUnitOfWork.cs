@@ -1,10 +1,10 @@
-﻿using Infrastructure.Library.ApplicationContext.DapperService;
-using Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Infrastructure.Library.Extentions;
+﻿using Account.Infrastructure.Library.ApplicationContext.DapperService;
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.Extentions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace Infrastructure.Library.Patterns
+namespace Account.Infrastructure.Library.Patterns
 {
     public interface IUnitOfWork<out TContext> 
         where TContext : DbContext, IDisposable, new()
