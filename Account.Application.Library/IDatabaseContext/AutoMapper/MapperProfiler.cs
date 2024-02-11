@@ -9,7 +9,7 @@ using Account.Application.Library.Models.Views.BUS;
 using Account.Application.Library.Models.Views.SEC;
 using Account.Application.Library.Models.Views.WEB;
 
-namespace Account.Applicatino.Library.IDatabaseContext.AutoMapper
+namespace Account.Application.Library.IDatabaseContext.AutoMapper
 {
     public class MapperProfiler : Profile
     {

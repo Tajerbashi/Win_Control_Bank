@@ -6,7 +6,7 @@ using Account.Application.Library.Repositories.RPT;
 using Account.Application.Library.Repositories.SEC;
 using System.Data;
 
-namespace Account.Applicatino.Library.Patterns
+namespace Account.Application.Library.Patterns
 {
     public interface IFacadPattern
     {

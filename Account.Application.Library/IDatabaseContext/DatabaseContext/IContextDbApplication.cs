@@ -1,4 +1,4 @@
-﻿namespace Account.Applicatino.Library.IDatabaseContext.DatabaseContext
+﻿namespace Account.Application.Library.IDatabaseContext.DatabaseContext
 {
     public interface IContextDbApplication
     {

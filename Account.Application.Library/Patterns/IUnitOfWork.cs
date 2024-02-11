@@ -2,7 +2,7 @@
 using Account.Application.Library.BaseService;
 using Account.Domain.Library.Bases;
 
-namespace Account.Applicatino.Library.Patterns
+namespace Account.Application.Library.Patterns
 {
     #region Before
     //public interface IUnitOfWork<out TContext>

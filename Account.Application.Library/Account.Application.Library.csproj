@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common.Library\Account.Common.Library.csproj" />
-    <ProjectReference Include="..\Domain.Library\Account.Domain.Library.csproj" />
+    <ProjectReference Include="..\Account.Common.Library\Account.Common.Library.csproj" />
+    <ProjectReference Include="..\Account.Domain.Library\Account.Domain.Library.csproj" />
   </ItemGroup>
 
 </Project>
