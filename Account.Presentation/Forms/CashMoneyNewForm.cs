@@ -1,5 +1,6 @@
 ﻿using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
+using Account.Application.Library.Repositories.RPT;
 using Account.Presentation.Generator;
 using System.Runtime.InteropServices;
 
@@ -7,7 +8,6 @@ namespace Account.Presentation.Forms
 {
     public partial class CashMoneyNewForm : Form
     {
-        private IFacadPattern Pattern;
 
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -28,18 +28,22 @@ namespace Account.Presentation.Forms
         public static extern bool ReleaseCapture();
 
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
-        public CashMoneyNewForm()
+        #endregion
+        private readonly ICartReportRepository _cartReportRepository;
+
+        public CashMoneyNewForm(
+            ICartReportRepository cartReportRepository
+            )
         {
+            _cartReportRepository = cartReportRepository;
             InitializeComponent();
-            //Pattern = new FacadPattern();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
-        #endregion
 
         private void CashMoneyNewForm_Load(object sender, EventArgs e)
         {
-            AccountCombo = ComboBoxGenerator<long>.FillData(AccountCombo, Pattern.CartRepository.TitleValue(), Convert.ToByte(AccountCombo.Tag));
+            AccountCombo = ComboBoxGenerator<long>.FillData(AccountCombo, _cartReportRepository.TitleValue(), Convert.ToByte(AccountCombo.Tag));
 
         }
 

@@ -8,6 +8,9 @@ using Account.Domain.Library.Bases;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using Account.Application.Library.Extentions;
+using Account.Application.Library.IDatabaseContext.DatabaseContext;
+using Account.Infrastructure.Library.ApplicationContext.GridDataConnection;
 
 namespace Account.Infrastructure.Library.BaseService
 {
@@ -25,12 +28,12 @@ namespace Account.Infrastructure.Library.BaseService
             {
             cfg.AddProfile(typeof(MapperProfiler));
         });
-            
+        
+        public IExecuteDataTableQuery ExecuteQueryGrid;
         public ContextDbApplication Context { get; set; }
 
         protected IMapper Mapper { get; }
 
-        protected IDbConnection DapperServices = new DapperServices().Execute;
 
         public GenericRepository(UnitOfWork<ContextDbApplication> unitOfWork)
             : this(unitOfWork.Context)
@@ -46,13 +49,15 @@ namespace Account.Infrastructure.Library.BaseService
         {
             _isDisposed = false;
             this.Context = context;
-            DapperServices = new DapperServices().Execute;
-        }
+            ExecuteQueryGrid = new ExecuteDataTableQuery();
+    }
 
         protected virtual DbSet<TEntity> Entities
         {
             get { return _entities ?? (_entities = Context.Set<TEntity>()); }
         }
+
+        public Paging Paging => throw new NotImplementedException();
 
         public void Dispose()
         {
@@ -164,6 +169,11 @@ namespace Account.Infrastructure.Library.BaseService
                 this.Update(obj);
             }
             return obj.ID;
+        }
+
+        public DataTable ExecuteQuery(string query)
+        {
+            return ExecuteQueryGrid.Execute(query);
         }
     }
 

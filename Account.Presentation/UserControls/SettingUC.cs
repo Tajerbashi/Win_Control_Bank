@@ -13,11 +13,9 @@ namespace Account.Presentation.UserControls
 {
     public partial class SettingUC : UserControl
     {
-        private IFacadPattern Pattern;
         public SettingUC()
         {
             InitializeComponent();
-            //Pattern = new FacadPattern();
         }
     }
 }

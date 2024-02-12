@@ -2,17 +2,16 @@
 using Account.Application.Library.Exceptions;
 using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
-using Account.Application.Library.Patterns;
 using Account.Presentation.Generator;
 using System.Runtime.InteropServices;
 using Account.Common.Library.Extentions;
+using Account.Application.Library.Repositories.BUS;
 using Account.Application.Library.Patterns;
 
 namespace Account.Presentation.Forms
 {
     public partial class TransactionNewForm : Form
     {
-        private IFacadPattern Pattern;
         private Guid TransactionID;
 
         #region Code
@@ -32,19 +31,34 @@ namespace Account.Presentation.Forms
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
-        public TransactionNewForm()
+        #endregion
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICartRepository _cartRepository;
+        private readonly IBlanceRepository _blanceRepository;
+        private readonly ICustomerRepository _customerRepository;
+        private readonly IBankRepository _bankRepository;
+        public TransactionNewForm(
+            ICartRepository cartRepository,
+            IBlanceRepository blanceRepository,
+            IUnitOfWork unitOfWork,
+            ICustomerRepository customerRepository,
+            IBankRepository bankRepository
+
+            )
         {
+            _cartRepository = cartRepository;
+            _blanceRepository = blanceRepository;
+            _unitOfWork = unitOfWork;
+            _customerRepository = customerRepository;
+            _bankRepository = bankRepository;
             InitializeComponent();
-            //Pattern = new FacadPattern();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
-
         }
         private void timer_Tick(object sender, EventArgs e)
         {
         }
 
-        #endregion
         private void TransactionNewForm_Load(object sender, EventArgs e)
         {
             UpdateComboBoxes();
@@ -69,19 +83,19 @@ namespace Account.Presentation.Forms
                     case 1: // خرید از کارت
                         {
                             //var CartData = unitOfWork.CartRepository.GetById(fromCartId);
-                            Pattern.UnitOfWork.BeginTransaction();
+                            _unitOfWork.BeginTransaction();
                             try
                             {
                                 //var CartChildData = Pattern.CartRepository.GetById(fromAccountId);
-                                if (Pattern.CartRepository.ValidBankBlance(fromAccountId, cash))
+                                if (_cartRepository.ValidBankBlance(fromAccountId, cash))
                                 {
-                                    var lastBlance = Pattern.BlanceRepository.GetBlanceCartById(fromAccountId);
+                                    var lastBlance = _blanceRepository.GetBlanceCartById(fromAccountId);
                                     var blanceDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,TransactionType.Harvesting);
-                                    Pattern.BlanceRepository.DisActiveLastBlanceOfCartById(blanceDto.CartID);
-                                    blanceDto.ID = Pattern.BlanceRepository.Insert(blanceDto);
+                                    _blanceRepository.DisActiveLastBlanceOfCartById(blanceDto.CartID);
+                                    blanceDto.ID = _blanceRepository.Insert(blanceDto);
                                     this.Close();
 
-                                    Pattern.UnitOfWork.Commit();
+                                    _unitOfWork.Commit();
                                 }
                                 else
                                 {
@@ -91,7 +105,7 @@ namespace Account.Presentation.Forms
                             }
                             catch
                             {
-                                Pattern.UnitOfWork.Rollback();
+                                _unitOfWork.Rollback();
                                 throw;
                             }
                             break;
@@ -100,25 +114,25 @@ namespace Account.Presentation.Forms
                         {
                             var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
                             var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
-                            if (Pattern.CartRepository.ValidBankBlance(fromAccountId, cash))
+                            if (_cartRepository.ValidBankBlance(fromAccountId, cash))
                             {
-                                Pattern.UnitOfWork.BeginTransaction();
+                                _unitOfWork.BeginTransaction();
                                 //  کسر از حساب مبداء
                                 try
                                 {
-                                    var lastBlance = Pattern.BlanceRepository.GetBlanceCartById(fromAccountId);
+                                    var lastBlance = _blanceRepository.GetBlanceCartById(fromAccountId);
                                     var fromAccountDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,TransactionType.Harvesting);
-                                    fromAccountDto.ID = Pattern.BlanceRepository.Insert(fromAccountDto);
+                                    fromAccountDto.ID = _blanceRepository.Insert(fromAccountDto);
                                     //  اضافه به حساب مقصد
-                                    var toCartlastBlance = Pattern.BlanceRepository.GetBlanceCartById(toCartAccountId);
+                                    var toCartlastBlance = _blanceRepository.GetBlanceCartById(toCartAccountId);
                                     var toAccountDto = BlanceDTO(toCartlastBlance,Convert.ToDouble(cash),toCartAccountId,TransactionType.Settlemant);
-                                    toAccountDto.ID = Pattern.BlanceRepository.Insert(toAccountDto);
-                                    Pattern.UnitOfWork.Commit();
+                                    toAccountDto.ID = _blanceRepository.Insert(toAccountDto);
+                                    _unitOfWork.Commit();
                                     this.Close();
                                 }
                                 catch (Exception ex)
                                 {
-                                    Pattern.UnitOfWork.Rollback();
+                                    _unitOfWork.Rollback();
                                     throw;
                                 }
                             }
@@ -131,7 +145,7 @@ namespace Account.Presentation.Forms
                         }
                     case 3: //  واریز به کارت
                         {
-                            Pattern.UnitOfWork.BeginTransaction();
+                            _unitOfWork.BeginTransaction();
                             try
                             {
                                 //var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
@@ -140,11 +154,11 @@ namespace Account.Presentation.Forms
                                 //  From Account
                                 if (fromAccountId > 0)
                                 {
-                                    if (Pattern.CartRepository.ValidBankBlance(fromAccountId, cash))
+                                    if (_cartRepository.ValidBankBlance(fromAccountId, cash))
                                     {
-                                        var lastBlance = Pattern.BlanceRepository.GetBlanceCartById(fromAccountId);
+                                        var lastBlance = _blanceRepository.GetBlanceCartById(fromAccountId);
                                         var BlanceDTO = this.BlanceDTO(lastBlance,cash,fromAccountId,TransactionType.Harvesting);
-                                        Pattern.BlanceRepository.Insert(BlanceDTO);
+                                        _blanceRepository.Insert(BlanceDTO);
                                     }
                                     else
                                     {
@@ -154,19 +168,19 @@ namespace Account.Presentation.Forms
                                 //  To Account
                                 if (toAccountId > 0)
                                 {
-                                    var lastBlance = Pattern.BlanceRepository.GetBlanceCartById(toAccountId);
+                                    var lastBlance = _blanceRepository.GetBlanceCartById(toAccountId);
                                     var BlanceDTO = this.BlanceDTO(lastBlance,cash,toAccountId,TransactionType.Settlemant);
-                                    Pattern.BlanceRepository.Insert(BlanceDTO);
+                                    _blanceRepository.Insert(BlanceDTO);
                                 }
                                 else
                                 {
                                     MSG.Text = MessageProject.NotFound();
                                 }
-                                Pattern.UnitOfWork.Commit();
+                                _unitOfWork.Commit();
                             }
                             catch
                             {
-                                Pattern.UnitOfWork.Rollback();
+                                _unitOfWork.Rollback();
                                 throw new InvalidModelException(MessageProject.Faild());
                             }
 
@@ -242,7 +256,7 @@ namespace Account.Presentation.Forms
             var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                ToAccountCombo = ComboBoxGenerator<long>.FillData(ToAccountCombo, Pattern.CartRepository.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
+                ToAccountCombo = ComboBoxGenerator<long>.FillData(ToAccountCombo, _cartRepository.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
             }
         }
         private void FromAccountCombo_SelectedValueChanged(object sender, EventArgs e)
@@ -250,7 +264,7 @@ namespace Account.Presentation.Forms
             var Id = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                FromAccountLBL.Text = Pattern.BlanceRepository.GetBlanceCartById(Id).ToString("N");
+                FromAccountLBL.Text = _blanceRepository.GetBlanceCartById(Id).ToString("N");
             }
 
         }
@@ -315,21 +329,21 @@ namespace Account.Presentation.Forms
         }
         private void SaveNewDataBtn_Click(object sender, EventArgs e)
         {
-            Pattern.UnitOfWork.BeginTransaction();
+            _unitOfWork.BeginTransaction();
             try
             {
                 var Custumer = CustomerDTO();
-                var customeId = Pattern.CustomerRepository.AddOrUpdate(Custumer);
+                var customeId = _customerRepository.AddOrUpdate(Custumer);
                 var Bank = BankDTO();
-                var bankId = Pattern.BankRepository.AddOrUpdate(Bank);
+                var bankId = _bankRepository.AddOrUpdate(Bank);
                 var Cart = CartDTO(customeId,bankId);
-                Pattern.CartRepository.AddOrUpdate(Cart);
-                Pattern.UnitOfWork.Commit();
+                _cartRepository.AddOrUpdate(Cart);
+                _unitOfWork.Commit();
                 UpdateComboBoxes();
             }
             catch
             {
-                Pattern.UnitOfWork.Rollback();
+                _unitOfWork.Rollback();
                 throw;
             }
         }
@@ -347,14 +361,14 @@ namespace Account.Presentation.Forms
         }
         private void UpdateComboBoxes()
         {
-            TransactionTypeCombo = ComboBoxGenerator<long>.FillData(TransactionTypeCombo, Pattern.BlanceRepository.TitleValue(), Convert.ToByte(TransactionTypeCombo.Tag));
-            TransactionKindCombo = ComboBoxGenerator<byte>.FillData(TransactionKindCombo, Pattern.BlanceRepository.TitleValueTransactionType(), Convert.ToByte(TransactionKindCombo.Tag));
+            TransactionTypeCombo = ComboBoxGenerator<long>.FillData(TransactionTypeCombo, _blanceRepository.TitleValue(), Convert.ToByte(TransactionTypeCombo.Tag));
+            TransactionKindCombo = ComboBoxGenerator<byte>.FillData(TransactionKindCombo, _blanceRepository.TitleValueTransactionType(), Convert.ToByte(TransactionKindCombo.Tag));
 
-            FromCustomerCombo = ComboBoxGenerator<long>.FillData(FromCustomerCombo, Pattern.CartRepository.TitleValuesParent(), Convert.ToByte(FromCustomerCombo.Tag));
+            FromCustomerCombo = ComboBoxGenerator<long>.FillData(FromCustomerCombo, _cartRepository.TitleValuesParent(), Convert.ToByte(FromCustomerCombo.Tag));
 
-            ToCustomerCombo = ComboBoxGenerator<long>.FillData(ToCustomerCombo, Pattern.CartRepository.TitleValuesAllParentCart(), Convert.ToByte(ToCustomerCombo.Tag));
-            
-            BlanceTypeCombo = ComboBoxGenerator<byte>.FillData(BlanceTypeCombo, Pattern.BlanceRepository.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
+            ToCustomerCombo = ComboBoxGenerator<long>.FillData(ToCustomerCombo, _cartRepository.TitleValuesAllParentCart(), Convert.ToByte(ToCustomerCombo.Tag));
+
+            BlanceTypeCombo = ComboBoxGenerator<byte>.FillData(BlanceTypeCombo, _blanceRepository.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
         }
         private void ToCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -362,8 +376,8 @@ namespace Account.Presentation.Forms
             var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                ToCustomerLBL.Text = Pattern.BlanceRepository.GetBlanceCartById(Id).ToString("N");
-                ToAccountCombo = ComboBoxGenerator<long>.FillData(ToAccountCombo, Pattern.CartRepository.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
+                ToCustomerLBL.Text = _blanceRepository.GetBlanceCartById(Id).ToString("N");
+                ToAccountCombo = ComboBoxGenerator<long>.FillData(ToAccountCombo, _cartRepository.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
             }
         }
         private void FromCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -372,13 +386,13 @@ namespace Account.Presentation.Forms
             var Id = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                FromCustomerLBL.Text = Pattern.BlanceRepository.GetBlanceCartById(Id).ToString("N");
-                FromAccountCombo = ComboBoxGenerator<long>.FillData(FromAccountCombo, Pattern.CartRepository.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
+                FromCustomerLBL.Text = _blanceRepository.GetBlanceCartById(Id).ToString("N");
+                FromAccountCombo = ComboBoxGenerator<long>.FillData(FromAccountCombo, _cartRepository.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
             }
         }
         private BankDTO BankDTO()
         {
-            var entity = Pattern.BankRepository.GetBankByName(NewBankNameTxt.Text);
+            var entity = _bankRepository.GetBankByName(NewBankNameTxt.Text);
             if (entity != null)
             {
                 return entity;
@@ -391,7 +405,7 @@ namespace Account.Presentation.Forms
         }
         private CartDTO CartDTO(long customeId, long bankId)
         {
-            var entity = Pattern.CartRepository.GetCartByAccountNumber(NewCartNumberTxt.Text);
+            var entity = _cartRepository.GetCartByAccountNumber(NewCartNumberTxt.Text);
             if (entity != null)
             {
                 return entity;
@@ -430,7 +444,7 @@ namespace Account.Presentation.Forms
         }
         private CustomerDTO CustomerDTO()
         {
-            var entity = Pattern.CustomerRepository.GetCustomerByName(NewCustomerNameTxt.Text);
+            var entity = _customerRepository.GetCustomerByName(NewCustomerNameTxt.Text);
             if (entity != null)
             {
                 return entity;
@@ -448,7 +462,7 @@ namespace Account.Presentation.Forms
             var Id = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                ToAccountLBL.Text = Pattern.BlanceRepository.GetBlanceCartById(Id).ToString("N");
+                ToAccountLBL.Text = _blanceRepository.GetBlanceCartById(Id).ToString("N");
             }
         }
     }

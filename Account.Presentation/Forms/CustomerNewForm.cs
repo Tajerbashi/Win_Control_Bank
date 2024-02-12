@@ -1,18 +1,41 @@
 ﻿using Account.Application.Library.Models.DTOs.BUS;
-using Account.Application.Library.Patterns;
+using Account.Application.Library.Repositories.BUS;
 using Presentation.Extentions;
+using System.Runtime.InteropServices;
 
 namespace Account.Presentation.Forms
 {
     public partial class CustomerNewForm : Form
     {
-        private IFacadPattern Pattern;
+        #region Code
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // width of ellipse
+            int nHeightEllipse // height of ellipse
+        );
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
 
-        public CustomerNewForm()
+        System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
+        #endregion
+        private readonly ICustomerRepository _customerRepository;
+        public CustomerNewForm(ICustomerRepository customerRepository)
         {
+            _customerRepository = customerRepository;
             InitializeComponent();
-            //Pattern = new FacadPattern();
+            this.FormBorderStyle = FormBorderStyle.None;
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
+        
         OpenFileDialog ofd = new OpenFileDialog();
         Image pic;
         private void CloseBtn_Click(object sender, EventArgs e)
@@ -22,7 +45,7 @@ namespace Account.Presentation.Forms
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             var customer = CustomerDTO();
-            Pattern.CustomerRepository.Insert(customer);
+            _customerRepository.Insert(customer);
             MSG.Visible = true;
             MSG.Text = "عملیات با موفقیت انجام شد";
             this.Close();

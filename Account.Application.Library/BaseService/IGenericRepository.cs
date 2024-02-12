@@ -1,5 +1,7 @@
 ﻿using Account.Application.Library.BaseModels;
+using Account.Application.Library.Extentions;
 using Account.Domain.Library.Bases;
+using System.Data;
 
 namespace Account.Application.Library.BaseService
 {
@@ -18,5 +20,8 @@ namespace Account.Application.Library.BaseService
         void DisActive(Guid guid);
         void Active(Guid guid);
         object Save();
+        DataTable ExecuteQuery(string query);
+        Paging Paging { get; }
+        
     }
 }

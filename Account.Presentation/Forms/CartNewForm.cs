@@ -1,7 +1,7 @@
-﻿using Account.Application.Library.Patterns;
-using Account.Application.Library.Models.Controls;
+﻿using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
+using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Enums;
 using Account.Presentation.Generator;
 using System.Runtime.InteropServices;
@@ -28,40 +28,56 @@ namespace Account.Presentation.Forms
         public static extern bool ReleaseCapture();
 
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
-        public CartNewForm()
+        #endregion
+
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly ICartRepository _cartRepository;
+        private readonly IBlanceRepository _blanceRepository;
+        private readonly IBankRepository _bankRepository;
+        private readonly ICustomerRepository _customerRepository;
+
+        public CartNewForm(
+            IUnitOfWork unitOfWork,
+            ICartRepository cartRepository,
+            IBlanceRepository blanceRepository,
+            IBankRepository bankRepository,
+            ICustomerRepository customerRepository
+            )
         {
+            _unitOfWork = unitOfWork;
+            _cartRepository = cartRepository;
+            _blanceRepository = blanceRepository;
+            _bankRepository = bankRepository;
+            _customerRepository = customerRepository;
             InitializeComponent();
-            //Pattern = new FacadPattern();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
-        #endregion
 
-        private IFacadPattern Pattern;
         private Guid TransactionID;
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             TransactionID = Guid.NewGuid();
-            Pattern.UnitOfWork.BeginTransaction();
+            _unitOfWork.BeginTransaction();
             try
             {
-                var cartId = Pattern.CartRepository.Insert(CartDTO());
+                var cartId = _cartRepository.Insert(CartDTO());
                 var blance = BlanceDTO(cartId);
-                var blanceId = Pattern.BlanceRepository.Insert(blance);
-                Pattern.UnitOfWork.Commit();
+                var blanceId = _blanceRepository.Insert(blance);
+                _unitOfWork.Commit();
                 this.Close();
             }
             catch (Exception)
             {
-                Pattern.UnitOfWork.Rollback();
+                _unitOfWork.Rollback();
                 throw;
             }
         }
 
         private void CartNewForm_Load(object sender, EventArgs e)
         {
-            BankCombo = ComboBoxGenerator<long>.FillData(BankCombo, Pattern.BankRepository.TitleValue(), Convert.ToByte(BankCombo.Tag));
-            CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, Pattern.CustomerRepository.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
+            BankCombo = ComboBoxGenerator<long>.FillData(BankCombo, _bankRepository.TitleValue(), Convert.ToByte(BankCombo.Tag));
+            CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, _customerRepository.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
             ExpireDate.UsePersianFormat = true;
             ExpireDate.Value = DateTime.Now;
         }
@@ -91,7 +107,7 @@ namespace Account.Presentation.Forms
             var PId =  ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
             if (PId != 0)
             {
-                var cartModel = Pattern.CartRepository.GetById(PId);
+                var cartModel = _cartRepository.GetById(PId);
                 AccountNumberTxt.Text = cartModel.AccountNumber;
                 AccountNumberTxt.Enabled = false;
                 ShabaCartNumber.Text = cartModel.ShabaAccountNumber;
@@ -116,7 +132,7 @@ namespace Account.Presentation.Forms
             var Id = ((KeyValue<long>)BankCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                ParentCartCombo = ComboBoxGenerator<long>.FillData(ParentCartCombo, Pattern.CartRepository.TitleValuesCartByBankId(Id), Convert.ToByte(ParentCartCombo.Tag));
+                ParentCartCombo = ComboBoxGenerator<long>.FillData(ParentCartCombo, _cartRepository.TitleValuesCartByBankId(Id), Convert.ToByte(ParentCartCombo.Tag));
             }
             else
             {

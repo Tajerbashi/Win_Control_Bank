@@ -1,4 +1,5 @@
 ﻿using Account.Application.Library.Patterns;
+using Account.Application.Library.Repositories.BUS;
 using Account.Presentation.Forms;
 using Account.Presentation.Generator;
 using System.Data;
@@ -7,19 +8,21 @@ namespace Account.Presentation.UserControls
 {
     public partial class CustomerUS : UserControl
     {
-        private IFacadPattern Pattern;
+        private readonly ICustomerRepository _customerRepository;
+        private CustomerNewForm customerNewForm;
 
-        public CustomerUS()
+        public CustomerUS(ICustomerRepository customerRepository, CustomerNewForm customerNewForm)
         {
+            _customerRepository = customerRepository;
+            this.customerNewForm = customerNewForm;
             InitializeComponent();
-            //Pattern = new FacadPattern();
         }
         private void ShowDataGrid()
         {
-            CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, Pattern.CustomerRepository.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
-            GridData.DataSource = Pattern.ExecuteQuery(Pattern.CustomerRepository.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
-            var count = (Pattern.ExecuteQuery(Pattern.CustomerRepository.GetCount())).Rows[0].Field<int>(0); ;
-            PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {Pattern.Paging.Page + 1}";
+            CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, _customerRepository.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
+            GridData.DataSource = _customerRepository.ExecuteQuery(_customerRepository.ShowAll(_customerRepository.Paging.Order(_customerRepository.Paging.Page)));
+            var count = (_customerRepository.ExecuteQuery(_customerRepository.GetCount())).Rows[0].Field<int>(0); ;
+            PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {_customerRepository.Paging.Page + 1}";
         }
 
         private void UserUS_Load(object sender, EventArgs e)
@@ -29,8 +32,7 @@ namespace Account.Presentation.UserControls
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            CustomerNewForm form = new CustomerNewForm();
-            form.ShowDialog();
+            customerNewForm.ShowDialog();
             ShowDataGrid();
         }
     }

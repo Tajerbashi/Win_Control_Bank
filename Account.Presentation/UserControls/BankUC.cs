@@ -13,26 +13,22 @@ namespace Account.Presentation.UserControls
         private readonly IUnitOfWork _unitOfWork;
         private readonly IBankRepository _bankRepository;
         private readonly IExecuteDataTableQuery _executeDataTable;
-        private IFacadPattern Pattern;
         public BankUC(
             IUnitOfWork unitOfWork,
-            IFacadPattern facadPattern,
             IBankRepository bankRepository,
             IExecuteDataTableQuery executeDataTable
             )
         {
             InitializeComponent();
-            //Pattern = new FacadPattern();
             _unitOfWork = unitOfWork;
             _bankRepository = bankRepository;
             _executeDataTable = executeDataTable;
-            Pattern = facadPattern;
         }
         private void ShowDataGrid()
         {
-            GridData.DataSource = _executeDataTable.Execute(_bankRepository.ShowAll(Pattern.Paging.Order(Pattern.Paging.Page)));
-            var count = (Pattern.ExecuteQuery(Pattern.BankRepository.GetCount())).Rows[0].Field<int>(0); ;
-            PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {Pattern.Paging.Page + 1}";
+            GridData.DataSource = _executeDataTable.Execute(_bankRepository.ShowAll(_bankRepository.Paging.Order(_bankRepository.Paging.Page)));
+            var count = (_executeDataTable.Execute(_bankRepository.GetCount())).Rows[0].Field<int>(0); ;
+            PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {_bankRepository.Paging.Page + 1}";
 
         }
 
@@ -48,7 +44,7 @@ namespace Account.Presentation.UserControls
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            BankNewForm bankNewForm = new BankNewForm();
+            BankNewForm bankNewForm = new BankNewForm(_bankRepository);
             bankNewForm.ShowDialog();
             ShowDataGrid();
         }

@@ -1,5 +1,4 @@
-﻿using Account.Application.Library.Patterns;
-using Account.Application.Library.Repositories.SEC;
+﻿using Account.Application.Library.Repositories.SEC;
 using Account.Common.Library.Utilities;
 using Account.Presentation.Extentions;
 using Account.Presentation.UserControls;
@@ -10,10 +9,16 @@ namespace Presentation
 
     public partial class MainFRM : Form
     {
-        private readonly LoggerProvider _loggerProvider;
-        private readonly IFacadPattern pattern;
         private readonly IUserRepository _userRepository;
+        private readonly LoggerProvider _loggerProvider;
         private BankUC _bankUC;
+        private CartUC _cartUC;
+        private CustomerUS _customerUS;
+        private ReportUC _reportUC;
+        private CalculateUC _calculateUC;
+        private CashMoneyUC _cashMoneyUC;
+        private TransactionUC _transactionUC;
+
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -33,16 +38,35 @@ namespace Presentation
         public static extern bool ReleaseCapture();
 
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
+        #endregion
+
         public MainFRM(
             IUserRepository userRepository,
             LoggerProvider loggerProvider,
-            BankUC bankUC
-            
+            BankUC bankUC,
+            CartUC cartUC,
+            CustomerUS customerUS,
+            ReportUC reportUC,
+            CalculateUC calculateUC,
+            CashMoneyUC cashMoneyUC,
+            TransactionUC transactionUC
+
             )
         {
             _userRepository = userRepository;
             _loggerProvider = loggerProvider;
             _bankUC = bankUC;
+            _cartUC = cartUC;
+            _customerUS = customerUS;
+            _reportUC = reportUC;
+            _calculateUC = calculateUC;
+            _cashMoneyUC = cashMoneyUC;
+            _transactionUC = transactionUC;
+
+
+
+
+
             _loggerProvider.Log.Info($"ساعت ورود کاربر ادمین : {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
@@ -56,7 +80,6 @@ namespace Presentation
             ClockLbl.Text = DateUtilities.PersianDate();//zaman ro mide
         }
 
-        #endregion
 
         private void MainFRM_Load(object sender, EventArgs e)
         {
@@ -74,62 +97,56 @@ namespace Presentation
 
         private void CartBtn_Click(object sender, EventArgs e)
         {
-            CartUC panel = new CartUC();
             if (MainPanel.Controls.Count > 0)
             {
                 MainPanel.Controls[0].Dispose();
             }
-            MainPanel.Controls.Add(panel);
+            MainPanel.Controls.Add(_cartUC);
         }
 
         private void UserBtn_Click(object sender, EventArgs e)
         {
-            CustomerUS panel = new CustomerUS();
             if (MainPanel.Controls.Count > 0)
             {
                 MainPanel.Controls[0].Dispose();
             }
-            MainPanel.Controls.Add(panel);
+            MainPanel.Controls.Add(_customerUS);
         }
 
         private void ReportBtn_Click(object sender, EventArgs e)
         {
-            ReportUC panel = new ReportUC();
             if (MainPanel.Controls.Count > 0)
             {
                 MainPanel.Controls[0].Dispose();
             }
-            MainPanel.Controls.Add(panel);
+            MainPanel.Controls.Add(_reportUC);
         }
 
         private void CalculateBtn_Click(object sender, EventArgs e)
         {
-            CalculateUC panel = new CalculateUC();
             if (MainPanel.Controls.Count > 0)
             {
                 MainPanel.Controls[0].Dispose();
             }
-            MainPanel.Controls.Add(panel);
+            MainPanel.Controls.Add(_calculateUC);
         }
 
         private void CashMoneyBtn_Click(object sender, EventArgs e)
         {
-            CashMoneyUC panel = new CashMoneyUC();
             if (MainPanel.Controls.Count > 0)
             {
                 MainPanel.Controls[0].Dispose();
             }
-            MainPanel.Controls.Add(panel);
+            MainPanel.Controls.Add(_cashMoneyUC);
         }
 
         private void TaransactionBtn_Click(object sender, EventArgs e)
         {
-            TransactionUC panel = new TransactionUC();
             if (MainPanel.Controls.Count > 0)
             {
                 MainPanel.Controls[0].Dispose();
             }
-            MainPanel.Controls.Add(panel);
+            MainPanel.Controls.Add(_transactionUC);
         }
 
         private void OnlineExchangeBtn_Click(object sender, EventArgs e)
