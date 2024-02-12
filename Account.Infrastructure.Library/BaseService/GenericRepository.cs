@@ -1,16 +1,16 @@
-﻿using Account.Application.Library.IDatabaseContext.AutoMapper;
-using Account.Application.Library.ApplicationContext.DapperService;
-using Account.Application.Library.ApplicationContext.DatabaseContext;
-using Account.Application.Library.BaseModels;
+﻿using Account.Application.Library.BaseModels;
 using Account.Application.Library.BaseService;
+using Account.Application.Library.Extentions;
+using Account.Application.Library.IDatabaseContext.AutoMapper;
+using Account.Application.Library.IDatabaseContext.DatabaseContext;
 using Account.Application.Library.Patterns;
 using Account.Domain.Library.Bases;
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.ApplicationContext.GridDataConnection;
+using Account.Infrastructure.Library.Patterns;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
-using Account.Application.Library.Extentions;
-using Account.Application.Library.IDatabaseContext.DatabaseContext;
-using Account.Infrastructure.Library.ApplicationContext.GridDataConnection;
 
 namespace Account.Infrastructure.Library.BaseService
 {
@@ -26,9 +26,9 @@ namespace Account.Infrastructure.Library.BaseService
         //private ContextDbApplication context;
         private MapperConfiguration ConfigMapper = new MapperConfiguration(cfg =>
             {
-            cfg.AddProfile(typeof(MapperProfiler));
-        });
-        
+                cfg.AddProfile(typeof(MapperProfiler));
+            });
+
         public IExecuteDataTableQuery ExecuteQueryGrid;
         public ContextDbApplication Context { get; set; }
 
@@ -50,14 +50,15 @@ namespace Account.Infrastructure.Library.BaseService
             _isDisposed = false;
             this.Context = context;
             ExecuteQueryGrid = new ExecuteDataTableQuery();
-    }
+        }
 
         protected virtual DbSet<TEntity> Entities
         {
             get { return _entities ?? (_entities = Context.Set<TEntity>()); }
         }
 
-        public Paging Paging => throw new NotImplementedException();
+        private Paging _paging;
+        public Paging Paging { get => _paging = _paging ?? new Paging(); set => Paging = _paging; }
 
         public void Dispose()
         {

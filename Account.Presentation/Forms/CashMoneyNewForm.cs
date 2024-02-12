@@ -1,5 +1,6 @@
 ﻿using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
+using Account.Application.Library.Repositories.BUS;
 using Account.Application.Library.Repositories.RPT;
 using Account.Presentation.Generator;
 using System.Runtime.InteropServices;
@@ -29,13 +30,12 @@ namespace Account.Presentation.Forms
 
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
         #endregion
-        private readonly ICartReportRepository _cartReportRepository;
-
+        private readonly ICartRepository _cartRepository;
         public CashMoneyNewForm(
-            ICartReportRepository cartReportRepository
+            ICartRepository cartRepository
             )
         {
-            _cartReportRepository = cartReportRepository;
+            _cartRepository = cartRepository;
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
@@ -43,7 +43,7 @@ namespace Account.Presentation.Forms
 
         private void CashMoneyNewForm_Load(object sender, EventArgs e)
         {
-            AccountCombo = ComboBoxGenerator<long>.FillData(AccountCombo, _cartReportRepository.TitleValue(), Convert.ToByte(AccountCombo.Tag));
+            AccountCombo = ComboBoxGenerator<long>.FillData(AccountCombo, _cartRepository.TitleValue(), Convert.ToByte(AccountCombo.Tag));
 
         }
 

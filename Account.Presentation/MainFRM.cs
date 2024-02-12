@@ -13,11 +13,13 @@ namespace Presentation
         private readonly LoggerProvider _loggerProvider;
         private BankUC _bankUC;
         private CartUC _cartUC;
-        private CustomerUS _customerUS;
+        private CustomerUC _customerUC;
         private ReportUC _reportUC;
         private CalculateUC _calculateUC;
         private CashMoneyUC _cashMoneyUC;
         private TransactionUC _transactionUC;
+        private SettingUC _settingUC;
+        private BlanceUC _blanceUC;
 
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -45,24 +47,26 @@ namespace Presentation
             LoggerProvider loggerProvider,
             BankUC bankUC,
             CartUC cartUC,
-            CustomerUS customerUS,
+            CustomerUC customerUC,
             ReportUC reportUC,
             CalculateUC calculateUC,
             CashMoneyUC cashMoneyUC,
-            TransactionUC transactionUC
-
+            TransactionUC transactionUC,
+            SettingUC settingUC,
+            BlanceUC blanceUC
             )
         {
             _userRepository = userRepository;
             _loggerProvider = loggerProvider;
             _bankUC = bankUC;
             _cartUC = cartUC;
-            _customerUS = customerUS;
+            _customerUC = customerUC;
             _reportUC = reportUC;
             _calculateUC = calculateUC;
             _cashMoneyUC = cashMoneyUC;
             _transactionUC = transactionUC;
-
+            _settingUC = settingUC;
+            _blanceUC = blanceUC;
 
 
 
@@ -110,7 +114,7 @@ namespace Presentation
             {
                 MainPanel.Controls[0].Dispose();
             }
-            MainPanel.Controls.Add(_customerUS);
+            MainPanel.Controls.Add(_customerUC);
         }
 
         private void ReportBtn_Click(object sender, EventArgs e)
@@ -180,12 +184,11 @@ namespace Presentation
 
         private void BalanceBtn_Click(object sender, EventArgs e)
         {
-            BlanceUC panel = new BlanceUC(_userRepository);
             if (MainPanel.Controls.Count > 0)
             {
                 MainPanel.Controls[0].Dispose();
             }
-            MainPanel.Controls.Add(panel);
+            MainPanel.Controls.Add(_blanceUC);
         }
 
         private void MainFRM_FormClosing(object sender, FormClosingEventArgs e)
@@ -195,12 +198,11 @@ namespace Presentation
 
         private void SettingBtn_Click(object sender, EventArgs e)
         {
-            SettingUC panel = new SettingUC();
             if (MainPanel.Controls.Count > 0)
             {
                 MainPanel.Controls[0].Dispose();
             }
-            MainPanel.Controls.Add(panel);
+            MainPanel.Controls.Add(_settingUC);
         }
     }
 }

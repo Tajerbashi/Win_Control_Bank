@@ -1,11 +1,10 @@
-﻿using Account.Domain.Library.Entities.BUS;
-using Account.Application.Library.ApplicationContext.DatabaseContext;
-using Account.Application.Library.BaseService;
-using Account.Application.Library.Models.Controls;
+﻿using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Models.Views.BUS;
-using Account.Application.Library.Patterns;
+using Account.Domain.Library.Entities.BUS;
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
+using Account.Infrastructure.Library.Patterns;
 
 namespace Account.Application.Library.Repositories.BUS
 {
@@ -35,7 +34,7 @@ WHERE C.IsDeleted = 0
         {
             throw new NotImplementedException();
         }
-        public string SearchByCartId(long Id,string paging)
+        public string SearchByCartId(long Id, string paging)
         {
             return (@$"
 SELECT 
@@ -121,7 +120,7 @@ ORDER BY C.ID DESC
         }
         public IEnumerable<KeyValue<long>> TitleValuesAllParentCart()
         {
-            return Context.Carts.Where(x => x.ParentID == null && !x.IsDeleted ).Select(x => new KeyValue<long>
+            return Context.Carts.Where(x => x.ParentID == null && !x.IsDeleted).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID

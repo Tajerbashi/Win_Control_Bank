@@ -1,5 +1,4 @@
-﻿using Account.Application.Library.Patterns;
-using Account.Application.Library.Repositories.BUS;
+﻿using Account.Application.Library.Repositories.BUS;
 using Account.Presentation.Forms;
 using System.Data;
 
@@ -24,7 +23,7 @@ namespace Account.Presentation.UserControls
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            
+
             cashMoneyNewForm.ShowDialog();
             ShowDataGrid();
         }

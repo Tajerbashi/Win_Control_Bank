@@ -6,12 +6,12 @@ using System.Data;
 
 namespace Account.Presentation.UserControls
 {
-    public partial class CustomerUS : UserControl
+    public partial class CustomerUC : UserControl
     {
         private readonly ICustomerRepository _customerRepository;
         private CustomerNewForm customerNewForm;
 
-        public CustomerUS(ICustomerRepository customerRepository, CustomerNewForm customerNewForm)
+        public CustomerUC(ICustomerRepository customerRepository, CustomerNewForm customerNewForm)
         {
             _customerRepository = customerRepository;
             this.customerNewForm = customerNewForm;

@@ -1,15 +1,14 @@
-﻿using Account.Domain.Library.Entities.SEC;
-using Account.Application.Library.ApplicationContext.DatabaseContext;
-using Account.Application.Library.BaseService;
-using Account.Application.Library.Models.Controls;
+﻿using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.SEC;
 using Account.Application.Library.Models.Views.SEC;
-using Account.Application.Library.Patterns;
+using Account.Domain.Library.Entities.SEC;
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
+using Account.Infrastructure.Library.Patterns;
 
 namespace Account.Application.Library.Repositories.SEC
 {
-    public  class UserRoleRepository : GenericRepository<UserRole, UserRoleDTO, UserRoleView>, IUserRoleRepository
+    public class UserRoleRepository : GenericRepository<UserRole, UserRoleDTO, UserRoleView>, IUserRoleRepository
     {
         public UserRoleRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {

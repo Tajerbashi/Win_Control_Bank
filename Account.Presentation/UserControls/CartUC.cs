@@ -1,5 +1,4 @@
 ﻿using Account.Application.Library.Models.Controls;
-using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;
 using Account.Presentation.Forms;
 using Account.Presentation.Generator;

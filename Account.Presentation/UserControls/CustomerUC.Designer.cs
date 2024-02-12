@@ -1,6 +1,6 @@
 ﻿namespace Account.Presentation.UserControls
 {
-    partial class CustomerUS
+    partial class CustomerUC
     {
         /// <summary> 
         /// Required designer variable.

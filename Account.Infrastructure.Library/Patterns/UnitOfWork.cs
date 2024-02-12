@@ -1,14 +1,14 @@
-﻿using Account.Application.Library.Patterns;
-using Account.Application.Library.ApplicationContext.DapperService;
-using Account.Application.Library.ApplicationContext.DatabaseContext;
+﻿using Account.Application.Library.ApplicationContext.DapperService;
 using Account.Application.Library.BaseModels;
 using Account.Application.Library.BaseService;
+using Account.Application.Library.Patterns;
 using Account.Domain.Library.Bases;
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Collections;
 
-namespace Account.Application.Library.Patterns
+namespace Account.Infrastructure.Library.Patterns
 {
     public class UnitOfWork<TContext> : IUnitOfWork
         where TContext : ContextDbApplication, new()

@@ -9,8 +9,9 @@ using Account.Domain.Library.Entities.SEC;
 using Account.Domain.Library.Entities.WEB;
 using Microsoft.EntityFrameworkCore;
 
-namespace Account.Application.Library.ApplicationContext.DatabaseContext
+namespace Account.Infrastructure.Library.ApplicationContext.DatabaseContext
 {
+
 
     public class ContextDbApplication : DbContext, IContextDbApplication
     {

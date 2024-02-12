@@ -1,15 +1,11 @@
-﻿using Account.Application.Library.ApplicationContext.DatabaseContext;
-using Account.Application.Library.IDatabaseContext.AutoMapper;
+﻿using Account.Application.Library.IDatabaseContext.AutoMapper;
 using Account.Application.Library.IDatabaseContext.DatabaseContext;
-using Account.Application.Library.Patterns;
-using Account.Application.Library.Repositories.BUS;
-using Account.Application.Library.Repositories.SEC;
-using Account.Infrastructure.Library.ApplicationContext.GridDataConnection;
-using Account.Presentation.Extentions;
-using Account.Presentation.UserControls;
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Presentation.ServiceContainer;
 using AutoMapper;
 using log4net;
 using log4net.Config;
+using log4net.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,26 +38,21 @@ namespace Presentation
     {
         public static IServiceProvider ServiceProvider { get; private set; }
         public static IConfiguration Configuration;
+        public static ILoggerRepository loggerRepository { get; set; }
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            //ApplicationConfiguration.Initialize();
-            var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
-            XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
+            ApplicationConfiguration.Initialize();
+            loggerRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
+            XmlConfigurator.Configure(loggerRepository, new FileInfo("log4net.config"));
             var mapper = new MapperConfiguration(cfg => cfg.AddProfile(typeof(MapperProfiler)));
-            //Application.Run(new MainFRM());
-
             #region Configuration / IOC
 
-
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
             var services = new ServiceCollection();
+
             ConfigureServices(services);
 
 
@@ -73,31 +64,58 @@ namespace Presentation
 
             #endregion
 
-
         }
         private static void ConfigureServices(IServiceCollection services)
         {
-            var builder = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
-            //.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                ;
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+#if DEBUG
+            var builder = new ConfigurationBuilder().AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true);
+#else
+            var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+#endif
+
             Configuration = builder.Build();
 
-            services.AddDbContext<ContextDbApplication>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
+            var config = new ConfigurationBuilder()
+                .SetBasePath(LocalPath())
+                .AddJsonFile("appsettings.json").Build();
 
-            services.AddLogging(configure => configure.AddConsole())
-                .AddScoped<IExecuteDataTableQuery, ExecuteDataTableQuery>()
-                //.AddScoped(typeof(IContextDbApplication),typeof(ContextDbApplication))
-                .AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork<ContextDbApplication>))
-                .AddScoped(typeof(UnitOfWork<ContextDbApplication>))
-                //.AddScoped<IFacadPattern,FacadPattern>()
-                .AddScoped<IBankRepository, BankRepository>()
-                .AddScoped(typeof(LoggerProvider))
-                .AddScoped(typeof(BankUC))
-                .AddScoped<IUserRepository, UserRepository>()
-                    ;
+            var formatSettings = config.GetChildren().Where(x => x.Key == "ConnectionStrings" ).Select(x => new ConnectionStrings
+            {
+                DefaultConnection = x.GetSection("DefaultConnection").Value
+            }).Single().DefaultConnection;
+
+            services.AddLogging(configure => configure.AddConsole());
+
+            services.AddDbContext<IContextDbApplication, ContextDbApplication>(options =>
+                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")),
+                options.UseSqlServer(formatSettings),
+                ServiceLifetime.Transient);
+
+            ServiceContainerProvider.ServiceInjector(services);
+            ServiceContainerProvider.UserControlInjector(services);
+            ServiceContainerProvider.FormInjector(services);
+
             services.AddScoped<MainFRM>();
         }
+
+
+        public static string LocalPath()
+        {
+            string address = "";
+            // محل که نرم افزار از آنجا اجرا میشود در متغییر ذخیره میکند
+            var pp = Path.GetDirectoryName(Application.ExecutablePath).Split("\\");
+            for (int i = 0; i < pp.Length - 3; i++)
+            {
+                address += ($"{pp[i]}\\");
+            }
+            return ($"{address}");
+
+        }
+
+
     }
 }
 

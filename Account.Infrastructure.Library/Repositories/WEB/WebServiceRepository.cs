@@ -1,11 +1,11 @@
-﻿using Account.Domain.Library.Entities.WEB;
-using Account.Application.Library.ApplicationContext.DatabaseContext;
-using Account.Application.Library.BaseService;
+﻿using Account.Application.Library.BaseService;
 using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.WEB;
 using Account.Application.Library.Models.Views.WEB;
-using Account.Application.Library.Patterns;
+using Account.Domain.Library.Entities.WEB;
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
+using Account.Infrastructure.Library.Patterns;
 
 namespace Account.Application.Library.Repositories.WEB
 {
