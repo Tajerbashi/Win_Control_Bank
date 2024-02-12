@@ -7,11 +7,13 @@ using System.Runtime.InteropServices;
 
 namespace Presentation
 {
-    
+
     public partial class MainFRM : Form
     {
         private readonly LoggerProvider _loggerProvider;
         private readonly IFacadPattern pattern;
+        private readonly IUserRepository _userRepository;
+        private BankUC _bankUC;
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -31,9 +33,16 @@ namespace Presentation
         public static extern bool ReleaseCapture();
 
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
-        public MainFRM()
+        public MainFRM(
+            IUserRepository userRepository,
+            LoggerProvider loggerProvider,
+            BankUC bankUC
+            
+            )
         {
-            _loggerProvider = new LoggerProvider();
+            _userRepository = userRepository;
+            _loggerProvider = loggerProvider;
+            _bankUC = bankUC;
             _loggerProvider.Log.Info($"ساعت ورود کاربر ادمین : {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
@@ -41,7 +50,6 @@ namespace Presentation
             Timer.Tick += new EventHandler(timer_Tick);
             Timer.Interval = 500;
             Timer.Start();
-
         }
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -145,18 +153,17 @@ namespace Presentation
 
         private void BankBtn_Click(object sender, EventArgs e)
         {
-            BankUC panel = new BankUC();
             if (MainPanel.Controls.Count > 0)
             {
                 MainPanel.Controls[0].Dispose();
             }
-            MainPanel.Controls.Add(panel);
+            MainPanel.Controls.Add(_bankUC);
         }
 
 
         private void BalanceBtn_Click(object sender, EventArgs e)
         {
-            BlanceUC panel = new BlanceUC();
+            BlanceUC panel = new BlanceUC(_userRepository);
             if (MainPanel.Controls.Count > 0)
             {
                 MainPanel.Controls[0].Dispose();

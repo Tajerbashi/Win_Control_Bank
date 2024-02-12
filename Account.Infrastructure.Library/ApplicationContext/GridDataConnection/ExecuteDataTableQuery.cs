@@ -9,15 +9,15 @@ namespace Account.Infrastructure.Library.ApplicationContext.GridDataConnection
         SqlConnection _con;
         public ExecuteDataTableQuery()
         {
-            //_con = new SqlConnection(@"Data Source=RHG-DATABASE\DEV;Initial Catalog=Accounting_Db; User ID=sa; Password=soft157703ware;TrustServerCertificate=True;");
+            _con = new SqlConnection(@"Data Source=RHG-DATABASE\DEV;Initial Catalog=Accounting_Db; User ID=sa; Password=soft157703ware;TrustServerCertificate=True;");
 
-            _con = new SqlConnection(@"
-                Data Source=TAJERBASHI;
-                Initial Catalog=Accounting_Db; 
-                User ID=sa; 
-                Password=123123;
-                TrustServerCertificate=True;
-                ");
+            //_con = new SqlConnection(@"
+            //    Data Source=TAJERBASHI;
+            //    Initial Catalog=Accounting_Db; 
+            //    User ID=sa; 
+            //    Password=123123;
+            //    TrustServerCertificate=True;
+            //    ");
         }
         public DataTable Execute(string query)
         {

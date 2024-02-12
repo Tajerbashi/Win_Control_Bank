@@ -73,6 +73,7 @@
             AddBtn.TabIndex = 17;
             AddBtn.Text = "جدید";
             AddBtn.UseVisualStyleBackColor = true;
+            AddBtn.Click += AddBtn_Click;
             // 
             // groupBox2
             // 

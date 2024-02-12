@@ -17,7 +17,7 @@ namespace Account.Presentation.UserControls
         public SettingUC()
         {
             InitializeComponent();
-            Pattern = new FacadPattern();
+            //Pattern = new FacadPattern();
         }
     }
 }

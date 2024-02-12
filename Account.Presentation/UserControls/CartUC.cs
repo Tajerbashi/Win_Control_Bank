@@ -10,10 +10,11 @@ namespace Account.Presentation.UserControls
     {
         private IFacadPattern Pattern;
 
-        public CartUC()
+        public CartUC(IFacadPattern _Pattern)
         {
             InitializeComponent();
-            Pattern = new FacadPattern();
+            //Pattern = new FacadPattern();
+            Pattern = _Pattern;
         }
         private void ShowDataGrid()
         {

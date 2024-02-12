@@ -11,7 +11,7 @@ namespace Account.Presentation.Forms
         public CustomerNewForm()
         {
             InitializeComponent();
-            Pattern = new FacadPattern();
+            //Pattern = new FacadPattern();
         }
         OpenFileDialog ofd = new OpenFileDialog();
         Image pic;

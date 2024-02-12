@@ -1,7 +1,13 @@
 ﻿using Account.Application.Library.ApplicationContext.DatabaseContext;
 using Account.Application.Library.IDatabaseContext.AutoMapper;
+using Account.Application.Library.IDatabaseContext.DatabaseContext;
 using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;
+using Account.Application.Library.Repositories.SEC;
+using Account.Infrastructure.Library.ApplicationContext.GridDataConnection;
+using Account.Infrastructure.Library.Patterns;
+using Account.Presentation.Extentions;
+using Account.Presentation.UserControls;
 using AutoMapper;
 using log4net;
 using log4net.Config;
@@ -43,48 +49,49 @@ namespace Presentation
         [STAThread]
         static void Main()
         {
-            ApplicationConfiguration.Initialize();
-
+            //ApplicationConfiguration.Initialize();
             var logRepository = LogManager.GetRepository(Assembly.GetEntryAssembly());
             XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
             var mapper = new MapperConfiguration(cfg => cfg.AddProfile(typeof(MapperProfiler)));
+            //Application.Run(new MainFRM());
 
 
-            //var builder = ConfigureServices();
-            //var host =builder.Build();
+            #region IOC
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-            //using (var serviceScope = host.Services.CreateScope())
-            //{
-            //    var service = serviceScope.ServiceProvider;
-            //    try
-            //    {
-            //        var form = service.GetRequiredService<MainFRM>();
-            //        Application.Run(form);
-            //        Console.WriteLine("Success Run");
-            //    }
-            //    catch (Exception ex)
-            //    {
+            var services = new ServiceCollection();
 
-            //        Console.WriteLine("Error Run");
-            //    }
-            //}
+            ConfigureServices(services);
 
-            Application.Run(new MainFRM());
+
+            using (ServiceProvider serviceProvider = services.BuildServiceProvider())
+            {
+                var form1 = serviceProvider.GetRequiredService<MainFRM>();
+                Application.Run(form1);
+            }
+
+            #endregion
+
+
         }
-        //private static IHostBuilder ConfigureServices()
-        //{
-        //    var builder = new HostBuilder()
-        //     .ConfigureServices((hostContext, services) =>
-        //     {
-        //         services.AddSingleton<MainFRM>();
-        //         services.AddLogging(configure => configure.AddConsole());
-        //         services.AddScoped<IFacadPattern, FacadPattern>();
-        //         //services.AddScoped<IUnitOfWork, UnitOfWork<ContextDbApplication>>()
-        //         ;
-
-        //     });
-        //    return builder;
-        //}
+        private static void ConfigureServices(ServiceCollection services)
+        {
+            services.AddLogging(configure => configure.AddConsole())
+                .AddDbContext<IContextDbApplication, ContextDbApplication>()
+                .AddScoped<IExecuteDataTableQuery, ExecuteDataTableQuery>()
+                .AddScoped(typeof(IContextDbApplication),typeof(ContextDbApplication))
+                .AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork<ContextDbApplication>))
+                .AddScoped(typeof(UnitOfWork<ContextDbApplication>))
+                .AddScoped<IFacadPattern,FacadPattern>()
+                .AddScoped<IBankRepository,BankRepository>()
+                .AddScoped(typeof(LoggerProvider))
+                .AddScoped(typeof(BankUC))
+                .AddScoped<IUserRepository,UserRepository>()
+                    ;
+            services.AddScoped<MainFRM>();
+        }
     }
 }
 

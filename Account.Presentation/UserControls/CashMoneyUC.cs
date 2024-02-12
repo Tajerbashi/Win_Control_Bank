@@ -11,7 +11,7 @@ namespace Account.Presentation.UserControls
         public CashMoneyUC()
         {
             InitializeComponent();
-            Pattern = new FacadPattern();
+            //Pattern = new FacadPattern();
         }
         private void ShowDataGrid()
         {

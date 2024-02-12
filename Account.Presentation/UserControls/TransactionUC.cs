@@ -12,7 +12,7 @@ namespace Account.Presentation.UserControls
         public TransactionUC()
         {
             InitializeComponent();
-            Pattern = new FacadPattern();
+            //Pattern = new FacadPattern();
         }
         private void ShowDataGrid()
         {

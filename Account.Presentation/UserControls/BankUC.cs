@@ -10,17 +10,23 @@ namespace Account.Presentation.UserControls
 {
     public partial class BankUC : UserControl
     {
-        private readonly UnitOfWork<ContextDbApplication> _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IBankRepository _bankRepository;
         private readonly IExecuteDataTableQuery _executeDataTable;
-        //private IFacadPattern Pattern;
-        public BankUC()
+        private IFacadPattern Pattern;
+        public BankUC(
+            IUnitOfWork unitOfWork,
+            IFacadPattern facadPattern,
+            IBankRepository bankRepository,
+            IExecuteDataTableQuery executeDataTable
+            )
         {
             InitializeComponent();
             //Pattern = new FacadPattern();
-            _unitOfWork = new UnitOfWork<ContextDbApplication>();
-            _bankRepository = new BankRepository(_unitOfWork);
-            _executeDataTable = new ExecuteDataTableQuery();
+            _unitOfWork = unitOfWork;
+            _bankRepository = bankRepository;
+            _executeDataTable = executeDataTable;
+            Pattern = facadPattern;
         }
         private void ShowDataGrid()
         {

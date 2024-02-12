@@ -9,7 +9,7 @@ namespace Account.Presentation.UserControls
         public OnlineExchangeUC()
         {
             InitializeComponent();
-            Pattern = new FacadPattern();
+            //Pattern = new FacadPattern();
         }
         private void OnlineExchangeUC_Load(object sender, EventArgs e)
         {

@@ -10,7 +10,7 @@ namespace Account.Presentation.UserControls
         public ReportUC()
         {
             InitializeComponent();
-            Pattern = new FacadPattern();
+            //Pattern = new FacadPattern();
         }
         private void ShowDataGrid()
         {
