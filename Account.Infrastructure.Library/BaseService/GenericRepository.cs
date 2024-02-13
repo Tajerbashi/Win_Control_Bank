@@ -1,19 +1,23 @@
-﻿using Account.Application.Library.BaseModels;
+﻿using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Account.Application.Library.BaseModels;
 using Account.Application.Library.BaseService;
 using Account.Application.Library.Extentions;
 using Account.Application.Library.IDatabaseContext.AutoMapper;
 using Account.Application.Library.IDatabaseContext.DatabaseContext;
-using Account.Application.Library.Patterns;
 using Account.Domain.Library.Bases;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.ApplicationContext.GridDataConnection;
 using Account.Infrastructure.Library.Patterns;
-using AutoMapper;
-using Microsoft.EntityFrameworkCore;
-using System.Data;
+
 
 namespace Account.Infrastructure.Library.BaseService
 {
+
     public abstract class GenericRepository<TEntity, TDTO, TView>
         : IGenericRepository<TEntity, TDTO, TView>, IDisposable
          where TEntity : BaseEntity, new()
@@ -29,18 +33,14 @@ namespace Account.Infrastructure.Library.BaseService
                 cfg.AddProfile(typeof(MapperProfiler));
             });
 
-        public IExecuteDataTableQuery ExecuteQueryGrid;
-        public ContextDbApplication Context { get; set; }
+        protected IExecuteDataTableQuery ExecuteQueryGrid;
+        protected ContextDbApplication Context { get; set; }
 
         protected IMapper Mapper { get; }
 
 
         public GenericRepository(UnitOfWork<ContextDbApplication> unitOfWork)
             : this(unitOfWork.Context)
-        {
-            Mapper = ConfigMapper.CreateMapper();
-        }
-        public GenericRepository(IUnitOfWork unitOfWork)
         {
             Mapper = ConfigMapper.CreateMapper();
         }
@@ -83,14 +83,10 @@ namespace Account.Infrastructure.Library.BaseService
             {
                 var model = Mapper.Map<TEntity>(obj);
                 model.Guid = Guid.NewGuid();
-
                 model.CreateBy = 0;
                 model.CreateDate = DateTime.Now;
-
                 model.UpdateBy = 0;
                 model.UpdateDate = null;
-
-
                 model.IsDeleted = false;
                 model.IsActive = true;
                 Context.Entry(model).State = EntityState.Added;
@@ -176,6 +172,8 @@ namespace Account.Infrastructure.Library.BaseService
         {
             return ExecuteQueryGrid.Execute(query);
         }
+
+
     }
 
 }

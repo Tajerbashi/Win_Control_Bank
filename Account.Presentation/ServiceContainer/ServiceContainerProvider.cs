@@ -1,6 +1,5 @@
 ﻿using Account.Application.Library.ApplicationContext.DapperService;
 using Account.Application.Library.ApplicationContext.DatabaseContext;
-using Account.Application.Library.BaseService;
 using Account.Application.Library.IDatabaseContext.DatabaseContext;
 using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;

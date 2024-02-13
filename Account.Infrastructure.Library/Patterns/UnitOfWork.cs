@@ -6,6 +6,7 @@ using Account.Domain.Library.Bases;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using Microsoft.EntityFrameworkCore.Storage;
+using System;
 using System.Collections;
 
 namespace Account.Infrastructure.Library.Patterns

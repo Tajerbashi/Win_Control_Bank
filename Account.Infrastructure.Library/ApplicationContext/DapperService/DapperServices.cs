@@ -1,5 +1,6 @@
-﻿using Account.Application.Library.BaseService;
+﻿using Account.Application.Library.ApplicationContext.DatabaseContext;
 using Microsoft.Data.SqlClient;
+using System;
 using System.Data;
 
 namespace Account.Application.Library.ApplicationContext.DapperService

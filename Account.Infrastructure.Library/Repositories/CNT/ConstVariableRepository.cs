@@ -5,6 +5,8 @@ using Account.Domain.Library.Entities.CNT;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using Account.Infrastructure.Library.Patterns;
+using System;
+using System.Collections.Generic;
 
 namespace Account.Application.Library.Repositories.CNT
 {

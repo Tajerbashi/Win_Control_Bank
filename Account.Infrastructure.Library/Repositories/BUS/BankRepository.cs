@@ -5,6 +5,8 @@ using Account.Domain.Library.Entities.BUS;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using Account.Infrastructure.Library.Patterns;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Account.Application.Library.Repositories.BUS
 {
@@ -19,7 +21,7 @@ namespace Account.Application.Library.Repositories.BUS
 
         public BankDTO GetBankByName(string name)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public string GetCount()
@@ -29,7 +31,7 @@ namespace Account.Application.Library.Repositories.BUS
 
         public string Search(string value)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public string ShowAll(string paging)
@@ -50,7 +52,7 @@ ORDER BY ID DESC
 
         public string ShowFromTo(string from, string to)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public IEnumerable<KeyValue<long>> TitleValue()

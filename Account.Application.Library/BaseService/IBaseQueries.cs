@@ -3,11 +3,6 @@ using System.Data;
 
 namespace Account.Application.Library.BaseService
 {
-    public interface IDapperService
-    {
-        IDbConnection Execute();
-        DataTable GetDataTable(string query,string paging = "");
-    }
     public interface IBaseQueries
     {
         string GetCount();

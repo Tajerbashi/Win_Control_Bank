@@ -6,6 +6,9 @@ using Account.Domain.Library.Enums;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using Account.Infrastructure.Library.Patterns;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Account.Application.Library.Repositories.BUS
 {
