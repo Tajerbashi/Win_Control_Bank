@@ -8,54 +8,53 @@ using Account.Domain.Library.Entities.RPT;
 using Account.Domain.Library.Entities.SEC;
 using Account.Domain.Library.Entities.WEB;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Account.Infrastructure.Library.ApplicationContext.DatabaseContext
 {
-
-
     public class ContextDbApplication : DbContext, IContextDbApplication
     {
         public ContextDbApplication(DbContextOptions<ContextDbApplication> option) : base(option)
         {
         }
-       
+
         public ContextDbApplication()
         {
         }
 
 
         #region BUS
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Cart> Carts { get; set; }
-        public DbSet<Bank> Banks { get; set; }
-        public DbSet<Blance> Blances { get; set; }
+        public DbSet<Customer> Customers => Set<Customer>();
+        public DbSet<Cart> Carts => Set<Cart>();
+        public DbSet<Bank> Banks => Set<Bank>();
+        public DbSet<Blance> Blances => Set<Blance>();
         #endregion
 
         #region CNT
-        public DbSet<ConstVariable> ConstVariables { get; set; }
+        public DbSet<ConstVariable> ConstVariables => Set<ConstVariable>();
         #endregion
 
         #region LOG
-        public DbSet<NLog> NLogs { get; set; }
-        public DbSet<EventLog> EventLogs { get; set; }
+        public DbSet<NLog> NLogs => Set<NLog>();
+        public DbSet<EventLog> EventLogs => Set<EventLog>();
         #endregion
 
         #region RPT
-        public DbSet<BankReport> BankReports { get; set; }
-        public DbSet<CartReport> CartReports { get; set; }
-        public DbSet<CustomerReport> CustomerReports { get; set; }
+        public DbSet<BankReport> BankReports => Set<BankReport>();
+        public DbSet<CartReport> CartReports => Set<CartReport>();
+        public DbSet<CustomerReport> CustomerReports => Set<CustomerReport>();
         #endregion
 
         #region SEC
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserRole> UserRoles { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<Group> Groups { get; set; }
-        public DbSet<GroupUser> GroupUsers { get; set; }
+        public DbSet<User> Users => Set<User>();
+        public DbSet<UserRole> UserRoles => Set<UserRole>();
+        public DbSet<Role> Roles => Set<Role>();
+        public DbSet<Group> Groups => Set<Group>();
+        public DbSet<GroupUser> GroupUsers => Set<GroupUser>();
         #endregion
 
         #region WEB
-        public DbSet<WebService> WebServices { get; set; }
+        public DbSet<WebService> WebServices => Set<WebService>();
         #endregion
 
         #region ViewBUS
@@ -69,6 +68,7 @@ namespace Account.Infrastructure.Library.ApplicationContext.DatabaseContext
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
 
             ViewConfiguration.BUS_View(modelBuilder);
