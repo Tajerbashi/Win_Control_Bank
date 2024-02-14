@@ -167,7 +167,7 @@ namespace Account.Infrastructure.Library.BaseService
 
         public DataTable ExecuteQuery(string query)
         {
-            throw new NotImplementedException();
+            return Context.GetDataTable(query);
         }
     }
 

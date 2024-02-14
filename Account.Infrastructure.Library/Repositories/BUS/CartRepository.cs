@@ -123,6 +123,7 @@ ORDER BY C.ID DESC
         }
         public IEnumerable<KeyValue<long>> TitleValuesAllParentCart()
         {
+            var ss = Context.Carts.ToList();
             return Context.Carts.Where(x => x.ParentID == null && !x.IsDeleted).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
