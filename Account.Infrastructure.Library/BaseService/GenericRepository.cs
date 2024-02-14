@@ -11,7 +11,6 @@ using Account.Application.Library.IDatabaseContext.AutoMapper;
 using Account.Application.Library.IDatabaseContext.DatabaseContext;
 using Account.Domain.Library.Bases;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Account.Infrastructure.Library.ApplicationContext.GridDataConnection;
 using Account.Infrastructure.Library.Patterns;
 
 
@@ -33,7 +32,6 @@ namespace Account.Infrastructure.Library.BaseService
                 cfg.AddProfile(typeof(MapperProfiler));
             });
 
-        protected IExecuteDataTableQuery ExecuteQueryGrid;
         protected ContextDbApplication Context { get; set; }
 
         protected IMapper Mapper { get; }
@@ -49,7 +47,6 @@ namespace Account.Infrastructure.Library.BaseService
         {
             _isDisposed = false;
             this.Context = context;
-            ExecuteQueryGrid = new ExecuteDataTableQuery();
         }
 
         protected virtual DbSet<TEntity> Entities
@@ -170,10 +167,8 @@ namespace Account.Infrastructure.Library.BaseService
 
         public DataTable ExecuteQuery(string query)
         {
-            return ExecuteQueryGrid.Execute(query);
+            throw new NotImplementedException();
         }
-
-
     }
 
 }

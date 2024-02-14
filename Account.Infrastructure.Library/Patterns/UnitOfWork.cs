@@ -1,5 +1,4 @@
-﻿using Account.Application.Library.ApplicationContext.DapperService;
-using Account.Application.Library.BaseModels;
+﻿using Account.Application.Library.BaseModels;
 using Account.Application.Library.BaseService;
 using Account.Application.Library.Patterns;
 using Account.Domain.Library.Bases;
@@ -33,15 +32,9 @@ namespace Account.Infrastructure.Library.Patterns
         /// <summary>
         /// Dapper Service
         /// </summary>
-        private DapperServices _Dapper;
-        /// <summary>
-        /// Dapper Service Injection
-        /// </summary>
-        public DapperServices Dapper { get => _Dapper ?? new DapperServices(); }
         public UnitOfWork()
         {
             Context = new TContext();
-            _Dapper = new DapperServices();
         }
         public void BeginTransaction()
         {

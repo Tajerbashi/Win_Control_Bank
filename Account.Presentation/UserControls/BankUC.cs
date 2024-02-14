@@ -2,7 +2,6 @@
 using Account.Application.Library.IDatabaseContext.DatabaseContext;
 using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;
-using Account.Infrastructure.Library.ApplicationContext.GridDataConnection;
 using Account.Presentation.Forms;
 using System.Data;
 
@@ -12,22 +11,19 @@ namespace Account.Presentation.UserControls
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IBankRepository _bankRepository;
-        private readonly IExecuteDataTableQuery _executeDataTable;
         public BankUC(
             IUnitOfWork unitOfWork,
-            IBankRepository bankRepository,
-            IExecuteDataTableQuery executeDataTable
+            IBankRepository bankRepository
             )
         {
             InitializeComponent();
             _unitOfWork = unitOfWork;
             _bankRepository = bankRepository;
-            _executeDataTable = executeDataTable;
         }
         private void ShowDataGrid()
         {
-            GridData.DataSource = _executeDataTable.Execute(_bankRepository.ShowAll(_bankRepository.Paging.Order(_bankRepository.Paging.Page)));
-            var count = (_executeDataTable.Execute(_bankRepository.GetCount())).Rows[0].Field<int>(0); ;
+            GridData.DataSource = _bankRepository.ExecuteQuery(_bankRepository.ShowAll(_bankRepository.Paging.Order(_bankRepository.Paging.Page)));
+            var count = (_bankRepository.ExecuteQuery(_bankRepository.GetCount())).Rows[0].Field<int>(0); ;
             PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {_bankRepository.Paging.Page + 1}";
 
         }

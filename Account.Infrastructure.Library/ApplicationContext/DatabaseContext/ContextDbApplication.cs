@@ -9,6 +9,8 @@ using Account.Domain.Library.Entities.SEC;
 using Account.Domain.Library.Entities.WEB;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using System.Data;
+using Microsoft.Data.SqlClient;
 
 namespace Account.Infrastructure.Library.ApplicationContext.DatabaseContext
 {
@@ -81,5 +83,37 @@ namespace Account.Infrastructure.Library.ApplicationContext.DatabaseContext
             modelBuilder.ApplyConfiguration(new WebServiceConfiguration());
         }
 
+        public DataTable GetDataTable(string query, string paging)
+        {
+            return new DataTable();
+        }
     }
 }
+
+
+//SqlConnection _con;
+//public ExecuteDataTableQuery(string connectionstring)
+//{
+//    _con = new SqlConnection(connectionstring);
+//    //_con = new SqlConnection(@"Data Source=RHG-DATABASE\DEV;Initial Catalog=Accounting_Db; User ID=sa; Password=soft157703ware;TrustServerCertificate=True;");
+
+//    //_con = new SqlConnection(@"
+//    //    Data Source=TAJERBASHI;
+//    //    Initial Catalog=Accounting_Db; 
+//    //    User ID=sa; 
+//    //    Password=123123;
+//    //    TrustServerCertificate=True;
+//    //    ");
+//}
+//public DataTable Execute(string query)
+//{
+//    string cmd = query;
+
+//    var sqladapter = new SqlDataAdapter(cmd, _con);
+//    var commondbuilder = new SqlCommandBuilder(sqladapter);
+//    var result = new DataSet();
+//    sqladapter.Fill(result);
+//    //_con.Close();
+//    //_con.Dispose();
+//    return result.Tables[0];
+//}
