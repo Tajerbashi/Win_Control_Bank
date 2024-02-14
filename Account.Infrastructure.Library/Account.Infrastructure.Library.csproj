@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <Folder Include="ApplicationContext\Sql Queries\Views\SQL\" />
-    <Folder Include="AppSetting\" />
   </ItemGroup>
 
   <ItemGroup>

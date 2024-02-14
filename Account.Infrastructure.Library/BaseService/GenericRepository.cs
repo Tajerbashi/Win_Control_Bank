@@ -1,24 +1,23 @@
-﻿using AutoMapper;
+﻿using Account.Application.Library.BaseModels;
+using Account.Application.Library.BaseService;
+using Account.Application.Library.Extentions;
+using Account.Application.Library.IDatabaseContext.AutoMapper;
+using Account.Domain.Library.Bases;
+using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
+using Account.Infrastructure.Library.Patterns;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using Account.Application.Library.BaseModels;
-using Account.Application.Library.BaseService;
-using Account.Application.Library.Extentions;
-using Account.Application.Library.IDatabaseContext.AutoMapper;
-using Account.Application.Library.IDatabaseContext.DatabaseContext;
-using Account.Domain.Library.Bases;
-using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Account.Infrastructure.Library.Patterns;
 
 
 namespace Account.Infrastructure.Library.BaseService
 {
 
     public abstract class GenericRepository<TEntity, TDTO, TView>
-        : IGenericRepository<TEntity, TDTO, TView>, IDisposable
+        : IGenericRepository<TEntity,TDTO, TView>, IDisposable
          where TEntity : BaseEntity, new()
          where TDTO : BaseDTO, new()
          where TView : BaseView, new()

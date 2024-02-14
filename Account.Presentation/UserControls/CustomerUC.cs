@@ -1,4 +1,8 @@
-﻿using Account.Application.Library.Repositories.BUS;
+﻿using Account.Application.Library.Models.DTOs.BUS;
+using Account.Application.Library.Models.Views.BUS;
+using Account.Application.Library.Patterns;
+using Account.Application.Library.Repositories.BUS;
+using Account.Domain.Library.Entities.BUS;
 using Account.Presentation.Forms;
 using Account.Presentation.Generator;
 using System.Data;
@@ -10,12 +14,16 @@ namespace Account.Presentation.UserControls
         private readonly ICustomerRepository _customerRepository;
         private CustomerNewForm customerNewForm;
 
-        public CustomerUC(ICustomerRepository customerRepository, CustomerNewForm customerNewForm)
+        public CustomerUC(
+            ICustomerRepository customerRepository, 
+            CustomerNewForm customerNewForm
+            )
         {
             _customerRepository = customerRepository;
             this.customerNewForm = customerNewForm;
             InitializeComponent();
         }
+
         private void ShowDataGrid()
         {
             CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, _customerRepository.TitleValue(), Convert.ToByte(CustomerCombo.Tag));

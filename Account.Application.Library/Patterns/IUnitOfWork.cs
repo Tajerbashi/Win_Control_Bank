@@ -26,10 +26,6 @@ namespace Account.Application.Library.Patterns
 
     public interface IUnitOfWork : IDisposable
     {
-        IGenericRepository<TEntity, TDTO, TView> Repository<TEntity, TDTO, TView>()
-            where TEntity : BaseEntity, new()
-            where TDTO : BaseDTO, new()
-            where TView : BaseView, new();
         //Start the database Transaction
         void BeginTransaction();
         //Commit the database Transaction

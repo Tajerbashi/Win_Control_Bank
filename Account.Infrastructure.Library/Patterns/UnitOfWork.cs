@@ -1,9 +1,5 @@
-﻿using Account.Application.Library.BaseModels;
-using Account.Application.Library.BaseService;
-using Account.Application.Library.Patterns;
-using Account.Domain.Library.Bases;
+﻿using Account.Application.Library.Patterns;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Account.Infrastructure.Library.BaseService;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections;
@@ -11,7 +7,7 @@ using System.Collections;
 namespace Account.Infrastructure.Library.Patterns
 {
     public class UnitOfWork<TContext> : IUnitOfWork
-        where TContext : ContextDbApplication, new()
+        where TContext : ContextDbApplication
     {
         /// <summary>
         /// Dispose
@@ -30,68 +26,47 @@ namespace Account.Infrastructure.Library.Patterns
         /// </summary>
         private Hashtable _repositories;
         /// <summary>
-        /// Dapper Service
+        /// Dapper Service Injection
         /// </summary>
-        public UnitOfWork()
+        private readonly ContextDbApplication _context;
+        public UnitOfWork(
+            ContextDbApplication context
+
+            )
         {
-            Context = new TContext();
+            _context = context;
         }
         public void BeginTransaction()
         {
-            _objTran = Context.Database.BeginTransaction();
+            _context.Database.BeginTransaction();
         }
 
         public void Commit()
         {
-            _objTran.Commit();
+            _context.Database.CommitTransaction();
         }
 
         public void Dispose()
         {
-            _objTran.Dispose();
             Dispose(true);
             GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _context.Dispose();
+            }
         }
 
         public void Rollback()
         {
-            _objTran.Rollback();
-            Dispose();
+            _context.Database.RollbackTransaction();
         }
 
         public void Save()
         {
-            Context.SaveChanges();
-        }
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-                if (disposing)
-                    Context.Dispose();
-            _disposed = true;
-        }
-
-        public IGenericRepository<TEntity, TDTO, TView> Repository<TEntity, TDTO, TView>()
-            where TEntity : BaseEntity, new()
-            where TDTO : BaseDTO, new()
-            where TView : BaseView, new()
-        {
-            if (_repositories == null)
-                _repositories = new Hashtable();
-
-            var type = typeof(TEntity).Name;
-
-            if (!_repositories.ContainsKey(type))
-            {
-                var repositoryType = typeof(GenericRepository<TEntity,TDTO,TView>);
-
-                var repositoryInstance =
-                Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), Context);
-
-                _repositories.Add(type, repositoryInstance);
-            }
-
-            return (IGenericRepository<TEntity, TDTO, TView>)_repositories[type];
+            _context.SaveChanges();
         }
     }
 }

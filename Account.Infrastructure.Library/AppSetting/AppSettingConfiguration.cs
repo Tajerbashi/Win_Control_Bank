@@ -2,7 +2,7 @@
 using System.IO;
 using Microsoft.Extensions.Configuration;
 
-namespace Account.Infrastructure.Library.ApplicationContext.DatabaseContext
+namespace Account.Infrastructure.Library.AppSetting
 {
     public static class AppSettingConfiguration
     {

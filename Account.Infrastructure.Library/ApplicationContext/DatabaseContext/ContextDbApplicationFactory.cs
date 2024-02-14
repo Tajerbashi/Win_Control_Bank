@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Account.Infrastructure.Library.AppSetting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace Account.Infrastructure.Library.ApplicationContext.DatabaseContext

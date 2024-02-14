@@ -13,13 +13,8 @@ namespace Account.Application.Library.Repositories.WEB
 {
     public abstract class WebServiceRepository : GenericRepository<WebService, WebServiceDTO, WebServiceView>, IBaseQueries
     {
-        private readonly UnitOfWork<ContextDbApplication> unitOfWork = new UnitOfWork<ContextDbApplication>();
-        //private GenericRepository<Employee> genericRepository;
-        //private IEmployeeRepository employeeRepository;
         protected WebServiceRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
         {
-            //genericRepository = new GenericRepository<Employee>(unitOfWork);
-            //employeeRepository = new EmployeeRepository(unitOfWork);
         }
         protected WebServiceRepository(ContextDbApplication context) : base(context) { }
 

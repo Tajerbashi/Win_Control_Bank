@@ -1,7 +1,11 @@
 ﻿using Account.Application.Library.ApplicationContext.DatabaseContext;
 using Account.Application.Library.IDatabaseContext.DatabaseContext;
+using Account.Application.Library.Models.DTOs.BUS;
+using Account.Application.Library.Models.Views.BUS;
 using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;
+using Account.Domain.Library.Entities.BUS;
+using Account.Infrastructure.Library.Patterns;
 using Account.Presentation.Forms;
 using System.Data;
 
@@ -9,7 +13,7 @@ namespace Account.Presentation.UserControls
 {
     public partial class BankUC : UserControl
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private IUnitOfWork _unitOfWork;
         private readonly IBankRepository _bankRepository;
         public BankUC(
             IUnitOfWork unitOfWork,

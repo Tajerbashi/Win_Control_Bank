@@ -7,6 +7,7 @@ using Account.Domain.Library.Entities.LOG;
 using Account.Domain.Library.Entities.RPT;
 using Account.Domain.Library.Entities.SEC;
 using Account.Domain.Library.Entities.WEB;
+using Account.Infrastructure.Library.AppSetting;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
@@ -21,11 +22,6 @@ namespace Account.Infrastructure.Library.ApplicationContext.DatabaseContext
         {
 
         }
-
-        public ContextDbApplication()
-        {
-        }
-
 
         #region BUS
         public DbSet<Customer> Customers => Set<Customer>();
