@@ -4,7 +4,7 @@ using Account.Application.Library.Models.Views.RPT;
 using Account.Domain.Library.Entities.RPT;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Patterns;
+using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,10 +12,9 @@ namespace Account.Application.Library.Repositories.RPT
 {
     public class BankReportRepository : GenericRepository<BankReport, BankReportDTO, BankReportView>, IBankReportRepository
     {
-        public BankReportRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        public BankReportRepository(ContextDbApplication context, IMapper mapper) : base(context, mapper)
         {
         }
-        protected BankReportRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

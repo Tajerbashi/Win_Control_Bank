@@ -19,7 +19,6 @@ namespace Account.Application.Library.BaseService
         void Delete(Guid guid);
         void DisActive(Guid guid);
         void Active(Guid guid);
-        object Save();
         DataTable ExecuteQuery(string query);
         Paging Paging { get; }
         

@@ -2,7 +2,7 @@
 {
     public static class FileHandler
     {
-        public static string SavePic(String Name, OpenFileDialog ofd)
+        public static string SavePic(this String Name,OpenFileDialog ofd)
         {
             string address = "";
             // محل که نرم افزار از آنجا اجرا میشود در متغییر ذخیره میکند

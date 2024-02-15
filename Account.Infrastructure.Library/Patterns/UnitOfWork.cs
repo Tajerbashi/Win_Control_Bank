@@ -1,4 +1,6 @@
 ﻿using Account.Application.Library.Patterns;
+using Account.Application.Library.Repositories.BUS;
+using Account.Application.Library.Repositories.CNT;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
@@ -6,8 +8,7 @@ using System.Collections;
 
 namespace Account.Infrastructure.Library.Patterns
 {
-    public class UnitOfWork<TContext> : IUnitOfWork
-        where TContext : ContextDbApplication
+    public class UnitOfWork : IUnitOfWork
     {
         /// <summary>
         /// Dispose
@@ -20,30 +21,50 @@ namespace Account.Infrastructure.Library.Patterns
         /// <summary>
         /// DbContext Instance
         /// </summary>
-        public TContext Context { get; }
+        private readonly ContextDbApplication Context;
         /// <summary>
         /// 
         /// </summary>
         private Hashtable _repositories;
+
+        public ICustomerRepository CustomerRepository { get; }
+
+        public IBankRepository BankRepository { get; }
+
+        public IBlanceRepository BlanceRepository { get; }
+
+        public ICartRepository CartRepository { get; }
+
+        public IConstVariableRepository ConstVariableRepository { get; }
+
         /// <summary>
         /// Dapper Service Injection
         /// </summary>
-        private readonly ContextDbApplication _context;
         public UnitOfWork(
-            ContextDbApplication context
-
+            ContextDbApplication context,
+            ICustomerRepository customerRepository,
+            IBankRepository bankRepository,
+            IBlanceRepository blanceRepository,
+            ICartRepository cartRepository,
+            IConstVariableRepository constVariableRepository
             )
         {
-            _context = context;
+            Context = context;
+            CustomerRepository = customerRepository;
+            BankRepository = bankRepository;
+            BlanceRepository = blanceRepository;
+            CartRepository = cartRepository;
+            ConstVariableRepository = constVariableRepository;
+
         }
         public void BeginTransaction()
         {
-            _context.Database.BeginTransaction();
+            Context.Database.BeginTransaction();
         }
 
         public void Commit()
         {
-            _context.Database.CommitTransaction();
+            Context.Database.CommitTransaction();
         }
 
         public void Dispose()
@@ -55,18 +76,18 @@ namespace Account.Infrastructure.Library.Patterns
         {
             if (disposing)
             {
-                _context.Dispose();
+                Context.Dispose();
             }
         }
 
         public void Rollback()
         {
-            _context.Database.RollbackTransaction();
+            Context.Database.RollbackTransaction();
         }
 
-        public void Save()
+        public int Save()
         {
-            _context.SaveChanges();
+            return Context.SaveChanges();
         }
     }
 }

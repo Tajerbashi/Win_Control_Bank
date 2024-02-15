@@ -4,7 +4,7 @@ using Account.Application.Library.Models.Views.LOG;
 using Account.Domain.Library.Entities.LOG;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Patterns;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 
@@ -12,7 +12,7 @@ namespace Account.Application.Library.Repositories.LOG
 {
     public class NLogRepository : GenericRepository<NLog, NLogDTO, NLogView>, INLogRepository
     {
-        public NLogRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        public NLogRepository(ContextDbApplication context, IMapper mapper) : base(context, mapper)
         {
         }
 

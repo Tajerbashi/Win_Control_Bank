@@ -4,7 +4,7 @@ using Account.Application.Library.Models.Views.BUS;
 using Account.Domain.Library.Entities.BUS;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Patterns;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +13,10 @@ namespace Account.Application.Library.Repositories.BUS
 {
     public class CartRepository : GenericRepository<Cart, CartDTO, CartView>, ICartRepository
     {
-        public CartRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        public CartRepository(ContextDbApplication context, IMapper mapper) : base(context, mapper)
         {
         }
-        protected CartRepository(ContextDbApplication context)
-          : base(context)
-        {
-        }
+
         public string GetCount()
         {
             return (@"
@@ -123,7 +120,6 @@ ORDER BY C.ID DESC
         }
         public IEnumerable<KeyValue<long>> TitleValuesAllParentCart()
         {
-            var ss = Context.Carts.ToList();
             return Context.Carts.Where(x => x.ParentID == null && !x.IsDeleted).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),

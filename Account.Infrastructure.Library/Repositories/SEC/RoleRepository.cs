@@ -4,7 +4,7 @@ using Account.Application.Library.Models.Views.SEC;
 using Account.Domain.Library.Entities.SEC;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Patterns;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +13,9 @@ namespace Account.Application.Library.Repositories.SEC
 {
     public class RoleRepository : GenericRepository<Role, RoleDTO, RoleView>, IRoleRepository
     {
-        public RoleRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        public RoleRepository(ContextDbApplication context, IMapper mapper) : base(context, mapper)
         {
         }
-        public RoleRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

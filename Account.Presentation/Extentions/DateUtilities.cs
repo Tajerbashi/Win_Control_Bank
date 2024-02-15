@@ -13,7 +13,7 @@ namespace Account.Presentation.Extentions
 
             return $"{pc.GetYear(d)}/{pc.GetMonth(d)}/{pc.GetDayOfMonth(d)} {hover}:{pc.GetMinute(d)}:{pc.GetSecond(d)} {mode}";
         }
-        public static string ConvertToPersianDate(DateTime date,string format = "")
+        public static string ConvertToPersianDate(this DateTime date, string format = "")
         {
             PersianCalendar pc = new PersianCalendar();
             var hover = pc.GetHour(date) > 12 ? pc.GetHour(date) - 12 : pc.GetHour(date);

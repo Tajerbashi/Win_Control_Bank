@@ -5,7 +5,7 @@ using Account.Application.Library.Models.Views.WEB;
 using Account.Domain.Library.Entities.WEB;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Patterns;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 
@@ -13,10 +13,9 @@ namespace Account.Application.Library.Repositories.WEB
 {
     public abstract class WebServiceRepository : GenericRepository<WebService, WebServiceDTO, WebServiceView>, IBaseQueries
     {
-        protected WebServiceRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected WebServiceRepository(ContextDbApplication context, IMapper mapper) : base(context, mapper)
         {
         }
-        protected WebServiceRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

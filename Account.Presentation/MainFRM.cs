@@ -2,6 +2,7 @@
 using Account.Common.Library.Utilities;
 using Account.Presentation.Extentions;
 using Account.Presentation.UserControls;
+using System.Dynamic;
 using System.Runtime.InteropServices;
 
 namespace Presentation
@@ -42,6 +43,7 @@ namespace Presentation
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
         #endregion
 
+        private Dictionary<string,Control> UC;
         public MainFRM(
             IUserRepository userRepository,
             LoggerProvider loggerProvider,
@@ -67,10 +69,16 @@ namespace Presentation
             _transactionUC = transactionUC;
             _settingUC = settingUC;
             _blanceUC = blanceUC;
-
-
-
-
+            UC = new Dictionary<string, Control>();
+            UC.Add("BankUC",_bankUC);
+            UC.Add("CartUC", _cartUC);
+            UC.Add("CustomerUC", _customerUC);
+            UC.Add("ReportUC", _reportUC);
+            UC.Add("CalculateUC", _calculateUC);
+            UC.Add("CashMoneyUC", _cashMoneyUC);
+            UC.Add("TransactionUC", _transactionUC);
+            UC.Add("SettingUC", _settingUC);
+            UC.Add("BlanceUC", _blanceUC);
             _loggerProvider.Log.Info($"ساعت ورود کاربر ادمین : {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
@@ -90,7 +98,7 @@ namespace Presentation
             OnlineExchangeUC panel = new OnlineExchangeUC();
             if (MainPanel.Controls.Count > 0)
             {
-                MainPanel.Controls[0].Dispose();
+                MainPanel.Controls.Clear();
             }
             MainPanel.Controls.Add(panel);
         }
@@ -103,7 +111,8 @@ namespace Presentation
         {
             if (MainPanel.Controls.Count > 0)
             {
-                MainPanel.Controls[0].Dispose();
+                MainPanel.Controls.Clear();
+                MainPanel.Controls.Clear();
             }
             MainPanel.Controls.Add(_cartUC);
         }
@@ -112,7 +121,7 @@ namespace Presentation
         {
             if (MainPanel.Controls.Count > 0)
             {
-                MainPanel.Controls[0].Dispose();
+                MainPanel.Controls.Clear();
             }
             MainPanel.Controls.Add(_customerUC);
         }
@@ -121,7 +130,7 @@ namespace Presentation
         {
             if (MainPanel.Controls.Count > 0)
             {
-                MainPanel.Controls[0].Dispose();
+                MainPanel.Controls.Clear();
             }
             MainPanel.Controls.Add(_reportUC);
         }
@@ -130,7 +139,7 @@ namespace Presentation
         {
             if (MainPanel.Controls.Count > 0)
             {
-                MainPanel.Controls[0].Dispose();
+                MainPanel.Controls.Clear();
             }
             MainPanel.Controls.Add(_calculateUC);
         }
@@ -139,7 +148,7 @@ namespace Presentation
         {
             if (MainPanel.Controls.Count > 0)
             {
-                MainPanel.Controls[0].Dispose();
+                MainPanel.Controls.Clear();
             }
             MainPanel.Controls.Add(_cashMoneyUC);
         }
@@ -148,7 +157,7 @@ namespace Presentation
         {
             if (MainPanel.Controls.Count > 0)
             {
-                MainPanel.Controls[0].Dispose();
+                MainPanel.Controls.Clear();
             }
             MainPanel.Controls.Add(_transactionUC);
         }
@@ -158,7 +167,7 @@ namespace Presentation
             OnlineExchangeUC panel = new OnlineExchangeUC();
             if (MainPanel.Controls.Count > 0)
             {
-                MainPanel.Controls[0].Dispose();
+                MainPanel.Controls.Clear();
             }
             MainPanel.Controls.Add(panel);
         }
@@ -176,7 +185,7 @@ namespace Presentation
         {
             if (MainPanel.Controls.Count > 0)
             {
-                MainPanel.Controls[0].Dispose();
+                MainPanel.Controls.Clear();
             }
             MainPanel.Controls.Add(_bankUC);
         }
@@ -186,7 +195,7 @@ namespace Presentation
         {
             if (MainPanel.Controls.Count > 0)
             {
-                MainPanel.Controls[0].Dispose();
+                MainPanel.Controls.Clear();
             }
             MainPanel.Controls.Add(_blanceUC);
         }
@@ -200,7 +209,7 @@ namespace Presentation
         {
             if (MainPanel.Controls.Count > 0)
             {
-                MainPanel.Controls[0].Dispose();
+                MainPanel.Controls.Clear();
             }
             MainPanel.Controls.Add(_settingUC);
         }

@@ -5,6 +5,7 @@ using Account.Domain.Library.Entities.BUS;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using Account.Infrastructure.Library.Patterns;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,10 @@ namespace Account.Application.Library.Repositories.BUS
 {
     public class CustomerRepository : GenericRepository<Customer, CustomerDTO, CustomerView>, ICustomerRepository
     {
-        public CustomerRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        public CustomerRepository(ContextDbApplication context, IMapper mapper) : base(context, mapper)
         {
         }
-        protected CustomerRepository(ContextDbApplication context)
-          : base(context)
-        {
-        }
+
         public string GetCount()
         {
             return (@"

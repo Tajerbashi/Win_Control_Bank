@@ -4,7 +4,7 @@ using Account.Application.Library.Models.Views.SEC;
 using Account.Domain.Library.Entities.SEC;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Patterns;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +13,9 @@ namespace Account.Application.Library.Repositories.SEC
 {
     public abstract class GroupUserRepository : GenericRepository<GroupUser, GroupUserDTO, GroupUserView>, IGroupUserRepository
     {
-        protected GroupUserRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        protected GroupUserRepository(ContextDbApplication context, IMapper mapper) : base(context, mapper)
         {
         }
-        protected GroupUserRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

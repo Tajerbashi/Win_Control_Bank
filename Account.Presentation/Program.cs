@@ -1,4 +1,6 @@
-﻿using Account.Application.Library.IDatabaseContext.AutoMapper;
+﻿using Account.Application.Library.Container;
+using Account.Application.Library.IDatabaseContext.AutoMapper;
+using Account.Infrastructure.Library.Container;
 using Account.Presentation.ServiceContainer;
 using AutoMapper;
 using log4net;
@@ -62,11 +64,12 @@ namespace Presentation
         }
         private static void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplication();
+            services.AddInfrastructure(Configuration);
             services.AddDbContext(Configuration);
-            services.ServiceInjector();
+            //services.ServiceInjector();
             services.UserControlInjector();
             services.FormInjector();
-            services.AddScoped<MainFRM>();
         }
     }
 }

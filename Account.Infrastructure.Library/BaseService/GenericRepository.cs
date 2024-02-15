@@ -4,7 +4,6 @@ using Account.Application.Library.Extentions;
 using Account.Application.Library.IDatabaseContext.AutoMapper;
 using Account.Domain.Library.Bases;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
-using Account.Infrastructure.Library.Patterns;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,36 +16,30 @@ namespace Account.Infrastructure.Library.BaseService
 {
 
     public abstract class GenericRepository<TEntity, TDTO, TView>
-        : IGenericRepository<TEntity,TDTO, TView>, IDisposable
+        : IGenericRepository<TEntity, TDTO, TView>, IDisposable
          where TEntity : BaseEntity, new()
          where TDTO : BaseDTO, new()
          where TView : BaseView, new()
     {
-        private DbSet<TEntity> _entities;
-        private string _errorMessage = string.Empty;
+
+        private DbSet<TEntity> _entities = null;
+        protected readonly ContextDbApplication Context;
         private bool _isDisposed;
-        //private ContextDbApplication context;
+        private readonly IMapper Mapper;
         private MapperConfiguration ConfigMapper = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(typeof(MapperProfiler));
             });
 
-        protected ContextDbApplication Context { get; set; }
-
-        protected IMapper Mapper { get; }
-
-
-        public GenericRepository(UnitOfWork<ContextDbApplication> unitOfWork)
-            : this(unitOfWork.Context)
+        public GenericRepository(ContextDbApplication context, IMapper mapper)
         {
-            Mapper = ConfigMapper.CreateMapper();
+            //Mapper = ConfigMapper.CreateMapper();
+            Context = context;
+            _entities = Context.Set<TEntity>();
+            Mapper = mapper;
         }
 
-        protected GenericRepository(ContextDbApplication context)
-        {
-            _isDisposed = false;
-            this.Context = context;
-        }
+
 
         protected virtual DbSet<TEntity> Entities
         {

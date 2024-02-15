@@ -6,6 +6,7 @@ using Account.Domain.Library.Enums;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using Account.Infrastructure.Library.Patterns;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +15,7 @@ namespace Account.Application.Library.Repositories.BUS
 {
     public class BlanceRepository : GenericRepository<Blance, BlanceDTO, BlanceView>, IBlanceRepository
     {
-        public BlanceRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
-        {
-        }
-        protected BlanceRepository(ContextDbApplication context)
-            : base(context)
+        public BlanceRepository(ContextDbApplication context, IMapper mapper) : base(context, mapper)
         {
         }
 

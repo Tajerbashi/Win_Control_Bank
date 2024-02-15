@@ -4,7 +4,7 @@ using Account.Application.Library.Models.Views.CNT;
 using Account.Domain.Library.Entities.CNT;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Patterns;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 
@@ -12,10 +12,9 @@ namespace Account.Application.Library.Repositories.CNT
 {
     public class ConstVariableRepository : GenericRepository<ConstVariable, ConstVariableDTO, ConstVariableView>, IConstVariableRepository
     {
-        public ConstVariableRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        public ConstVariableRepository(ContextDbApplication context, IMapper mapper) : base(context, mapper)
         {
         }
-        protected ConstVariableRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

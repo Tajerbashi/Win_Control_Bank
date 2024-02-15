@@ -4,7 +4,7 @@ using Account.Application.Library.Models.Views.RPT;
 using Account.Domain.Library.Entities.RPT;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Patterns;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +13,9 @@ namespace Account.Application.Library.Repositories.RPT
 {
     public class CartReportRepository : GenericRepository<CartReport, CartReportDTO, CartReportView>, ICartReportRepository
     {
-        public CartReportRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        public CartReportRepository(ContextDbApplication context, IMapper mapper) : base(context, mapper)
         {
         }
-        protected CartReportRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {

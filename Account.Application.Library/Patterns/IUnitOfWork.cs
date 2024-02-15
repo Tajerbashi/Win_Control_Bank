@@ -1,6 +1,5 @@
-﻿using Account.Application.Library.BaseModels;
-using Account.Application.Library.BaseService;
-using Account.Domain.Library.Bases;
+﻿using Account.Application.Library.Repositories.BUS;
+using Account.Application.Library.Repositories.CNT;
 
 namespace Account.Application.Library.Patterns
 {
@@ -33,8 +32,35 @@ namespace Account.Application.Library.Patterns
         //Rollback the database Transaction
         void Rollback();
         //DbContext Class SaveChanges method
-        void Save();
-        void Dispose();
+        int Save();
+
+
+        #region BUS
+        ICustomerRepository CustomerRepository { get; }
+        IBankRepository BankRepository { get; }
+        IBlanceRepository BlanceRepository { get; }
+        ICartRepository CartRepository { get; }
+        #endregion
+
+
+        #region CNT
+        IConstVariableRepository ConstVariableRepository { get; }
+        #endregion
+
+
+        #region LOG
+        #endregion
+
+
+        #region RPT
+        #endregion
+
+        #region SEC
+        #endregion
+
+        #region WEB
+        #endregion
+
     }
 
 }

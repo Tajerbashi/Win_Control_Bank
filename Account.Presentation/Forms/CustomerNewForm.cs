@@ -1,5 +1,6 @@
 ﻿using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Repositories.BUS;
+using Account.Presentation.Extentions;
 using Presentation.Extentions;
 using System.Runtime.InteropServices;
 
@@ -48,6 +49,7 @@ namespace Account.Presentation.Forms
             _customerRepository.Insert(customer);
             MSG.Visible = true;
             MSG.Text = "عملیات با موفقیت انجام شد";
+            FormExtentions.ClearTextBoxes(this);
             this.Close();
         }
 

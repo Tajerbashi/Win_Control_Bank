@@ -4,7 +4,7 @@ using Account.Application.Library.Models.Views.BUS;
 using Account.Domain.Library.Entities.BUS;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Patterns;
+using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,10 +12,7 @@ namespace Account.Application.Library.Repositories.BUS
 {
     public class BankRepository : GenericRepository<Bank, BankDTO, BankView>, IBankRepository
     {
-        public BankRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
-        {
-        }
-        protected BankRepository(ContextDbApplication context) : base(context)
+        public BankRepository(ContextDbApplication context, IMapper mapper) : base(context, mapper)
         {
         }
 

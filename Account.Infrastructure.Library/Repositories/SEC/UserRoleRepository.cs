@@ -5,6 +5,7 @@ using Account.Domain.Library.Entities.SEC;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using Account.Infrastructure.Library.Patterns;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,9 @@ namespace Account.Application.Library.Repositories.SEC
 {
     public class UserRoleRepository : GenericRepository<UserRole, UserRoleDTO, UserRoleView>, IUserRoleRepository
     {
-        public UserRoleRepository(UnitOfWork<ContextDbApplication> unitOfWork) : base(unitOfWork)
+        public UserRoleRepository(ContextDbApplication context, IMapper mapper) : base(context, mapper)
         {
         }
-        protected UserRoleRepository(ContextDbApplication context) : base(context) { }
 
         public string GetCount()
         {
