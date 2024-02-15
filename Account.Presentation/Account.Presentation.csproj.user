@@ -36,13 +36,13 @@
     <Compile Update="UserControls\CashMoneyUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="UserControls\CustomerUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControls\OnlineExchangeUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControls\ReportUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="UserControls\CustomerUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControls\SettingUC.cs">

@@ -50,6 +50,7 @@ namespace Account.Presentation.Forms
             MSG.Visible = true;
             MSG.Text = "عملیات با موفقیت انجام شد";
             FormExtentions.ClearTextBoxes(this);
+            FormExtentions.ClearControls(this.Controls);
             this.Close();
         }
 
