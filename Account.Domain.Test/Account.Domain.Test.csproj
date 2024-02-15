@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Account.Domain.Library\Account.Domain.Library.csproj" />
+  </ItemGroup>
+
 </Project>
