@@ -37,7 +37,7 @@ namespace Account.Presentation.Forms
         }
         private void BankNewForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void SaveBtn_Click(object sender, EventArgs e)
@@ -59,6 +59,15 @@ namespace Account.Presentation.Forms
             {
                 BankName = BankNameTxt.Text,
             };
+        }
+
+        private void BankNameTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                 _bankRepository.Insert(BankDTO());
+            this.Close();
+            }
         }
     }
 }

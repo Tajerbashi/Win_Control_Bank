@@ -86,13 +86,14 @@
             // 
             // BankNameTxt
             // 
-            BankNameTxt.BackColor = Color.FromArgb(240, 236, 229);
+            BankNameTxt.BackColor = Color.FromArgb(240, 236, 200);
             BankNameTxt.BorderStyle = BorderStyle.FixedSingle;
             BankNameTxt.Location = new Point(265, 57);
             BankNameTxt.Name = "BankNameTxt";
             BankNameTxt.Size = new Size(441, 32);
             BankNameTxt.TabIndex = 0;
             BankNameTxt.TextAlign = HorizontalAlignment.Center;
+            BankNameTxt.KeyDown += BankNameTxt_KeyDown;
             // 
             // CloseBtn
             // 

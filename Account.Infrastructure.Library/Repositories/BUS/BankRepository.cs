@@ -1,6 +1,7 @@
 ﻿using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Models.Views.BUS;
+using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Entities.BUS;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
@@ -8,7 +9,7 @@ using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Account.Application.Library.Repositories.BUS
+namespace Account.Infrastructure.Library.Repositories.BUS
 {
     public class BankRepository : GenericRepository<Bank, BankDTO, BankView>, IBankRepository
     {
@@ -18,7 +19,8 @@ namespace Account.Application.Library.Repositories.BUS
 
         public BankDTO GetBankByName(string name)
         {
-            return null;
+            var result = Context.Banks.Where(c => c.BankName.Equals(name.Trim())).FirstOrDefault();
+            return Mapper.Map<Bank, BankDTO>(result);
         }
 
         public string GetCount()
