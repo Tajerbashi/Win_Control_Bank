@@ -35,14 +35,17 @@
             CloseBtn = new Button();
             SaveBtn = new Button();
             groupBox1 = new GroupBox();
-            ToAccountLBL = new Label();
             ToCustomerLBL = new Label();
+            ToAccountLBL = new Label();
+            label13 = new Label();
+            label4 = new Label();
+            CashTxt = new TextBox();
             DescTxt = new TextBox();
             NewDataBtn = new Button();
             NewDataPanel = new Panel();
+            label15 = new Label();
+            label14 = new Label();
             SaveNewDataBtn = new Button();
-            label12 = new Label();
-            label11 = new Label();
             NewCartNumberTxt = new TextBox();
             NewBankNameTxt = new TextBox();
             NewCustomerNameTxt = new TextBox();
@@ -60,8 +63,6 @@
             FromCustomerCombo = new ComboBox();
             ToCustomerCombo = new ComboBox();
             label5 = new Label();
-            label4 = new Label();
-            CashTxt = new TextBox();
             label1 = new Label();
             groupBox1.SuspendLayout();
             NewDataPanel.SuspendLayout();
@@ -81,9 +82,9 @@
             // MSG
             // 
             MSG.ForeColor = Color.FromArgb(255, 192, 192);
-            MSG.Location = new Point(6, 18);
+            MSG.Location = new Point(12, 17);
             MSG.Name = "MSG";
-            MSG.Size = new Size(436, 32);
+            MSG.Size = new Size(256, 32);
             MSG.TabIndex = 0;
             MSG.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -150,8 +151,11 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
-            groupBox1.Controls.Add(ToAccountLBL);
             groupBox1.Controls.Add(ToCustomerLBL);
+            groupBox1.Controls.Add(ToAccountLBL);
+            groupBox1.Controls.Add(label13);
+            groupBox1.Controls.Add(label4);
+            groupBox1.Controls.Add(CashTxt);
             groupBox1.Controls.Add(DescTxt);
             groupBox1.Controls.Add(NewDataBtn);
             groupBox1.Controls.Add(NewDataPanel);
@@ -168,8 +172,6 @@
             groupBox1.Controls.Add(FromCustomerCombo);
             groupBox1.Controls.Add(ToCustomerCombo);
             groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(CashTxt);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(MSG);
             groupBox1.Controls.Add(CloseBtn);
@@ -183,27 +185,59 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             // 
-            // ToAccountLBL
-            // 
-            ToAccountLBL.ForeColor = Color.FromArgb(255, 192, 192);
-            ToAccountLBL.Location = new Point(50, 230);
-            ToAccountLBL.Name = "ToAccountLBL";
-            ToAccountLBL.Size = new Size(409, 32);
-            ToAccountLBL.TabIndex = 61;
-            ToAccountLBL.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // ToCustomerLBL
             // 
             ToCustomerLBL.ForeColor = Color.FromArgb(255, 192, 192);
-            ToCustomerLBL.Location = new Point(567, 230);
+            ToCustomerLBL.Location = new Point(614, 232);
             ToCustomerLBL.Name = "ToCustomerLBL";
-            ToCustomerLBL.Size = new Size(436, 32);
+            ToCustomerLBL.Size = new Size(253, 32);
             ToCustomerLBL.TabIndex = 60;
             ToCustomerLBL.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // ToAccountLBL
+            // 
+            ToAccountLBL.ForeColor = Color.FromArgb(255, 192, 192);
+            ToAccountLBL.Location = new Point(50, 232);
+            ToAccountLBL.Name = "ToAccountLBL";
+            ToAccountLBL.Size = new Size(253, 32);
+            ToAccountLBL.TabIndex = 61;
+            ToAccountLBL.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            label13.ForeColor = Color.White;
+            label13.Location = new Point(236, 387);
+            label13.Name = "label13";
+            label13.Size = new Size(47, 32);
+            label13.TabIndex = 64;
+            label13.Text = "تومان";
+            label13.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label4
+            // 
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(744, 352);
+            label4.Name = "label4";
+            label4.Size = new Size(95, 32);
+            label4.TabIndex = 63;
+            label4.Text = "مبلغ تراکنش";
+            label4.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // CashTxt
+            // 
+            CashTxt.BackColor = Color.FromArgb(240, 236, 150);
+            CashTxt.BorderStyle = BorderStyle.FixedSingle;
+            CashTxt.Location = new Point(289, 387);
+            CashTxt.MaxLength = 15;
+            CashTxt.Name = "CashTxt";
+            CashTxt.PlaceholderText = "مبلغ مورد نظر را وارد کنید";
+            CashTxt.Size = new Size(550, 32);
+            CashTxt.TabIndex = 62;
+            CashTxt.TextAlign = HorizontalAlignment.Center;
+            // 
             // DescTxt
             // 
-            DescTxt.BackColor = Color.FromArgb(240, 236, 229);
+            DescTxt.BackColor = Color.FromArgb(240, 236, 150);
             DescTxt.BorderStyle = BorderStyle.FixedSingle;
             DescTxt.Location = new Point(8, 427);
             DescTxt.MaxLength = 500;
@@ -235,18 +269,38 @@
             // 
             // NewDataPanel
             // 
+            NewDataPanel.Controls.Add(label15);
+            NewDataPanel.Controls.Add(label14);
             NewDataPanel.Controls.Add(SaveNewDataBtn);
-            NewDataPanel.Controls.Add(label12);
-            NewDataPanel.Controls.Add(label11);
             NewDataPanel.Controls.Add(NewCartNumberTxt);
             NewDataPanel.Controls.Add(NewBankNameTxt);
             NewDataPanel.Controls.Add(NewCustomerNameTxt);
             NewDataPanel.Controls.Add(label10);
-            NewDataPanel.Location = new Point(6, 303);
+            NewDataPanel.Location = new Point(7, 231);
             NewDataPanel.Name = "NewDataPanel";
             NewDataPanel.Size = new Size(1117, 118);
             NewDataPanel.TabIndex = 0;
             NewDataPanel.Visible = false;
+            // 
+            // label15
+            // 
+            label15.ForeColor = Color.White;
+            label15.Location = new Point(464, 40);
+            label15.Name = "label15";
+            label15.Size = new Size(85, 32);
+            label15.TabIndex = 59;
+            label15.Text = "شماره کارت";
+            label15.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // label14
+            // 
+            label14.ForeColor = Color.White;
+            label14.Location = new Point(1006, 78);
+            label14.Name = "label14";
+            label14.Size = new Size(104, 32);
+            label14.TabIndex = 58;
+            label14.Text = "نام بانک کارت";
+            label14.TextAlign = ContentAlignment.MiddleRight;
             // 
             // SaveNewDataBtn
             // 
@@ -258,43 +312,23 @@
             SaveNewDataBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             SaveNewDataBtn.FlatStyle = FlatStyle.Flat;
             SaveNewDataBtn.ForeColor = Color.White;
-            SaveNewDataBtn.Location = new Point(447, 78);
+            SaveNewDataBtn.Location = new Point(15, 78);
             SaveNewDataBtn.Name = "SaveNewDataBtn";
-            SaveNewDataBtn.Size = new Size(222, 32);
+            SaveNewDataBtn.Size = new Size(129, 32);
             SaveNewDataBtn.TabIndex = 3;
             SaveNewDataBtn.Text = "ذخیره اطلاعات";
             SaveNewDataBtn.UseVisualStyleBackColor = false;
             SaveNewDataBtn.Click += SaveNewDataBtn_Click;
             // 
-            // label12
-            // 
-            label12.ForeColor = Color.White;
-            label12.Location = new Point(240, 2);
-            label12.Name = "label12";
-            label12.Size = new Size(123, 32);
-            label12.TabIndex = 57;
-            label12.Text = "شماره کارت";
-            label12.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label11
-            // 
-            label11.ForeColor = Color.White;
-            label11.Location = new Point(614, 2);
-            label11.Name = "label11";
-            label11.Size = new Size(123, 32);
-            label11.TabIndex = 56;
-            label11.Text = "بانک کارت";
-            label11.TextAlign = ContentAlignment.MiddleRight;
-            // 
             // NewCartNumberTxt
             // 
             NewCartNumberTxt.BackColor = Color.FromArgb(240, 236, 229);
             NewCartNumberTxt.BorderStyle = BorderStyle.FixedSingle;
-            NewCartNumberTxt.Location = new Point(5, 37);
+            NewCartNumberTxt.Location = new Point(15, 40);
             NewCartNumberTxt.MaxLength = 16;
             NewCartNumberTxt.Name = "NewCartNumberTxt";
             NewCartNumberTxt.PlaceholderText = "شماره کارت را وارد کنید";
-            NewCartNumberTxt.Size = new Size(358, 32);
+            NewCartNumberTxt.Size = new Size(443, 32);
             NewCartNumberTxt.TabIndex = 2;
             NewCartNumberTxt.TextAlign = HorizontalAlignment.Center;
             // 
@@ -302,11 +336,11 @@
             // 
             NewBankNameTxt.BackColor = Color.FromArgb(240, 236, 229);
             NewBankNameTxt.BorderStyle = BorderStyle.FixedSingle;
-            NewBankNameTxt.Location = new Point(379, 37);
+            NewBankNameTxt.Location = new Point(560, 78);
             NewBankNameTxt.MaxLength = 25;
             NewBankNameTxt.Name = "NewBankNameTxt";
             NewBankNameTxt.PlaceholderText = "نام بانک کارت مقصد را وارد کنید";
-            NewBankNameTxt.Size = new Size(358, 32);
+            NewBankNameTxt.Size = new Size(440, 32);
             NewBankNameTxt.TabIndex = 1;
             NewBankNameTxt.TextAlign = HorizontalAlignment.Center;
             // 
@@ -314,20 +348,20 @@
             // 
             NewCustomerNameTxt.BackColor = Color.FromArgb(240, 236, 229);
             NewCustomerNameTxt.BorderStyle = BorderStyle.FixedSingle;
-            NewCustomerNameTxt.Location = new Point(753, 37);
+            NewCustomerNameTxt.Location = new Point(560, 37);
             NewCustomerNameTxt.MaxLength = 50;
             NewCustomerNameTxt.Name = "NewCustomerNameTxt";
             NewCustomerNameTxt.PlaceholderText = "نام مالک کارت را وارد کنید";
-            NewCustomerNameTxt.Size = new Size(358, 32);
+            NewCustomerNameTxt.Size = new Size(440, 32);
             NewCustomerNameTxt.TabIndex = 0;
             NewCustomerNameTxt.TextAlign = HorizontalAlignment.Center;
             // 
             // label10
             // 
             label10.ForeColor = Color.White;
-            label10.Location = new Point(992, 2);
+            label10.Location = new Point(1006, 37);
             label10.Name = "label10";
-            label10.Size = new Size(123, 32);
+            label10.Size = new Size(104, 32);
             label10.TabIndex = 39;
             label10.Text = "نام مالک کارت";
             label10.TextAlign = ContentAlignment.MiddleRight;
@@ -335,18 +369,18 @@
             // FromAccountLBL
             // 
             FromAccountLBL.ForeColor = Color.FromArgb(255, 192, 192);
-            FromAccountLBL.Location = new Point(6, 160);
+            FromAccountLBL.Location = new Point(50, 160);
             FromAccountLBL.Name = "FromAccountLBL";
-            FromAccountLBL.Size = new Size(409, 32);
+            FromAccountLBL.Size = new Size(253, 32);
             FromAccountLBL.TabIndex = 51;
             FromAccountLBL.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // FromCustomerLBL
             // 
             FromCustomerLBL.ForeColor = Color.FromArgb(255, 192, 192);
-            FromCustomerLBL.Location = new Point(567, 160);
+            FromCustomerLBL.Location = new Point(613, 159);
             FromCustomerLBL.Name = "FromCustomerLBL";
-            FromCustomerLBL.Size = new Size(436, 32);
+            FromCustomerLBL.Size = new Size(254, 32);
             FromCustomerLBL.TabIndex = 50;
             FromCustomerLBL.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -481,28 +515,6 @@
             label5.TextAlign = ContentAlignment.MiddleRight;
             label5.Visible = false;
             // 
-            // label4
-            // 
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(1025, 230);
-            label4.Name = "label4";
-            label4.Size = new Size(95, 32);
-            label4.TabIndex = 37;
-            label4.Text = "مبلغ تراکنش";
-            label4.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // CashTxt
-            // 
-            CashTxt.BackColor = Color.FromArgb(240, 236, 229);
-            CashTxt.BorderStyle = BorderStyle.FixedSingle;
-            CashTxt.Location = new Point(11, 265);
-            CashTxt.MaxLength = 15;
-            CashTxt.Name = "CashTxt";
-            CashTxt.PlaceholderText = "مبلغ مورد نظر را وارد کنید";
-            CashTxt.Size = new Size(1106, 32);
-            CashTxt.TabIndex = 7;
-            CashTxt.TextAlign = HorizontalAlignment.Center;
-            // 
             // label1
             // 
             label1.ForeColor = Color.White;
@@ -548,8 +560,6 @@
         private Label label1;
         private ComboBox ToCustomerCombo;
         private Label label5;
-        private Label label4;
-        private TextBox CashTxt;
         private ComboBox FromCustomerCombo;
         private Label label7;
         private ComboBox ToAccountCombo;
@@ -567,11 +577,14 @@
         private TextBox NewCustomerNameTxt;
         private Label label10;
         private Button SaveNewDataBtn;
-        private Label label12;
-        private Label label11;
         private Button NewDataBtn;
         private TextBox DescTxt;
         private Label ToAccountLBL;
         private Label ToCustomerLBL;
+        private Label label13;
+        private Label label4;
+        private TextBox CashTxt;
+        private Label label15;
+        private Label label14;
     }
 }

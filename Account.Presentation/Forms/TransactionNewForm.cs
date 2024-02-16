@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using Account.Common.Library.Extentions;
 using Account.Application.Library.Repositories.BUS;
 using Account.Application.Library.Patterns;
+using Account.Presentation.Extentions;
 
 namespace Account.Presentation.Forms
 {
@@ -90,12 +91,11 @@ namespace Account.Presentation.Forms
                                 if (_cartRepository.ValidBankBlance(fromAccountId, cash))
                                 {
                                     var lastBlance = _blanceRepository.GetBlanceCartById(fromAccountId);
-                                    var blanceDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,TransactionType.Harvesting);
+                                    var blanceDto = BlanceDTO(lastBlance.Value,Convert.ToDouble(cash),fromAccountId,TransactionType.Harvesting);
                                     _blanceRepository.DisActiveLastBlanceOfCartById(blanceDto.CartID);
                                     blanceDto.ID = _blanceRepository.Insert(blanceDto);
-                                    this.Close();
-
                                     _unitOfWork.Commit();
+                                    ClearCloseControl();
                                 }
                                 else
                                 {
@@ -121,14 +121,16 @@ namespace Account.Presentation.Forms
                                 try
                                 {
                                     var lastBlance = _blanceRepository.GetBlanceCartById(fromAccountId);
-                                    var fromAccountDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,TransactionType.Harvesting);
+                                    var fromAccountDto = BlanceDTO(lastBlance.Value,Convert.ToDouble(cash),fromAccountId,TransactionType.Harvesting);
+                                    _blanceRepository.DisActiveLastBlanceOfCartById(fromAccountDto.CartID);
                                     fromAccountDto.ID = _blanceRepository.Insert(fromAccountDto);
                                     //  اضافه به حساب مقصد
                                     var toCartlastBlance = _blanceRepository.GetBlanceCartById(toCartAccountId);
-                                    var toAccountDto = BlanceDTO(toCartlastBlance,Convert.ToDouble(cash),toCartAccountId,TransactionType.Settlemant);
+                                    var toAccountDto = BlanceDTO(toCartlastBlance.Value,Convert.ToDouble(cash),toCartAccountId,TransactionType.Settlemant);
+                                    _blanceRepository.DisActiveLastBlanceOfCartById(toAccountDto.CartID);
                                     toAccountDto.ID = _blanceRepository.Insert(toAccountDto);
                                     _unitOfWork.Commit();
-                                    this.Close();
+                                    ClearCloseControl();
                                 }
                                 catch (Exception ex)
                                 {
@@ -157,7 +159,8 @@ namespace Account.Presentation.Forms
                                     if (_cartRepository.ValidBankBlance(fromAccountId, cash))
                                     {
                                         var lastBlance = _blanceRepository.GetBlanceCartById(fromAccountId);
-                                        var BlanceDTO = this.BlanceDTO(lastBlance,cash,fromAccountId,TransactionType.Harvesting);
+                                    _blanceRepository.DisActiveLastBlanceOfCartById(fromAccountId);
+                                        var BlanceDTO = this.BlanceDTO(lastBlance.Value,cash,fromAccountId,TransactionType.Harvesting);
                                         _blanceRepository.Insert(BlanceDTO);
                                     }
                                     else
@@ -169,6 +172,7 @@ namespace Account.Presentation.Forms
                                 if (toAccountId > 0)
                                 {
                                     var lastBlance = _blanceRepository.GetBlanceCartById(toAccountId);
+                                    _blanceRepository.DisActiveLastBlanceOfCartById(toAccountId);
                                     var BlanceDTO = this.BlanceDTO(lastBlance,cash,toAccountId,TransactionType.Settlemant);
                                     _blanceRepository.Insert(BlanceDTO);
                                 }
@@ -177,6 +181,7 @@ namespace Account.Presentation.Forms
                                     MSG.Text = MessageProject.NotFound();
                                 }
                                 _unitOfWork.Commit();
+                                ClearCloseControl();
                             }
                             catch
                             {
@@ -264,7 +269,7 @@ namespace Account.Presentation.Forms
             var Id = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                FromAccountLBL.Text = _blanceRepository.GetBlanceCartById(Id).ToString("N");
+                FromAccountLBL.Text = _blanceRepository.GetBlanceCartById(Id)?.ToString("N");
             }
 
         }
@@ -335,8 +340,11 @@ namespace Account.Presentation.Forms
                 var Custumer = CustomerDTO();
                 var customeId = _customerRepository.AddOrUpdate(Custumer);
                 var Bank = BankDTO();
-                var bankId = _bankRepository.AddOrUpdate(Bank);
-                var Cart = CartDTO(customeId,bankId);
+                if (Bank.ID == 0)
+                {
+                    _bankRepository.Insert(Bank);
+                }
+                var Cart = CartDTO(customeId,Bank.ID);
                 _cartRepository.AddOrUpdate(Cart);
                 _unitOfWork.Commit();
                 UpdateComboBoxes();
@@ -376,7 +384,7 @@ namespace Account.Presentation.Forms
             var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                ToCustomerLBL.Text = _blanceRepository.GetBlanceCartById(Id).ToString("N");
+                ToCustomerLBL.Text = _blanceRepository.GetBlanceCartById(Id)?.ToString("N");
                 ToAccountCombo = ComboBoxGenerator<long>.FillData(ToAccountCombo, _cartRepository.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
             }
         }
@@ -386,7 +394,7 @@ namespace Account.Presentation.Forms
             var Id = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                FromCustomerLBL.Text = _blanceRepository.GetBlanceCartById(Id).ToString("N");
+                FromCustomerLBL.Text = _blanceRepository.GetBlanceCartById(Id)?.ToString("N");
                 FromAccountCombo = ComboBoxGenerator<long>.FillData(FromAccountCombo, _cartRepository.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
             }
         }
@@ -422,18 +430,28 @@ namespace Account.Presentation.Forms
                 ParentID = null
             };
         }
-        private BlanceDTO BlanceDTO(double lastblance, double cash, long cartId, TransactionType transaction)
+        private BlanceDTO BlanceDTO(double? lastblance, double cash, long cartId, TransactionType transaction)
         {
-            double blanceCash = lastblance;
-            if (transaction == TransactionType.Settlemant)
-                blanceCash = lastblance + cash;
+            double blanceCash = 0;
+            if (lastblance > 0)
+            {
+                blanceCash = lastblance.Value;
+                if (transaction == TransactionType.Settlemant)
+                    blanceCash = lastblance.Value + cash;
+                else
+                    blanceCash = lastblance.Value - cash;
+
+            }
             else
-                blanceCash = lastblance - cash;
+            {
+                lastblance = 0;
+                blanceCash = cash;
+            }
             return new BlanceDTO
             {
                 NewBlanceCash = blanceCash,
-                OldBlanceCash = lastblance,
-                BlanceType = BlanceType.Banking,
+                OldBlanceCash = lastblance.Value,
+                BlanceType = (BlanceType)((KeyValue<long>)BlanceTypeCombo.SelectedItem).Value,
                 CartID = cartId,
                 TransactionType = transaction,
                 TransactionCash = cash,
@@ -462,8 +480,23 @@ namespace Account.Presentation.Forms
             var Id = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                ToAccountLBL.Text = _blanceRepository.GetBlanceCartById(Id).ToString("N");
+                ToAccountLBL.Text = _blanceRepository.GetBlanceCartById(Id)?.ToString("N");
             }
+        }
+
+        private void ClearCloseControl()
+        {
+            FromCustomerLBL.Text = string.Empty;
+            FromAccountLBL.Text = string.Empty;
+            ToCustomerLBL.Text = string.Empty;
+            ToAccountLBL.Text = string.Empty;
+            FromCustomerCombo.Items.Clear();
+            FromAccountCombo.Items.Clear();
+            ToCustomerCombo.Items.Clear();
+            ToAccountCombo.Items.Clear();
+            FormExtentions.ClearRichTextBox(this.Controls);
+            FormExtentions.ClearTextBoxes(this.Controls);
+            this.Close();
         }
     }
 }
