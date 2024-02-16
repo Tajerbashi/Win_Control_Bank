@@ -71,7 +71,7 @@
             SaveBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             SaveBtn.FlatStyle = FlatStyle.Flat;
             SaveBtn.ForeColor = Color.White;
-            SaveBtn.Location = new Point(381, 158);
+            SaveBtn.Location = new Point(439, 158);
             SaveBtn.Name = "SaveBtn";
             SaveBtn.Size = new Size(121, 32);
             SaveBtn.TabIndex = 3;
@@ -97,8 +97,8 @@
             // 
             // MSG
             // 
-            MSG.ForeColor = Color.Black;
-            MSG.Location = new Point(165, 22);
+            MSG.ForeColor = Color.FromArgb(255, 192, 192);
+            MSG.Location = new Point(165, 92);
             MSG.Name = "MSG";
             MSG.Size = new Size(461, 32);
             MSG.TabIndex = 23;
@@ -113,12 +113,12 @@
             UserPicture.Size = new Size(149, 177);
             UserPicture.TabIndex = 21;
             UserPicture.TabStop = false;
-            UserPicture.MouseClick += UserPicture_MouseClick;
+            UserPicture.Click += UserPicture_Click;
             // 
             // PageLbl
             // 
             PageLbl.ForeColor = Color.White;
-            PageLbl.Location = new Point(531, 54);
+            PageLbl.Location = new Point(531, 22);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(95, 32);
             PageLbl.TabIndex = 17;
@@ -129,13 +129,14 @@
             // 
             FullNameTxt.BackColor = Color.FromArgb(240, 236, 229);
             FullNameTxt.BorderStyle = BorderStyle.FixedSingle;
-            FullNameTxt.Location = new Point(165, 89);
+            FullNameTxt.Location = new Point(165, 57);
             FullNameTxt.Name = "FullNameTxt";
             FullNameTxt.PlaceholderText = "نام مشترک را وارد کنید";
             FullNameTxt.RightToLeft = RightToLeft.Yes;
             FullNameTxt.Size = new Size(461, 32);
             FullNameTxt.TabIndex = 0;
             FullNameTxt.TextAlign = HorizontalAlignment.Center;
+            FullNameTxt.KeyPress += FullNameTxt_KeyPress;
             // 
             // label3
             // 

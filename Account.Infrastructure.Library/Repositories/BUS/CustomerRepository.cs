@@ -1,16 +1,16 @@
 ﻿using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Models.Views.BUS;
+using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Entities.BUS;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
-using Account.Infrastructure.Library.Patterns;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Account.Application.Library.Repositories.BUS
+namespace Account.Infrastructure.Library.Repositories.BUS
 {
     public class CustomerRepository : GenericRepository<Customer, CustomerDTO, CustomerView>, ICustomerRepository
     {
@@ -29,7 +29,8 @@ WHERE   IsDeleted = 0
 
         public CustomerDTO GetCustomerByName(string name)
         {
-            throw new NotImplementedException();
+            var customer = Context.Customers.Where(x => x.FullName.Equals(name) && !x.IsDeleted).FirstOrDefault();
+            return Mapper.Map<Customer, CustomerDTO>(customer);
         }
 
         public string Search(string value)
@@ -41,12 +42,12 @@ WHERE   IsDeleted = 0
         {
             return (@"
 SELECT       
-    ID AS آیدی, 
+    ID AS [آیدی], 
     FullName AS [نام کامل], 
     FORMAT(CreateDate,'yyyy-mm-dd','fa') AS [تاریخ ثبت], 
     UpdateDate AS [آخرین ویرایش],   
-    CASE IsActive WHEN 1 THEN N'فعال' ELSE N'غیر فعال' END AS وضعیت,
-    Picture AS نصویر
+    CASE IsActive WHEN 1 THEN N'فعال' ELSE N'غیر فعال' END AS [وضعیت],
+    Picture AS [تصویر]
 FROM            BUS.Customers
 WHERE IsDeleted = 0
 ");

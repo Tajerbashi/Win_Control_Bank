@@ -34,9 +34,10 @@ namespace Account.Presentation.Forms
             _customerRepository = customerRepository;
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            MSG.Text = "";
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
-        
+
         OpenFileDialog ofd = new OpenFileDialog();
         Image pic;
         private void CloseBtn_Click(object sender, EventArgs e)
@@ -45,13 +46,7 @@ namespace Account.Presentation.Forms
         }
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            var customer = CustomerDTO();
-            _customerRepository.Insert(customer);
-            MSG.Visible = true;
-            MSG.Text = "عملیات با موفقیت انجام شد";
-            FormExtentions.ClearTextBoxes(this);
-            FormExtentions.ClearControls(this.Controls);
-            this.Close();
+            SaveFormData();
         }
 
         private CustomerDTO CustomerDTO()
@@ -64,22 +59,38 @@ namespace Account.Presentation.Forms
             };
         }
 
-        private void UserPicture_MouseClick(object sender, MouseEventArgs e)
+        private void FullNameTxt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.KeyChar == 13)
             {
-                ofd.Filter = "JPG(*.JPG)|*.JPG";
-                ofd.Title = "تصویر کاربر را انتخاب کنید";
-
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    pic = Image.FromFile(ofd.FileName);
-                    UserPicture.Image = pic;
-                    UserPicture.SizeMode = PictureBoxSizeMode.StretchImage;
-                }
+                SaveFormData();
             }
+        }
+
+        private void SaveFormData()
+        {
+            var customer = CustomerDTO();
+            _customerRepository.Insert(customer);
+            MSG.Visible = true;
+            MSG.Text = "عملیات با موفقیت انجام شد";
+            FormExtentions.ClearTextBoxes(this.Controls);
+            UserPicture.Image = null;
+            this.Close();
+            MSG.Text = "";
 
         }
 
+        private void UserPicture_Click(object sender, EventArgs e)
+        {
+            ofd.Filter = "JPG(*.JPG)|*.JPG";
+            ofd.Title = "تصویر کاربر را انتخاب کنید";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                pic = Image.FromFile(ofd.FileName);
+                UserPicture.Image = pic;
+                UserPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+        }
     }
 }
