@@ -55,7 +55,7 @@
             label1.Name = "label1";
             label1.Size = new Size(909, 32);
             label1.TabIndex = 16;
-            label1.Text = "تراکنش های تمام حساب ها";
+            label1.Text = "تراکنش های نقدی تمام حساب ها";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // AddBtn
@@ -241,6 +241,7 @@
             Margin = new Padding(4, 5, 4, 5);
             Name = "CashMoneyUC";
             Size = new Size(1146, 759);
+            Load += CashMoneyUC_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).EndInit();
