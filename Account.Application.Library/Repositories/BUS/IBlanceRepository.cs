@@ -9,8 +9,9 @@ namespace Account.Application.Library.Repositories.BUS
     public interface IBlanceRepository : IGenericRepository<Blance,BlanceDTO,BlanceView>, IBaseQueries
     {
         string Show50LastTransactions(string paging);
+        string ShowAllCashableBlances(string paging);
         string ShowAllByCartId(long cartId,string paging);
-        double GetBlanceCartById(long cartId);
+        double? GetBlanceCartById(long cartId);
         void DisActiveLastBlanceOfCartById(long cartId);
         IEnumerable<KeyValue<byte>> TitleValueTransactionType();
         IEnumerable<KeyValue<byte>> TitleValueBlanceType();
