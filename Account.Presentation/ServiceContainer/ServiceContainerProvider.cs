@@ -4,6 +4,7 @@ using Account.Application.Library.Repositories.BUS;
 using Account.Application.Library.Repositories.SEC;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.Patterns;
+using Account.Infrastructure.Library.Repositories.BUS;
 using Account.Presentation.Extentions;
 using Account.Presentation.Forms;
 using Account.Presentation.UserControls;
@@ -50,15 +51,15 @@ namespace Account.Presentation.ServiceContainer
         {
             services
                 .AddTransient(typeof(LoggerProvider))
-                .AddSingleton(typeof(CalculateUC))
-                .AddSingleton(typeof(TransactionUC))
-                .AddSingleton(typeof(BankUC))
-                .AddSingleton(typeof(ReportUC))
-                .AddSingleton(typeof(CustomerUC))
-                .AddSingleton(typeof(SettingUC))
-                .AddSingleton(typeof(BlanceUC))
-                .AddSingleton(typeof(CartUC))
-                .AddSingleton(typeof(CashMoneyUC))
+                .AddScoped(typeof(CalculateUC))
+                .AddScoped(typeof(TransactionUC))
+                .AddScoped(typeof(BankUC))
+                .AddScoped(typeof(ReportUC))
+                .AddScoped(typeof(CustomerUC))
+                .AddScoped(typeof(SettingUC))
+                .AddScoped(typeof(BlanceUC))
+                .AddScoped(typeof(CartUC))
+                .AddScoped(typeof(CashMoneyUC))
                 ;
         }
        

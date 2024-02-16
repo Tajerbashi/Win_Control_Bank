@@ -2,51 +2,50 @@
 {
     public static class FormExtentions
     {
-        private static Dictionary<Type, Action<Control>> controldefaults = new Dictionary<Type, Action<Control>>() {
-            {typeof(TextBox), c => ((TextBox)c).Clear()},
-            {typeof(CheckBox), c => ((CheckBox)c).Checked = false},
-            {typeof(ListBox), c => ((ListBox)c).Items.Clear()},
-            {typeof(RadioButton), c => ((RadioButton)c).Checked = false},
-            {typeof(GroupBox), c => ((GroupBox)c).Controls.Clear()},
-            {typeof(Panel), c => ((Panel)c).Controls.Clear()} };
-        private static void FindAndInvoke(Type type, Control control)
+        public static void ClearTextBoxes(Control.ControlCollection ctrlCollection)
         {
-            if (controldefaults.ContainsKey(type))
+            foreach (Control ctrl in ctrlCollection)
             {
-                controldefaults[type].Invoke(control);
-            }
-        }
-
-        public static void ClearControls(this Control.ControlCollection controls)
-        {
-            foreach (Control control in controls)
-            {
-                FindAndInvoke(control.GetType(), control);
-            }
-        }
-
-        public static void ClearControls<T>(this Control.ControlCollection controls) where T : class
-        {
-            if (!controldefaults.ContainsKey(typeof(T))) return;
-
-            foreach (Control control in controls)
-            {
-                if (control.GetType().Equals(typeof(T)))
+                if (ctrl is TextBoxBase)
                 {
-                    FindAndInvoke(typeof(T), control);
+                    ctrl.Text = String.Empty;
                 }
-            }
-
-        }
-        public static void ClearTextBoxes(Form form)
-        {
-            foreach (Control control in form.Controls)
-            {
-                if (control.GetType() == typeof(TextBox))
+                else
                 {
-                    control.Text = "";
+                    ClearTextBoxes(ctrl.Controls);
                 }
             }
         }
+
+       
+        public static void ClearLabel(Control.ControlCollection ctrlCollection)
+        {
+            foreach (Control ctrl in ctrlCollection)
+            {
+                if (ctrl is Label)
+                {
+                    ctrl.Text = String.Empty;
+                }
+                else
+                {
+                    ClearLabel(ctrl.Controls);
+                }
+            }
+        }
+        public static void ClearRichTextBox(Control.ControlCollection ctrlCollection)
+        {
+            foreach (Control ctrl in ctrlCollection)
+            {
+                if (ctrl is RichTextBox)
+                {
+                    ctrl.Text = String.Empty;
+                }
+                else
+                {
+                    ClearRichTextBox(ctrl.Controls);
+                }
+            }
+        }
+
     }
 }

@@ -4,12 +4,12 @@ using Account.Application.Library.Extentions;
 using Account.Application.Library.IDatabaseContext.AutoMapper;
 using Account.Domain.Library.Bases;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
-using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 
 namespace Account.Infrastructure.Library.BaseService
@@ -25,7 +25,7 @@ namespace Account.Infrastructure.Library.BaseService
         private DbSet<TEntity> _entities = null;
         protected readonly ContextDbApplication Context;
         private bool _isDisposed;
-        private readonly IMapper Mapper;
+        protected readonly IMapper Mapper;
         private MapperConfiguration ConfigMapper = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(typeof(MapperProfiler));
@@ -33,7 +33,7 @@ namespace Account.Infrastructure.Library.BaseService
 
         public GenericRepository(ContextDbApplication context, IMapper mapper)
         {
-            //Mapper = ConfigMapper.CreateMapper();
+            Mapper = ConfigMapper.CreateMapper();
             Context = context;
             _entities = Context.Set<TEntity>();
             Mapper = mapper;
@@ -86,7 +86,7 @@ namespace Account.Infrastructure.Library.BaseService
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception(ex.Message);
             }
         }
 
@@ -103,7 +103,7 @@ namespace Account.Infrastructure.Library.BaseService
             catch (Exception ex)
             {
 
-                throw ex;
+                throw new Exception(ex.Message);
             }
         }
 

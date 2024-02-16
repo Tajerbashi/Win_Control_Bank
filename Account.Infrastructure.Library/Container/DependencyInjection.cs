@@ -5,10 +5,10 @@ using Account.Application.Library.Repositories.SEC;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.AppSetting;
 using Account.Infrastructure.Library.Patterns;
+using Account.Infrastructure.Library.Repositories.BUS;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace Account.Infrastructure.Library.Container
 {
