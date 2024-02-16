@@ -10,10 +10,12 @@ namespace Account.Presentation.UserControls
     {
         private readonly ICartRepository _cartRepository;
         private CartNewForm _cartNewForm;
+        private byte Index = 0;
         public CartUC(ICartRepository cartRepository, CartNewForm cartNewForm)
         {
             _cartRepository = cartRepository;
             _cartNewForm = cartNewForm;
+            Index = 0;
             InitializeComponent();
         }
 
@@ -39,10 +41,14 @@ namespace Account.Presentation.UserControls
         private void CartCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             var Id = ((KeyValue<long>)CartCombo.SelectedItem).Value;
-            if (Id != 0)
-                GridData.DataSource = _cartRepository.ExecuteQuery(_cartRepository.SearchByCartId(Id, _cartRepository.Paging.Order(_cartRepository.Paging.Page)));
-            else
-                GridData.DataSource = _cartRepository.ExecuteQuery(_cartRepository.ShowAll(_cartRepository.Paging.Order(_cartRepository.Paging.Page)));
+            if (Index != Id)
+            {
+                Index = (byte)Id;
+                if (Id != 0)
+                    GridData.DataSource = _cartRepository.ExecuteQuery(_cartRepository.SearchByCartId(Id, _cartRepository.Paging.Order(_cartRepository.Paging.Page)));
+                else
+                    ShowDataGrid();
+            }
         }
     }
 }

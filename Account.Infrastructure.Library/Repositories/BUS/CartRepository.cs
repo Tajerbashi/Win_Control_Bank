@@ -1,6 +1,7 @@
 ﻿using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Models.Views.BUS;
+using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Entities.BUS;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
@@ -9,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Account.Application.Library.Repositories.BUS
+namespace Account.Infrastructure.Library.Repositories.BUS
 {
     public class CartRepository : GenericRepository<Cart, CartDTO, CartView>, ICartRepository
     {
@@ -170,12 +171,18 @@ ORDER BY C.ID DESC
 
         public CartDTO GetCartByAccountNumber(string number)
         {
-            throw new NotImplementedException();
+            var entity = Context.Carts.Where(x => x.AccountNumber.Equals(number) && !x.IsDeleted).FirstOrDefault();
+            return Mapper.Map<CartDTO>(entity);
         }
 
         public bool ValidBankBlance(long cartId, double cash)
         {
-            throw new NotImplementedException();
+            var lastBlance = Context.Blances.Where(x => x.CartID == cartId).OrderByDescending(x => x.ID).FirstOrDefault().NewBlanceCash;
+            if (lastBlance >= cash)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

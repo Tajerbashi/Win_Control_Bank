@@ -3,8 +3,12 @@ using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Enums;
+using Account.Presentation.Extentions;
 using Account.Presentation.Generator;
+using Presentation.Extentions;
+using stdole;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 namespace Account.Presentation.Forms
 {
     public partial class CartNewForm : Form
@@ -35,7 +39,8 @@ namespace Account.Presentation.Forms
         private readonly IBlanceRepository _blanceRepository;
         private readonly IBankRepository _bankRepository;
         private readonly ICustomerRepository _customerRepository;
-
+        OpenFileDialog ofd = new OpenFileDialog();
+        Image pic;
         public CartNewForm(
             IUnitOfWork unitOfWork,
             ICartRepository cartRepository,
@@ -58,20 +63,11 @@ namespace Account.Presentation.Forms
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             TransactionID = Guid.NewGuid();
-            _unitOfWork.BeginTransaction();
-            try
-            {
-                var cartId = _cartRepository.Insert(CartDTO());
-                var blance = BlanceDTO(cartId);
-                var blanceId = _blanceRepository.Insert(blance);
-                _unitOfWork.Commit();
-                this.Close();
-            }
-            catch (Exception)
-            {
-                _unitOfWork.Rollback();
-                throw;
-            }
+            SaveForm();
+
+            FormExtentions.ClearTextBoxes(this.Controls);
+            MSG.Text = "";
+
         }
 
         private void CartNewForm_Load(object sender, EventArgs e)
@@ -160,6 +156,7 @@ namespace Account.Presentation.Forms
                 ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value,
                 CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value,
                 BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value,
+                Picture = FileHandler.SavePic(ShabaCartNumber.Text, ofd),
             };
         }
         private BlanceDTO BlanceDTO(long cartID)
@@ -177,6 +174,44 @@ namespace Account.Presentation.Forms
         }
 
 
+        private void SaveForm()
+        {
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                var cartId = _cartRepository.Insert(CartDTO());
+                var blance = BlanceDTO(cartId);
+                var blanceId = _blanceRepository.Insert(blance);
+                _unitOfWork.Commit();
+                CartPic.Image = null;
+                this.Close();
+            }
+            catch (Exception)
+            {
+                _unitOfWork.Rollback();
+                throw;
+            }
+        }
+
         #endregion
+
+        private void CartPic_DoubleClick(object sender, EventArgs e)
+        {
+
+            ofd.Filter = "JPG(*.JPG)|*.JPG";
+            ofd.Title = "تصویر کاربر را انتخاب کنید";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                pic = Image.FromFile(ofd.FileName);
+                CartPic.Image = pic;
+                CartPic.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+        }
+
+        private void CartPic_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

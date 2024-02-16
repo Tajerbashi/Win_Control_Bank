@@ -92,9 +92,10 @@
             // 
             // ParentCartCombo
             // 
-            ParentCartCombo.BackColor = Color.FromArgb(240, 236, 229);
+            ParentCartCombo.BackColor = Color.White;
             ParentCartCombo.Cursor = Cursors.Hand;
             ParentCartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            ParentCartCombo.ForeColor = Color.Black;
             ParentCartCombo.FormattingEnabled = true;
             ParentCartCombo.Location = new Point(317, 166);
             ParentCartCombo.Name = "ParentCartCombo";
@@ -105,8 +106,9 @@
             // 
             // ShabaCartNumber
             // 
-            ShabaCartNumber.BackColor = Color.FromArgb(240, 236, 229);
+            ShabaCartNumber.BackColor = Color.White;
             ShabaCartNumber.BorderStyle = BorderStyle.FixedSingle;
+            ShabaCartNumber.ForeColor = Color.Black;
             ShabaCartNumber.Location = new Point(6, 378);
             ShabaCartNumber.MaxLength = 40;
             ShabaCartNumber.Name = "ShabaCartNumber";
@@ -128,7 +130,14 @@
             // 
             // ExpireDate
             // 
-            ExpireDate.BackColor = Color.FromArgb(240, 236, 229);
+            ExpireDate.BackColor = Color.White;
+            ExpireDate.CalendarBackColor = Color.FromArgb(240, 236, 200);
+            ExpireDate.CalendarForeColor = Color.Black;
+            ExpireDate.CalendarRightToLeft = RightToLeft.Yes;
+            ExpireDate.CalendarTitleBackColor = Color.LightCoral;
+            ExpireDate.CalendarTitleForeColor = Color.Black;
+            ExpireDate.Cursor = Cursors.Hand;
+            ExpireDate.ForeColor = Color.Black;
             ExpireDate.Location = new Point(362, 447);
             ExpireDate.Name = "ExpireDate";
             ExpireDate.Size = new Size(349, 33);
@@ -136,17 +145,19 @@
             // 
             // CartPic
             // 
-            CartPic.BackColor = Color.FromArgb(240, 236, 229);
+            CartPic.BackColor = Color.FromArgb(20, 20, 20);
             CartPic.Location = new Point(6, 70);
             CartPic.Name = "CartPic";
             CartPic.Size = new Size(305, 139);
             CartPic.TabIndex = 35;
             CartPic.TabStop = false;
+            CartPic.Click += CartPic_Click;
+            CartPic.DoubleClick += CartPic_DoubleClick;
             // 
             // label8
             // 
             label8.ForeColor = Color.White;
-            label8.Location = new Point(203, 413);
+            label8.Location = new Point(260, 413);
             label8.Name = "label8";
             label8.Size = new Size(95, 32);
             label8.TabIndex = 34;
@@ -155,8 +166,9 @@
             // 
             // BlanceTxt
             // 
-            BlanceTxt.BackColor = Color.FromArgb(240, 236, 229);
+            BlanceTxt.BackColor = Color.White;
             BlanceTxt.BorderStyle = BorderStyle.FixedSingle;
+            BlanceTxt.ForeColor = Color.Black;
             BlanceTxt.Location = new Point(6, 448);
             BlanceTxt.MaxLength = 15;
             BlanceTxt.Name = "BlanceTxt";
@@ -178,9 +190,9 @@
             // 
             // MSG
             // 
-            MSG.BackColor = Color.FromArgb(240, 236, 229);
+            MSG.BackColor = Color.FromArgb(22, 26, 30);
             MSG.ForeColor = Color.Coral;
-            MSG.Location = new Point(6, 28);
+            MSG.Location = new Point(6, 19);
             MSG.Name = "MSG";
             MSG.Size = new Size(705, 32);
             MSG.TabIndex = 23;
@@ -199,8 +211,9 @@
             // 
             // AccountNumberTxt
             // 
-            AccountNumberTxt.BackColor = Color.FromArgb(240, 236, 229);
+            AccountNumberTxt.BackColor = Color.White;
             AccountNumberTxt.BorderStyle = BorderStyle.FixedSingle;
+            AccountNumberTxt.ForeColor = Color.Black;
             AccountNumberTxt.Location = new Point(6, 308);
             AccountNumberTxt.MaxLength = 16;
             AccountNumberTxt.Name = "AccountNumberTxt";
@@ -222,9 +235,10 @@
             // 
             // CustomerCombo
             // 
-            CustomerCombo.BackColor = Color.FromArgb(240, 236, 229);
+            CustomerCombo.BackColor = Color.White;
             CustomerCombo.Cursor = Cursors.Hand;
             CustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            CustomerCombo.ForeColor = Color.Black;
             CustomerCombo.FormattingEnabled = true;
             CustomerCombo.Location = new Point(6, 237);
             CustomerCombo.Name = "CustomerCombo";
@@ -244,10 +258,13 @@
             // 
             // BankCombo
             // 
-            BankCombo.BackColor = Color.FromArgb(240, 236, 229);
+            BankCombo.BackColor = Color.White;
             BankCombo.Cursor = Cursors.Hand;
+            BankCombo.DropDownHeight = 100;
             BankCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            BankCombo.ForeColor = Color.Black;
             BankCombo.FormattingEnabled = true;
+            BankCombo.IntegralHeight = false;
             BankCombo.Location = new Point(317, 95);
             BankCombo.Name = "BankCombo";
             BankCombo.RightToLeft = RightToLeft.Yes;
@@ -265,7 +282,7 @@
             CloseBtn.FlatAppearance.MouseOverBackColor = Color.Maroon;
             CloseBtn.FlatStyle = FlatStyle.Flat;
             CloseBtn.ForeColor = Color.White;
-            CloseBtn.Location = new Point(177, 488);
+            CloseBtn.Location = new Point(177, 493);
             CloseBtn.Margin = new Padding(4, 5, 4, 5);
             CloseBtn.Name = "CloseBtn";
             CloseBtn.Size = new Size(121, 32);
@@ -284,7 +301,7 @@
             SaveBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             SaveBtn.FlatStyle = FlatStyle.Flat;
             SaveBtn.ForeColor = Color.White;
-            SaveBtn.Location = new Point(418, 488);
+            SaveBtn.Location = new Point(418, 493);
             SaveBtn.Name = "SaveBtn";
             SaveBtn.Size = new Size(121, 32);
             SaveBtn.TabIndex = 6;
@@ -329,7 +346,6 @@
         private GroupBox groupBox1;
         private Label MSG;
         private RichTextBox DescriptionTxt;
-        private PictureBox UserPicture;
         private Label label2;
         private Button CloseBtn;
         private Button SaveBtn;
