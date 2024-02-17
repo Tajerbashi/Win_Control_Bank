@@ -175,11 +175,6 @@ ORDER BY BL.ID DESC
             throw new NotImplementedException();
         }
 
-        public IEnumerable<KeyValue<long>> TitleValueBlanceType(int cartId)
-        {
-            throw new NotImplementedException();
-        }
-
         public string ShowAllCashableBlances(string paging)
         {
             return ($@"
@@ -220,6 +215,46 @@ AND (BL.IsDeleted = 0)
 ORDER BY BL.ID DESC
 {paging}
 ");
+        }
+
+        public string ShowAllByCartIdAndBlanceType(long cartId, byte blanceType, string paging)
+        {
+            return ($@"
+SELECT   
+	BL.ID AS آیدی, 
+	B.BankName AS [نام بانک], 
+	CT.AccountNumber AS [شماره کارت], 
+	CS.FullName AS [مالک حساب], 
+	(
+		CASE BL.BlanceType
+			WHEN 1 THEN N'نقدی'
+			WHEN 2 THEN N'بانکی'
+			ELSE N'نامعلوم'
+		END
+	) AS [نوع حساب], 
+	(
+		CASE BL.TransactionType
+			WHEN 1 THEN N'واریزی'
+			WHEN 2 THEN N'برداشت'
+			ELSE N''
+			END
+	) AS [نوع تراکنش],
+	FORMAT(CAST(BL.OldBlanceCash as bigint),'###,###,###') AS [موجودی قبلی],
+	FORMAT(CAST(BL.TransactionCash as bigint),'###,###,###') AS [مبلغ تراکنش], 
+	FORMAT(CAST(BL.NewBlanceCash as bigint),'###,###,###') AS [موجودی جدید],
+    BL.Description AS [توضیحات]
+FROM
+	BUS.Banks B
+	INNER JOIN BUS.Carts CT ON B.ID = CT.BankID AND CT.ID = {cartId}
+	INNER JOIN BUS.Customers CS ON CT.CustomerID = CS.ID 
+	INNER JOIN BUS.Blances BL ON CT.ID = BL.CartID " + (blanceType == 0 ? "" : $@"AND (BL.BlanceType = {blanceType})") + $@"
+WHERE        
+	(B.IsDeleted = 0)
+AND (CT.IsDeleted = 0) 
+AND (CS.IsDeleted = 0) 
+AND (BL.IsDeleted = 0)
+ORDER BY BL.ID DESC
+{paging}");
         }
     }
 }
