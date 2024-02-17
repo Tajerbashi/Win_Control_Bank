@@ -11,6 +11,7 @@ namespace Account.Application.Library.Repositories.BUS
         string Show50LastTransactions(string paging);
         string ShowAllCashableBlances(string paging);
         string ShowAllByCartId(long cartId,string paging);
+        string ShowAllByCartIdAndBlanceType(long cartId,byte blanceType,string paging);
         double? GetBlanceCartById(long cartId);
         void DisActiveLastBlanceOfCartById(long cartId);
         IEnumerable<KeyValue<byte>> TitleValueTransactionType();
