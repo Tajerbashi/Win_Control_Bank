@@ -9,9 +9,6 @@
     <Compile Update="Forms\CartNewForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\CashMoneyNewForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="Forms\CustomerNewForm.cs">
       <SubType>Form</SubType>
     </Compile>

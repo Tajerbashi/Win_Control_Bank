@@ -1,5 +1,4 @@
 ﻿using Account.Application.Library.Models.Controls;
-using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;
 using Account.Presentation.Forms;
 using Account.Presentation.Generator;
@@ -12,23 +11,26 @@ namespace Account.Presentation.UserControls
         private readonly IBlanceRepository _blanceRepository;
         private readonly ICartRepository _cartRepository;
         private TransactionNewForm transaction;
+        private long CartId;
+        private long BlanceType;
         public TransactionUC(IBlanceRepository blanceRepository, ICartRepository cartRepository, TransactionNewForm transaction)
         {
             _blanceRepository = blanceRepository;
             _cartRepository = cartRepository;
             this.transaction = transaction;
+            CartId = 0;
+            BlanceType = 0;
             InitializeComponent();
         }
         private void ShowDataGrid()
         {
-            var cartId = ((KeyValue<long>)CartCombo.SelectedItem).Value;
-            if (cartId == 0)
+            if (CartId == 0)
             {
                 GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.Show50LastTransactions(_blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
             }
             else
             {
-                GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.ShowAllByCartId(cartId, _blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
+                GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.ShowAllByCartIdAndBlanceType(CartId, (byte)BlanceType, _blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
             }
             var count = (_blanceRepository.ExecuteQuery(_blanceRepository.GetCount())).Rows[0].Field<int>(0);
             PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {_blanceRepository.Paging.Page + 1}";
@@ -38,10 +40,15 @@ namespace Account.Presentation.UserControls
         private void TransactionUC_Load(object sender, EventArgs e)
         {
             CartCombo = ComboBoxGenerator<long>.FillData(CartCombo, _cartRepository.TitleValuesAllCart(), Convert.ToByte(CartCombo.Tag));
+            BlanceTypeCombo = ComboBoxGenerator<byte>.FillData(BlanceTypeCombo, _blanceRepository.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
             ShowDataGrid();
         }
 
-
+        private void CartCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CartId = (CartCombo.SelectedItem as KeyValue<long>).Value;
+            ShowDataGrid();
+        }
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
@@ -49,10 +56,10 @@ namespace Account.Presentation.UserControls
             ShowDataGrid();
         }
 
-        private void CartCombo_SelectedIndexChanged(object sender, EventArgs e)
+        private void BlanceTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            BlanceType = (BlanceTypeCombo.SelectedItem as KeyValue<long>).Value;
             ShowDataGrid();
-
         }
     }
 }

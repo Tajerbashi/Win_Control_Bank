@@ -30,7 +30,6 @@ namespace Account.Presentation.ServiceContainer
                 .AddScoped(typeof(MainFRM))
                 .AddScoped(typeof(CartNewForm))
                 .AddScoped(typeof(CustomerNewForm))
-                .AddScoped(typeof(CashMoneyNewForm))
                 .AddScoped(typeof(TransactionNewForm))
                     ;
         }
