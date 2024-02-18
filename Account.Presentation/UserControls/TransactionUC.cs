@@ -12,14 +12,12 @@ namespace Account.Presentation.UserControls
         private readonly ICartRepository _cartRepository;
         private TransactionNewForm transaction;
         private long CartId;
-        private long BlanceType;
         public TransactionUC(IBlanceRepository blanceRepository, ICartRepository cartRepository, TransactionNewForm transaction)
         {
             _blanceRepository = blanceRepository;
             _cartRepository = cartRepository;
             this.transaction = transaction;
             CartId = 0;
-            BlanceType = 0;
             InitializeComponent();
         }
         private void ShowDataGrid()
@@ -30,7 +28,7 @@ namespace Account.Presentation.UserControls
             }
             else
             {
-                GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.ShowAllByCartIdAndBlanceType(CartId, (byte)BlanceType, _blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
+                GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.ShowAllByCartId(CartId, _blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
             }
             var count = (_blanceRepository.ExecuteQuery(_blanceRepository.GetCount())).Rows[0].Field<int>(0);
             PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {_blanceRepository.Paging.Page + 1}";
@@ -40,7 +38,6 @@ namespace Account.Presentation.UserControls
         private void TransactionUC_Load(object sender, EventArgs e)
         {
             CartCombo = ComboBoxGenerator<long>.FillData(CartCombo, _cartRepository.TitleValuesAllCart(), Convert.ToByte(CartCombo.Tag));
-            BlanceTypeCombo = ComboBoxGenerator<byte>.FillData(BlanceTypeCombo, _blanceRepository.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
             ShowDataGrid();
         }
 
@@ -58,7 +55,6 @@ namespace Account.Presentation.UserControls
 
         private void BlanceTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BlanceType = (BlanceTypeCombo.SelectedItem as KeyValue<long>).Value;
             ShowDataGrid();
         }
     }

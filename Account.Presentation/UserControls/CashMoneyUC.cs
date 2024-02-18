@@ -1,4 +1,5 @@
 ﻿using Account.Application.Library.Repositories.BUS;
+using Account.Presentation.Forms;
 using Account.Presentation.Generator;
 using System.Data;
 
@@ -8,13 +9,16 @@ namespace Account.Presentation.UserControls
     {
         private readonly IBlanceRepository _blanceRepository;
         private readonly ICartRepository _cartRepository;
+        private CashableBlanceForm CashableBlanceForm;
         public CashMoneyUC(
             IBlanceRepository blanceRepository,
-            ICartRepository cartRepository
+            ICartRepository cartRepository,
+            CashableBlanceForm cashableBlanceForm
             )
         {
             _blanceRepository = blanceRepository;
             _cartRepository = cartRepository;
+            this.CashableBlanceForm = cashableBlanceForm;
             InitializeComponent();
         }
         private void ShowDataGrid()
@@ -32,7 +36,13 @@ namespace Account.Presentation.UserControls
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
+            this.CashableBlanceForm.ShowDialog();
             ShowDataGrid();
+        }
+
+        private void FillComboBoxes()
+        {
+
         }
     }
 }

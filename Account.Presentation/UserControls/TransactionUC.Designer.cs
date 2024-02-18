@@ -36,7 +36,6 @@
             label1 = new Label();
             AddBtn = new Button();
             groupBox2 = new GroupBox();
-            BlanceTypeCombo = new ComboBox();
             GridData = new DataGridView();
             CartCombo = new ComboBox();
             PageLbl = new Label();
@@ -79,7 +78,6 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.Transparent;
-            groupBox2.Controls.Add(BlanceTypeCombo);
             groupBox2.Controls.Add(GridData);
             groupBox2.Controls.Add(CartCombo);
             groupBox2.Controls.Add(PageLbl);
@@ -92,19 +90,6 @@
             groupBox2.Size = new Size(1143, 731);
             groupBox2.TabIndex = 21;
             groupBox2.TabStop = false;
-            // 
-            // BlanceTypeCombo
-            // 
-            BlanceTypeCombo.BackColor = Color.FromArgb(240, 236, 229);
-            BlanceTypeCombo.Cursor = Cursors.Hand;
-            BlanceTypeCombo.DropDownStyle = ComboBoxStyle.DropDownList;
-            BlanceTypeCombo.FormattingEnabled = true;
-            BlanceTypeCombo.Location = new Point(355, 20);
-            BlanceTypeCombo.Name = "BlanceTypeCombo";
-            BlanceTypeCombo.RightToLeft = RightToLeft.Yes;
-            BlanceTypeCombo.Size = new Size(184, 33);
-            BlanceTypeCombo.TabIndex = 18;
-            BlanceTypeCombo.SelectedIndexChanged += BlanceTypeCombo_SelectedIndexChanged;
             // 
             // GridData
             // 
@@ -172,10 +157,10 @@
             CartCombo.Cursor = Cursors.Hand;
             CartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             CartCombo.FormattingEnabled = true;
-            CartCombo.Location = new Point(545, 20);
+            CartCombo.Location = new Point(355, 21);
             CartCombo.Name = "CartCombo";
             CartCombo.RightToLeft = RightToLeft.Yes;
-            CartCombo.Size = new Size(592, 33);
+            CartCombo.Size = new Size(782, 33);
             CartCombo.TabIndex = 16;
             CartCombo.SelectedIndexChanged += CartCombo_SelectedIndexChanged;
             // 
@@ -239,7 +224,7 @@
             // SearchTxt
             // 
             SearchTxt.BackColor = Color.FromArgb(240, 236, 229);
-            SearchTxt.Location = new Point(87, 20);
+            SearchTxt.Location = new Point(87, 21);
             SearchTxt.Name = "SearchTxt";
             SearchTxt.PlaceholderText = "جستجو کنید ...";
             SearchTxt.RightToLeft = RightToLeft.Yes;
@@ -276,6 +261,5 @@
         private Button PrevBtn;
         private Button SearchBtn;
         private TextBox SearchTxt;
-        private ComboBox BlanceTypeCombo;
     }
 }

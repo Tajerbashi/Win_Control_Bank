@@ -31,6 +31,7 @@ namespace Account.Presentation.ServiceContainer
                 .AddScoped(typeof(CartNewForm))
                 .AddScoped(typeof(CustomerNewForm))
                 .AddScoped(typeof(TransactionNewForm))
+                .AddScoped(typeof(CashableBlanceForm))
                     ;
         }
         public static void ServiceInjector(this IServiceCollection services)
