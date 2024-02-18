@@ -6,6 +6,7 @@ using Account.Domain.Library.Entities.BUS;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,15 @@ WHERE IsDeleted = 0
         public IEnumerable<KeyValue<long>> TitleValue()
         {
             return Context.Customers.Where(x => !x.IsDeleted).Select(x => new KeyValue<long>
+            {
+                Key = x.FullName,
+                Value = x.ID
+            }).OrderByDescending(x => x.Key);
+        }
+        public IEnumerable<KeyValue<long>> CustomerNameHaveMainCartAndBlance()
+        {
+            var data = Context.Customers.Include(cus => cus.Carts).ThenInclude(bl => bl.Blances).ToList();
+            return data.Where(x => !x.IsDeleted).Select(x => new KeyValue<long>
             {
                 Key = x.FullName,
                 Value = x.ID
