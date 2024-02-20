@@ -1,5 +1,4 @@
 ﻿using Account.Application.Library.Models.DTOs.BUS;
-using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;
 using System.Runtime.InteropServices;
 
@@ -65,8 +64,8 @@ namespace Account.Presentation.Forms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                 _bankRepository.Insert(BankDTO());
-            this.Close();
+                _bankRepository.Insert(BankDTO());
+                this.Close();
             }
         }
     }

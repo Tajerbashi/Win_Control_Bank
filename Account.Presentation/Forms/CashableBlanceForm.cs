@@ -1,8 +1,11 @@
 ﻿using Account.Application.Library.Models.Controls;
+using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;
+using Account.Domain.Library.Enums;
 using Account.Infrastructure.Library.Repositories.BUS;
 using Account.Presentation.Generator;
+using System.Runtime.InteropServices;
 
 namespace Account.Presentation.Forms
 {
@@ -12,6 +15,27 @@ namespace Account.Presentation.Forms
         private readonly IBankRepository _bankRepository;
         private readonly IBlanceRepository _blanceRepository;
         private readonly IUnitOfWork _unitOfWork;
+        #region Code
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // width of ellipse
+            int nHeightEllipse // height of ellipse
+        );
+        [DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
+        #endregion
+
         public CashableBlanceForm(
             ICustomerRepository customerRepository,
             IBankRepository bankRepository,
@@ -24,6 +48,8 @@ namespace Account.Presentation.Forms
             _blanceRepository = blanceRepository;
             _unitOfWork = unitOfWork;
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.None;
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
         private void FillComboBoxes()
         {
@@ -46,7 +72,18 @@ namespace Account.Presentation.Forms
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
+            var CustomerId = ((KeyValue<long>)CustomerAccountCombo.SelectedItem).Value;
+            var CashableCartId = _unitOfWork.CartRepository.GetCashableCartByCustomerId(CustomerId);
 
+
+            if (CashableCartId > 0)
+            {
+                //  Exist Cashable Blance
+            }
+            else
+            {
+                //  Create Cashable Blance
+            }
         }
 
         private void FromCartCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,6 +100,34 @@ namespace Account.Presentation.Forms
             {
 
             }
+        }
+
+        private void CustomerAccountCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var CustomerId = ((KeyValue<long>)CustomerAccountCombo.SelectedItem).Value;
+            if (CustomerId > 0)
+            {
+                FromCartCombo = ComboBoxGenerator<long>.FillData(
+                    FromCartCombo,
+                    _unitOfWork.CartRepository.TitleValuesMainCarts(CustomerId),
+                    Convert.ToByte(FromCartCombo.Tag));
+            }
+        }
+
+        private CartDTO CartDTO(long customerId)
+        {
+            return new CartDTO()
+            {
+                CartType = Domain.Library.Enums.CartType.Main,
+                CustomerID = customerId,
+                Key=Guid.NewGuid(),
+                AccountNumber = "",
+                BankID=0,
+                ExpireDate = DateTime.Now.AddYears(5),
+                ShabaAccountNumber = "",
+                ParentID = null,
+                Picture="",
+            };
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Account.Application.Library.Models.DTOs.BUS;
+using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;
+using Account.Infrastructure.Library.Patterns;
 using Account.Presentation.Extentions;
 using Presentation.Extentions;
 using System.Runtime.InteropServices;
@@ -29,9 +31,14 @@ namespace Account.Presentation.Forms
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
         #endregion
         private readonly ICustomerRepository _customerRepository;
-        public CustomerNewForm(ICustomerRepository customerRepository)
+        private readonly IUnitOfWork _unitOfWork;
+        public CustomerNewForm(
+            ICustomerRepository customerRepository,
+            IUnitOfWork unitOfWork
+            )
         {
             _customerRepository = customerRepository;
+            _unitOfWork = unitOfWork;
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             MSG.Text = "";
@@ -49,15 +56,7 @@ namespace Account.Presentation.Forms
             SaveFormData();
         }
 
-        private CustomerDTO CustomerDTO()
-        {
-            return new CustomerDTO
-            {
-                Key = Guid.NewGuid(),
-                FullName = FullNameTxt.Text,
-                Picture = FileHandler.SavePic(FullNameTxt.Text, ofd),
-            };
-        }
+
 
         private void FullNameTxt_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -69,15 +68,26 @@ namespace Account.Presentation.Forms
 
         private void SaveFormData()
         {
-            var customer = CustomerDTO();
-            _customerRepository.Insert(customer);
-            MSG.Visible = true;
-            MSG.Text = "عملیات با موفقیت انجام شد";
-            FormExtentions.ClearTextBoxes(this.Controls);
-            UserPicture.Image = null;
-            this.Close();
-            MSG.Text = "";
-
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                var bankId = _unitOfWork.BankRepository.Insert(BankDTO());
+                var customerId = _unitOfWork.CustomerRepository.Insert(CustomerDTO());
+                var cartId = _unitOfWork.CartRepository.Insert(CartDTO(bankId,customerId));
+                var blanceId = _unitOfWork.BlanceRepository.Insert(BlanceDTO(cartId));
+                MSG.Visible = true;
+                MSG.Text = "عملیات با موفقیت انجام شد";
+                FormExtentions.ClearTextBoxes(this.Controls);
+                UserPicture.Image = null;
+                MSG.Text = "";
+                _unitOfWork.Commit();
+                this.Close();
+            }
+            catch
+            {
+                MSG.Text = "استثناء بوجود آمده است";
+                _unitOfWork.Rollback();
+            }
         }
 
         private void UserPicture_Click(object sender, EventArgs e)
@@ -91,6 +101,53 @@ namespace Account.Presentation.Forms
                 UserPicture.Image = pic;
                 UserPicture.SizeMode = PictureBoxSizeMode.StretchImage;
             }
+        }
+
+        private BankDTO BankDTO()
+        {
+            return new BankDTO
+            {
+                BankName = $"حساب نقدی مشترک ذیل : {FullNameTxt.Text}",
+            };
+        }
+        private CartDTO CartDTO(long bankId, long customerId)
+        {
+            return new CartDTO
+            {
+                AccountNumber = "",
+                Picture = "",
+                BankID = bankId,
+                CustomerID = customerId,
+                CartType = Domain.Library.Enums.CartType.Main,
+                ExpireDate = DateTime.Now.AddYears(10),
+                Key = Guid.NewGuid(),
+                ParentID = null,
+                ShabaAccountNumber = $"IR-Cashable Cart For CustomerID : {customerId} and BankID : {bankId}",
+            };
+        }
+        private CustomerDTO CustomerDTO()
+        {
+            return new CustomerDTO
+            {
+                Key = Guid.NewGuid(),
+                FullName = FullNameTxt.Text,
+                Picture = FileHandler.SavePic(FullNameTxt.Text, ofd),
+            };
+        }
+
+        private BlanceDTO BlanceDTO(long cartId)
+        {
+            return new BlanceDTO
+            {
+                BlanceType = Domain.Library.Enums.BlanceType.Cashable,
+                NewBlanceCash = 0,
+                OldBlanceCash = 0,
+                TransactionCash = 0,
+                TransactionID = Guid.NewGuid(),
+                TransactionType = Domain.Library.Enums.TransactionType.Settlemant,
+                CartID = cartId,
+                Description = $"اولین موجودی نقدی کاربر {FullNameTxt.Text}",
+            };
         }
     }
 }

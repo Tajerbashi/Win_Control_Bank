@@ -52,7 +52,7 @@
             CloseBtn.FlatAppearance.MouseOverBackColor = Color.Maroon;
             CloseBtn.FlatStyle = FlatStyle.Flat;
             CloseBtn.ForeColor = Color.White;
-            CloseBtn.Location = new Point(227, 158);
+            CloseBtn.Location = new Point(214, 149);
             CloseBtn.Margin = new Padding(4, 5, 4, 5);
             CloseBtn.Name = "CloseBtn";
             CloseBtn.Size = new Size(121, 32);
@@ -71,7 +71,7 @@
             SaveBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             SaveBtn.FlatStyle = FlatStyle.Flat;
             SaveBtn.ForeColor = Color.White;
-            SaveBtn.Location = new Point(439, 158);
+            SaveBtn.Location = new Point(438, 149);
             SaveBtn.Name = "SaveBtn";
             SaveBtn.Size = new Size(121, 32);
             SaveBtn.TabIndex = 3;
@@ -98,7 +98,7 @@
             // MSG
             // 
             MSG.ForeColor = Color.FromArgb(255, 192, 192);
-            MSG.Location = new Point(165, 92);
+            MSG.Location = new Point(165, 22);
             MSG.Name = "MSG";
             MSG.Size = new Size(461, 32);
             MSG.TabIndex = 23;
@@ -106,6 +106,7 @@
             // 
             // UserPicture
             // 
+            UserPicture.BackColor = Color.FromArgb(20, 22, 58);
             UserPicture.BorderStyle = BorderStyle.FixedSingle;
             UserPicture.Cursor = Cursors.Hand;
             UserPicture.Location = new Point(10, 22);
@@ -118,7 +119,7 @@
             // PageLbl
             // 
             PageLbl.ForeColor = Color.White;
-            PageLbl.Location = new Point(531, 22);
+            PageLbl.Location = new Point(531, 54);
             PageLbl.Name = "PageLbl";
             PageLbl.Size = new Size(95, 32);
             PageLbl.TabIndex = 17;
@@ -129,7 +130,7 @@
             // 
             FullNameTxt.BackColor = Color.FromArgb(240, 236, 229);
             FullNameTxt.BorderStyle = BorderStyle.FixedSingle;
-            FullNameTxt.Location = new Point(165, 57);
+            FullNameTxt.Location = new Point(165, 89);
             FullNameTxt.Name = "FullNameTxt";
             FullNameTxt.PlaceholderText = "نام مشترک را وارد کنید";
             FullNameTxt.RightToLeft = RightToLeft.Yes;

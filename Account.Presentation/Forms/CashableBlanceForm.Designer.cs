@@ -235,6 +235,7 @@
             CustomerAccountCombo.RightToLeft = RightToLeft.Yes;
             CustomerAccountCombo.Size = new Size(785, 33);
             CustomerAccountCombo.TabIndex = 24;
+            CustomerAccountCombo.SelectedIndexChanged += CustomerAccountCombo_SelectedIndexChanged;
             // 
             // MSG
             // 
