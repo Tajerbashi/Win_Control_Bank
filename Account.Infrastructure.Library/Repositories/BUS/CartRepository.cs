@@ -6,6 +6,7 @@ using Account.Domain.Library.Entities.BUS;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,7 +62,7 @@ SELECT
 	FORMAT(C.CreateDate,'yyyy/MM/dd hh:mm','fa-ir') AS [تاریخ ثبت],
 	FORMAT(C.UpdateDate,'yyyy/MM/dd hh:mm','fa-ir') AS [تاریخ ویرایش]
 FROM BUS.Carts C
-INNER JOIN BUS.Banks BN ON C.BankID = BN.ID
+INNER JOIN BUS.Banks BN ON C.BankID = BN.ID AND BN.BankName NOT LIKE N'%:%'
 INNER JOIN BUS.Customers CS ON C.CustomerID = CS.ID
 INNER JOIN BUS.Blances B ON B.CartID = C.ID
 WHERE C.IsDeleted = 0 AND B.IsActive = 1
@@ -97,7 +98,7 @@ SELECT
 	FORMAT(C.CreateDate,'yyyy/MM/dd hh:mm','fa-ir') AS [تاریخ ثبت],
 	FORMAT(C.UpdateDate,'yyyy/MM/dd hh:mm','fa-ir') AS [تاریخ ویرایش]
 FROM BUS.Carts C
-INNER JOIN BUS.Banks BN ON C.BankID = BN.ID
+INNER JOIN BUS.Banks BN ON C.BankID = BN.ID AND BN.BankName NOT LIKE N'%:%'
 INNER JOIN BUS.Customers CS ON C.CustomerID = CS.ID
 INNER JOIN BUS.Blances B ON B.CartID = C.ID
 WHERE C.IsDeleted = 0 AND B.IsActive = 1
@@ -121,7 +122,7 @@ ORDER BY C.ID DESC
         }
         public IEnumerable<KeyValue<long>> TitleValuesAllParentCart()
         {
-            return Context.Carts.Where(x => x.ParentID == null && !x.IsDeleted).Select(x => new KeyValue<long>
+            return Context.Carts.Include(b => b.Bank).Where(x => x.ParentID == null && !x.Bank.BankName.Contains(":") && !x.IsDeleted).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
@@ -146,6 +147,15 @@ ORDER BY C.ID DESC
         public IEnumerable<KeyValue<long>> TitleValuesChild(long Id)
         {
             return Context.Carts.Where(x => x.ParentID == Id || x.ID == Id).Select(x => new KeyValue<long>
+            {
+                Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Value = x.ID
+            });
+        }
+
+        public IEnumerable<KeyValue<long>> TitleValuesMainCarts(long Id)
+        {
+            return Context.Carts.Where(x => x.CustomerID == Id && !x.IsDeleted).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
@@ -183,6 +193,13 @@ ORDER BY C.ID DESC
                 return true;
             }
             return false;
+        }
+
+        public long GetCashableCartByCustomerId(long CustomerId)
+        {
+            var CartId  = Context.Carts.Include(ct => ct.Blances)
+                .Where(ct => ct.CustomerID == CustomerId && ct.Blances.Any(bl => bl.BlanceType == Domain.Library.Enums.BlanceType.Cashable)).FirstOrDefault();
+            return CartId == null ? 0 : CartId.ID;
         }
     }
 }

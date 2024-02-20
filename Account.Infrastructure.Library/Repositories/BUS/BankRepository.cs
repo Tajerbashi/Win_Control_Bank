@@ -42,8 +42,9 @@ BankName AS [نام بانک],
 FORMAT(CreateDate,'yyyy-mm-dd','fa') AS [تاریخ ثبت], 
 UpdateDate AS [تاریخ ویرایش], 
 CASE IsActive WHEN 1 THEN N'فعال' ELSE N'غیر فعال' END AS وضعیت
-FROM            BUS.Banks
-WHERE        (IsDeleted = 0)
+FROM BUS.Banks
+WHERE (IsDeleted = 0)
+AND BankName NOT LIKE N'%:%'
 ORDER BY ID DESC 
 {paging}
 ");
@@ -56,7 +57,7 @@ ORDER BY ID DESC
 
         public IEnumerable<KeyValue<long>> TitleValue()
         {
-            return Context.Banks.Select(x => new KeyValue<long>
+            return Context.Banks.Where(b => !b.IsDeleted && b.IsActive && !b.BankName.Contains(":")).Select(x => new KeyValue<long>
             {
                 Key = x.BankName,
                 Value = x.ID
