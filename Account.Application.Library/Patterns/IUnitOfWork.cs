@@ -25,13 +25,22 @@ namespace Account.Application.Library.Patterns
 
     public interface IUnitOfWork : IDisposable
     {
-        //Start the database Transaction
+        /// <summary>
+        /// Start the database Transaction
+        /// </summary>
         void BeginTransaction();
-        //Commit the database Transaction
+        /// <summary>
+        /// Commit the database Transaction
+        /// </summary>
         void Commit();
-        //Rollback the database Transaction
+        /// <summary>
+        /// Rollback the database Transaction
+        /// </summary>
         void Rollback();
-        //DbContext Class SaveChanges method
+        /// <summary>
+        /// DbContext Class SaveChanges method
+        /// </summary>
+        /// <returns>int</returns>
         int Save();
 
 

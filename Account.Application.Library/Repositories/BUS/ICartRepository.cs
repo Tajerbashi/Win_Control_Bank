@@ -15,8 +15,10 @@ namespace Account.Application.Library.Repositories.BUS
         IEnumerable<KeyValue<long>> TitleValuesCartByBankId(long Id);
         IEnumerable<KeyValue<long>> TitleValuesChild(long Id);
         IEnumerable<KeyValue<long>> TitleValueByUser(long Id);
+        IEnumerable<KeyValue<long>> TitleValuesMainCarts(long Id);
         bool ValidBankBlance(long cartId,double cash);
         string SearchByCartId(long cartId, string paging);
+        long GetCashableCartByCustomerId(long CustomerId);
 
     }
 }
