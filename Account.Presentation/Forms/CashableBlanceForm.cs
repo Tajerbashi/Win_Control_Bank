@@ -2,7 +2,9 @@
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;
+using Account.Domain.Library.Enums;
 using Account.Presentation.Generator;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace Account.Presentation.Forms
@@ -55,7 +57,8 @@ namespace Account.Presentation.Forms
             FromCustomerCombo = ComboBoxGenerator<long>.FillData(FromCustomerCombo, _unitOfWork.CustomerRepository.TitleValue(), Convert.ToByte(FromCustomerCombo.Tag));
             TransactionTypeCombo = ComboBoxGenerator<byte>.FillData(TransactionTypeCombo, _unitOfWork.BlanceRepository.TitleValueTransactionType(), Convert.ToByte(TransactionTypeCombo.Tag));
             BlanceTypeCombo = ComboBoxGenerator<byte>.FillData(BlanceTypeCombo, _unitOfWork.BlanceRepository.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
-            
+            ActionTypeCombo = ComboBoxGenerator<byte>.FillData(ActionTypeCombo, _unitOfWork.BlanceRepository.TitleValueBlanceType(), Convert.ToByte(ActionTypeCombo.Tag));
+            BlanceTypeCombo.SelectedIndex = 1;
             //UnitCombo = ComboBoxGenerator<long>.FillData(UnitCombo, _unitOfWork.CartRepository.TitleValue(), Convert.ToByte(UnitCombo.Tag));
         }
 
@@ -85,7 +88,7 @@ namespace Account.Presentation.Forms
             }
         }
 
-       
+
 
         private void CustomerAccountCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -125,6 +128,38 @@ namespace Account.Presentation.Forms
                     _unitOfWork.CartRepository.TitleValuesCartsByCartIdAboutCustomer(CartId),
                     Convert.ToByte(FromAccountCombo.Tag));
             }
+        }
+        private void SwitchTransaction(bool sw)
+        {
+            label7.Visible = sw;
+            FromCustomerCombo.Visible = sw;
+            label5.Visible = sw;
+            FromCartCombo.Visible = sw;
+            label6.Visible = sw;
+            FromAccountCombo.Visible = sw;
+            label2.Visible = sw;
+            BlanceTypeCombo.Visible = sw;
+        }
+
+        private void TransactionTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var transactionType = (TransactionTypeCombo.SelectedItem as KeyValue<byte>);
+            if (transactionType != null)
+            {
+                if (transactionType.Value == 2)   // برداشت
+                {
+                    SwitchTransaction(false);
+                }
+                else    //  واریز
+                {
+                    SwitchTransaction(true);
+                }
+            }
+            else
+            {
+                SwitchTransaction(false);
+            }
+
         }
     }
 }
