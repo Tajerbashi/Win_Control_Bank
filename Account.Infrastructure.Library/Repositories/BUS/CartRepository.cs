@@ -130,7 +130,7 @@ ORDER BY C.ID DESC
         }
         public IEnumerable<KeyValue<long>> TitleValuesAllCart()
         {
-            return Context.Carts.Where(x => !x.IsDeleted).Select(x => new KeyValue<long>
+            return Context.Carts.Include(c => c.Bank).Where(x => !x.IsDeleted && !x.Bank.BankName.Contains(":")).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
@@ -146,7 +146,7 @@ ORDER BY C.ID DESC
         }
         public IEnumerable<KeyValue<long>> TitleValuesChild(long Id)
         {
-            return Context.Carts.Where(x => x.ParentID == Id || x.ID == Id).Select(x => new KeyValue<long>
+            return Context.Carts.Where(x => x.ParentID == Id).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
@@ -163,7 +163,7 @@ ORDER BY C.ID DESC
         }
         public IEnumerable<KeyValue<long>> TitleValueByUser(long Id)
         {
-            return Context.Carts.Where(x => x.CustomerID == Id).Select(x => new KeyValue<long>
+            return Context.Carts.Where(x => x.CustomerID == Id && !x.IsDeleted).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
@@ -200,6 +200,20 @@ ORDER BY C.ID DESC
             var CartId  = Context.Carts.Include(ct => ct.Blances)
                 .Where(ct => ct.CustomerID == CustomerId && ct.Blances.Any(bl => bl.BlanceType == Domain.Library.Enums.BlanceType.Cashable)).FirstOrDefault();
             return CartId == null ? 0 : CartId.ID;
+        }
+
+        public IEnumerable<KeyValue<long>> TitleValuesCartsByCartIdAboutCustomer(long Id)
+        {
+            var result =  Context.Carts
+                .Include(cs => cs.Customer)
+                .Include(cs => cs.Bank)
+                .Where(ct => ct.ID == Id)
+                .Select(ct => new KeyValue<long>
+                {
+                    Key=$"{ct.Bank.BankName} - {ct.Customer.FullName} - {ct.AccountNumber}",
+                    Value=ct.ID
+                });
+            return result;
         }
     }
 }

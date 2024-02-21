@@ -2,8 +2,6 @@
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;
-using Account.Domain.Library.Enums;
-using Account.Infrastructure.Library.Repositories.BUS;
 using Account.Presentation.Generator;
 using System.Runtime.InteropServices;
 
@@ -54,10 +52,11 @@ namespace Account.Presentation.Forms
         private void FillComboBoxes()
         {
             CustomerAccountCombo = ComboBoxGenerator<long>.FillData(CustomerAccountCombo, _unitOfWork.CustomerRepository.TitleValue(), Convert.ToByte(CustomerAccountCombo.Tag));
-            FromCartCombo = ComboBoxGenerator<long>.FillData(FromCartCombo, _unitOfWork.CartRepository.TitleValuesAllParentCart(), Convert.ToByte(FromCartCombo.Tag));
+            FromCustomerCombo = ComboBoxGenerator<long>.FillData(FromCustomerCombo, _unitOfWork.CustomerRepository.TitleValue(), Convert.ToByte(FromCustomerCombo.Tag));
             TransactionTypeCombo = ComboBoxGenerator<byte>.FillData(TransactionTypeCombo, _unitOfWork.BlanceRepository.TitleValueTransactionType(), Convert.ToByte(TransactionTypeCombo.Tag));
             BlanceTypeCombo = ComboBoxGenerator<byte>.FillData(BlanceTypeCombo, _unitOfWork.BlanceRepository.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
-            UnitCombo = ComboBoxGenerator<long>.FillData(UnitCombo, _unitOfWork.CartRepository.TitleValue(), Convert.ToByte(UnitCombo.Tag));
+            
+            //UnitCombo = ComboBoxGenerator<long>.FillData(UnitCombo, _unitOfWork.CartRepository.TitleValue(), Convert.ToByte(UnitCombo.Tag));
         }
 
         private void CashableBlanceForm_Load(object sender, EventArgs e)
@@ -86,32 +85,10 @@ namespace Account.Presentation.Forms
             }
         }
 
-        private void FromCartCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var ID = ((KeyValue<long>)FromCartCombo.SelectedItem).Value;
-            if (ID != 0)
-            {
-                FromAccountCombo = ComboBoxGenerator<long>.FillData(
-                    FromAccountCombo,
-                    _unitOfWork.CartRepository.TitleValuesChild(ID),
-                    Convert.ToByte(FromAccountCombo.Tag));
-            }
-            else
-            {
-
-            }
-        }
+       
 
         private void CustomerAccountCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var CustomerId = ((KeyValue<long>)CustomerAccountCombo.SelectedItem).Value;
-            if (CustomerId > 0)
-            {
-                FromCartCombo = ComboBoxGenerator<long>.FillData(
-                    FromCartCombo,
-                    _unitOfWork.CartRepository.TitleValuesMainCarts(CustomerId),
-                    Convert.ToByte(FromCartCombo.Tag));
-            }
         }
 
         private CartDTO CartDTO(long customerId)
@@ -120,14 +97,34 @@ namespace Account.Presentation.Forms
             {
                 CartType = Domain.Library.Enums.CartType.Main,
                 CustomerID = customerId,
-                Key=Guid.NewGuid(),
+                Key = Guid.NewGuid(),
                 AccountNumber = "",
-                BankID=0,
+                BankID = 0,
                 ExpireDate = DateTime.Now.AddYears(5),
                 ShabaAccountNumber = "",
                 ParentID = null,
-                Picture="",
+                Picture = "",
             };
+        }
+
+        private void FromCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var CustomerId = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
+            if (CustomerId > 0)
+            {
+                FromCartCombo = ComboBoxGenerator<long>.FillData(FromCartCombo, _unitOfWork.CartRepository.TitleValueByUser(CustomerId), Convert.ToByte(FromCartCombo.Tag));
+            }
+        }
+        private void FromCartCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var CartId = ((KeyValue<long>)FromCartCombo.SelectedItem).Value;
+            if (CartId != 0)
+            {
+                FromAccountCombo = ComboBoxGenerator<long>.FillData(
+                    FromAccountCombo,
+                    _unitOfWork.CartRepository.TitleValuesCartsByCartIdAboutCustomer(CartId),
+                    Convert.ToByte(FromAccountCombo.Tag));
+            }
         }
     }
 }

@@ -47,6 +47,8 @@
             PageLbl = new Label();
             CloseBtn = new Button();
             SaveBtn = new Button();
+            FromCustomerCombo = new ComboBox();
+            label7 = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -64,6 +66,8 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(FromCustomerCombo);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(UnitCombo);
             groupBox1.Controls.Add(BlanceTypeCombo);
@@ -179,9 +183,9 @@
             // label5
             // 
             label5.ForeColor = Color.White;
-            label5.Location = new Point(634, 91);
+            label5.Location = new Point(442, 91);
             label5.Name = "label5";
-            label5.Size = new Size(159, 32);
+            label5.Size = new Size(72, 32);
             label5.TabIndex = 70;
             label5.Text = "از کارت";
             label5.TextAlign = ContentAlignment.MiddleRight;
@@ -195,7 +199,7 @@
             FromCartCombo.Location = new Point(8, 126);
             FromCartCombo.Name = "FromCartCombo";
             FromCartCombo.RightToLeft = RightToLeft.Yes;
-            FromCartCombo.Size = new Size(785, 33);
+            FromCartCombo.Size = new Size(506, 33);
             FromCartCombo.TabIndex = 69;
             FromCartCombo.SelectedIndexChanged += FromCartCombo_SelectedIndexChanged;
             // 
@@ -294,6 +298,29 @@
             SaveBtn.UseVisualStyleBackColor = false;
             SaveBtn.Click += SaveBtn_Click;
             // 
+            // FromCustomerCombo
+            // 
+            FromCustomerCombo.BackColor = Color.FromArgb(240, 236, 229);
+            FromCustomerCombo.Cursor = Cursors.Hand;
+            FromCustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            FromCustomerCombo.FormattingEnabled = true;
+            FromCustomerCombo.Location = new Point(565, 126);
+            FromCustomerCombo.Name = "FromCustomerCombo";
+            FromCustomerCombo.RightToLeft = RightToLeft.Yes;
+            FromCustomerCombo.Size = new Size(227, 33);
+            FromCustomerCombo.TabIndex = 79;
+            FromCustomerCombo.SelectedIndexChanged += FromCustomerCombo_SelectedIndexChanged;
+            // 
+            // label7
+            // 
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(720, 91);
+            label7.Name = "label7";
+            label7.Size = new Size(72, 32);
+            label7.TabIndex = 80;
+            label7.Text = "از مشترک";
+            label7.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // CashableBlanceForm
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
@@ -335,5 +362,7 @@
         private Label label2;
         private ComboBox TransactionTypeCombo;
         private Label label1;
+        private Label label7;
+        private ComboBox FromCustomerCombo;
     }
 }

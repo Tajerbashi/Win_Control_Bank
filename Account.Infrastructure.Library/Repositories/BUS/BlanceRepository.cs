@@ -128,6 +128,7 @@ FROM
 	INNER JOIN BUS.Blances BL ON CT.ID = BL.CartID
 WHERE        
 	(B.IsDeleted = 0)
+AND (B.BankName NOT LIKE N'%:%')
 AND (CT.IsDeleted = 0) 
 AND (CS.IsDeleted = 0) 
 AND (BL.IsDeleted = 0)
