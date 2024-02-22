@@ -8,7 +8,16 @@ namespace Account.Application.Library.Repositories.BUS
 {
     public interface IBankRepository : IGenericRepository<Bank, BankDTO, BankView>, IBaseQueries
     {
+        /// <summary>
+        /// دریافت مدل بانک براساس نام بانک
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         BankDTO GetBankByName(string name);
+        /// <summary>
+        /// دریافت اسامی بانک بر اساس کلید و مقدار
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<KeyValue<long>> BankTitleValue();
 
     }
