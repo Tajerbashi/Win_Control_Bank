@@ -24,11 +24,11 @@ namespace Account.Presentation.UserControls
         {
             if (CartId == 0)
             {
-                GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.Show50LastTransactions(_blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
+                GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.Show50LastBankingTransactions(_blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
             }
             else
             {
-                GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.ShowAllByCartId(CartId, _blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
+                GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.ShowBankingTransactionsByCartID(CartId, _blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
             }
             var count = (_blanceRepository.ExecuteQuery(_blanceRepository.GetCount())).Rows[0].Field<int>(0);
             PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {_blanceRepository.Paging.Page + 1}";

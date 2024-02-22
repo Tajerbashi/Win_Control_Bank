@@ -72,8 +72,8 @@ namespace Account.Presentation.Forms
 
         private void CartNewForm_Load(object sender, EventArgs e)
         {
-            BankCombo = ComboBoxGenerator<long>.FillData(BankCombo, _bankRepository.TitleValue(), Convert.ToByte(BankCombo.Tag));
-            CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, _customerRepository.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
+            BankCombo = ComboBoxGenerator<long>.FillData(BankCombo, _bankRepository.BankTitleValue(), Convert.ToByte(BankCombo.Tag));
+            CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, _customerRepository.CustomerTitleValue(), Convert.ToByte(CustomerCombo.Tag));
             ExpireDate.UsePersianFormat = true;
             ExpireDate.Value = DateTime.Now;
         }

@@ -53,8 +53,8 @@ namespace Account.Presentation.Forms
         }
         private void FillComboBoxes()
         {
-            CustomerAccountCombo = ComboBoxGenerator<long>.FillData(CustomerAccountCombo, _unitOfWork.CustomerRepository.TitleValue(), Convert.ToByte(CustomerAccountCombo.Tag));
-            FromCustomerCombo = ComboBoxGenerator<long>.FillData(FromCustomerCombo, _unitOfWork.CustomerRepository.TitleValue(), Convert.ToByte(FromCustomerCombo.Tag));
+            CustomerAccountCombo = ComboBoxGenerator<byte>.FillData(CustomerAccountCombo, _unitOfWork.CustomerRepository.TitleValue(), Convert.ToByte(CustomerAccountCombo.Tag));
+            FromCustomerCombo = ComboBoxGenerator<byte>.FillData(FromCustomerCombo, _unitOfWork.CustomerRepository.TitleValue(), Convert.ToByte(FromCustomerCombo.Tag));
             TransactionTypeCombo = ComboBoxGenerator<byte>.FillData(TransactionTypeCombo, _unitOfWork.BlanceRepository.TitleValueTransactionType(), Convert.ToByte(TransactionTypeCombo.Tag));
             BlanceTypeCombo = ComboBoxGenerator<byte>.FillData(BlanceTypeCombo, _unitOfWork.BlanceRepository.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
             ActionTypeCombo = ComboBoxGenerator<byte>.FillData(ActionTypeCombo, _unitOfWork.BlanceRepository.TitleValueBlanceType(), Convert.ToByte(ActionTypeCombo.Tag));

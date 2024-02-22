@@ -26,7 +26,7 @@ namespace Account.Presentation.UserControls
 
         private void ShowDataGrid()
         {
-            CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, _customerRepository.TitleValue(), Convert.ToByte(CustomerCombo.Tag));
+            CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, _customerRepository.CustomerTitleValue(), Convert.ToByte(CustomerCombo.Tag));
             GridData.DataSource = _customerRepository.ExecuteQuery(_customerRepository.ShowAll(_customerRepository.Paging.Order(_customerRepository.Paging.Page)));
             var count = (_customerRepository.ExecuteQuery(_customerRepository.GetCount())).Rows[0].Field<int>(0); ;
             PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {_customerRepository.Paging.Page + 1}";

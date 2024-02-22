@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            NewTransactionBtn = new Button();
             ExitBtn = new Button();
             BankBtn = new Button();
             OnlineExchangeBtn = new Button();
@@ -53,6 +54,7 @@
             // 
             groupBox1.BackColor = Color.Transparent;
             groupBox1.BackgroundImageLayout = ImageLayout.None;
+            groupBox1.Controls.Add(NewTransactionBtn);
             groupBox1.Controls.Add(ExitBtn);
             groupBox1.Controls.Add(BankBtn);
             groupBox1.Controls.Add(OnlineExchangeBtn);
@@ -77,6 +79,25 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "مدیریت";
             // 
+            // NewTransactionBtn
+            // 
+            NewTransactionBtn.BackColor = Color.FromArgb(255, 128, 0);
+            NewTransactionBtn.Cursor = Cursors.Hand;
+            NewTransactionBtn.FlatAppearance.BorderColor = Color.FromArgb(192, 64, 0);
+            NewTransactionBtn.FlatAppearance.BorderSize = 2;
+            NewTransactionBtn.FlatAppearance.CheckedBackColor = Color.White;
+            NewTransactionBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(172, 0, 0);
+            NewTransactionBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
+            NewTransactionBtn.FlatStyle = FlatStyle.Flat;
+            NewTransactionBtn.Font = new Font("IRANSansWeb", 14.25F);
+            NewTransactionBtn.ForeColor = Color.White;
+            NewTransactionBtn.Location = new Point(10, 274);
+            NewTransactionBtn.Name = "NewTransactionBtn";
+            NewTransactionBtn.Size = new Size(234, 50);
+            NewTransactionBtn.TabIndex = 18;
+            NewTransactionBtn.Text = "تراکنش جدید";
+            NewTransactionBtn.UseVisualStyleBackColor = false;
+            // 
             // ExitBtn
             // 
             ExitBtn.BackColor = Color.OrangeRed;
@@ -100,17 +121,17 @@
             // 
             BankBtn.BackColor = Color.OrangeRed;
             BankBtn.Cursor = Cursors.Hand;
-            BankBtn.FlatAppearance.BorderColor = Color.DarkOrange;
+            BankBtn.FlatAppearance.BorderColor = Color.FromArgb(255, 80, 0);
             BankBtn.FlatAppearance.BorderSize = 2;
-            BankBtn.FlatAppearance.CheckedBackColor = Color.Salmon;
-            BankBtn.FlatAppearance.MouseDownBackColor = Color.Tomato;
-            BankBtn.FlatAppearance.MouseOverBackColor = Color.Tomato;
+            BankBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 20, 20);
+            BankBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            BankBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
             BankBtn.FlatStyle = FlatStyle.Flat;
-            BankBtn.Font = new Font("IRANSansWeb", 14.25F);
+            BankBtn.Font = new Font("IRANSansWeb", 12F);
             BankBtn.ForeColor = Color.White;
-            BankBtn.Location = new Point(130, 182);
+            BankBtn.Location = new Point(187, 182);
             BankBtn.Name = "BankBtn";
-            BankBtn.Size = new Size(114, 40);
+            BankBtn.Size = new Size(57, 86);
             BankBtn.TabIndex = 15;
             BankBtn.Text = "بانک";
             BankBtn.UseVisualStyleBackColor = false;
@@ -118,12 +139,12 @@
             // 
             // OnlineExchangeBtn
             // 
-            OnlineExchangeBtn.BackColor = Color.CornflowerBlue;
+            OnlineExchangeBtn.BackColor = Color.MidnightBlue;
             OnlineExchangeBtn.Cursor = Cursors.Hand;
-            OnlineExchangeBtn.FlatAppearance.BorderColor = Color.Gray;
-            OnlineExchangeBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 255, 255);
-            OnlineExchangeBtn.FlatAppearance.MouseDownBackColor = Color.RoyalBlue;
-            OnlineExchangeBtn.FlatAppearance.MouseOverBackColor = SystemColors.MenuHighlight;
+            OnlineExchangeBtn.FlatAppearance.BorderColor = Color.FromArgb(50, 60, 80);
+            OnlineExchangeBtn.FlatAppearance.CheckedBackColor = Color.White;
+            OnlineExchangeBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(50, 40, 80);
+            OnlineExchangeBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 80, 60);
             OnlineExchangeBtn.FlatStyle = FlatStyle.Flat;
             OnlineExchangeBtn.Font = new Font("IRANSansWeb", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             OnlineExchangeBtn.ForeColor = Color.White;
@@ -137,8 +158,7 @@
             // 
             // label1
             // 
-            label1.BackColor = Color.FromArgb(49, 48, 77);
-            label1.BorderStyle = BorderStyle.FixedSingle;
+            label1.BackColor = Color.Transparent;
             label1.Cursor = Cursors.SizeAll;
             label1.FlatStyle = FlatStyle.Flat;
             label1.Font = new Font("IRANSansWeb", 17.9999981F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -208,7 +228,7 @@
             BalanceBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             BalanceBtn.FlatStyle = FlatStyle.Flat;
             BalanceBtn.ForeColor = Color.White;
-            BalanceBtn.Location = new Point(32, 398);
+            BalanceBtn.Location = new Point(32, 499);
             BalanceBtn.Name = "BalanceBtn";
             BalanceBtn.Size = new Size(190, 40);
             BalanceBtn.TabIndex = 6;
@@ -226,7 +246,7 @@
             TaransactionBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             TaransactionBtn.FlatStyle = FlatStyle.Flat;
             TaransactionBtn.ForeColor = Color.White;
-            TaransactionBtn.Location = new Point(32, 306);
+            TaransactionBtn.Location = new Point(32, 407);
             TaransactionBtn.Name = "TaransactionBtn";
             TaransactionBtn.Size = new Size(190, 40);
             TaransactionBtn.TabIndex = 5;
@@ -244,7 +264,7 @@
             CashMoneyBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             CashMoneyBtn.FlatStyle = FlatStyle.Flat;
             CashMoneyBtn.ForeColor = Color.White;
-            CashMoneyBtn.Location = new Point(32, 352);
+            CashMoneyBtn.Location = new Point(32, 453);
             CashMoneyBtn.Name = "CashMoneyBtn";
             CashMoneyBtn.Size = new Size(190, 40);
             CashMoneyBtn.TabIndex = 4;
@@ -262,7 +282,7 @@
             CalculateBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             CalculateBtn.FlatStyle = FlatStyle.Flat;
             CalculateBtn.ForeColor = Color.White;
-            CalculateBtn.Location = new Point(32, 443);
+            CalculateBtn.Location = new Point(32, 544);
             CalculateBtn.Name = "CalculateBtn";
             CalculateBtn.Size = new Size(190, 40);
             CalculateBtn.TabIndex = 3;
@@ -280,7 +300,7 @@
             ReportBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             ReportBtn.FlatStyle = FlatStyle.Flat;
             ReportBtn.ForeColor = Color.White;
-            ReportBtn.Location = new Point(32, 489);
+            ReportBtn.Location = new Point(32, 590);
             ReportBtn.Name = "ReportBtn";
             ReportBtn.Size = new Size(190, 40);
             ReportBtn.TabIndex = 2;
@@ -290,19 +310,19 @@
             // 
             // UserBtn
             // 
-            UserBtn.BackColor = Color.CornflowerBlue;
+            UserBtn.BackColor = Color.OrangeRed;
             UserBtn.Cursor = Cursors.Hand;
-            UserBtn.FlatAppearance.BorderColor = Color.FromArgb(128, 128, 255);
+            UserBtn.FlatAppearance.BorderColor = Color.FromArgb(255, 80, 0);
             UserBtn.FlatAppearance.BorderSize = 2;
-            UserBtn.FlatAppearance.CheckedBackColor = Color.Black;
-            UserBtn.FlatAppearance.MouseDownBackColor = Color.RoyalBlue;
-            UserBtn.FlatAppearance.MouseOverBackColor = Color.CornflowerBlue;
+            UserBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 20, 20);
+            UserBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            UserBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
             UserBtn.FlatStyle = FlatStyle.Flat;
-            UserBtn.Font = new Font("IRANSansWeb", 14.25F);
+            UserBtn.Font = new Font("IRANSansWeb", 12F);
             UserBtn.ForeColor = Color.White;
-            UserBtn.Location = new Point(10, 228);
+            UserBtn.Location = new Point(10, 182);
             UserBtn.Name = "UserBtn";
-            UserBtn.Size = new Size(234, 50);
+            UserBtn.Size = new Size(105, 86);
             UserBtn.TabIndex = 1;
             UserBtn.Text = "مشترکین";
             UserBtn.UseVisualStyleBackColor = false;
@@ -312,17 +332,17 @@
             // 
             CartBtn.BackColor = Color.OrangeRed;
             CartBtn.Cursor = Cursors.Hand;
-            CartBtn.FlatAppearance.BorderColor = Color.DarkOrange;
+            CartBtn.FlatAppearance.BorderColor = Color.FromArgb(255, 80, 0);
             CartBtn.FlatAppearance.BorderSize = 2;
-            CartBtn.FlatAppearance.CheckedBackColor = Color.Salmon;
-            CartBtn.FlatAppearance.MouseDownBackColor = Color.Tomato;
-            CartBtn.FlatAppearance.MouseOverBackColor = Color.Tomato;
+            CartBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 20, 20);
+            CartBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            CartBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
             CartBtn.FlatStyle = FlatStyle.Flat;
-            CartBtn.Font = new Font("IRANSansWeb", 14.25F);
+            CartBtn.Font = new Font("IRANSansWeb", 12F);
             CartBtn.ForeColor = Color.White;
-            CartBtn.Location = new Point(10, 182);
+            CartBtn.Location = new Point(121, 182);
             CartBtn.Name = "CartBtn";
-            CartBtn.Size = new Size(114, 40);
+            CartBtn.Size = new Size(60, 86);
             CartBtn.TabIndex = 0;
             CartBtn.Text = "کارت";
             CartBtn.UseVisualStyleBackColor = false;
@@ -405,5 +425,6 @@
         private ProgressBar progressBar2;
         private ProgressBar progressBar3;
         private Panel MainPanel;
+        private Button NewTransactionBtn;
     }
 }
