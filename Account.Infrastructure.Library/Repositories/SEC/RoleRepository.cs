@@ -37,13 +37,9 @@ namespace Account.Application.Library.Repositories.SEC
             throw new NotImplementedException();
         }
 
-        public IEnumerable<KeyValue<long>> TitleValue()
+        public IEnumerable<KeyValue<byte>> TitleValue()
         {
-            return Context.Banks.Select(x => new KeyValue<long>
-            {
-                Key = x.BankName,
-                Value = x.ID
-            });
+            throw new NotImplementedException();
         }
     }
 }

@@ -170,15 +170,7 @@ ORDER BY C.ID DESC
             });
         }
 
-        public IEnumerable<KeyValue<long>> TitleValue()
-        {
-            return Context.Carts.Select(x => new KeyValue<long>
-            {
-                Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
-                Value = x.ID
-            });
-        }
-
+     
         public CartDTO GetCartByAccountNumber(string number)
         {
             var entity = Context.Carts.Where(x => x.AccountNumber.Equals(number) && !x.IsDeleted).FirstOrDefault();
@@ -214,6 +206,11 @@ ORDER BY C.ID DESC
                     Value=ct.ID
                 });
             return result;
+        }
+
+        public IEnumerable<KeyValue<byte>> TitleValue()
+        {
+            throw new NotImplementedException();
         }
     }
 }

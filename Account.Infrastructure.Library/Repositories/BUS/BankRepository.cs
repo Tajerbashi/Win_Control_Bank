@@ -17,6 +17,15 @@ namespace Account.Infrastructure.Library.Repositories.BUS
         {
         }
 
+        public IEnumerable<KeyValue<long>> BankTitleValue()
+        {
+            return Context.Banks.Where(x => !x.IsDeleted && !x.BankName.Contains(":")).Select(x => new KeyValue<long>
+            {
+                Key = x.BankName,
+                Value = x.ID
+            }).OrderByDescending(x => x.Key);
+        }
+
         public BankDTO GetBankByName(string name)
         {
             var result = Context.Banks.Where(c => c.BankName.Equals(name.Trim())).FirstOrDefault();
@@ -55,13 +64,9 @@ ORDER BY ID DESC
             return null;
         }
 
-        public IEnumerable<KeyValue<long>> TitleValue()
+        public IEnumerable<KeyValue<byte>> TitleValue()
         {
-            return Context.Banks.Where(b => !b.IsDeleted && b.IsActive && !b.BankName.Contains(":")).Select(x => new KeyValue<long>
-            {
-                Key = x.BankName,
-                Value = x.ID
-            });
+            return null;
         }
     }
 }

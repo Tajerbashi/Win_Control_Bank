@@ -1,4 +1,5 @@
-﻿using Account.Application.Library.Models.Controls;
+﻿using Account.Application.Library.BaseService;
+using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.RPT;
 using Account.Application.Library.Models.Views.RPT;
 using Account.Domain.Library.Entities.RPT;
@@ -37,13 +38,9 @@ namespace Account.Application.Library.Repositories.RPT
             throw new NotImplementedException();
         }
 
-        public IEnumerable<KeyValue<long>> TitleValue()
+        public IEnumerable<KeyValue<byte>> TitleValue()
         {
-            return Context.Banks.Select(x => new KeyValue<long>
-            {
-                Key = x.BankName,
-                Value = x.ID
-            });
+            throw new NotImplementedException();
         }
     }
 }

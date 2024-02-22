@@ -36,7 +36,7 @@ namespace Account.Application.Library.Repositories.LOG
             throw new NotImplementedException();
         }
 
-        public IEnumerable<KeyValue<long>> TitleValue()
+        public IEnumerable<KeyValue<byte>> TitleValue()
         {
             throw new NotImplementedException();
         }

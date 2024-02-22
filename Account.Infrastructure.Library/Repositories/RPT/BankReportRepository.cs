@@ -36,13 +36,9 @@ namespace Account.Application.Library.Repositories.RPT
             return (@"");
         }
 
-        public IEnumerable<KeyValue<long>> TitleValue()
+        public IEnumerable<KeyValue<byte>> TitleValue()
         {
-            return Context.Banks.Select(x => new KeyValue<long>
-            {
-                Key = x.BankName,
-                Value = x.ID
-            });
+            throw new System.NotImplementedException();
         }
     }
 }

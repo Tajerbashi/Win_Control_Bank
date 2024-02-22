@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Account.Infrastructure.Library.Repositories.BUS
 {
@@ -59,18 +60,24 @@ WHERE IsDeleted = 0
             throw new NotImplementedException();
         }
 
-        public IEnumerable<KeyValue<long>> TitleValue()
+        public IEnumerable<KeyValue<long>> CustomerNameHaveMainCartAndBlance()
         {
-            return Context.Customers.Where(x => !x.IsDeleted).Select(x => new KeyValue<long>
+            var data = Context.Customers.Include(cus => cus.Carts).ThenInclude(bl => bl.Blances).ToList();
+            return data.Where(x => !x.IsDeleted).Select(x => new KeyValue<long>
             {
                 Key = x.FullName,
                 Value = x.ID
             }).OrderByDescending(x => x.Key);
         }
-        public IEnumerable<KeyValue<long>> CustomerNameHaveMainCartAndBlance()
+
+        public IEnumerable<KeyValue<byte>> TitleValue()
         {
-            var data = Context.Customers.Include(cus => cus.Carts).ThenInclude(bl => bl.Blances).ToList();
-            return data.Where(x => !x.IsDeleted).Select(x => new KeyValue<long>
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<KeyValue<long>> CustomerTitleValue()
+        {
+            return Context.Customers.Where(x => !x.IsDeleted).Select(x => new KeyValue<long>
             {
                 Key = x.FullName,
                 Value = x.ID
