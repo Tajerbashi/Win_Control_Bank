@@ -56,13 +56,12 @@ namespace Account.Presentation.Forms
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
-        private void timer_Tick(object sender, EventArgs e)
-        {
-        }
+
 
         private void TransactionNewForm_Load(object sender, EventArgs e)
         {
             UpdateComboBoxes();
+            ProgressHandler(10);
         }
         private void CloseBtn_Click(object sender, EventArgs e)
         {
@@ -88,7 +87,7 @@ namespace Account.Presentation.Forms
                             try
                             {
                                 //var CartChildData = Pattern.CartRepository.GetById(fromAccountId);
-                                if (_cartRepository.ValidBankBlance(fromAccountId, cash))
+                                if (_cartRepository.ValidBlancForTransaction(fromAccountId, cash))
                                 {
                                     var lastBlance = _blanceRepository.GetBankingBlanceByCartId(fromAccountId);
                                     var blanceDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,TransactionType.Harvesting);
@@ -114,7 +113,7 @@ namespace Account.Presentation.Forms
                         {
                             var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
                             var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
-                            if (_cartRepository.ValidBankBlance(fromAccountId, cash))
+                            if (_cartRepository.ValidBlancForTransaction(fromAccountId, cash))
                             {
                                 _unitOfWork.BeginTransaction();
                                 //  کسر از حساب مبداء
@@ -156,10 +155,10 @@ namespace Account.Presentation.Forms
                                 //  From Account
                                 if (fromAccountId > 0)
                                 {
-                                    if (_cartRepository.ValidBankBlance(fromAccountId, cash))
+                                    if (_cartRepository.ValidBlancForTransaction(fromAccountId, cash))
                                     {
                                         var lastBlance = _blanceRepository.GetBankingBlanceByCartId(fromAccountId);
-                                    _blanceRepository.DisActiveLastBankingBlanceOfCartById(fromAccountId);
+                                        _blanceRepository.DisActiveLastBankingBlanceOfCartById(fromAccountId);
                                         var BlanceDTO = this.BlanceDTO(lastBlance,cash,fromAccountId,TransactionType.Harvesting);
                                         _blanceRepository.Insert(BlanceDTO);
                                     }
@@ -207,53 +206,56 @@ namespace Account.Presentation.Forms
         }
         private void TransactionTypeCombo_SelectedValueChanged(object sender, EventArgs e)
         {
-            var type = ((KeyValue<long>)TransactionTypeCombo.SelectedItem).Value;
-            MSG.Text = ((KeyValue<long>)TransactionTypeCombo.SelectedItem).Key;
-            switch (type)
+            var type = (TransactionTypeCombo.SelectedItem as KeyValue<byte>);
+            //MSG.Text = ((KeyValue<byte>)TransactionTypeCombo.SelectedItem).Key;
+            if (type != null)
             {
-                case 1:
-                    {
-                        label5.Visible = false;
-                        ToCustomerCombo.Visible = false;
-                        label7.Visible = false;
-                        ToAccountCombo.Visible = false;
-                        NewDataBtn.Visible = false;
-                        TransactionKindCombo.SelectedIndex = 2;
-                        BlanceTypeCombo.SelectedIndex = 2;
-                        NewDataPanel.Visible = false;
-                        break;
-                    }
-                case 2:
-                    {
-                        label5.Visible = true;
-                        ToCustomerCombo.Visible = true;
-                        label7.Visible = true;
-                        ToAccountCombo.Visible = true;
-                        NewDataBtn.Visible = true;
-                        TransactionKindCombo.SelectedIndex = 2;
-                        NewDataPanel.Visible = false;
-                        break;
-                    }
-                case 3:
-                    {
-                        label5.Visible = true;
-                        ToCustomerCombo.Visible = true;
-                        label7.Visible = true;
-                        ToAccountCombo.Visible = true;
-                        NewDataBtn.Visible = true;
-                        TransactionKindCombo.SelectedIndex = 1;
-                        BlanceTypeCombo.SelectedIndex = 2;
-                        break;
-                    }
-                default:
-                    {
-                        MSG.Text = "هنوز هیچ نوع تراکنشی تایید نشده است";
-                        label5.Visible = false;
-                        ToCustomerCombo.Visible = false;
-                        label7.Visible = false;
-                        ToAccountCombo.Visible = false;
-                        break;
-                    }
+                switch (type.Value)
+                {
+                    case 1:
+                        {
+                            label5.Visible = false;
+                            ToCustomerCombo.Visible = false;
+                            label7.Visible = false;
+                            ToAccountCombo.Visible = false;
+                            NewDataBtn.Visible = false;
+                            TransactionKindCombo.SelectedIndex = 2;
+                            BlanceTypeCombo.SelectedIndex = 2;
+                            NewDataPanel.Visible = false;
+                            break;
+                        }
+                    case 2:
+                        {
+                            label5.Visible = true;
+                            ToCustomerCombo.Visible = true;
+                            label7.Visible = true;
+                            ToAccountCombo.Visible = true;
+                            NewDataBtn.Visible = true;
+                            TransactionKindCombo.SelectedIndex = 2;
+                            NewDataPanel.Visible = false;
+                            break;
+                        }
+                    case 3:
+                        {
+                            label5.Visible = true;
+                            ToCustomerCombo.Visible = true;
+                            label7.Visible = true;
+                            ToAccountCombo.Visible = true;
+                            NewDataBtn.Visible = true;
+                            TransactionKindCombo.SelectedIndex = 1;
+                            BlanceTypeCombo.SelectedIndex = 2;
+                            break;
+                        }
+                    default:
+                        {
+                            MSG.Text = "هنوز هیچ نوع تراکنشی تایید نشده است";
+                            label5.Visible = false;
+                            ToCustomerCombo.Visible = false;
+                            label7.Visible = false;
+                            ToAccountCombo.Visible = false;
+                            break;
+                        }
+                }
             }
         }
         private void ToCustomerCombo_SelectedValueChanged(object sender, EventArgs e)
@@ -373,13 +375,13 @@ namespace Account.Presentation.Forms
             TransactionKindCombo = ComboBoxGenerator<byte>.FillData(TransactionKindCombo, _blanceRepository.TitleValueTransactionType(), Convert.ToByte(TransactionKindCombo.Tag));
 
             FromCustomerCombo = ComboBoxGenerator<long>.FillData(FromCustomerCombo, _cartRepository.TitleValuesParent(), Convert.ToByte(FromCustomerCombo.Tag));
-
-            ToCustomerCombo = ComboBoxGenerator<long>.FillData(ToCustomerCombo, _cartRepository.TitleValuesAllParentCart(), Convert.ToByte(ToCustomerCombo.Tag));
+            ToCustomerCombo = ComboBoxGenerator<long>.FillData(ToCustomerCombo, _cartRepository.TitleValuesParent(), Convert.ToByte(ToCustomerCombo.Tag));
 
             BlanceTypeCombo = ComboBoxGenerator<byte>.FillData(BlanceTypeCombo, _blanceRepository.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
         }
         private void ToCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ProgressHandler(5);
             ToCustomerLBL.Text = "";
             var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
             if (Id != 0)
@@ -390,6 +392,7 @@ namespace Account.Presentation.Forms
         }
         private void FromCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ProgressHandler(5);
             FromCustomerLBL.Text = "";
             var Id = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
             if (Id != 0)
@@ -473,9 +476,9 @@ namespace Account.Presentation.Forms
                 Key = Guid.NewGuid()
             };
         }
-
         private void ToAccountCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ProgressHandler(5);
             ToAccountLBL.Text = "";
             var Id = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
             if (Id != 0)
@@ -483,7 +486,6 @@ namespace Account.Presentation.Forms
                 ToAccountLBL.Text = _blanceRepository.GetBankingBlanceByCartId(Id)?.ToString("N");
             }
         }
-
         private void ClearCloseControl()
         {
             FromCustomerLBL.Text = string.Empty;
@@ -497,6 +499,31 @@ namespace Account.Presentation.Forms
             FormExtentions.ClearRichTextBox(this.Controls);
             FormExtentions.ClearTextBoxes(this.Controls);
             this.Close();
+        }
+
+        private void ProgressHandler(int a)
+        {
+            ProgressController.Value += a;
+        }
+
+        private void TransactionTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProgressHandler(10);
+        }
+
+        private void BlanceTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProgressHandler(10);
+        }
+
+        private void TransactionKindCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProgressHandler(10);
+        }
+
+        private void FromAccountCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProgressHandler(5);
         }
     }
 }

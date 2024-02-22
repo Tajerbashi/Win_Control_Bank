@@ -26,7 +26,7 @@ namespace Account.Presentation.UserControls
             GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.ShowAllCashableBlances(_blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
             var count = (_blanceRepository.ExecuteQuery(_blanceRepository.GetCount())).Rows[0].Field<int>(0); ;
             PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {_blanceRepository.Paging.Page + 1}";
-            CartCombo = ComboBoxGenerator<long>.FillData(CartCombo, _cartRepository.TitleValuesAllParentCart(), Convert.ToByte(CartCombo.Tag));
+            CartCombo = ComboBoxGenerator<long>.FillData(CartCombo, _cartRepository.TitleValuesParent(), Convert.ToByte(CartCombo.Tag));
         }
 
         private void CashMoneyUC_Load(object sender, EventArgs e)

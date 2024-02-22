@@ -24,7 +24,7 @@ namespace Account.Presentation.UserControls
             GridData.DataSource = _cartRepository.ExecuteQuery(_cartRepository.ShowAll(_cartRepository.Paging.Order(_cartRepository.Paging.Page)));
             var count = (_cartRepository.ExecuteQuery(_cartRepository.GetCount())).Rows[0].Field<int>(0); ;
             PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {_cartRepository.Paging.Page + 1}";
-            CartCombo = ComboBoxGenerator<long>.FillData(CartCombo, _cartRepository.TitleValuesAllParentCart(), Convert.ToByte(CartCombo.Tag));
+            CartCombo = ComboBoxGenerator<long>.FillData(CartCombo, _cartRepository.TitleValuesParent(), Convert.ToByte(CartCombo.Tag));
         }
 
         private void CartUC_Load(object sender, EventArgs e)

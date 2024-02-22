@@ -1,6 +1,7 @@
 ﻿using Account.Application.Library.Repositories.SEC;
 using Account.Common.Library.Utilities;
 using Account.Presentation.Extentions;
+using Account.Presentation.Forms;
 using Account.Presentation.UserControls;
 using System.Dynamic;
 using System.Runtime.InteropServices;
@@ -21,6 +22,7 @@ namespace Presentation
         private TransactionUC _transactionUC;
         private SettingUC _settingUC;
         private BlanceUC _blanceUC;
+        private TransactionNewForm _transactionForm;
 
         #region Code
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -54,7 +56,8 @@ namespace Presentation
             CashMoneyUC cashMoneyUC,
             TransactionUC transactionUC,
             SettingUC settingUC,
-            BlanceUC blanceUC
+            BlanceUC blanceUC,
+            TransactionNewForm transactionForm
             )
         {
             _userRepository = userRepository;
@@ -68,6 +71,7 @@ namespace Presentation
             _transactionUC = transactionUC;
             _settingUC = settingUC;
             _blanceUC = blanceUC;
+            _transactionForm = transactionForm;
             _loggerProvider.Log.Info($"ساعت ورود کاربر ادمین : {DateTimeUtility.ToPersionFormat(DateTime.Now)}");
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
@@ -200,6 +204,11 @@ namespace Presentation
                 MainPanel.Controls.Clear();
             }
             MainPanel.Controls.Add(_settingUC);
+        }
+
+        private void NewTransactionBtn_Click(object sender, EventArgs e)
+        {
+            _transactionForm.ShowDialog();
         }
     }
 }

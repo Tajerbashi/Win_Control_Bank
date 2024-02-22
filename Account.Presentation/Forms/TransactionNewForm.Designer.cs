@@ -35,14 +35,18 @@
             CloseBtn = new Button();
             SaveBtn = new Button();
             groupBox1 = new GroupBox();
+            ProgressController = new ProgressBar();
+            checkBox1 = new CheckBox();
+            comboBox1 = new ComboBox();
+            label11 = new Label();
+            ToAccountLBL = new Label();
+            ToCustomerLBL = new Label();
             label13 = new Label();
             label4 = new Label();
             CashTxt = new TextBox();
             DescTxt = new TextBox();
             NewDataBtn = new Button();
             NewDataPanel = new Panel();
-            ToCustomerLBL = new Label();
-            ToAccountLBL = new Label();
             label15 = new Label();
             label14 = new Label();
             SaveNewDataBtn = new Button();
@@ -72,7 +76,7 @@
             // 
             label3.BackColor = Color.FromArgb(49, 48, 77);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(12, 9);
+            label3.Location = new Point(9, 9);
             label3.Name = "label3";
             label3.Size = new Size(1226, 35);
             label3.TabIndex = 27;
@@ -81,10 +85,11 @@
             // 
             // MSG
             // 
-            MSG.ForeColor = Color.FromArgb(255, 192, 192);
-            MSG.Location = new Point(9, 583);
+            MSG.FlatStyle = FlatStyle.Flat;
+            MSG.ForeColor = Color.FromArgb(240, 236, 150);
+            MSG.Location = new Point(4, 581);
             MSG.Name = "MSG";
-            MSG.Size = new Size(1208, 32);
+            MSG.Size = new Size(1219, 38);
             MSG.TabIndex = 0;
             MSG.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -109,6 +114,7 @@
             TransactionTypeCombo.RightToLeft = RightToLeft.Yes;
             TransactionTypeCombo.Size = new Size(352, 33);
             TransactionTypeCombo.TabIndex = 0;
+            TransactionTypeCombo.SelectedIndexChanged += TransactionTypeCombo_SelectedIndexChanged;
             TransactionTypeCombo.SelectedValueChanged += TransactionTypeCombo_SelectedValueChanged;
             // 
             // CloseBtn
@@ -121,11 +127,11 @@
             CloseBtn.FlatAppearance.MouseOverBackColor = Color.Maroon;
             CloseBtn.FlatStyle = FlatStyle.Flat;
             CloseBtn.ForeColor = Color.White;
-            CloseBtn.Location = new Point(338, 546);
+            CloseBtn.Location = new Point(338, 542);
             CloseBtn.Margin = new Padding(4, 5, 4, 5);
             CloseBtn.Name = "CloseBtn";
             CloseBtn.Size = new Size(121, 32);
-            CloseBtn.TabIndex = 10;
+            CloseBtn.TabIndex = 11;
             CloseBtn.Text = "لغو عملیات";
             CloseBtn.UseVisualStyleBackColor = false;
             CloseBtn.Click += CloseBtn_Click;
@@ -140,10 +146,10 @@
             SaveBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             SaveBtn.FlatStyle = FlatStyle.Flat;
             SaveBtn.ForeColor = Color.White;
-            SaveBtn.Location = new Point(767, 546);
+            SaveBtn.Location = new Point(767, 542);
             SaveBtn.Name = "SaveBtn";
             SaveBtn.Size = new Size(121, 32);
-            SaveBtn.TabIndex = 9;
+            SaveBtn.TabIndex = 10;
             SaveBtn.Text = "ذخیره اطلاعات";
             SaveBtn.UseVisualStyleBackColor = false;
             SaveBtn.Click += SaveBtn_Click;
@@ -151,6 +157,10 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(ProgressController);
+            groupBox1.Controls.Add(checkBox1);
+            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Controls.Add(label11);
             groupBox1.Controls.Add(ToAccountLBL);
             groupBox1.Controls.Add(ToCustomerLBL);
             groupBox1.Controls.Add(label13);
@@ -179,11 +189,69 @@
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(TransactionTypeCombo);
             groupBox1.FlatStyle = FlatStyle.Popup;
-            groupBox1.Location = new Point(12, 47);
+            groupBox1.Location = new Point(9, 47);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(1226, 624);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
+            // 
+            // ProgressController
+            // 
+            ProgressController.Location = new Point(0, 1);
+            ProgressController.Name = "ProgressController";
+            ProgressController.Size = new Size(1226, 10);
+            ProgressController.TabIndex = 28;
+            // 
+            // checkBox1
+            // 
+            checkBox1.ForeColor = Color.White;
+            checkBox1.Location = new Point(9, 63);
+            checkBox1.Name = "checkBox1";
+            checkBox1.RightToLeft = RightToLeft.Yes;
+            checkBox1.Size = new Size(109, 33);
+            checkBox1.TabIndex = 4;
+            checkBox1.Text = "تراکنش فعال";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            comboBox1.BackColor = Color.FromArgb(240, 236, 229);
+            comboBox1.Cursor = Cursors.Hand;
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(120, 63);
+            comboBox1.Name = "comboBox1";
+            comboBox1.RightToLeft = RightToLeft.Yes;
+            comboBox1.Size = new Size(237, 33);
+            comboBox1.TabIndex = 3;
+            // 
+            // label11
+            // 
+            label11.ForeColor = Color.White;
+            label11.Location = new Point(262, 28);
+            label11.Name = "label11";
+            label11.Size = new Size(95, 32);
+            label11.TabIndex = 66;
+            label11.Text = "جنس تراکنش";
+            label11.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // ToAccountLBL
+            // 
+            ToAccountLBL.ForeColor = Color.FromArgb(240, 236, 150);
+            ToAccountLBL.Location = new Point(16, 170);
+            ToAccountLBL.Name = "ToAccountLBL";
+            ToAccountLBL.Size = new Size(253, 32);
+            ToAccountLBL.TabIndex = 61;
+            ToAccountLBL.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // ToCustomerLBL
+            // 
+            ToCustomerLBL.ForeColor = Color.FromArgb(240, 236, 150);
+            ToCustomerLBL.Location = new Point(620, 170);
+            ToCustomerLBL.Name = "ToCustomerLBL";
+            ToCustomerLBL.Size = new Size(253, 32);
+            ToCustomerLBL.TabIndex = 60;
+            ToCustomerLBL.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label13
             // 
@@ -214,20 +282,20 @@
             CashTxt.Name = "CashTxt";
             CashTxt.PlaceholderText = "مبلغ مورد نظر را وارد کنید";
             CashTxt.Size = new Size(550, 32);
-            CashTxt.TabIndex = 62;
+            CashTxt.TabIndex = 8;
             CashTxt.TextAlign = HorizontalAlignment.Center;
             // 
             // DescTxt
             // 
             DescTxt.BackColor = Color.FromArgb(240, 236, 150);
             DescTxt.BorderStyle = BorderStyle.FixedSingle;
-            DescTxt.Location = new Point(21, 474);
+            DescTxt.Location = new Point(21, 471);
             DescTxt.MaxLength = 500;
             DescTxt.Multiline = true;
             DescTxt.Name = "DescTxt";
             DescTxt.PlaceholderText = "توضیحات مورد نظر را وارد کنید";
             DescTxt.Size = new Size(1184, 64);
-            DescTxt.TabIndex = 8;
+            DescTxt.TabIndex = 9;
             DescTxt.TextAlign = HorizontalAlignment.Center;
             // 
             // NewDataBtn
@@ -243,7 +311,7 @@
             NewDataBtn.Location = new Point(16, 244);
             NewDataBtn.Name = "NewDataBtn";
             NewDataBtn.Size = new Size(33, 33);
-            NewDataBtn.TabIndex = 59;
+            NewDataBtn.TabIndex = 13;
             NewDataBtn.Text = "+";
             NewDataBtn.UseVisualStyleBackColor = false;
             NewDataBtn.Visible = false;
@@ -262,26 +330,8 @@
             NewDataPanel.Location = new Point(9, 286);
             NewDataPanel.Name = "NewDataPanel";
             NewDataPanel.Size = new Size(1208, 93);
-            NewDataPanel.TabIndex = 0;
+            NewDataPanel.TabIndex = 14;
             NewDataPanel.Visible = false;
-            // 
-            // ToCustomerLBL
-            // 
-            ToCustomerLBL.ForeColor = Color.FromArgb(255, 192, 192);
-            ToCustomerLBL.Location = new Point(620, 170);
-            ToCustomerLBL.Name = "ToCustomerLBL";
-            ToCustomerLBL.Size = new Size(253, 32);
-            ToCustomerLBL.TabIndex = 60;
-            ToCustomerLBL.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // ToAccountLBL
-            // 
-            ToAccountLBL.ForeColor = Color.FromArgb(255, 192, 192);
-            ToAccountLBL.Location = new Point(16, 170);
-            ToAccountLBL.Name = "ToAccountLBL";
-            ToAccountLBL.Size = new Size(253, 32);
-            ToAccountLBL.TabIndex = 61;
-            ToAccountLBL.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label15
             // 
@@ -323,7 +373,7 @@
             // 
             // NewCartNumberTxt
             // 
-            NewCartNumberTxt.BackColor = Color.FromArgb(240, 236, 229);
+            NewCartNumberTxt.BackColor = Color.FromArgb(240, 236, 150);
             NewCartNumberTxt.BorderStyle = BorderStyle.FixedSingle;
             NewCartNumberTxt.Location = new Point(159, 40);
             NewCartNumberTxt.MaxLength = 16;
@@ -335,7 +385,7 @@
             // 
             // NewBankNameTxt
             // 
-            NewBankNameTxt.BackColor = Color.FromArgb(240, 236, 229);
+            NewBankNameTxt.BackColor = Color.FromArgb(240, 236, 150);
             NewBankNameTxt.BorderStyle = BorderStyle.FixedSingle;
             NewBankNameTxt.Location = new Point(507, 40);
             NewBankNameTxt.MaxLength = 25;
@@ -347,7 +397,7 @@
             // 
             // NewCustomerNameTxt
             // 
-            NewCustomerNameTxt.BackColor = Color.FromArgb(240, 236, 229);
+            NewCustomerNameTxt.BackColor = Color.FromArgb(240, 236, 150);
             NewCustomerNameTxt.BorderStyle = BorderStyle.FixedSingle;
             NewCustomerNameTxt.Location = new Point(855, 40);
             NewCustomerNameTxt.MaxLength = 50;
@@ -369,7 +419,7 @@
             // 
             // FromAccountLBL
             // 
-            FromAccountLBL.ForeColor = Color.FromArgb(255, 192, 192);
+            FromAccountLBL.ForeColor = Color.FromArgb(240, 236, 150);
             FromAccountLBL.Location = new Point(16, 99);
             FromAccountLBL.Name = "FromAccountLBL";
             FromAccountLBL.Size = new Size(253, 32);
@@ -378,7 +428,7 @@
             // 
             // FromCustomerLBL
             // 
-            FromCustomerLBL.ForeColor = Color.FromArgb(255, 192, 192);
+            FromCustomerLBL.ForeColor = Color.FromArgb(240, 236, 150);
             FromCustomerLBL.Location = new Point(621, 99);
             FromCustomerLBL.Name = "FromCustomerLBL";
             FromCustomerLBL.Size = new Size(254, 32);
@@ -396,6 +446,7 @@
             TransactionKindCombo.RightToLeft = RightToLeft.Yes;
             TransactionKindCombo.Size = new Size(237, 33);
             TransactionKindCombo.TabIndex = 2;
+            TransactionKindCombo.SelectedIndexChanged += TransactionKindCombo_SelectedIndexChanged;
             // 
             // label2
             // 
@@ -417,7 +468,8 @@
             FromAccountCombo.Name = "FromAccountCombo";
             FromAccountCombo.RightToLeft = RightToLeft.Yes;
             FromAccountCombo.Size = new Size(584, 33);
-            FromAccountCombo.TabIndex = 4;
+            FromAccountCombo.TabIndex = 5;
+            FromAccountCombo.SelectedIndexChanged += FromAccountCombo_SelectedIndexChanged;
             FromAccountCombo.SelectedValueChanged += FromAccountCombo_SelectedValueChanged;
             // 
             // label9
@@ -451,6 +503,7 @@
             BlanceTypeCombo.RightToLeft = RightToLeft.Yes;
             BlanceTypeCombo.Size = new Size(237, 33);
             BlanceTypeCombo.TabIndex = 1;
+            BlanceTypeCombo.SelectedIndexChanged += BlanceTypeCombo_SelectedIndexChanged;
             // 
             // ToAccountCombo
             // 
@@ -462,7 +515,7 @@
             ToAccountCombo.Name = "ToAccountCombo";
             ToAccountCombo.RightToLeft = RightToLeft.Yes;
             ToAccountCombo.Size = new Size(585, 33);
-            ToAccountCombo.TabIndex = 6;
+            ToAccountCombo.TabIndex = 7;
             ToAccountCombo.Visible = false;
             ToAccountCombo.SelectedIndexChanged += ToAccountCombo_SelectedIndexChanged;
             // 
@@ -487,7 +540,7 @@
             FromCustomerCombo.Name = "FromCustomerCombo";
             FromCustomerCombo.RightToLeft = RightToLeft.Yes;
             FromCustomerCombo.Size = new Size(589, 33);
-            FromCustomerCombo.TabIndex = 3;
+            FromCustomerCombo.TabIndex = 4;
             FromCustomerCombo.SelectedIndexChanged += FromCustomerCombo_SelectedIndexChanged;
             // 
             // ToCustomerCombo
@@ -500,7 +553,7 @@
             ToCustomerCombo.Name = "ToCustomerCombo";
             ToCustomerCombo.RightToLeft = RightToLeft.Yes;
             ToCustomerCombo.Size = new Size(589, 33);
-            ToCustomerCombo.TabIndex = 5;
+            ToCustomerCombo.TabIndex = 6;
             ToCustomerCombo.Visible = false;
             ToCustomerCombo.SelectedIndexChanged += ToCustomerCombo_SelectedIndexChanged;
             ToCustomerCombo.SelectedValueChanged += ToCustomerCombo_SelectedValueChanged;
@@ -531,7 +584,7 @@
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(22, 26, 48);
-            ClientSize = new Size(1250, 683);
+            ClientSize = new Size(1244, 680);
             Controls.Add(label3);
             Controls.Add(groupBox1);
             Font = new Font("IRANSansWeb", 11.25F);
@@ -587,5 +640,9 @@
         private TextBox CashTxt;
         private Label label15;
         private Label label14;
+        private ComboBox comboBox1;
+        private Label label11;
+        private CheckBox checkBox1;
+        private ProgressBar ProgressController;
     }
 }

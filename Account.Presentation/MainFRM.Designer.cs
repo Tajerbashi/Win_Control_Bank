@@ -83,11 +83,11 @@
             // 
             NewTransactionBtn.BackColor = Color.FromArgb(255, 128, 0);
             NewTransactionBtn.Cursor = Cursors.Hand;
-            NewTransactionBtn.FlatAppearance.BorderColor = Color.FromArgb(192, 64, 0);
+            NewTransactionBtn.FlatAppearance.BorderColor = Color.FromArgb(150, 0, 0);
             NewTransactionBtn.FlatAppearance.BorderSize = 2;
-            NewTransactionBtn.FlatAppearance.CheckedBackColor = Color.White;
-            NewTransactionBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(172, 0, 0);
-            NewTransactionBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 0, 0);
+            NewTransactionBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(250, 0, 0);
+            NewTransactionBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(150, 0, 0);
+            NewTransactionBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(200, 0, 0);
             NewTransactionBtn.FlatStyle = FlatStyle.Flat;
             NewTransactionBtn.Font = new Font("IRANSansWeb", 14.25F);
             NewTransactionBtn.ForeColor = Color.White;
@@ -97,6 +97,7 @@
             NewTransactionBtn.TabIndex = 18;
             NewTransactionBtn.Text = "تراکنش جدید";
             NewTransactionBtn.UseVisualStyleBackColor = false;
+            NewTransactionBtn.Click += NewTransactionBtn_Click;
             // 
             // ExitBtn
             // 
@@ -119,13 +120,13 @@
             // 
             // BankBtn
             // 
-            BankBtn.BackColor = Color.OrangeRed;
+            BankBtn.BackColor = Color.FromArgb(220, 50, 0);
             BankBtn.Cursor = Cursors.Hand;
-            BankBtn.FlatAppearance.BorderColor = Color.FromArgb(255, 80, 0);
+            BankBtn.FlatAppearance.BorderColor = Color.FromArgb(150, 0, 0);
             BankBtn.FlatAppearance.BorderSize = 2;
-            BankBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 20, 20);
-            BankBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
-            BankBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            BankBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(250, 0, 0);
+            BankBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(150, 0, 0);
+            BankBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(200, 0, 0);
             BankBtn.FlatStyle = FlatStyle.Flat;
             BankBtn.Font = new Font("IRANSansWeb", 12F);
             BankBtn.ForeColor = Color.White;
@@ -139,9 +140,9 @@
             // 
             // OnlineExchangeBtn
             // 
-            OnlineExchangeBtn.BackColor = Color.MidnightBlue;
+            OnlineExchangeBtn.BackColor = Color.FromArgb(50, 60, 80);
             OnlineExchangeBtn.Cursor = Cursors.Hand;
-            OnlineExchangeBtn.FlatAppearance.BorderColor = Color.FromArgb(50, 60, 80);
+            OnlineExchangeBtn.FlatAppearance.BorderColor = Color.FromArgb(60, 10, 80);
             OnlineExchangeBtn.FlatAppearance.CheckedBackColor = Color.White;
             OnlineExchangeBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(50, 40, 80);
             OnlineExchangeBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 80, 60);
@@ -310,13 +311,13 @@
             // 
             // UserBtn
             // 
-            UserBtn.BackColor = Color.OrangeRed;
+            UserBtn.BackColor = Color.FromArgb(220, 50, 0);
             UserBtn.Cursor = Cursors.Hand;
-            UserBtn.FlatAppearance.BorderColor = Color.FromArgb(255, 80, 0);
+            UserBtn.FlatAppearance.BorderColor = Color.FromArgb(150, 0, 0);
             UserBtn.FlatAppearance.BorderSize = 2;
-            UserBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 20, 20);
-            UserBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
-            UserBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            UserBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(250, 0, 0);
+            UserBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(150, 0, 0);
+            UserBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(200, 0, 0);
             UserBtn.FlatStyle = FlatStyle.Flat;
             UserBtn.Font = new Font("IRANSansWeb", 12F);
             UserBtn.ForeColor = Color.White;
@@ -330,13 +331,13 @@
             // 
             // CartBtn
             // 
-            CartBtn.BackColor = Color.OrangeRed;
+            CartBtn.BackColor = Color.FromArgb(220, 50, 0);
             CartBtn.Cursor = Cursors.Hand;
-            CartBtn.FlatAppearance.BorderColor = Color.FromArgb(255, 80, 0);
+            CartBtn.FlatAppearance.BorderColor = Color.FromArgb(150, 0, 0);
             CartBtn.FlatAppearance.BorderSize = 2;
-            CartBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 20, 20);
-            CartBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
-            CartBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            CartBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(250, 0, 0);
+            CartBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(150, 0, 0);
+            CartBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(200, 0, 0);
             CartBtn.FlatStyle = FlatStyle.Flat;
             CartBtn.Font = new Font("IRANSansWeb", 12F);
             CartBtn.ForeColor = Color.White;
