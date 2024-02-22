@@ -5,6 +5,7 @@ using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Entities.BUS;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
+using Account.Infrastructure.Library.Repositories.BUS.Queries;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -19,20 +20,7 @@ namespace Account.Infrastructure.Library.Repositories.BUS
 
         public string GetCount()
         {
-            return (@"
-SELECT   
-	COUNT(B.ID)
-FROM
-	BUS.Banks B
-	INNER JOIN BUS.Carts CT ON B.ID = CT.BankID 
-	INNER JOIN BUS.Customers CS ON CT.CustomerID = CS.ID 
-	INNER JOIN BUS.Blances BL ON CT.ID = BL.CartID
-WHERE        
-	(B.IsDeleted = 0)
-AND (CT.IsDeleted = 0) 
-AND (CS.IsDeleted = 0) 
-AND (BL.IsDeleted = 0)
-");
+            return BlanceQueries.GetCount();
         }
         public IEnumerable<KeyValue<byte>> TitleValueBlanceType()
         {
@@ -64,44 +52,7 @@ AND (BL.IsDeleted = 0)
         }
         public string ShowAllCashableBlances(string paging)
         {
-            return ($@"
-SELECT   
-	BL.ID AS آیدی, 
-	B.BankName AS [نام بانک], 
-	CT.AccountNumber AS [شماره کارت], 
-	CS.FullName AS [مالک حساب], 
-	(
-		CASE BL.BlanceType
-			WHEN 1 THEN N'نقدی'
-			WHEN 2 THEN N'بانکی'
-			ELSE N'نامعلوم'
-		END
-	) AS [نوع حساب], 
-	(
-		CASE BL.TransactionType
-			WHEN 1 THEN N'واریزی'
-			WHEN 2 THEN N'برداشت'
-			ELSE N''
-			END
-	) AS [نوع تراکنش],
-	FORMAT(CAST(BL.OldBlanceCash as bigint),'###,###,###') AS [موجودی قبلی],
-	FORMAT(CAST(BL.TransactionCash as bigint),'###,###,###') AS [مبلغ تراکنش], 
-	FORMAT(CAST(BL.NewBlanceCash as bigint),'###,###,###') AS [موجودی جدید],
-    BL.Description AS [توضیحات]
-
-FROM
-	BUS.Banks B
-	INNER JOIN BUS.Carts CT ON B.ID = CT.BankID 
-	INNER JOIN BUS.Customers CS ON CT.CustomerID = CS.ID 
-	INNER JOIN BUS.Blances BL ON CT.ID = BL.CartID AND BL.BlanceType = 1
-WHERE        
-	(B.IsDeleted = 0)
-AND (CT.IsDeleted = 0) 
-AND (CS.IsDeleted = 0) 
-AND (BL.IsDeleted = 0)
-ORDER BY BL.ID DESC
-{paging}
-");
+            return BlanceQueries.ShowAllCashableBlances(paging);
         }
 
         public string Show50LastCashableTransactions(string paging)
@@ -121,7 +72,7 @@ ORDER BY BL.ID DESC
 
         public string Show50LastBankingTransactions(string paging)
         {
-            throw new NotImplementedException();
+            return BlanceQueries.Show50LastBankingTransactions(paging);
         }
 
         public string ShowAllBankingBlances(string paging)

@@ -5,6 +5,7 @@ using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Entities.BUS;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
+using Account.Infrastructure.Library.Repositories.BUS.Queries;
 using AutoMapper;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace Account.Infrastructure.Library.Repositories.BUS
 
         public string GetCount()
         {
-            return (@$"SELECT  COUNT(*) FROM    BUS.Banks WHERE   (IsDeleted = 0)");
+            return BankQueries.GetCount();
         }
 
         public string Search(string value)
@@ -44,19 +45,7 @@ namespace Account.Infrastructure.Library.Repositories.BUS
 
         public string ShowAll(string paging)
         {
-            return (@$"
-SELECT        
-ID AS آیدی, 
-BankName AS [نام بانک], 
-FORMAT(CreateDate,'yyyy-mm-dd','fa') AS [تاریخ ثبت], 
-UpdateDate AS [تاریخ ویرایش], 
-CASE IsActive WHEN 1 THEN N'فعال' ELSE N'غیر فعال' END AS وضعیت
-FROM BUS.Banks
-WHERE (IsDeleted = 0)
-AND BankName NOT LIKE N'%:%'
-ORDER BY ID DESC 
-{paging}
-");
+            return BankQueries.ShowAll(paging);
         }
 
         public string ShowFromTo(string from, string to)

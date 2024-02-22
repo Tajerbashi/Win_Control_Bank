@@ -5,6 +5,7 @@ using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Entities.BUS;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
+using Account.Infrastructure.Library.Repositories.BUS.Queries;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -22,11 +23,7 @@ namespace Account.Infrastructure.Library.Repositories.BUS
 
         public string GetCount()
         {
-            return (@"
-SELECT  COUNT(*)
-FROM    BUS.Customers
-WHERE   IsDeleted = 0
-");
+            return CustomerQueries.GetCount();
         }
 
         public CustomerDTO GetCustomerByName(string name)
@@ -42,17 +39,7 @@ WHERE   IsDeleted = 0
 
         public string ShowAll(string paging)
         {
-            return (@"
-SELECT       
-    ID AS [آیدی], 
-    FullName AS [نام کامل], 
-    FORMAT(CreateDate,'yyyy-mm-dd','fa') AS [تاریخ ثبت], 
-    UpdateDate AS [آخرین ویرایش],   
-    CASE IsActive WHEN 1 THEN N'فعال' ELSE N'غیر فعال' END AS [وضعیت],
-    Picture AS [تصویر]
-FROM            BUS.Customers
-WHERE IsDeleted = 0
-");
+            return CustomerQueries.ShowAll(paging);
         }
 
         public string ShowFromTo(string from, string to)
