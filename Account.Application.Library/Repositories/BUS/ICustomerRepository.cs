@@ -10,5 +10,6 @@ namespace Account.Application.Library.Repositories.BUS
     {
         CustomerDTO GetCustomerByName(string name);
         IEnumerable<KeyValue<long>> CustomerNameHaveMainCartAndBlance();
+        IEnumerable<KeyValue<long>> CustomerTitleValue();
     }
 }
