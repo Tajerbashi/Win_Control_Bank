@@ -211,16 +211,17 @@
             TCustomerCombo.Location = new Point(55, 246);
             TCustomerCombo.Name = "TCustomerCombo";
             TCustomerCombo.RightToLeft = RightToLeft.Yes;
-            TCustomerCombo.Size = new Size(428, 33);
+            TCustomerCombo.Size = new Size(416, 33);
             TCustomerCombo.TabIndex = 70;
             TCustomerCombo.Visible = false;
+            TCustomerCombo.SelectedIndexChanged += TCustomerCombo_SelectedIndexChanged;
             // 
             // L6
             // 
             L6.ForeColor = Color.White;
-            L6.Location = new Point(479, 246);
+            L6.Location = new Point(477, 246);
             L6.Name = "L6";
-            L6.Size = new Size(121, 32);
+            L6.Size = new Size(123, 32);
             L6.TabIndex = 69;
             L6.Text = "به حساب مشترک";
             L6.TextAlign = ContentAlignment.MiddleRight;
@@ -238,6 +239,7 @@
             FCustomerCombo.Size = new Size(476, 33);
             FCustomerCombo.TabIndex = 68;
             FCustomerCombo.Visible = false;
+            FCustomerCombo.SelectedIndexChanged += FCustomerCombo_SelectedIndexChanged;
             // 
             // L5
             // 

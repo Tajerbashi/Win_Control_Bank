@@ -62,13 +62,22 @@ namespace Account.Infrastructure.Library.Repositories.BUS
 
         public double? GetCashableBlanceByCartId(long cartId)
         {
-            var cart = Context.Blances.Where(x => x.CartID == cartId && !x.IsDeleted && x.BlanceType == Domain.Library.Enums.BlanceType.Cashable && x.IsActive).LastOrDefault();
+            var cart = Context.Blances.Where(x => x.CartID == cartId && !x.IsDeleted && x.BlanceType == Domain.Library.Enums.BlanceType.Cashable && x.IsActive).OrderByDescending(x => x.ID).FirstOrDefault();
+            if (cart == null)
+            {
+                return 0;
+            }
             return cart.NewBlanceCash;
         }
 
         public void DisActiveLastCashableBlanceOfCartById(long cartId)
         {
-            var cart = Context.Blances.Where(x => x.CartID == cartId && !x.IsDeleted && x.BlanceType == Domain.Library.Enums.BlanceType.Cashable && x.IsActive).LastOrDefault();
+            var cart = Context.Blances.Where(x => x.CartID == cartId && !x.IsDeleted && x.BlanceType == Domain.Library.Enums.BlanceType.Cashable && x.IsActive)
+                .OrderByDescending(x => x.ID).FirstOrDefault();
+            if (cart == null)
+            {
+                return;
+            }
             cart.IsActive = false;
             base.Save();
         }

@@ -47,9 +47,9 @@ namespace Account.Infrastructure.Library.Repositories.BUS
 
         public IEnumerable<KeyValue<long>> TitleValuesCashableParent()
         {
-            return Context.Carts.Where(x => x.ParentID == null && !x.ShabaAccountNumber.Contains("Cashable") && x.CartType == Account.Domain.Library.Enums.CartType.Main).Select(x => new KeyValue<long>
+            return Context.Carts.Where(x => x.ParentID == null && x.ShabaAccountNumber.Contains("Cashable") && x.CartType == Account.Domain.Library.Enums.CartType.Main).Select(x => new KeyValue<long>
             {
-                Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Key = ($@"حساب نقدی مشترک - {x.Customer.FullName}"),
                 Value = x.ID
             });
         }
