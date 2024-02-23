@@ -46,8 +46,7 @@ namespace Account.Infrastructure.Library.Repositories.BUS
                 new KeyValue<byte> { Value = 1 ,Key = "خرید از کارت"},
                 new KeyValue<byte> { Value = 2 ,Key = "خرید نقدی"},
                 new KeyValue<byte> { Value = 3 ,Key = "کارت به کارت"},
-                new KeyValue<byte> { Value = 4 ,Key = "برداشت نقدی"},
-                new KeyValue<byte> { Value = 5 ,Key = "واریز به حساب نقدی"},
+                new KeyValue<byte> { Value = 4 ,Key = "برداشت نقدی از کارت واریز به حساب نقدی"},
             };
         }
         public string ShowAllCashableBlances(string paging)

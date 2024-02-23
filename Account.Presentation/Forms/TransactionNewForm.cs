@@ -8,6 +8,7 @@ using Account.Common.Library.Extentions;
 using Account.Application.Library.Repositories.BUS;
 using Account.Application.Library.Patterns;
 using Account.Presentation.Extentions;
+using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Account.Presentation.Forms
 {
@@ -71,260 +72,26 @@ namespace Account.Presentation.Forms
         {
             TransactionID = Guid.NewGuid();
             var type = ((KeyValue<long>)TransactionTypeCombo.SelectedItem).Value;
-            if (TransactionValidation(type))
-            {
-                //var fromCartId = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
-                var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
-                var cash = Convert.ToDouble(CashTxt.Text);
-
-                switch (type)
-                {
-
-                    case 1: // خرید از کارت
-                        {
-                            //var CartData = unitOfWork.CartRepository.GetById(fromCartId);
-                            _unitOfWork.BeginTransaction();
-                            try
-                            {
-                                //var CartChildData = Pattern.CartRepository.GetById(fromAccountId);
-                                if (_cartRepository.ValidBlancForTransaction(fromAccountId, cash))
-                                {
-                                    var lastBlance = _blanceRepository.GetBankingBlanceByCartId(fromAccountId);
-                                    var blanceDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,TransactionType.Harvesting);
-                                    _blanceRepository.DisActiveLastBankingBlanceOfCartById(blanceDto.CartID);
-                                    blanceDto.ID = _blanceRepository.Insert(blanceDto);
-                                    _unitOfWork.Commit();
-                                    ClearCloseControl();
-                                }
-                                else
-                                {
-                                    MSG.Text = $"موجودی کافی نیست و این تراکنش انجام نمیشود";
-                                }
-
-                            }
-                            catch
-                            {
-                                _unitOfWork.Rollback();
-                                throw;
-                            }
-                            break;
-                        }
-                    case 2: //  کارت به کارت
-                        {
-                            var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
-                            var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
-                            if (_cartRepository.ValidBlancForTransaction(fromAccountId, cash))
-                            {
-                                _unitOfWork.BeginTransaction();
-                                //  کسر از حساب مبداء
-                                try
-                                {
-                                    var lastBlance = _blanceRepository.GetBankingBlanceByCartId(fromAccountId);
-                                    var fromAccountDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,TransactionType.Harvesting);
-                                    _blanceRepository.DisActiveLastBankingBlanceOfCartById(fromAccountDto.CartID);
-                                    fromAccountDto.ID = _blanceRepository.Insert(fromAccountDto);
-                                    //  اضافه به حساب مقصد
-                                    var toCartlastBlance = _blanceRepository.GetBankingBlanceByCartId(toCartAccountId);
-                                    var toAccountDto = BlanceDTO(toCartlastBlance,Convert.ToDouble(cash),toCartAccountId,TransactionType.Settlemant);
-                                    _blanceRepository.DisActiveLastBankingBlanceOfCartById(toAccountDto.CartID);
-                                    toAccountDto.ID = _blanceRepository.Insert(toAccountDto);
-                                    _unitOfWork.Commit();
-                                    ClearCloseControl();
-                                }
-                                catch (Exception ex)
-                                {
-                                    _unitOfWork.Rollback();
-                                    throw;
-                                }
-                            }
-                            else
-                            {
-                                MSG.Text = MessageProject.NotEnughBlance();
-                            }
-
-                            break;
-                        }
-                    case 3: //  واریز به کارت
-                        {
-                            _unitOfWork.BeginTransaction();
-                            try
-                            {
-                                //var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
-                                var toAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
-
-                                //  From Account
-                                if (fromAccountId > 0)
-                                {
-                                    if (_cartRepository.ValidBlancForTransaction(fromAccountId, cash))
-                                    {
-                                        var lastBlance = _blanceRepository.GetBankingBlanceByCartId(fromAccountId);
-                                        _blanceRepository.DisActiveLastBankingBlanceOfCartById(fromAccountId);
-                                        var BlanceDTO = this.BlanceDTO(lastBlance,cash,fromAccountId,TransactionType.Harvesting);
-                                        _blanceRepository.Insert(BlanceDTO);
-                                    }
-                                    else
-                                    {
-                                        MSG.Text = MessageProject.NotEnughBlance();
-                                    }
-                                }
-                                //  To Account
-                                if (toAccountId > 0)
-                                {
-                                    var lastBlance = _blanceRepository.GetBankingBlanceByCartId(toAccountId);
-                                    _blanceRepository.DisActiveLastBankingBlanceOfCartById(toAccountId);
-                                    var BlanceDTO = this.BlanceDTO(lastBlance,cash,toAccountId,TransactionType.Settlemant);
-                                    _blanceRepository.Insert(BlanceDTO);
-                                }
-                                else
-                                {
-                                    MSG.Text = MessageProject.NotFound();
-                                }
-                                _unitOfWork.Commit();
-                                ClearCloseControl();
-                            }
-                            catch
-                            {
-                                _unitOfWork.Rollback();
-                                throw new InvalidModelException(MessageProject.Faild());
-                            }
-
-
-                            break;
-                        }
-
-                    default:
-                        {
-                            MSG.Text = MessageProject.NotSelectTransaction();
-                            break;
-                        }
-                }
-            }
-            else
-            {
-                MSG.Text = MessageProject.NotSelectTransaction();
-            }
-        }
-        private void TransactionTypeCombo_SelectedValueChanged(object sender, EventArgs e)
-        {
-            var type = (TransactionTypeCombo.SelectedItem as KeyValue<byte>);
-            //MSG.Text = ((KeyValue<byte>)TransactionTypeCombo.SelectedItem).Key;
-            if (type != null)
-            {
-                switch (type.Value)
-                {
-                    case 1:
-                        {
-                            label5.Visible = false;
-                            ToCustomerCombo.Visible = false;
-                            label7.Visible = false;
-                            ToAccountCombo.Visible = false;
-                            NewDataBtn.Visible = false;
-                            TransactionKindCombo.SelectedIndex = 2;
-                            BlanceTypeCombo.SelectedIndex = 2;
-                            NewDataPanel.Visible = false;
-                            break;
-                        }
-                    case 2:
-                        {
-                            label5.Visible = true;
-                            ToCustomerCombo.Visible = true;
-                            label7.Visible = true;
-                            ToAccountCombo.Visible = true;
-                            NewDataBtn.Visible = true;
-                            TransactionKindCombo.SelectedIndex = 2;
-                            NewDataPanel.Visible = false;
-                            break;
-                        }
-                    case 3:
-                        {
-                            label5.Visible = true;
-                            ToCustomerCombo.Visible = true;
-                            label7.Visible = true;
-                            ToAccountCombo.Visible = true;
-                            NewDataBtn.Visible = true;
-                            TransactionKindCombo.SelectedIndex = 1;
-                            BlanceTypeCombo.SelectedIndex = 2;
-                            break;
-                        }
-                    default:
-                        {
-                            MSG.Text = "هنوز هیچ نوع تراکنشی تایید نشده است";
-                            label5.Visible = false;
-                            ToCustomerCombo.Visible = false;
-                            label7.Visible = false;
-                            ToAccountCombo.Visible = false;
-                            break;
-                        }
-                }
-            }
-        }
-        private void ToCustomerCombo_SelectedValueChanged(object sender, EventArgs e)
-        {
-            var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
-            if (Id != 0)
-            {
-                ToAccountCombo = ComboBoxGenerator<long>.FillData(ToAccountCombo, _cartRepository.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
-            }
-        }
-        private void FromAccountCombo_SelectedValueChanged(object sender, EventArgs e)
-        {
-            var Id = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
-            if (Id != 0)
-            {
-                FromAccountLBL.Text = _blanceRepository.GetBankingBlanceByCartId(Id)?.ToString("N");
-            }
-
-        }
-        private bool TransactionValidation(long type)
-        {
             switch (type)
             {
-                case 1:
+                case 1: //خرید از کارت
                     {
-                        if (FromAccountLBL.Text.Trim() != null && FromAccountLBL.Text.Trim() != "")
-                        {
-                            var TransactionCash = Convert.ToDouble(FromAccountLBL.Text);
-                            var CurrentCash = Convert.ToDouble(CashTxt.Text);
-                            if (CurrentCash > TransactionCash)
-                            {
-                                MSG.Text = "مبلغ تراکنش از مبلغ موجودی کارت بیشتراست";
-                                return false;
-                            }
-                            //  تراکنش انجام شود
-                            return true;
-                        }
+                        BuyFromCartTransaction();
                         break;
                     }
-                case 2:
+                case 2: //خرید نقدی
                     {
-                        if (FromAccountLBL.Text.Trim() != null && FromAccountLBL.Text.Trim() != "")
-                        {
-                            var TransactionCash = Convert.ToDouble(FromAccountLBL.Text);
-                            var CurrentCash = Convert.ToDouble(CashTxt.Text);
-                            if (CurrentCash > TransactionCash)
-                            {
-                                MSG.Text = "مبلغ تراکنش از مبلغ موجودی کارت بیشتراست";
-                                return false;
-                            }
-                            //  تراکنش انجام شود
-                            return true;
-                        }
+                        CashableBuyTransaction();
                         break;
                     }
-                case 3:
+                case 3: //کارت به کارت
                     {
-                        if (FromAccountLBL.Text.Trim() != null && FromAccountLBL.Text.Trim() != "")
-                        {
-                            var TransactionCash = Convert.ToDouble(FromAccountLBL.Text);
-                            var CurrentCash = Convert.ToDouble(CashTxt.Text);
-                            if (CurrentCash > TransactionCash)
-                            {
-                                MSG.Text = "مبلغ تراکنش از مبلغ موجودی کارت بیشتراست";
-                                return false;
-                            }
-                            //  تراکنش انجام شود
-                            return true;
-                        }
+                        CartToCartTransaction();
+                        break;
+                    }
+                case 4: //برداشت نقدی از کارت واریز به حساب نقدی
+                    {
+                        FromCartBankToCashBlanceTransaction();
                         break;
                     }
                 default:
@@ -332,7 +99,6 @@ namespace Account.Presentation.Forms
                         break;
                     }
             }
-            return true;
         }
         private void SaveNewDataBtn_Click(object sender, EventArgs e)
         {
@@ -378,28 +144,6 @@ namespace Account.Presentation.Forms
             ToCustomerCombo = ComboBoxGenerator<long>.FillData(ToCustomerCombo, _cartRepository.TitleValuesParent(), Convert.ToByte(ToCustomerCombo.Tag));
 
             BlanceTypeCombo = ComboBoxGenerator<byte>.FillData(BlanceTypeCombo, _blanceRepository.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
-        }
-        private void ToCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ProgressHandler(5);
-            ToCustomerLBL.Text = "";
-            var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
-            if (Id != 0)
-            {
-                ToCustomerLBL.Text = _blanceRepository.GetBankingBlanceByCartId(Id)?.ToString("N");
-                ToAccountCombo = ComboBoxGenerator<long>.FillData(ToAccountCombo, _cartRepository.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
-            }
-        }
-        private void FromCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ProgressHandler(5);
-            FromCustomerLBL.Text = "";
-            var Id = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
-            if (Id != 0)
-            {
-                FromCustomerLBL.Text = _blanceRepository.GetBankingBlanceByCartId(Id)?.ToString("N");
-                FromAccountCombo = ComboBoxGenerator<long>.FillData(FromAccountCombo, _cartRepository.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
-            }
         }
         private BankDTO BankDTO()
         {
@@ -460,7 +204,6 @@ namespace Account.Presentation.Forms
                 TransactionCash = cash,
                 TransactionID = TransactionID,
                 Description = DescTxt.Text,
-
             };
         }
         private CustomerDTO CustomerDTO()
@@ -475,16 +218,6 @@ namespace Account.Presentation.Forms
                 FullName = NewCustomerNameTxt.Text,
                 Key = Guid.NewGuid()
             };
-        }
-        private void ToAccountCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ProgressHandler(5);
-            ToAccountLBL.Text = "";
-            var Id = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
-            if (Id != 0)
-            {
-                ToAccountLBL.Text = _blanceRepository.GetBankingBlanceByCartId(Id)?.ToString("N");
-            }
         }
         private void ClearCloseControl()
         {
@@ -503,12 +236,84 @@ namespace Account.Presentation.Forms
 
         private void ProgressHandler(int a)
         {
+            if (ProgressController.Value >= 90)
+            {
+                ProgressController.Value = 0;
+            }
             ProgressController.Value += a;
         }
 
+        #region SelectedIndexChanged
+        private void ToCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProgressHandler(5);
+            ToCustomerLBL.Text = "";
+            var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
+            if (Id != 0)
+            {
+                ToCustomerLBL.Text = _blanceRepository.GetBankingBlanceByCartId(Id)?.ToString("N");
+                ToAccountCombo = ComboBoxGenerator<long>.FillData(ToAccountCombo, _cartRepository.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
+            }
+        }
+        
+        private void FromCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProgressHandler(5);
+            FromCustomerLBL.Text = "";
+            var Id = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
+            if (Id != 0)
+            {
+                FromCustomerLBL.Text = _blanceRepository.GetBankingBlanceByCartId(Id)?.ToString("N");
+                FromAccountCombo = ComboBoxGenerator<long>.FillData(FromAccountCombo, _cartRepository.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
+            }
+        }
+
+        private void ToAccountCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProgressHandler(5);
+            ToAccountLBL.Text = "";
+            var Id = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
+            if (Id != 0)
+            {
+                ToAccountLBL.Text = _blanceRepository.GetBankingBlanceByCartId(Id)?.ToString("N");
+            }
+        }
+        
         private void TransactionTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             ProgressHandler(10);
+            var type = (TransactionTypeCombo.SelectedItem as KeyValue<byte>);
+            if (type == null)
+            {
+                return;
+            }
+            switch (type.Value)
+            {
+                case 1: // خرید از کارت
+                    {
+                        BuyFromCart();
+                        break;
+                    }
+                case 2: //  خرید نقدی
+                    {
+                        CashableBuy();
+                        break;
+                    }
+                case 3: //  کارت به کارت
+                    {
+                        CartToCart();
+                        break;
+                    }
+                case 4: //  برداشت از کارت و واریز به حساب نقدی
+                    {
+                        FromCartBankToCashBlance();
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
         }
 
         private void BlanceTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
@@ -524,6 +329,253 @@ namespace Account.Presentation.Forms
         private void FromAccountCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             ProgressHandler(5);
+        }
+        #endregion
+
+        /// <summary>
+        /// تراکنش برداشت از کارت
+        /// </summary>
+        private void BuyFromCartTransaction()
+        {
+            var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
+            var cash = Convert.ToDouble(CashTxt.Text);
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                if (_cartRepository.ValidBlancForTransaction(fromAccountId, cash))
+                {
+                    var lastBlance = _blanceRepository.GetBankingBlanceByCartId(fromAccountId);
+                    var blanceDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,TransactionType.Harvesting);
+                    _blanceRepository.DisActiveLastBankingBlanceOfCartById(blanceDto.CartID);
+                    blanceDto.ID = _blanceRepository.Insert(blanceDto);
+                    _unitOfWork.Commit();
+                    ClearCloseControl();
+                }
+                else
+                {
+                    MSG.Text = MessageProject.NotEnughBlance();
+                }
+                _unitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                MSG.Text = MessageProject.Faild();
+                _unitOfWork.Rollback();
+                throw;
+            }
+        }
+        /// <summary>
+        /// فعال و غیر فعال کردن کنترل ها برای تراکنش برداشت از کارت
+        /// </summary>
+        /// <param name="SW"></param>
+        private void BuyFromCart()
+        {
+            //  For Active 
+            L1.Visible = true;
+            L2.Visible = true;
+            FromCustomerCombo.Visible = true;
+            FromCustomerLBL.Visible = true;
+            FromAccountCombo.Visible = true;
+            FromAccountLBL.Visible = true;
+
+            //  For DisActive 
+            ToCustomerCombo.Visible = false;
+            ToCustomerLBL.Visible = false;
+            ToAccountCombo.Visible = false;
+            ToAccountLBL.Visible = false;
+
+            L3.Visible = false;
+            L4.Visible = false;
+            L5.Visible = false;
+            L6.Visible = false;
+
+            NewDataBtn.Visible = false;
+            NewDataPanel.Visible = false;
+
+            FCustomerCombo.Visible = false;
+            TCustomerCombo.Visible = false;
+        }
+
+
+        /// <summary>
+        /// تراکنش خرید نقدی
+        /// </summary>
+        private void CashableBuyTransaction()
+        {
+            var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
+            var cash = Convert.ToDouble(CashTxt.Text);
+            var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
+            var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                _unitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                _unitOfWork.Rollback();
+                throw;
+            }
+        }
+        /// <summary>
+        /// فعال و غیر فعال کردن کنترل های خرید نقدی
+        /// </summary>
+        private void CashableBuy()
+        {
+            //  For DisActive 
+            L1.Visible = false;
+            L2.Visible = false;
+
+            FromCustomerCombo.Visible = false;
+            FromCustomerLBL.Visible = false;
+            FromAccountCombo.Visible = false;
+            FromAccountLBL.Visible = false;
+
+            ToCustomerCombo.Visible = false;
+            ToCustomerLBL.Visible = false;
+            ToAccountCombo.Visible = false;
+            ToAccountLBL.Visible = false;
+
+            L3.Visible = false;
+            L4.Visible = false;
+            L5.Visible = false;
+            L6.Visible = false;
+
+            NewDataBtn.Visible = false;
+            NewDataPanel.Visible = false;
+
+            FCustomerCombo.Visible = false;
+            TCustomerCombo.Visible = false;
+            //  For Active 
+            L5.Visible = true;
+            FCustomerCombo.Visible = true;
+        }
+        /// <summary>
+        /// تراکنش کارت به کارت
+        /// </summary>
+        
+        private void CartToCartTransaction()
+        {
+            var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
+            var cash = Convert.ToDouble(CashTxt.Text);
+            MSG.Text = MessageProject.Blance(cash);
+            var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
+            var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                _unitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                _unitOfWork.Rollback();
+                throw;
+            }
+        }
+        /// <summary>
+        /// فعال و غیر فعال کردن کنترل های کارت به کارت
+        /// </summary>
+        private void CartToCart()
+        {
+            //  For DisActive 
+            
+
+            FromCustomerCombo.Visible = false;
+            FromCustomerLBL.Visible = false;
+            FromAccountCombo.Visible = false;
+            FromAccountLBL.Visible = false;
+
+            ToCustomerCombo.Visible = false;
+            ToCustomerLBL.Visible = false;
+            ToAccountCombo.Visible = false;
+            ToAccountLBL.Visible = false;
+
+            
+
+            NewDataBtn.Visible = false;
+            NewDataPanel.Visible = false;
+
+            FCustomerCombo.Visible = false;
+            TCustomerCombo.Visible = false;
+            //  For Active 
+            FromCustomerCombo.Visible = true;
+            FromCustomerLBL.Visible = true;
+            FromAccountCombo.Visible = true;
+            FromAccountLBL.Visible = true;
+
+            ToCustomerCombo.Visible = true;
+            ToCustomerLBL.Visible = true;
+            ToAccountCombo.Visible = true;
+            ToAccountLBL.Visible = true;
+
+            L1.Visible = true;
+            L2.Visible = true;
+            L3.Visible = true;
+            L4.Visible = true;
+            L5.Visible = true;
+            L6.Visible = true;
+
+            NewDataBtn.Visible = true;
+            NewDataPanel.Visible = false;
+
+        }
+
+        /// <summary>
+        /// برداشت از کارت و واریز به حساب نقدی
+        /// </summary>
+        private void FromCartBankToCashBlanceTransaction()
+        {
+            var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
+            var cash = Convert.ToDouble(CashTxt.Text);
+            var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
+            var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                _unitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                _unitOfWork.Rollback();
+                throw;
+            }
+        }
+        /// <summary>
+        /// فعال و غیر فعال کردن کنترل های  برداشت از کارت و واریز به حساب نقدی
+        /// </summary>
+        /// <param name="SW"></param>
+        private void FromCartBankToCashBlance()
+        {
+            //  For DisActive 
+
+
+            ToCustomerCombo.Visible = false;
+            ToCustomerLBL.Visible = false;
+            ToAccountCombo.Visible = false;
+            ToAccountLBL.Visible = false;
+
+            L3.Visible = false;
+            L4.Visible = false;
+            L5.Visible = false;
+            L6.Visible = false;
+
+            NewDataBtn.Visible = false;
+            NewDataPanel.Visible = false;
+
+            FCustomerCombo.Visible = false;
+            TCustomerCombo.Visible = false;
+            //  For Active 
+
+            L1.Visible = true;
+            L2.Visible = true;
+
+            FromCustomerCombo.Visible = true;
+            FromCustomerLBL.Visible = true;
+            FromAccountCombo.Visible = true;
+            FromAccountLBL.Visible = true;
+
+            L6.Visible = true;
+            TCustomerCombo.Visible = true;
         }
     }
 }

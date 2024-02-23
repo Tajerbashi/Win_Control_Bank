@@ -65,5 +65,10 @@ namespace Account.Common.Library.Extentions
         {
             return ($"هنوز هیچ نوع تراکنشی تایید نشده است");
         }
+
+        public static string Blance(double blance)
+        {
+            return ($"موجودی حساب انتخاب شده : {blance} تومان");
+        }
     }
 }

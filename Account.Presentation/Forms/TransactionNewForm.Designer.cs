@@ -35,9 +35,13 @@
             CloseBtn = new Button();
             SaveBtn = new Button();
             groupBox1 = new GroupBox();
+            TCustomerCombo = new ComboBox();
+            L6 = new Label();
+            FCustomerCombo = new ComboBox();
+            L5 = new Label();
             ProgressController = new ProgressBar();
-            checkBox1 = new CheckBox();
-            comboBox1 = new ComboBox();
+            AccountCheck = new CheckBox();
+            DegreeAccountCombo = new ComboBox();
             label11 = new Label();
             ToAccountLBL = new Label();
             ToCustomerLBL = new Label();
@@ -59,15 +63,15 @@
             TransactionKindCombo = new ComboBox();
             label2 = new Label();
             FromAccountCombo = new ComboBox();
-            label9 = new Label();
+            L2 = new Label();
             label8 = new Label();
             BlanceTypeCombo = new ComboBox();
             ToAccountCombo = new ComboBox();
-            label7 = new Label();
+            L4 = new Label();
             FromCustomerCombo = new ComboBox();
             ToCustomerCombo = new ComboBox();
-            label5 = new Label();
-            label1 = new Label();
+            L3 = new Label();
+            L1 = new Label();
             groupBox1.SuspendLayout();
             NewDataPanel.SuspendLayout();
             SuspendLayout();
@@ -115,7 +119,6 @@
             TransactionTypeCombo.Size = new Size(352, 33);
             TransactionTypeCombo.TabIndex = 0;
             TransactionTypeCombo.SelectedIndexChanged += TransactionTypeCombo_SelectedIndexChanged;
-            TransactionTypeCombo.SelectedValueChanged += TransactionTypeCombo_SelectedValueChanged;
             // 
             // CloseBtn
             // 
@@ -157,9 +160,13 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(TCustomerCombo);
+            groupBox1.Controls.Add(L6);
+            groupBox1.Controls.Add(FCustomerCombo);
+            groupBox1.Controls.Add(L5);
             groupBox1.Controls.Add(ProgressController);
-            groupBox1.Controls.Add(checkBox1);
-            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Controls.Add(AccountCheck);
+            groupBox1.Controls.Add(DegreeAccountCombo);
             groupBox1.Controls.Add(label11);
             groupBox1.Controls.Add(ToAccountLBL);
             groupBox1.Controls.Add(ToCustomerLBL);
@@ -174,15 +181,15 @@
             groupBox1.Controls.Add(TransactionKindCombo);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(FromAccountCombo);
-            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(L2);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(BlanceTypeCombo);
             groupBox1.Controls.Add(ToAccountCombo);
-            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(L4);
             groupBox1.Controls.Add(FromCustomerCombo);
             groupBox1.Controls.Add(ToCustomerCombo);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(L3);
+            groupBox1.Controls.Add(L1);
             groupBox1.Controls.Add(MSG);
             groupBox1.Controls.Add(CloseBtn);
             groupBox1.Controls.Add(SaveBtn);
@@ -195,6 +202,54 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             // 
+            // TCustomerCombo
+            // 
+            TCustomerCombo.BackColor = Color.FromArgb(240, 236, 229);
+            TCustomerCombo.Cursor = Cursors.Hand;
+            TCustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            TCustomerCombo.FormattingEnabled = true;
+            TCustomerCombo.Location = new Point(55, 246);
+            TCustomerCombo.Name = "TCustomerCombo";
+            TCustomerCombo.RightToLeft = RightToLeft.Yes;
+            TCustomerCombo.Size = new Size(428, 33);
+            TCustomerCombo.TabIndex = 70;
+            TCustomerCombo.Visible = false;
+            // 
+            // L6
+            // 
+            L6.ForeColor = Color.White;
+            L6.Location = new Point(479, 246);
+            L6.Name = "L6";
+            L6.Size = new Size(121, 32);
+            L6.TabIndex = 69;
+            L6.Text = "به حساب مشترک";
+            L6.TextAlign = ContentAlignment.MiddleRight;
+            L6.Visible = false;
+            // 
+            // FCustomerCombo
+            // 
+            FCustomerCombo.BackColor = Color.FromArgb(240, 236, 229);
+            FCustomerCombo.Cursor = Cursors.Hand;
+            FCustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            FCustomerCombo.FormattingEnabled = true;
+            FCustomerCombo.Location = new Point(621, 247);
+            FCustomerCombo.Name = "FCustomerCombo";
+            FCustomerCombo.RightToLeft = RightToLeft.Yes;
+            FCustomerCombo.Size = new Size(476, 33);
+            FCustomerCombo.TabIndex = 68;
+            FCustomerCombo.Visible = false;
+            // 
+            // L5
+            // 
+            L5.ForeColor = Color.White;
+            L5.Location = new Point(1103, 247);
+            L5.Name = "L5";
+            L5.Size = new Size(112, 32);
+            L5.TabIndex = 67;
+            L5.Text = "از حساب مشترک";
+            L5.TextAlign = ContentAlignment.MiddleRight;
+            L5.Visible = false;
+            // 
             // ProgressController
             // 
             ProgressController.Location = new Point(0, 1);
@@ -202,28 +257,28 @@
             ProgressController.Size = new Size(1226, 10);
             ProgressController.TabIndex = 28;
             // 
-            // checkBox1
+            // AccountCheck
             // 
-            checkBox1.ForeColor = Color.White;
-            checkBox1.Location = new Point(9, 63);
-            checkBox1.Name = "checkBox1";
-            checkBox1.RightToLeft = RightToLeft.Yes;
-            checkBox1.Size = new Size(109, 33);
-            checkBox1.TabIndex = 4;
-            checkBox1.Text = "تراکنش فعال";
-            checkBox1.UseVisualStyleBackColor = true;
+            AccountCheck.ForeColor = Color.White;
+            AccountCheck.Location = new Point(9, 63);
+            AccountCheck.Name = "AccountCheck";
+            AccountCheck.RightToLeft = RightToLeft.Yes;
+            AccountCheck.Size = new Size(109, 33);
+            AccountCheck.TabIndex = 4;
+            AccountCheck.Text = "حساب اصلی";
+            AccountCheck.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // DegreeAccountCombo
             // 
-            comboBox1.BackColor = Color.FromArgb(240, 236, 229);
-            comboBox1.Cursor = Cursors.Hand;
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(120, 63);
-            comboBox1.Name = "comboBox1";
-            comboBox1.RightToLeft = RightToLeft.Yes;
-            comboBox1.Size = new Size(237, 33);
-            comboBox1.TabIndex = 3;
+            DegreeAccountCombo.BackColor = Color.FromArgb(240, 236, 229);
+            DegreeAccountCombo.Cursor = Cursors.Hand;
+            DegreeAccountCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            DegreeAccountCombo.FormattingEnabled = true;
+            DegreeAccountCombo.Location = new Point(120, 63);
+            DegreeAccountCombo.Name = "DegreeAccountCombo";
+            DegreeAccountCombo.RightToLeft = RightToLeft.Yes;
+            DegreeAccountCombo.Size = new Size(237, 33);
+            DegreeAccountCombo.TabIndex = 3;
             // 
             // label11
             // 
@@ -232,7 +287,7 @@
             label11.Name = "label11";
             label11.Size = new Size(95, 32);
             label11.TabIndex = 66;
-            label11.Text = "جنس تراکنش";
+            label11.Text = "درجه حساب";
             label11.TextAlign = ContentAlignment.MiddleRight;
             // 
             // ToAccountLBL
@@ -308,7 +363,7 @@
             NewDataBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
             NewDataBtn.FlatStyle = FlatStyle.Flat;
             NewDataBtn.ForeColor = Color.White;
-            NewDataBtn.Location = new Point(16, 244);
+            NewDataBtn.Location = new Point(16, 246);
             NewDataBtn.Name = "NewDataBtn";
             NewDataBtn.Size = new Size(33, 33);
             NewDataBtn.TabIndex = 13;
@@ -327,7 +382,7 @@
             NewDataPanel.Controls.Add(NewBankNameTxt);
             NewDataPanel.Controls.Add(NewCustomerNameTxt);
             NewDataPanel.Controls.Add(label10);
-            NewDataPanel.Location = new Point(9, 286);
+            NewDataPanel.Location = new Point(9, 290);
             NewDataPanel.Name = "NewDataPanel";
             NewDataPanel.Size = new Size(1208, 93);
             NewDataPanel.TabIndex = 14;
@@ -470,17 +525,16 @@
             FromAccountCombo.Size = new Size(584, 33);
             FromAccountCombo.TabIndex = 5;
             FromAccountCombo.SelectedIndexChanged += FromAccountCombo_SelectedIndexChanged;
-            FromAccountCombo.SelectedValueChanged += FromAccountCombo_SelectedValueChanged;
             // 
-            // label9
+            // L2
             // 
-            label9.ForeColor = Color.White;
-            label9.Location = new Point(434, 99);
-            label9.Name = "label9";
-            label9.Size = new Size(172, 32);
-            label9.TabIndex = 48;
-            label9.Text = "از حساب کارت مبداء";
-            label9.TextAlign = ContentAlignment.MiddleRight;
+            L2.ForeColor = Color.White;
+            L2.Location = new Point(434, 99);
+            L2.Name = "L2";
+            L2.Size = new Size(172, 32);
+            L2.TabIndex = 48;
+            L2.Text = "از حساب کارت مبداء";
+            L2.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label8
             // 
@@ -519,16 +573,16 @@
             ToAccountCombo.Visible = false;
             ToAccountCombo.SelectedIndexChanged += ToAccountCombo_SelectedIndexChanged;
             // 
-            // label7
+            // L4
             // 
-            label7.ForeColor = Color.White;
-            label7.Location = new Point(434, 170);
-            label7.Name = "label7";
-            label7.Size = new Size(171, 32);
-            label7.TabIndex = 43;
-            label7.Text = "به حساب کارت مقصد";
-            label7.TextAlign = ContentAlignment.MiddleRight;
-            label7.Visible = false;
+            L4.ForeColor = Color.White;
+            L4.Location = new Point(434, 170);
+            L4.Name = "L4";
+            L4.Size = new Size(171, 32);
+            L4.TabIndex = 43;
+            L4.Text = "به حساب کارت مقصد";
+            L4.TextAlign = ContentAlignment.MiddleRight;
+            L4.Visible = false;
             // 
             // FromCustomerCombo
             // 
@@ -556,28 +610,27 @@
             ToCustomerCombo.TabIndex = 6;
             ToCustomerCombo.Visible = false;
             ToCustomerCombo.SelectedIndexChanged += ToCustomerCombo_SelectedIndexChanged;
-            ToCustomerCombo.SelectedValueChanged += ToCustomerCombo_SelectedValueChanged;
             // 
-            // label5
+            // L3
             // 
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(1092, 170);
-            label5.Name = "label5";
-            label5.Size = new Size(123, 32);
-            label5.TabIndex = 38;
-            label5.Text = "به کارت مقصد";
-            label5.TextAlign = ContentAlignment.MiddleRight;
-            label5.Visible = false;
+            L3.ForeColor = Color.White;
+            L3.Location = new Point(1092, 170);
+            L3.Name = "L3";
+            L3.Size = new Size(123, 32);
+            L3.TabIndex = 38;
+            L3.Text = "به کارت مقصد";
+            L3.TextAlign = ContentAlignment.MiddleRight;
+            L3.Visible = false;
             // 
-            // label1
+            // L1
             // 
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(1120, 99);
-            label1.Name = "label1";
-            label1.Size = new Size(95, 32);
-            label1.TabIndex = 32;
-            label1.Text = "از کارت مبداء";
-            label1.TextAlign = ContentAlignment.MiddleRight;
+            L1.ForeColor = Color.White;
+            L1.Location = new Point(1120, 99);
+            L1.Name = "L1";
+            L1.Size = new Size(95, 32);
+            L1.TabIndex = 32;
+            L1.Text = "از کارت مبداء";
+            L1.TextAlign = ContentAlignment.MiddleRight;
             // 
             // TransactionNewForm
             // 
@@ -611,16 +664,16 @@
         private Button CloseBtn;
         private Button SaveBtn;
         private GroupBox groupBox1;
-        private Label label1;
+        private Label L1;
         private ComboBox ToCustomerCombo;
-        private Label label5;
+        private Label L3;
         private ComboBox FromCustomerCombo;
-        private Label label7;
+        private Label L4;
         private ComboBox ToAccountCombo;
         private Label label8;
         private ComboBox BlanceTypeCombo;
         private ComboBox FromAccountCombo;
-        private Label label9;
+        private Label L2;
         private ComboBox TransactionKindCombo;
         private Label label2;
         private Label FromAccountLBL;
@@ -640,9 +693,13 @@
         private TextBox CashTxt;
         private Label label15;
         private Label label14;
-        private ComboBox comboBox1;
+        private ComboBox DegreeAccountCombo;
         private Label label11;
-        private CheckBox checkBox1;
+        private CheckBox AccountCheck;
         private ProgressBar ProgressController;
+        private Label L5;
+        private ComboBox FCustomerCombo;
+        private ComboBox TCustomerCombo;
+        private Label L6;
     }
 }
