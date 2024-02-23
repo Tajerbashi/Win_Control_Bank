@@ -3,16 +3,22 @@ using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Models.Views.BUS;
 using Account.Domain.Library.Entities.BUS;
+using Account.Domain.Library.Enums;
 
 namespace Account.Application.Library.Repositories.BUS
 {
     public interface ICartRepository : IGenericRepository<Cart, CartDTO, CartView>, IBaseQueries
     {
         /// <summary>
-        /// دریافت کلید و مقدار کارت های که سر شاخه هستند
+        /// دریافت کلید و مقدار کارت های بانکی که سر شاخه هستند
         /// </summary>
         /// <returns></returns>
-        IEnumerable<KeyValue<long>> TitleValuesParent();
+        IEnumerable<KeyValue<long>> TitleValuesBankingParent();
+        /// <summary>
+        /// دریافت کلید و مقدار کارت های نقدی که سر شاخه هستند
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<KeyValue<long>> TitleValuesCashableParent();
         /// <summary>
         /// دریافت مدل کارت بر اساس شماره کارت
         /// </summary>
@@ -41,7 +47,7 @@ namespace Account.Application.Library.Repositories.BUS
         /// </summary>
         /// <param name="userID"></param>
         /// <returns></returns>
-        IEnumerable<KeyValue<long>> TitleValueByUserID(long userID);
+        IEnumerable<KeyValue<long>> TitleValueByUserID(long customerID);
         /// <summary>
         /// دریافت کلید و مقدار کارت های که حساب مشترک یا حساب اصلی هستند
         /// </summary>
@@ -62,6 +68,14 @@ namespace Account.Application.Library.Repositories.BUS
         /// <param name="paging"></param>
         /// <returns></returns>
         string SearchByCartId(long cartId, string paging);
+
+
+        /// <summary>
+        /// عنوان و مقدار درجه حساب
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<KeyValue<CartType>> TitleValuesDegreeCart();
+
 
     }
 }

@@ -3,6 +3,7 @@ using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Models.Views.BUS;
 using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Entities.BUS;
+using Account.Domain.Library.Enums;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using Account.Infrastructure.Library.Repositories.BUS.Queries;
@@ -27,7 +28,7 @@ namespace Account.Infrastructure.Library.Repositories.BUS
 
         public string Search(string value)
         {
-            throw new NotImplementedException();
+            return CartQueries.Search(value);
         }
         public string SearchByCartId(long Id, string paging)
         {
@@ -37,17 +38,24 @@ namespace Account.Infrastructure.Library.Repositories.BUS
         public string ShowAll(string paging)
         {
             return CartQueries.ShowAll(paging);
-
         }
 
         public string ShowFromTo(string from, string to)
         {
-            throw new NotImplementedException();
+            return CartQueries.ShowFromTo(from, to);
         }
 
-        public IEnumerable<KeyValue<long>> TitleValuesParent()
+        public IEnumerable<KeyValue<long>> TitleValuesCashableParent()
         {
-            return Context.Carts.Where(x => x.ParentID == null && x.CartType == Account.Domain.Library.Enums.CartType.Main).Select(x => new KeyValue<long>
+            return Context.Carts.Where(x => x.ParentID == null && !x.ShabaAccountNumber.Contains("Cashable") && x.CartType == Account.Domain.Library.Enums.CartType.Main).Select(x => new KeyValue<long>
+            {
+                Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Value = x.ID
+            });
+        }
+        public IEnumerable<KeyValue<long>> TitleValuesBankingParent()
+        {
+            return Context.Carts.Where(x => x.ParentID == null && !x.ShabaAccountNumber.Contains("Cashable") && x.CartType == Account.Domain.Library.Enums.CartType.Main).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
@@ -79,7 +87,7 @@ namespace Account.Infrastructure.Library.Repositories.BUS
         }
         public IEnumerable<KeyValue<long>> TitleValuesChild(long Id)
         {
-            return Context.Carts.Where(x => x.ParentID == Id).Select(x => new KeyValue<long>
+            return Context.Carts.Where(x => x.ParentID == Id || x.ID == Id).Select(x => new KeyValue<long>
             {
                 Key = ($@"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
                 Value = x.ID
@@ -103,7 +111,7 @@ namespace Account.Infrastructure.Library.Repositories.BUS
             });
         }
 
-     
+
         public CartDTO GetCartByAccountNumber(string number)
         {
             var entity = Context.Carts.Where(x => x.AccountNumber.Equals(number) && !x.IsDeleted).FirstOrDefault();
@@ -143,17 +151,41 @@ namespace Account.Infrastructure.Library.Repositories.BUS
 
         public IEnumerable<KeyValue<byte>> TitleValue()
         {
-            throw new NotImplementedException();
+            var result = Context.Carts.Where(x => x.IsActive && !x.IsDeleted).Select(x => new KeyValue<byte>
+            {
+                Key="",
+                Value=(byte)x.ID
+            }).ToList();
+            return result;
         }
 
-        public IEnumerable<KeyValue<long>> TitleValueByUserID(long userID)
+        public IEnumerable<KeyValue<long>> TitleValueByUserID(long customerID)
         {
-            throw new NotImplementedException();
+            var result = Context.Carts.Include(ct => ct.Customer).Include(bn => bn.Bank).Where(x => x.CustomerID == customerID && x.IsActive && !x.IsDeleted).Select(x => new KeyValue<long>
+            {
+                Key=($"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
+                Value= x.ID
+            }).ToList();
+            return result;
         }
 
         public bool ValidBlancForTransaction(long cartId, double cash)
         {
-            throw new NotImplementedException();
+            var blance = Context.Blances.Where(x => x.CartID == cartId).OrderByDescending(x => x.ID).FirstOrDefault();
+            if (blance.NewBlanceCash >= cash)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public IEnumerable<KeyValue<CartType>> TitleValuesDegreeCart()
+        {
+            return new List<KeyValue<CartType>>
+            {
+                new KeyValue<CartType>{ Key="مشترک",Value=CartType.Main },
+                new KeyValue<CartType>{ Key="فرعی",Value=CartType.Custome },
+            };
         }
     }
 }

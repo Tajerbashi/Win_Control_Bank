@@ -71,8 +71,10 @@ namespace Account.Presentation.Forms
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             TransactionID = Guid.NewGuid();
-            var type = ((KeyValue<long>)TransactionTypeCombo.SelectedItem).Value;
-            switch (type)
+            var type = (TransactionTypeCombo.SelectedItem as KeyValue<byte>);
+            if (type == null)
+                return;
+            switch (type.Value)
             {
                 case 1: //خرید از کارت
                     {
@@ -135,15 +137,379 @@ namespace Account.Presentation.Forms
                 NewDataBtn.Text = "+";
             }
         }
+
+        #region SelectedIndexChanged
+        private void ToCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProgressHandler(5);
+            ToCustomerLBL.Text = "";
+            var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
+            if (Id != 0)
+            {
+                ToCustomerLBL.Text = _blanceRepository.GetBankingBlanceByCartId(Id)?.ToString("N");
+                ToAccountCombo = ComboBoxGenerator<long>.FillData(ToAccountCombo, _cartRepository.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
+            }
+        }
+
+        private void FromCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FromCustomerLBL.Text = "";
+            var Id = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
+            if (Id != 0)
+            {
+                FromCustomerLBL.Text = _blanceRepository.GetBankingBlanceByCartId(Id)?.ToString("N");
+                FromAccountCombo = ComboBoxGenerator<long>.FillData(FromAccountCombo, _cartRepository.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
+            }
+            ProgressHandler(5);
+        }
+
+        private void ToAccountCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProgressHandler(5);
+            ToAccountLBL.Text = "";
+            var Id = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
+            if (Id != 0)
+            {
+                ToAccountLBL.Text = _blanceRepository.GetBankingBlanceByCartId(Id)?.ToString("N");
+            }
+        }
+
+        private void TransactionTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProgressHandler(10);
+            var type = (TransactionTypeCombo.SelectedItem as KeyValue<byte>);
+            if (type == null)
+            {
+                return;
+            }
+            switch (type.Value)
+            {
+                case 1: // خرید از کارت
+                    {
+                        MSG.Text = "عملیات خرید از کارت";
+                        BlanceTypeCombo.SelectedIndex = 2;
+                        TransactionKindCombo.SelectedIndex = 2;
+                        DegreeAccountCombo.SelectedIndex = 1;
+                        BuyFromCart();
+                        break;
+                    }
+                case 2: //  خرید نقدی
+                    {
+                        MSG.Text = "عملیات خرید نقدی";
+                        BlanceTypeCombo.SelectedIndex = 1;
+                        TransactionKindCombo.SelectedIndex = 2;
+                        DegreeAccountCombo.SelectedIndex = 1;
+                        CashableBuy();
+                        break;
+                    }
+                case 3: //  کارت به کارت
+                    {
+                        MSG.Text = "عملیات کارت به کارت";
+                        BlanceTypeCombo.SelectedIndex = 2;
+                        TransactionKindCombo.SelectedIndex = 2;
+                        DegreeAccountCombo.SelectedIndex = 1;
+                        CartToCart();
+                        break;
+                    }
+                case 4: //  برداشت از کارت و واریز به حساب نقدی
+                    {
+                        MSG.Text = "عملیات برداشت از کارت و واریز به حساب نقدی";
+                        BlanceTypeCombo.SelectedIndex = 2;
+                        TransactionKindCombo.SelectedIndex = 1;
+                        DegreeAccountCombo.SelectedIndex = 1;
+                        FromCartBankToCashBlance();
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
+        }
+
+        private void BlanceTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProgressHandler(10);
+        }
+
+        private void TransactionKindCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ProgressHandler(10);
+        }
+
+        private void FromAccountCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var cart = FromAccountCombo.SelectedItem as KeyValue<long>;
+            if (cart.Value != 0)
+                FromAccountLBL.Text = _blanceRepository.GetBankingBlanceByCartId(cart.Value)?.ToString("N"); ;
+            ProgressHandler(5);
+        }
+        #endregion
+
+        /// <summary>
+        /// تراکنش برداشت از کارت
+        /// </summary>
+        private void BuyFromCartTransaction()
+        {
+            var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
+            var cash = Convert.ToDouble(CashTxt.Text);
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                if (_cartRepository.ValidBlancForTransaction(fromAccountId, cash))
+                {
+                    var lastBlance = _blanceRepository.GetBankingBlanceByCartId(fromAccountId);
+                    var blanceDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,TransactionType.Harvesting);
+                    _blanceRepository.DisActiveLastBankingBlanceOfCartById(blanceDto.CartID);
+                    blanceDto.ID = _blanceRepository.Insert(blanceDto);
+                    ClearCloseControl();
+                }
+                else
+                {
+                    MSG.Text = MessageProject.NotEnughBlance();
+                }
+                _unitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                MSG.Text = MessageProject.Faild();
+                _unitOfWork.Rollback();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// فعال و غیر فعال کردن کنترل ها برای تراکنش برداشت از کارت
+        /// </summary>
+        /// <param name="SW"></param>
+        private void BuyFromCart()
+        {
+            //  For Active 
+            L1.Visible = true;
+            L2.Visible = true;
+            FromCustomerCombo.Visible = true;
+            FromCustomerLBL.Visible = true;
+            FromAccountCombo.Visible = true;
+            FromAccountLBL.Visible = true;
+
+            //  For DisActive 
+            ToCustomerCombo.Visible = false;
+            ToCustomerLBL.Visible = false;
+            ToAccountCombo.Visible = false;
+            ToAccountLBL.Visible = false;
+
+            L3.Visible = false;
+            L4.Visible = false;
+            L5.Visible = false;
+            L6.Visible = false;
+
+            NewDataBtn.Visible = false;
+            NewDataPanel.Visible = false;
+
+            FCustomerCombo.Visible = false;
+            TCustomerCombo.Visible = false;
+        }
+
+
+        /// <summary>
+        /// تراکنش خرید نقدی
+        /// </summary>
+        private void CashableBuyTransaction()
+        {
+            var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
+            var cash = Convert.ToDouble(CashTxt.Text);
+            var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
+            var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                _unitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                _unitOfWork.Rollback();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// فعال و غیر فعال کردن کنترل های خرید نقدی
+        /// </summary>
+        private void CashableBuy()
+        {
+            //  For DisActive 
+            L1.Visible = false;
+            L2.Visible = false;
+
+            FromCustomerCombo.Visible = false;
+            FromCustomerLBL.Visible = false;
+            FromAccountCombo.Visible = false;
+            FromAccountLBL.Visible = false;
+
+            ToCustomerCombo.Visible = false;
+            ToCustomerLBL.Visible = false;
+            ToAccountCombo.Visible = false;
+            ToAccountLBL.Visible = false;
+
+            L3.Visible = false;
+            L4.Visible = false;
+            L5.Visible = false;
+            L6.Visible = false;
+
+            NewDataBtn.Visible = false;
+            NewDataPanel.Visible = false;
+
+            FCustomerCombo.Visible = false;
+            TCustomerCombo.Visible = false;
+            //  For Active 
+            L5.Visible = true;
+            FCustomerCombo.Visible = true;
+        }
+
+        /// <summary>
+        /// تراکنش کارت به کارت
+        /// </summary>
+        private void CartToCartTransaction()
+        {
+            var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
+            var cash = Convert.ToDouble(CashTxt.Text);
+            MSG.Text = MessageProject.Blance(cash);
+            var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
+            var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                _unitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                _unitOfWork.Rollback();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// فعال و غیر فعال کردن کنترل های کارت به کارت
+        /// </summary>
+        private void CartToCart()
+        {
+            //  For DisActive 
+
+
+            FromCustomerCombo.Visible = false;
+            FromCustomerLBL.Visible = false;
+            FromAccountCombo.Visible = false;
+            FromAccountLBL.Visible = false;
+
+            ToCustomerCombo.Visible = false;
+            ToCustomerLBL.Visible = false;
+            ToAccountCombo.Visible = false;
+            ToAccountLBL.Visible = false;
+
+
+
+            NewDataBtn.Visible = false;
+            NewDataPanel.Visible = false;
+
+            FCustomerCombo.Visible = false;
+            TCustomerCombo.Visible = false;
+            //  For Active 
+            FromCustomerCombo.Visible = true;
+            FromCustomerLBL.Visible = true;
+            FromAccountCombo.Visible = true;
+            FromAccountLBL.Visible = true;
+
+            ToCustomerCombo.Visible = true;
+            ToCustomerLBL.Visible = true;
+            ToAccountCombo.Visible = true;
+            ToAccountLBL.Visible = true;
+
+            L1.Visible = true;
+            L2.Visible = true;
+            L3.Visible = true;
+            L4.Visible = true;
+            L5.Visible = true;
+            L6.Visible = true;
+
+            NewDataBtn.Visible = true;
+            NewDataPanel.Visible = false;
+
+        }
+
+        /// <summary>
+        /// برداشت از کارت و واریز به حساب نقدی
+        /// </summary>
+        private void FromCartBankToCashBlanceTransaction()
+        {
+            var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
+            var cash = Convert.ToDouble(CashTxt.Text);
+            var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
+            var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                _unitOfWork.Commit();
+            }
+            catch (Exception)
+            {
+                _unitOfWork.Rollback();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// فعال و غیر فعال کردن کنترل های  برداشت از کارت و واریز به حساب نقدی
+        /// </summary>
+        /// <param name="SW"></param>
+        private void FromCartBankToCashBlance()
+        {
+            //  For DisActive 
+
+
+            ToCustomerCombo.Visible = false;
+            ToCustomerLBL.Visible = false;
+            ToAccountCombo.Visible = false;
+            ToAccountLBL.Visible = false;
+
+            L3.Visible = false;
+            L4.Visible = false;
+            L5.Visible = false;
+            L6.Visible = false;
+
+            NewDataBtn.Visible = false;
+            NewDataPanel.Visible = false;
+
+            FCustomerCombo.Visible = false;
+            TCustomerCombo.Visible = false;
+            //  For Active 
+
+            L1.Visible = true;
+            L2.Visible = true;
+
+            FromCustomerCombo.Visible = true;
+            FromCustomerLBL.Visible = true;
+            FromAccountCombo.Visible = true;
+            FromAccountLBL.Visible = true;
+
+            L6.Visible = true;
+            TCustomerCombo.Visible = true;
+        }
+
+        #region Extentions
         private void UpdateComboBoxes()
         {
             TransactionTypeCombo = ComboBoxGenerator<byte>.FillData(TransactionTypeCombo, _blanceRepository.TitleValue(), Convert.ToByte(TransactionTypeCombo.Tag));
             TransactionKindCombo = ComboBoxGenerator<byte>.FillData(TransactionKindCombo, _blanceRepository.TitleValueTransactionType(), Convert.ToByte(TransactionKindCombo.Tag));
 
-            FromCustomerCombo = ComboBoxGenerator<long>.FillData(FromCustomerCombo, _cartRepository.TitleValuesParent(), Convert.ToByte(FromCustomerCombo.Tag));
-            ToCustomerCombo = ComboBoxGenerator<long>.FillData(ToCustomerCombo, _cartRepository.TitleValuesParent(), Convert.ToByte(ToCustomerCombo.Tag));
+            FromCustomerCombo = ComboBoxGenerator<long>.FillData(FromCustomerCombo, _cartRepository.TitleValuesBankingParent(), Convert.ToByte(FromCustomerCombo.Tag));
+            FCustomerCombo = ComboBoxGenerator<long>.FillData(FCustomerCombo, _cartRepository.TitleValuesCashableParent(), Convert.ToByte(FCustomerCombo.Tag));
+            ToCustomerCombo = ComboBoxGenerator<long>.FillData(ToCustomerCombo, _cartRepository.TitleValuesBankingParent(), Convert.ToByte(ToCustomerCombo.Tag));
 
             BlanceTypeCombo = ComboBoxGenerator<byte>.FillData(BlanceTypeCombo, _blanceRepository.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
+
+            DegreeAccountCombo = ComboBoxGenerator<CartType>.FillData(DegreeAccountCombo, _cartRepository.TitleValuesDegreeCart(), Convert.ToByte(DegreeAccountCombo.Tag));
+
+
         }
         private BankDTO BankDTO()
         {
@@ -198,7 +564,7 @@ namespace Account.Presentation.Forms
             {
                 NewBlanceCash = blanceCash,
                 OldBlanceCash = lastblance.Value,
-                BlanceType = (BlanceType)((KeyValue<long>)BlanceTypeCombo.SelectedItem).Value,
+                BlanceType = (BlanceType)((KeyValue<byte>)BlanceTypeCombo.SelectedItem).Value,
                 CartID = cartId,
                 TransactionType = transaction,
                 TransactionCash = cash,
@@ -243,339 +609,6 @@ namespace Account.Presentation.Forms
             ProgressController.Value += a;
         }
 
-        #region SelectedIndexChanged
-        private void ToCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ProgressHandler(5);
-            ToCustomerLBL.Text = "";
-            var Id = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
-            if (Id != 0)
-            {
-                ToCustomerLBL.Text = _blanceRepository.GetBankingBlanceByCartId(Id)?.ToString("N");
-                ToAccountCombo = ComboBoxGenerator<long>.FillData(ToAccountCombo, _cartRepository.TitleValuesChild(Id), Convert.ToByte(ToAccountCombo.Tag));
-            }
-        }
-        
-        private void FromCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ProgressHandler(5);
-            FromCustomerLBL.Text = "";
-            var Id = ((KeyValue<long>)FromCustomerCombo.SelectedItem).Value;
-            if (Id != 0)
-            {
-                FromCustomerLBL.Text = _blanceRepository.GetBankingBlanceByCartId(Id)?.ToString("N");
-                FromAccountCombo = ComboBoxGenerator<long>.FillData(FromAccountCombo, _cartRepository.TitleValuesChild(Id), Convert.ToByte(FromAccountCombo.Tag));
-            }
-        }
-
-        private void ToAccountCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ProgressHandler(5);
-            ToAccountLBL.Text = "";
-            var Id = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
-            if (Id != 0)
-            {
-                ToAccountLBL.Text = _blanceRepository.GetBankingBlanceByCartId(Id)?.ToString("N");
-            }
-        }
-        
-        private void TransactionTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ProgressHandler(10);
-            var type = (TransactionTypeCombo.SelectedItem as KeyValue<byte>);
-            if (type == null)
-            {
-                return;
-            }
-            switch (type.Value)
-            {
-                case 1: // خرید از کارت
-                    {
-                        BuyFromCart();
-                        break;
-                    }
-                case 2: //  خرید نقدی
-                    {
-                        CashableBuy();
-                        break;
-                    }
-                case 3: //  کارت به کارت
-                    {
-                        CartToCart();
-                        break;
-                    }
-                case 4: //  برداشت از کارت و واریز به حساب نقدی
-                    {
-                        FromCartBankToCashBlance();
-                        break;
-                    }
-                default:
-                    {
-                        break;
-                    }
-            }
-        }
-
-        private void BlanceTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ProgressHandler(10);
-        }
-
-        private void TransactionKindCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ProgressHandler(10);
-        }
-
-        private void FromAccountCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ProgressHandler(5);
-        }
         #endregion
-
-        /// <summary>
-        /// تراکنش برداشت از کارت
-        /// </summary>
-        private void BuyFromCartTransaction()
-        {
-            var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
-            var cash = Convert.ToDouble(CashTxt.Text);
-            _unitOfWork.BeginTransaction();
-            try
-            {
-                if (_cartRepository.ValidBlancForTransaction(fromAccountId, cash))
-                {
-                    var lastBlance = _blanceRepository.GetBankingBlanceByCartId(fromAccountId);
-                    var blanceDto = BlanceDTO(lastBlance,Convert.ToDouble(cash),fromAccountId,TransactionType.Harvesting);
-                    _blanceRepository.DisActiveLastBankingBlanceOfCartById(blanceDto.CartID);
-                    blanceDto.ID = _blanceRepository.Insert(blanceDto);
-                    _unitOfWork.Commit();
-                    ClearCloseControl();
-                }
-                else
-                {
-                    MSG.Text = MessageProject.NotEnughBlance();
-                }
-                _unitOfWork.Commit();
-            }
-            catch (Exception)
-            {
-                MSG.Text = MessageProject.Faild();
-                _unitOfWork.Rollback();
-                throw;
-            }
-        }
-        /// <summary>
-        /// فعال و غیر فعال کردن کنترل ها برای تراکنش برداشت از کارت
-        /// </summary>
-        /// <param name="SW"></param>
-        private void BuyFromCart()
-        {
-            //  For Active 
-            L1.Visible = true;
-            L2.Visible = true;
-            FromCustomerCombo.Visible = true;
-            FromCustomerLBL.Visible = true;
-            FromAccountCombo.Visible = true;
-            FromAccountLBL.Visible = true;
-
-            //  For DisActive 
-            ToCustomerCombo.Visible = false;
-            ToCustomerLBL.Visible = false;
-            ToAccountCombo.Visible = false;
-            ToAccountLBL.Visible = false;
-
-            L3.Visible = false;
-            L4.Visible = false;
-            L5.Visible = false;
-            L6.Visible = false;
-
-            NewDataBtn.Visible = false;
-            NewDataPanel.Visible = false;
-
-            FCustomerCombo.Visible = false;
-            TCustomerCombo.Visible = false;
-        }
-
-
-        /// <summary>
-        /// تراکنش خرید نقدی
-        /// </summary>
-        private void CashableBuyTransaction()
-        {
-            var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
-            var cash = Convert.ToDouble(CashTxt.Text);
-            var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
-            var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
-            _unitOfWork.BeginTransaction();
-            try
-            {
-                _unitOfWork.Commit();
-            }
-            catch (Exception)
-            {
-                _unitOfWork.Rollback();
-                throw;
-            }
-        }
-        /// <summary>
-        /// فعال و غیر فعال کردن کنترل های خرید نقدی
-        /// </summary>
-        private void CashableBuy()
-        {
-            //  For DisActive 
-            L1.Visible = false;
-            L2.Visible = false;
-
-            FromCustomerCombo.Visible = false;
-            FromCustomerLBL.Visible = false;
-            FromAccountCombo.Visible = false;
-            FromAccountLBL.Visible = false;
-
-            ToCustomerCombo.Visible = false;
-            ToCustomerLBL.Visible = false;
-            ToAccountCombo.Visible = false;
-            ToAccountLBL.Visible = false;
-
-            L3.Visible = false;
-            L4.Visible = false;
-            L5.Visible = false;
-            L6.Visible = false;
-
-            NewDataBtn.Visible = false;
-            NewDataPanel.Visible = false;
-
-            FCustomerCombo.Visible = false;
-            TCustomerCombo.Visible = false;
-            //  For Active 
-            L5.Visible = true;
-            FCustomerCombo.Visible = true;
-        }
-        /// <summary>
-        /// تراکنش کارت به کارت
-        /// </summary>
-        
-        private void CartToCartTransaction()
-        {
-            var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
-            var cash = Convert.ToDouble(CashTxt.Text);
-            MSG.Text = MessageProject.Blance(cash);
-            var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
-            var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
-            _unitOfWork.BeginTransaction();
-            try
-            {
-                _unitOfWork.Commit();
-            }
-            catch (Exception)
-            {
-                _unitOfWork.Rollback();
-                throw;
-            }
-        }
-        /// <summary>
-        /// فعال و غیر فعال کردن کنترل های کارت به کارت
-        /// </summary>
-        private void CartToCart()
-        {
-            //  For DisActive 
-            
-
-            FromCustomerCombo.Visible = false;
-            FromCustomerLBL.Visible = false;
-            FromAccountCombo.Visible = false;
-            FromAccountLBL.Visible = false;
-
-            ToCustomerCombo.Visible = false;
-            ToCustomerLBL.Visible = false;
-            ToAccountCombo.Visible = false;
-            ToAccountLBL.Visible = false;
-
-            
-
-            NewDataBtn.Visible = false;
-            NewDataPanel.Visible = false;
-
-            FCustomerCombo.Visible = false;
-            TCustomerCombo.Visible = false;
-            //  For Active 
-            FromCustomerCombo.Visible = true;
-            FromCustomerLBL.Visible = true;
-            FromAccountCombo.Visible = true;
-            FromAccountLBL.Visible = true;
-
-            ToCustomerCombo.Visible = true;
-            ToCustomerLBL.Visible = true;
-            ToAccountCombo.Visible = true;
-            ToAccountLBL.Visible = true;
-
-            L1.Visible = true;
-            L2.Visible = true;
-            L3.Visible = true;
-            L4.Visible = true;
-            L5.Visible = true;
-            L6.Visible = true;
-
-            NewDataBtn.Visible = true;
-            NewDataPanel.Visible = false;
-
-        }
-
-        /// <summary>
-        /// برداشت از کارت و واریز به حساب نقدی
-        /// </summary>
-        private void FromCartBankToCashBlanceTransaction()
-        {
-            var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
-            var cash = Convert.ToDouble(CashTxt.Text);
-            var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
-            var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
-            _unitOfWork.BeginTransaction();
-            try
-            {
-                _unitOfWork.Commit();
-            }
-            catch (Exception)
-            {
-                _unitOfWork.Rollback();
-                throw;
-            }
-        }
-        /// <summary>
-        /// فعال و غیر فعال کردن کنترل های  برداشت از کارت و واریز به حساب نقدی
-        /// </summary>
-        /// <param name="SW"></param>
-        private void FromCartBankToCashBlance()
-        {
-            //  For DisActive 
-
-
-            ToCustomerCombo.Visible = false;
-            ToCustomerLBL.Visible = false;
-            ToAccountCombo.Visible = false;
-            ToAccountLBL.Visible = false;
-
-            L3.Visible = false;
-            L4.Visible = false;
-            L5.Visible = false;
-            L6.Visible = false;
-
-            NewDataBtn.Visible = false;
-            NewDataPanel.Visible = false;
-
-            FCustomerCombo.Visible = false;
-            TCustomerCombo.Visible = false;
-            //  For Active 
-
-            L1.Visible = true;
-            L2.Visible = true;
-
-            FromCustomerCombo.Visible = true;
-            FromCustomerLBL.Visible = true;
-            FromAccountCombo.Visible = true;
-            FromAccountLBL.Visible = true;
-
-            L6.Visible = true;
-            TCustomerCombo.Visible = true;
-        }
     }
 }

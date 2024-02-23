@@ -1,4 +1,6 @@
-﻿namespace Account.Infrastructure.Library.Repositories.BUS.Queries
+﻿using System;
+
+namespace Account.Infrastructure.Library.Repositories.BUS.Queries
 {
     public static class CartQueries
     {
@@ -84,5 +86,14 @@ ORDER BY C.ID DESC
 ");
         }
 
+        public static string Search(string value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string ShowFromTo(string from, string to)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

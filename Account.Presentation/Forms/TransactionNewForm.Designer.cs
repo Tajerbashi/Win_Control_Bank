@@ -590,10 +590,10 @@
             FromCustomerCombo.Cursor = Cursors.Hand;
             FromCustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             FromCustomerCombo.FormattingEnabled = true;
-            FromCustomerCombo.Location = new Point(621, 134);
+            FromCustomerCombo.Location = new Point(620, 134);
             FromCustomerCombo.Name = "FromCustomerCombo";
             FromCustomerCombo.RightToLeft = RightToLeft.Yes;
-            FromCustomerCombo.Size = new Size(589, 33);
+            FromCustomerCombo.Size = new Size(595, 33);
             FromCustomerCombo.TabIndex = 4;
             FromCustomerCombo.SelectedIndexChanged += FromCustomerCombo_SelectedIndexChanged;
             // 
@@ -603,10 +603,10 @@
             ToCustomerCombo.Cursor = Cursors.Hand;
             ToCustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             ToCustomerCombo.FormattingEnabled = true;
-            ToCustomerCombo.Location = new Point(621, 205);
+            ToCustomerCombo.Location = new Point(622, 205);
             ToCustomerCombo.Name = "ToCustomerCombo";
             ToCustomerCombo.RightToLeft = RightToLeft.Yes;
-            ToCustomerCombo.Size = new Size(589, 33);
+            ToCustomerCombo.Size = new Size(595, 33);
             ToCustomerCombo.TabIndex = 6;
             ToCustomerCombo.Visible = false;
             ToCustomerCombo.SelectedIndexChanged += ToCustomerCombo_SelectedIndexChanged;

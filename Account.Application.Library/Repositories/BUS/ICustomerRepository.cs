@@ -8,8 +8,17 @@ namespace Account.Application.Library.Repositories.BUS
 {
     public interface ICustomerRepository : IGenericRepository<Customer, CustomerDTO, CustomerView>, IBaseQueries
     {
+        /// <summary>
+        /// دریافت مدل مشترک بر اساس نام
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         CustomerDTO GetCustomerByName(string name);
-        IEnumerable<KeyValue<long>> CustomerNameHaveMainCartAndBlance();
+
+        /// <summary>
+        /// نام و آیدی مشترک
+        /// </summary>
+        /// <returns></returns>
         IEnumerable<KeyValue<long>> CustomerTitleValue();
     }
 }

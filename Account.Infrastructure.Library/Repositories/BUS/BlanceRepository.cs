@@ -9,6 +9,7 @@ using Account.Infrastructure.Library.Repositories.BUS.Queries;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Account.Infrastructure.Library.Repositories.BUS
 {
@@ -56,17 +57,20 @@ namespace Account.Infrastructure.Library.Repositories.BUS
 
         public string Show50LastCashableTransactions(string paging)
         {
-            throw new NotImplementedException();
+            return BlanceQueries.Show50LastCashableTransactions(paging);
         }
 
         public double? GetCashableBlanceByCartId(long cartId)
         {
-            throw new NotImplementedException();
+            var cart = Context.Blances.Where(x => x.CartID == cartId && !x.IsDeleted && x.BlanceType == Domain.Library.Enums.BlanceType.Cashable && x.IsActive).LastOrDefault();
+            return cart.NewBlanceCash;
         }
 
         public void DisActiveLastCashableBlanceOfCartById(long cartId)
         {
-            throw new NotImplementedException();
+            var cart = Context.Blances.Where(x => x.CartID == cartId && !x.IsDeleted && x.BlanceType == Domain.Library.Enums.BlanceType.Cashable && x.IsActive).LastOrDefault();
+            cart.IsActive = false;
+            base.Save();
         }
 
         public string Show50LastBankingTransactions(string paging)
@@ -76,42 +80,46 @@ namespace Account.Infrastructure.Library.Repositories.BUS
 
         public string ShowAllBankingBlances(string paging)
         {
-            throw new NotImplementedException();
+            return BlanceQueries.ShowAllBankingBlances(paging);
         }
 
         public double? GetBankingBlanceByCartId(long cartId)
         {
-            throw new NotImplementedException();
+            var blance = Context.Blances.Where(x => x.CartID == cartId && x.BlanceType == Domain.Library.Enums.BlanceType.Banking && !x.IsDeleted && x.IsActive).OrderByDescending(x => x.ID).FirstOrDefault();
+            return blance.NewBlanceCash;
         }
 
         public void DisActiveLastBankingBlanceOfCartById(long cartId)
         {
-            throw new NotImplementedException();
+            var blance = Context.Blances.Where(x => x.CartID == cartId && !x.IsDeleted).OrderByDescending(x => x.ID).FirstOrDefault();
+            blance.UpdateDate = DateTime.Now;
+            blance.IsActive = false;
+            Context.SaveChanges();
         }
 
         public string ShowAll(string paging)
         {
-            throw new NotImplementedException();
+            return BlanceQueries.ShowAll(paging);
         }
 
         public string Search(string value)
         {
-            throw new NotImplementedException();
+            return BlanceQueries.Search(value);
         }
 
         public string ShowFromTo(string from, string to)
         {
-            throw new NotImplementedException();
+            return BlanceQueries.ShowFromTo(from, to);
         }
 
         public string ShowCashableTransactionsByCartID(long cartId, string paging)
         {
-            throw new NotImplementedException();
+            return BlanceQueries.ShowCashableTransactionsByCartID(cartId, paging);
         }
 
         public string ShowBankingTransactionsByCartID(long cartId, string paging)
         {
-            throw new NotImplementedException();
+            return BlanceQueries.ShowBankingTransactionsByCartID(cartId, paging);
         }
     }
 }

@@ -47,16 +47,6 @@ namespace Account.Infrastructure.Library.Repositories.BUS
             throw new NotImplementedException();
         }
 
-        public IEnumerable<KeyValue<long>> CustomerNameHaveMainCartAndBlance()
-        {
-            var data = Context.Customers.Include(cus => cus.Carts).ThenInclude(bl => bl.Blances).ToList();
-            return data.Where(x => !x.IsDeleted).Select(x => new KeyValue<long>
-            {
-                Key = x.FullName,
-                Value = x.ID
-            }).OrderByDescending(x => x.Key);
-        }
-
         public IEnumerable<KeyValue<byte>> TitleValue()
         {
             throw new NotImplementedException();

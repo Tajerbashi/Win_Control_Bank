@@ -1,4 +1,6 @@
-﻿namespace Account.Infrastructure.Library.Repositories.BUS.Queries
+﻿using System;
+
+namespace Account.Infrastructure.Library.Repositories.BUS.Queries
 {
     public static class BlanceQueries
     {
@@ -105,7 +107,40 @@ AND (BL.IsDeleted = 0)
 ");
         }
 
+        public static string ShowAll(string paging)
+        {
+            throw new NotImplementedException();
+        }
 
+        public static string Search(string value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string ShowFromTo(string from, string to)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string ShowCashableTransactionsByCartID(long cartId, string paging)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string ShowBankingTransactionsByCartID(long cartId, string paging)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string ShowAllBankingBlances(string paging)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string Show50LastCashableTransactions(string paging)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

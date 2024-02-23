@@ -17,7 +17,6 @@ namespace Account.Infrastructure.Library.Repositories.BUS
         public BankRepository(ContextDbApplication context, IMapper mapper) : base(context, mapper)
         {
         }
-
         public IEnumerable<KeyValue<long>> BankTitleValue()
         {
             return Context.Banks.Where(x => !x.IsDeleted && !x.BankName.Contains(":")).Select(x => new KeyValue<long>
@@ -26,7 +25,6 @@ namespace Account.Infrastructure.Library.Repositories.BUS
                 Value = x.ID
             }).OrderByDescending(x => x.Key);
         }
-
         public BankDTO GetBankByName(string name)
         {
             var result = Context.Banks.Where(c => c.BankName.Equals(name.Trim())).FirstOrDefault();
