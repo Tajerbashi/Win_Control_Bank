@@ -63,6 +63,7 @@ namespace Account.Presentation.Forms
         {
             UpdateComboBoxes();
             ProgressHandler(10);
+            DisActiveAllConditionControle();
         }
         private void CloseBtn_Click(object sender, EventArgs e)
         {
@@ -180,6 +181,7 @@ namespace Account.Presentation.Forms
             var type = (TransactionTypeCombo.SelectedItem as KeyValue<byte>);
             if (type == null)
             {
+                DisActiveAllConditionControle();
                 return;
             }
             switch (type.Value)
@@ -222,6 +224,7 @@ namespace Account.Presentation.Forms
                     }
                 default:
                     {
+                        DisActiveAllConditionControle();
                         break;
                     }
             }
@@ -316,14 +319,25 @@ namespace Account.Presentation.Forms
         /// </summary>
         private void CashableBuyTransaction()
         {
-            var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
+            var FCustomerId = ((KeyValue<long>)FCustomerCombo.SelectedItem).Value;
             var cash = Convert.ToDouble(CashTxt.Text);
-            var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
-            var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
             _unitOfWork.BeginTransaction();
             try
             {
+                if (_unitOfWork.CartRepository.ValidBlancForTransaction(FCustomerId, cash))
+                {
+                    var lastCashBlance = _unitOfWork.BlanceRepository.GetCashableBlanceByCartId(FCustomerId);
+                    var blanceDto = BlanceDTO(lastCashBlance,Convert.ToDouble(cash),FCustomerId,TransactionType.Harvesting,BlanceType.Cashable);
+                    _unitOfWork.BlanceRepository.DisActiveLastCashableBlanceOfCartById(blanceDto.CartID);
+                    blanceDto.ID = _unitOfWork.BlanceRepository.Insert(blanceDto);
+                }
+                else
+                {
+                    MSG.Text = MessageProject.NotEnughBlance();
+                    return;
+                }
                 _unitOfWork.Commit();
+                ClearCloseControl();
             }
             catch (Exception)
             {
@@ -372,14 +386,31 @@ namespace Account.Presentation.Forms
         private void CartToCartTransaction()
         {
             var fromAccountId = ((KeyValue<long>)FromAccountCombo.SelectedItem).Value;
+            var toAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
             var cash = Convert.ToDouble(CashTxt.Text);
-            MSG.Text = MessageProject.Blance(cash);
-            var toCartId = ((KeyValue<long>)ToCustomerCombo.SelectedItem).Value;
-            var toCartAccountId = ((KeyValue<long>)ToAccountCombo.SelectedItem).Value;
             _unitOfWork.BeginTransaction();
             try
             {
+                if (_unitOfWork.CartRepository.ValidBlancForTransaction(fromAccountId, cash))
+                {
+                    //  برداشت از کارت
+                    var F_Last_Blance = _unitOfWork.BlanceRepository.GetBankingBlanceByCartId(fromAccountId);
+                    var F_Blance_DTO = BlanceDTO(F_Last_Blance,cash,fromAccountId,TransactionType.Harvesting,BlanceType.Banking);
+                    _unitOfWork.BlanceRepository.DisActiveLastBankingBlanceOfCartById(fromAccountId);
+                    _unitOfWork.BlanceRepository.Insert(F_Blance_DTO);
+                    //  واریز به کارت
+                    var T_Last_Blance = _unitOfWork.BlanceRepository.GetBankingBlanceByCartId(toAccountId);
+                    var T_Blance_DTO = BlanceDTO(T_Last_Blance,cash,toAccountId,TransactionType.Settlemant,BlanceType.Banking);
+                    _unitOfWork.BlanceRepository.DisActiveLastBankingBlanceOfCartById(toAccountId);
+                    _unitOfWork.BlanceRepository.Insert(T_Blance_DTO);
+                }
+                else
+                {
+                    MSG.Text = MessageProject.NotEnughBlance();
+                    return;
+                }
                 _unitOfWork.Commit();
+                ClearCloseControl();
             }
             catch (Exception)
             {
@@ -405,7 +436,8 @@ namespace Account.Presentation.Forms
             ToCustomerLBL.Visible = false;
             ToAccountCombo.Visible = false;
             ToAccountLBL.Visible = false;
-
+            L5.Visible = false;
+            L6.Visible = false;
 
 
             NewDataBtn.Visible = false;
@@ -428,8 +460,7 @@ namespace Account.Presentation.Forms
             L2.Visible = true;
             L3.Visible = true;
             L4.Visible = true;
-            L5.Visible = true;
-            L6.Visible = true;
+
 
             NewDataBtn.Visible = true;
             NewDataPanel.Visible = false;
@@ -615,6 +646,8 @@ namespace Account.Presentation.Forms
             ToAccountCombo.Items.Clear();
             FormExtentions.ClearRichTextBox(this.Controls);
             FormExtentions.ClearTextBoxes(this.Controls);
+            MSG.Text = string.Empty;
+            DisActiveAllConditionControle();
             this.Close();
         }
 
@@ -638,7 +671,6 @@ namespace Account.Presentation.Forms
                 MSG.Text = ($"موجودی حساب نقدی مشترک {customerCashableCart.Key} مبلغ فوق است {blance}");
             }
         }
-
         private void TCustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             var customerCashableCart = (TCustomerCombo.SelectedItem as KeyValue<long>);
@@ -648,5 +680,30 @@ namespace Account.Presentation.Forms
                 MSG.Text = ($"موجودی حساب نقدی مشترک {customerCashableCart.Key} مبلغ فوق است {blance}");
             }
         }
+
+        private void DisActiveAllConditionControle()
+        {
+            L1.Visible = false;
+            L2.Visible = false;
+            L3.Visible = false;
+            L4.Visible = false;
+            L5.Visible = false;
+            L6.Visible = false;
+
+            FromCustomerLBL.Visible = false;
+            FromAccountLBL.Visible = false;
+            ToCustomerLBL.Visible = false;
+            ToAccountLBL.Visible = false;
+
+            FromCustomerCombo.Visible = false;
+            FromAccountCombo.Visible = false;
+
+            ToCustomerCombo.Visible = false;
+            ToAccountCombo.Visible = false;
+
+            NewDataBtn.Visible = false;
+            NewDataPanel.Visible = false;
+        }
+
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Account.Infrastructure.Library.Repositories.BUS.Queries
+﻿using Account.Domain.Library.Enums;
+
+namespace Account.Infrastructure.Library.Repositories.BUS.Queries
 {
     public static class CustomerQueries
     {
@@ -23,6 +25,11 @@ SELECT
 FROM            BUS.Customers
 WHERE IsDeleted = 0
 ");
+        }
+        
+        public static string ShowAllByCustomerType(CartType cartType, string paging)
+        {
+            return ($@"");
         }
     }
 

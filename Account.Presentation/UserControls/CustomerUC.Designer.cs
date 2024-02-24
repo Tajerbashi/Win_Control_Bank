@@ -162,6 +162,7 @@
             CustomerCombo.RightToLeft = RightToLeft.Yes;
             CustomerCombo.Size = new Size(782, 33);
             CustomerCombo.TabIndex = 16;
+            CustomerCombo.SelectedIndexChanged += CustomerCombo_SelectedIndexChanged;
             // 
             // PageLbl
             // 
@@ -230,7 +231,7 @@
             SearchTxt.Size = new Size(262, 32);
             SearchTxt.TabIndex = 0;
             // 
-            // CustomerUS
+            // CustomerUC
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -240,7 +241,7 @@
             Controls.Add(groupBox2);
             Font = new Font("IRANSansWeb", 11.25F);
             Margin = new Padding(4, 5, 4, 5);
-            Name = "CustomerUS";
+            Name = "CustomerUC";
             Size = new Size(1146, 759);
             Load += UserUS_Load;
             groupBox2.ResumeLayout(false);

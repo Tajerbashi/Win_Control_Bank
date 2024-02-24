@@ -1,4 +1,5 @@
 ﻿using Account.Application.Library.Models.Controls;
+using Account.Domain.Library.Enums;
 
 namespace Account.Application.Library.BaseService
 {
@@ -29,7 +30,7 @@ namespace Account.Application.Library.BaseService
         /// <returns></returns>
         string ShowFromTo(string from, string to);
         /// <summary>
-        /// دریافت عنوان و مقدار
+        /// عنوان و کلید مشترک
         /// </summary>
         /// <returns></returns>
         IEnumerable<KeyValue<byte>> TitleValue();

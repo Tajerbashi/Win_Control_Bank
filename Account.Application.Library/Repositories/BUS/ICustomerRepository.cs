@@ -3,6 +3,7 @@ using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Models.Views.BUS;
 using Account.Domain.Library.Entities.BUS;
+using Account.Domain.Library.Enums;
 
 namespace Account.Application.Library.Repositories.BUS
 {
@@ -20,5 +21,11 @@ namespace Account.Application.Library.Repositories.BUS
         /// </summary>
         /// <returns></returns>
         IEnumerable<KeyValue<long>> CustomerTitleValue();
+
+        /// <summary>
+        /// بر اساس نوع مشترک نمایش داده شود
+        /// </summary>
+        /// <returns></returns>
+        string ShowAllByCustomerType(CartType cartType, string paging);
     }
 }

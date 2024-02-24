@@ -3,15 +3,14 @@ using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Models.Views.BUS;
 using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Entities.BUS;
+using Account.Domain.Library.Enums;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using Account.Infrastructure.Library.Repositories.BUS.Queries;
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Account.Infrastructure.Library.Repositories.BUS
 {
@@ -59,6 +58,11 @@ namespace Account.Infrastructure.Library.Repositories.BUS
                 Key = x.FullName,
                 Value = x.ID
             }).OrderByDescending(x => x.Key);
+        }
+
+        public string ShowAllByCustomerType(CartType cartType, string paging)
+        {
+            return CustomerQueries.ShowAllByCustomerType(cartType,paging);
         }
     }
 }
