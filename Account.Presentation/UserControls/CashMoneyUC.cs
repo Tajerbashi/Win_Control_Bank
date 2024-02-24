@@ -1,4 +1,5 @@
-﻿using Account.Application.Library.Repositories.BUS;
+﻿using Account.Application.Library.Models.Controls;
+using Account.Application.Library.Repositories.BUS;
 using Account.Presentation.Forms;
 using Account.Presentation.Generator;
 using System.Data;
@@ -21,12 +22,22 @@ namespace Account.Presentation.UserControls
             this.CashableBlanceForm = cashableBlanceForm;
             InitializeComponent();
         }
-        private void ShowDataGrid()
+        private void ShowDataGrid(long customerID = 0)
         {
-            GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.ShowAllCashableBlances(_blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
-            var count = (_blanceRepository.ExecuteQuery(_blanceRepository.GetCount())).Rows[0].Field<int>(0); ;
-            PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {_blanceRepository.Paging.Page + 1}";
-            CartCombo = ComboBoxGenerator<long>.FillData(CartCombo, _cartRepository.TitleValuesBankingParent(), Convert.ToByte(CartCombo.Tag));
+            if (customerID == 0)
+            {
+                GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.ShowAllCashableBlances(_blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
+                var count = (_blanceRepository.ExecuteQuery(_blanceRepository.GetCount())).Rows[0].Field<int>(0); ;
+                PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {_blanceRepository.Paging.Page + 1}";
+                CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, _cartRepository.TitleValuesBankingParent(), Convert.ToByte(CustomerCombo.Tag));
+            }
+            else
+            {
+                GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.ShowCashableTransactionsByCartID(customerID,_blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
+                var count = (_blanceRepository.ExecuteQuery(_blanceRepository.GetCount())).Rows[0].Field<int>(0); ;
+                PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {_blanceRepository.Paging.Page + 1}";
+                CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, _cartRepository.TitleValuesBankingParent(), Convert.ToByte(CustomerCombo.Tag));
+            }
         }
 
         private void CashMoneyUC_Load(object sender, EventArgs e)
@@ -43,6 +54,19 @@ namespace Account.Presentation.UserControls
         private void FillComboBoxes()
         {
 
+        }
+
+        private void CustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var customer = CustomerCombo.SelectedItem as KeyValue<long>;
+            if (customer is not null)
+            {
+                ShowDataGrid(customer.Value);
+            }
+            else
+            {
+                ShowDataGrid();
+            }
         }
     }
 }
