@@ -113,10 +113,10 @@ namespace Account.Presentation.Forms
                 var Bank = BankDTO();
                 if (Bank.ID == 0)
                 {
-                    _unitOfWork.BankRepository.Insert(Bank);
+                    Bank.ID = _unitOfWork.BankRepository.Insert(Bank);
                 }
-                var Cart = CartDTO(customeId,Bank.ID);
-                _unitOfWork.CartRepository.AddOrUpdate(Cart);
+                var Cart = CartDTO(customeId,Bank.ID,CartType.Custome);
+                Cart.ID = _unitOfWork.CartRepository.AddOrUpdate(Cart);
                 _unitOfWork.Commit();
                 UpdateComboBoxes();
             }
@@ -551,13 +551,10 @@ namespace Account.Presentation.Forms
             DegreeAccountCombo = ComboBoxGenerator<CartType>.FillData(DegreeAccountCombo, _unitOfWork.CartRepository.TitleValuesDegreeCart(), Convert.ToByte(DegreeAccountCombo.Tag));
 
             FromCustomerCombo = ComboBoxGenerator<long>.FillData(FromCustomerCombo, _unitOfWork.CartRepository.TitleValuesBankingParent(), Convert.ToByte(FromCustomerCombo.Tag));
-            ToCustomerCombo = ComboBoxGenerator<long>.FillData(ToCustomerCombo, _unitOfWork.CartRepository.TitleValuesBankingParent(), Convert.ToByte(ToCustomerCombo.Tag));
+            ToCustomerCombo = ComboBoxGenerator<long>.FillData(ToCustomerCombo, _unitOfWork.CartRepository.TitleValuesAllCart(), Convert.ToByte(ToCustomerCombo.Tag));
 
             FCustomerCombo = ComboBoxGenerator<long>.FillData(FCustomerCombo, _unitOfWork.CartRepository.TitleValuesCashableParent(), Convert.ToByte(FCustomerCombo.Tag));
             TCustomerCombo = ComboBoxGenerator<long>.FillData(TCustomerCombo, _unitOfWork.CartRepository.TitleValuesCashableParent(), Convert.ToByte(TCustomerCombo.Tag));
-
-
-
 
         }
         private BankDTO BankDTO()
@@ -573,7 +570,7 @@ namespace Account.Presentation.Forms
 
             };
         }
-        private CartDTO CartDTO(long customeId, long bankId)
+        private CartDTO CartDTO(long customeId, long bankId, CartType cartType)
         {
             var entity = _unitOfWork.CartRepository.GetCartByAccountNumber(NewCartNumberTxt.Text);
             if (entity != null)
@@ -582,7 +579,7 @@ namespace Account.Presentation.Forms
             }
             return new CartDTO
             {
-                CartType = CartType.Main,
+                CartType = cartType,
                 AccountNumber = NewCartNumberTxt.Text,
                 CustomerID = customeId,
                 BankID = bankId,
