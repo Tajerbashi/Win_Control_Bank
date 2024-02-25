@@ -117,6 +117,9 @@ namespace Account.Presentation.Forms
                 }
                 var Cart = CartDTO(customeId,Bank.ID,CartType.Custome);
                 Cart.ID = _unitOfWork.CartRepository.AddOrUpdate(Cart);
+                var lastBlance = _unitOfWork.BlanceRepository.GetBankingBlanceByCartId(Cart.ID);
+                var blanceDTO = BlanceDTO(lastBlance,0,Cart.ID,TransactionType.Settlemant,BlanceType.Banking);
+                blanceDTO.ID = _unitOfWork.BlanceRepository.Insert(blanceDTO);
                 _unitOfWork.Commit();
                 UpdateComboBoxes();
             }

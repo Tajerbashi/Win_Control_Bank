@@ -95,6 +95,10 @@ namespace Account.Infrastructure.Library.Repositories.BUS
         public double? GetBankingBlanceByCartId(long cartId)
         {
             var blance = Context.Blances.Where(x => x.CartID == cartId && x.BlanceType == Domain.Library.Enums.BlanceType.Banking && !x.IsDeleted && x.IsActive).OrderByDescending(x => x.ID).FirstOrDefault();
+            if (blance is null)
+            {
+                return 0;
+            }
             return blance.NewBlanceCash;
         }
 
