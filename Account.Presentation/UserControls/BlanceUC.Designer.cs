@@ -28,15 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             label1 = new Label();
             AddBtn = new Button();
             groupBox2 = new GroupBox();
-            GridData = new DataGridView();
+            TableLayout = new TableLayoutPanel();
+            button10 = new Button();
+            button1 = new Button();
+            button2 = new Button();
+            button9 = new Button();
+            FlowLayout = new FlowLayoutPanel();
+            button3 = new Button();
+            button4 = new Button();
+            button5 = new Button();
+            button6 = new Button();
+            button7 = new Button();
+            button8 = new Button();
+            PanelCartBlance = new Panel();
             CartCombo = new ComboBox();
             PageLbl = new Label();
             NextBtn = new Button();
@@ -44,7 +51,8 @@
             SearchBtn = new Button();
             SearchTxt = new TextBox();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
+            TableLayout.SuspendLayout();
+            FlowLayout.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -78,7 +86,9 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.Transparent;
-            groupBox2.Controls.Add(GridData);
+            groupBox2.Controls.Add(TableLayout);
+            groupBox2.Controls.Add(FlowLayout);
+            groupBox2.Controls.Add(PanelCartBlance);
             groupBox2.Controls.Add(CartCombo);
             groupBox2.Controls.Add(PageLbl);
             groupBox2.Controls.Add(NextBtn);
@@ -91,65 +101,204 @@
             groupBox2.TabIndex = 18;
             groupBox2.TabStop = false;
             // 
-            // GridData
+            // TableLayout
             // 
-            GridData.AllowDrop = true;
-            GridData.AllowUserToAddRows = false;
-            GridData.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(18, 18, 18);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.Maroon;
-            GridData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            GridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            GridData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            GridData.BackgroundColor = Color.FromArgb(39, 40, 41);
-            GridData.BorderStyle = BorderStyle.None;
-            GridData.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
-            GridData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(39, 40, 41);
-            dataGridViewCellStyle2.Font = new Font("IRANSansWeb", 11.25F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.Black;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            GridData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            GridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            GridData.Cursor = Cursors.PanWest;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(39, 40, 41);
-            dataGridViewCellStyle3.Font = new Font("IRANSansWeb", 11.25F);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = Color.MidnightBlue;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            GridData.DefaultCellStyle = dataGridViewCellStyle3;
-            GridData.EditMode = DataGridViewEditMode.EditProgrammatically;
-            GridData.GridColor = Color.FromArgb(224, 224, 224);
-            GridData.Location = new Point(4, 60);
-            GridData.Name = "GridData";
-            GridData.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(39, 40, 41);
-            dataGridViewCellStyle4.Font = new Font("IRANSansWeb", 11.25F);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.MidnightBlue;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            GridData.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(39, 40, 41);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = Color.MidnightBlue;
-            GridData.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            GridData.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.OrangeRed;
-            GridData.RowTemplate.ReadOnly = true;
-            GridData.RowTemplate.Resizable = DataGridViewTriState.True;
-            GridData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridData.Size = new Size(1135, 629);
-            GridData.TabIndex = 17;
-            GridData.VirtualMode = true;
+            TableLayout.ColumnCount = 2;
+            TableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            TableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            TableLayout.Controls.Add(button10, 0, 1);
+            TableLayout.Controls.Add(button1, 0, 0);
+            TableLayout.Controls.Add(button2, 1, 0);
+            TableLayout.Controls.Add(button9, 1, 1);
+            TableLayout.Location = new Point(6, 302);
+            TableLayout.Name = "TableLayout";
+            TableLayout.RowCount = 2;
+            TableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            TableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            TableLayout.Size = new Size(582, 390);
+            TableLayout.TabIndex = 20;
+            // 
+            // button10
+            // 
+            button10.Cursor = Cursors.Hand;
+            button10.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            button10.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            button10.FlatAppearance.MouseDownBackColor = Color.Green;
+            button10.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            button10.FlatStyle = FlatStyle.Flat;
+            button10.ForeColor = Color.White;
+            button10.Location = new Point(3, 198);
+            button10.Name = "button10";
+            button10.Size = new Size(285, 189);
+            button10.TabIndex = 28;
+            button10.Text = "جدید";
+            button10.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Cursor = Cursors.Hand;
+            button1.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            button1.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            button1.FlatAppearance.MouseDownBackColor = Color.Green;
+            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(3, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(285, 189);
+            button1.TabIndex = 25;
+            button1.Text = "جدید";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Cursor = Cursors.Hand;
+            button2.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            button2.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            button2.FlatAppearance.MouseDownBackColor = Color.Green;
+            button2.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(294, 3);
+            button2.Name = "button2";
+            button2.Size = new Size(282, 189);
+            button2.TabIndex = 26;
+            button2.Text = "جدید";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            button9.Cursor = Cursors.Hand;
+            button9.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            button9.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            button9.FlatAppearance.MouseDownBackColor = Color.Green;
+            button9.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            button9.FlatStyle = FlatStyle.Flat;
+            button9.ForeColor = Color.White;
+            button9.Location = new Point(294, 198);
+            button9.Name = "button9";
+            button9.Size = new Size(282, 189);
+            button9.TabIndex = 27;
+            button9.Text = "جدید";
+            button9.UseVisualStyleBackColor = true;
+            // 
+            // FlowLayout
+            // 
+            FlowLayout.Controls.Add(button3);
+            FlowLayout.Controls.Add(button4);
+            FlowLayout.Controls.Add(button5);
+            FlowLayout.Controls.Add(button6);
+            FlowLayout.Controls.Add(button7);
+            FlowLayout.Controls.Add(button8);
+            FlowLayout.Location = new Point(6, 60);
+            FlowLayout.Name = "FlowLayout";
+            FlowLayout.Size = new Size(582, 236);
+            FlowLayout.TabIndex = 19;
+            // 
+            // button3
+            // 
+            button3.Cursor = Cursors.Hand;
+            button3.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            button3.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            button3.FlatAppearance.MouseDownBackColor = Color.Green;
+            button3.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.ForeColor = Color.White;
+            button3.Location = new Point(3, 3);
+            button3.Name = "button3";
+            button3.Size = new Size(187, 32);
+            button3.TabIndex = 20;
+            button3.Text = "جدید";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Cursor = Cursors.Hand;
+            button4.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            button4.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            button4.FlatAppearance.MouseDownBackColor = Color.Green;
+            button4.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.ForeColor = Color.White;
+            button4.Location = new Point(196, 3);
+            button4.Name = "button4";
+            button4.Size = new Size(187, 32);
+            button4.TabIndex = 21;
+            button4.Text = "جدید";
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            button5.Cursor = Cursors.Hand;
+            button5.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            button5.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            button5.FlatAppearance.MouseDownBackColor = Color.Green;
+            button5.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.ForeColor = Color.White;
+            button5.Location = new Point(389, 3);
+            button5.Name = "button5";
+            button5.Size = new Size(187, 32);
+            button5.TabIndex = 22;
+            button5.Text = "جدید";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            button6.Cursor = Cursors.Hand;
+            button6.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            button6.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            button6.FlatAppearance.MouseDownBackColor = Color.Green;
+            button6.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.ForeColor = Color.White;
+            button6.Location = new Point(3, 41);
+            button6.Name = "button6";
+            button6.Size = new Size(187, 32);
+            button6.TabIndex = 23;
+            button6.Text = "جدید";
+            button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            button7.Cursor = Cursors.Hand;
+            button7.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            button7.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            button7.FlatAppearance.MouseDownBackColor = Color.Green;
+            button7.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.ForeColor = Color.White;
+            button7.Location = new Point(196, 41);
+            button7.Name = "button7";
+            button7.Size = new Size(187, 32);
+            button7.TabIndex = 24;
+            button7.Text = "جدید";
+            button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            button8.Cursor = Cursors.Hand;
+            button8.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
+            button8.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            button8.FlatAppearance.MouseDownBackColor = Color.Green;
+            button8.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.ForeColor = Color.White;
+            button8.Location = new Point(389, 41);
+            button8.Name = "button8";
+            button8.Size = new Size(187, 32);
+            button8.TabIndex = 25;
+            button8.Text = "جدید";
+            button8.UseVisualStyleBackColor = true;
+            // 
+            // PanelCartBlance
+            // 
+            PanelCartBlance.AutoScroll = true;
+            PanelCartBlance.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            PanelCartBlance.Location = new Point(594, 60);
+            PanelCartBlance.Name = "PanelCartBlance";
+            PanelCartBlance.Size = new Size(543, 629);
+            PanelCartBlance.TabIndex = 18;
             // 
             // CartCombo
             // 
@@ -244,7 +393,8 @@
             Size = new Size(1146, 759);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)GridData).EndInit();
+            TableLayout.ResumeLayout(false);
+            FlowLayout.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -253,12 +403,24 @@
         private Label label1;
         private Button AddBtn;
         private GroupBox groupBox2;
-        private DataGridView GridData;
         private ComboBox CartCombo;
         private Label PageLbl;
         private Button NextBtn;
         private Button PrevBtn;
         private Button SearchBtn;
         private TextBox SearchTxt;
+        private TableLayoutPanel TableLayout;
+        private FlowLayoutPanel FlowLayout;
+        private Panel PanelCartBlance;
+        private Button button3;
+        private Button button4;
+        private Button button5;
+        private Button button6;
+        private Button button7;
+        private Button button8;
+        private Button button10;
+        private Button button9;
+        private Button button1;
+        private Button button2;
     }
 }

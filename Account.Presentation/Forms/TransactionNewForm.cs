@@ -67,7 +67,7 @@ namespace Account.Presentation.Forms
         }
         private void CloseBtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            ClearCloseControl();
         }
         private void SaveBtn_Click(object sender, EventArgs e)
         {
@@ -648,6 +648,7 @@ namespace Account.Presentation.Forms
             FormExtentions.ClearTextBoxes(this.Controls);
             MSG.Text = string.Empty;
             DisActiveAllConditionControle();
+            CashTxt.Text = string.Empty;
             this.Close();
         }
 
@@ -705,5 +706,46 @@ namespace Account.Presentation.Forms
             NewDataPanel.Visible = false;
         }
 
+
+        private void CashTxt_TextChanged(object sender, EventArgs e)
+        {
+            if (CashTxt.Text == "" || CashTxt.Text == "0") return;
+            CashTxt = InputUtilities.Thirth3Numeric(CashTxt);
+        }
+
+        private void InputHandler(decimal number)
+        {
+            if (CashTxt.Text == "" || CashTxt.Text == "0")
+            {
+                CashTxt.Text = number.ToString();
+                CashTxt = InputUtilities.Thirth3Numeric(CashTxt, number);
+                return;
+            }
+            CashTxt = InputUtilities.Thirth3Numeric(CashTxt, number);
+        }
+
+        private void Btn1_Click(object sender, EventArgs e) => InputHandler(100000);
+
+        private void Btn2_Click(object sender, EventArgs e) => InputHandler(200000);
+
+        private void Btn3_Click(object sender, EventArgs e) => InputHandler(500000);
+
+        private void Btn4_Click(object sender, EventArgs e) => InputHandler(1000000);
+
+        private void Btn5_Click(object sender, EventArgs e) => InputHandler(2000000);
+
+        private void Btn6_Click(object sender, EventArgs e) => InputHandler(4000000);
+
+        private void Btn7_Click(object sender, EventArgs e) => InputHandler(5000000);
+
+        private void Btn8_Click(object sender, EventArgs e) => InputHandler(10000000);
+
+        private void Btn9_Click(object sender, EventArgs e) => InputHandler(15000000);
+
+        private void Btn10_Click(object sender, EventArgs e) => InputHandler(20000000);
+
+        private void SubBtn_MouseDown(object sender, MouseEventArgs e) => InputHandler(-100000);
+
+        private void SumBtn_MouseDown(object sender, MouseEventArgs e) => InputHandler(100000);
     }
 }

@@ -187,5 +187,24 @@ namespace Account.Infrastructure.Library.Repositories.BUS
                 new KeyValue<CartType>{ Key="فرعی",Value=CartType.Custome },
             };
         }
+
+        public IEnumerable<CartView> GetAllCartWithDetails()
+        {
+            var result = Context.Carts
+                .Include(c => c.Bank)
+                .Include(c => c.Customer)
+                .Include(c => c.Blances)
+                .Where(x => !x.IsDeleted && x.IsActive && x.CartType == CartType.Main)
+                .Select(res => new CartView
+                {
+                    Id = res.ID,
+                    AccountNumber = res.AccountNumber,
+                    BankName = res.Bank.BankName,
+                    CustomerName = res.Customer.FullName,
+                    Blance=res.Blances.Where(x => x.IsActive && !x.IsDeleted).OrderByDescending(x => x.ID).FirstOrDefault().NewBlanceCash,
+                })
+                .ToList();
+            return result;
+        }
     }
 }

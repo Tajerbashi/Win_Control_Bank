@@ -287,7 +287,7 @@
             CalculateBtn.Name = "CalculateBtn";
             CalculateBtn.Size = new Size(190, 40);
             CalculateBtn.TabIndex = 3;
-            CalculateBtn.Text = "محاسبات";
+            CalculateBtn.Text = "گردش کارت";
             CalculateBtn.UseVisualStyleBackColor = true;
             CalculateBtn.Click += CalculateBtn_Click;
             // 

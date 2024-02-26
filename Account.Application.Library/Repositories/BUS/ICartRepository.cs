@@ -77,5 +77,11 @@ namespace Account.Application.Library.Repositories.BUS
         IEnumerable<KeyValue<CartType>> TitleValuesDegreeCart();
 
 
+        /// <summary>
+        /// دریافت تمام کارت ها و موجودی های کنونی
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<CartView> GetAllCartWithDetails();
+
     }
 }

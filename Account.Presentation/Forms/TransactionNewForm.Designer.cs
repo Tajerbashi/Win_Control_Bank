@@ -35,6 +35,28 @@
             CloseBtn = new Button();
             SaveBtn = new Button();
             groupBox1 = new GroupBox();
+            SubBtn = new Button();
+            SumBtn = new Button();
+            Btn15 = new Button();
+            Btn14 = new Button();
+            Btn13 = new Button();
+            Btn12 = new Button();
+            Btn11 = new Button();
+            Btn10 = new Button();
+            Btn9 = new Button();
+            Btn8 = new Button();
+            Btn7 = new Button();
+            Btn6 = new Button();
+            Btn20 = new Button();
+            Btn19 = new Button();
+            Btn18 = new Button();
+            Btn17 = new Button();
+            Btn16 = new Button();
+            Btn5 = new Button();
+            Btn4 = new Button();
+            Btn3 = new Button();
+            Btn2 = new Button();
+            Btn1 = new Button();
             TCustomerCombo = new ComboBox();
             L6 = new Label();
             FCustomerCombo = new ComboBox();
@@ -160,6 +182,28 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(SubBtn);
+            groupBox1.Controls.Add(SumBtn);
+            groupBox1.Controls.Add(Btn15);
+            groupBox1.Controls.Add(Btn14);
+            groupBox1.Controls.Add(Btn13);
+            groupBox1.Controls.Add(Btn12);
+            groupBox1.Controls.Add(Btn11);
+            groupBox1.Controls.Add(Btn10);
+            groupBox1.Controls.Add(Btn9);
+            groupBox1.Controls.Add(Btn8);
+            groupBox1.Controls.Add(Btn7);
+            groupBox1.Controls.Add(Btn6);
+            groupBox1.Controls.Add(Btn20);
+            groupBox1.Controls.Add(Btn19);
+            groupBox1.Controls.Add(Btn18);
+            groupBox1.Controls.Add(Btn17);
+            groupBox1.Controls.Add(Btn16);
+            groupBox1.Controls.Add(Btn5);
+            groupBox1.Controls.Add(Btn4);
+            groupBox1.Controls.Add(Btn3);
+            groupBox1.Controls.Add(Btn2);
+            groupBox1.Controls.Add(Btn1);
             groupBox1.Controls.Add(TCustomerCombo);
             groupBox1.Controls.Add(L6);
             groupBox1.Controls.Add(FCustomerCombo);
@@ -201,6 +245,392 @@
             groupBox1.Size = new Size(1226, 624);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
+            // 
+            // SubBtn
+            // 
+            SubBtn.BackColor = Color.Transparent;
+            SubBtn.Cursor = Cursors.Hand;
+            SubBtn.FlatAppearance.BorderColor = Color.Red;
+            SubBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(128, 128, 255);
+            SubBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(255, 128, 128);
+            SubBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 192, 192);
+            SubBtn.FlatStyle = FlatStyle.Flat;
+            SubBtn.ForeColor = Color.White;
+            SubBtn.Location = new Point(895, 419);
+            SubBtn.Name = "SubBtn";
+            SubBtn.Size = new Size(32, 32);
+            SubBtn.TabIndex = 92;
+            SubBtn.Text = "-";
+            SubBtn.UseVisualStyleBackColor = false;
+            SubBtn.MouseDown += SubBtn_MouseDown;
+            // 
+            // SumBtn
+            // 
+            SumBtn.BackColor = Color.Transparent;
+            SumBtn.Cursor = Cursors.Hand;
+            SumBtn.FlatAppearance.BorderColor = Color.FromArgb(0, 162, 255);
+            SumBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(128, 128, 255);
+            SumBtn.FlatAppearance.MouseDownBackColor = Color.Navy;
+            SumBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
+            SumBtn.FlatStyle = FlatStyle.Flat;
+            SumBtn.ForeColor = Color.White;
+            SumBtn.Location = new Point(301, 419);
+            SumBtn.Name = "SumBtn";
+            SumBtn.Size = new Size(32, 32);
+            SumBtn.TabIndex = 91;
+            SumBtn.Text = "+";
+            SumBtn.UseVisualStyleBackColor = false;
+            SumBtn.MouseDown += SumBtn_MouseDown;
+            // 
+            // Btn15
+            // 
+            Btn15.BackColor = Color.Transparent;
+            Btn15.Cursor = Cursors.Hand;
+            Btn15.FlatAppearance.BorderColor = Color.FromArgb(0, 48, 76);
+            Btn15.FlatAppearance.CheckedBackColor = Color.FromArgb(128, 128, 255);
+            Btn15.FlatAppearance.MouseDownBackColor = Color.Navy;
+            Btn15.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
+            Btn15.FlatStyle = FlatStyle.Flat;
+            Btn15.ForeColor = Color.White;
+            Btn15.Location = new Point(140, 541);
+            Btn15.Name = "Btn15";
+            Btn15.Size = new Size(117, 32);
+            Btn15.TabIndex = 90;
+            Btn15.Text = "ذخیره اطلاعات";
+            Btn15.UseVisualStyleBackColor = false;
+            // 
+            // Btn14
+            // 
+            Btn14.BackColor = Color.Transparent;
+            Btn14.Cursor = Cursors.Hand;
+            Btn14.FlatAppearance.BorderColor = Color.FromArgb(0, 71, 111);
+            Btn14.FlatAppearance.CheckedBackColor = Color.FromArgb(128, 128, 255);
+            Btn14.FlatAppearance.MouseDownBackColor = Color.Navy;
+            Btn14.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
+            Btn14.FlatStyle = FlatStyle.Flat;
+            Btn14.ForeColor = Color.White;
+            Btn14.Location = new Point(140, 503);
+            Btn14.Name = "Btn14";
+            Btn14.Size = new Size(117, 32);
+            Btn14.TabIndex = 89;
+            Btn14.Text = "ذخیره اطلاعات";
+            Btn14.UseVisualStyleBackColor = false;
+            // 
+            // Btn13
+            // 
+            Btn13.BackColor = Color.Transparent;
+            Btn13.Cursor = Cursors.Hand;
+            Btn13.FlatAppearance.BorderColor = Color.FromArgb(0, 97, 152);
+            Btn13.FlatAppearance.CheckedBackColor = Color.FromArgb(128, 128, 255);
+            Btn13.FlatAppearance.MouseDownBackColor = Color.Navy;
+            Btn13.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
+            Btn13.FlatStyle = FlatStyle.Flat;
+            Btn13.ForeColor = Color.White;
+            Btn13.Location = new Point(140, 465);
+            Btn13.Name = "Btn13";
+            Btn13.Size = new Size(117, 32);
+            Btn13.TabIndex = 88;
+            Btn13.Text = "ذخیره اطلاعات";
+            Btn13.UseVisualStyleBackColor = false;
+            // 
+            // Btn12
+            // 
+            Btn12.BackColor = Color.Transparent;
+            Btn12.Cursor = Cursors.Hand;
+            Btn12.FlatAppearance.BorderColor = Color.FromArgb(0, 119, 187);
+            Btn12.FlatAppearance.CheckedBackColor = Color.FromArgb(128, 128, 255);
+            Btn12.FlatAppearance.MouseDownBackColor = Color.Navy;
+            Btn12.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
+            Btn12.FlatStyle = FlatStyle.Flat;
+            Btn12.ForeColor = Color.White;
+            Btn12.Location = new Point(140, 427);
+            Btn12.Name = "Btn12";
+            Btn12.Size = new Size(117, 32);
+            Btn12.TabIndex = 87;
+            Btn12.Text = "ذخیره اطلاعات";
+            Btn12.UseVisualStyleBackColor = false;
+            // 
+            // Btn11
+            // 
+            Btn11.BackColor = Color.Transparent;
+            Btn11.Cursor = Cursors.Hand;
+            Btn11.FlatAppearance.BorderColor = Color.FromArgb(0, 162, 255);
+            Btn11.FlatAppearance.CheckedBackColor = Color.FromArgb(128, 128, 255);
+            Btn11.FlatAppearance.MouseDownBackColor = Color.Navy;
+            Btn11.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
+            Btn11.FlatStyle = FlatStyle.Flat;
+            Btn11.ForeColor = Color.White;
+            Btn11.Location = new Point(140, 389);
+            Btn11.Name = "Btn11";
+            Btn11.Size = new Size(117, 32);
+            Btn11.TabIndex = 86;
+            Btn11.Text = "ذخیره اطلاعات";
+            Btn11.UseVisualStyleBackColor = false;
+            // 
+            // Btn10
+            // 
+            Btn10.BackColor = Color.Transparent;
+            Btn10.Cursor = Cursors.Hand;
+            Btn10.FlatAppearance.BorderColor = Color.FromArgb(128, 64, 0);
+            Btn10.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            Btn10.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            Btn10.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn10.FlatStyle = FlatStyle.Flat;
+            Btn10.ForeColor = Color.White;
+            Btn10.Location = new Point(969, 541);
+            Btn10.Name = "Btn10";
+            Btn10.Size = new Size(117, 32);
+            Btn10.TabIndex = 85;
+            Btn10.Text = "20,000,000";
+            Btn10.UseVisualStyleBackColor = false;
+            Btn10.Click += Btn10_Click;
+            // 
+            // Btn9
+            // 
+            Btn9.BackColor = Color.Transparent;
+            Btn9.Cursor = Cursors.Hand;
+            Btn9.FlatAppearance.BorderColor = Color.FromArgb(192, 64, 0);
+            Btn9.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            Btn9.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            Btn9.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn9.FlatStyle = FlatStyle.Flat;
+            Btn9.ForeColor = Color.White;
+            Btn9.Location = new Point(969, 503);
+            Btn9.Name = "Btn9";
+            Btn9.Size = new Size(117, 32);
+            Btn9.TabIndex = 84;
+            Btn9.Text = "15,000,000";
+            Btn9.UseVisualStyleBackColor = false;
+            Btn9.Click += Btn9_Click;
+            // 
+            // Btn8
+            // 
+            Btn8.BackColor = Color.Transparent;
+            Btn8.Cursor = Cursors.Hand;
+            Btn8.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 0);
+            Btn8.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            Btn8.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            Btn8.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn8.FlatStyle = FlatStyle.Flat;
+            Btn8.ForeColor = Color.White;
+            Btn8.Location = new Point(969, 465);
+            Btn8.Name = "Btn8";
+            Btn8.Size = new Size(117, 32);
+            Btn8.TabIndex = 83;
+            Btn8.Text = "10,000,000";
+            Btn8.UseVisualStyleBackColor = false;
+            Btn8.Click += Btn8_Click;
+            // 
+            // Btn7
+            // 
+            Btn7.BackColor = Color.Transparent;
+            Btn7.Cursor = Cursors.Hand;
+            Btn7.FlatAppearance.BorderColor = Color.FromArgb(255, 192, 128);
+            Btn7.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            Btn7.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            Btn7.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn7.FlatStyle = FlatStyle.Flat;
+            Btn7.ForeColor = Color.White;
+            Btn7.Location = new Point(969, 427);
+            Btn7.Name = "Btn7";
+            Btn7.Size = new Size(117, 32);
+            Btn7.TabIndex = 82;
+            Btn7.Text = "5,000,000";
+            Btn7.UseVisualStyleBackColor = false;
+            Btn7.Click += Btn7_Click;
+            // 
+            // Btn6
+            // 
+            Btn6.BackColor = Color.Transparent;
+            Btn6.Cursor = Cursors.Hand;
+            Btn6.FlatAppearance.BorderColor = Color.FromArgb(255, 224, 192);
+            Btn6.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            Btn6.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            Btn6.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn6.FlatStyle = FlatStyle.Flat;
+            Btn6.ForeColor = Color.White;
+            Btn6.Location = new Point(969, 389);
+            Btn6.Name = "Btn6";
+            Btn6.Size = new Size(117, 32);
+            Btn6.TabIndex = 81;
+            Btn6.Text = "4,000,000";
+            Btn6.UseVisualStyleBackColor = false;
+            Btn6.Click += Btn6_Click;
+            // 
+            // Btn20
+            // 
+            Btn20.BackColor = Color.Transparent;
+            Btn20.Cursor = Cursors.Hand;
+            Btn20.FlatAppearance.BorderColor = Color.Maroon;
+            Btn20.FlatAppearance.CheckedBackColor = Color.Salmon;
+            Btn20.FlatAppearance.MouseDownBackColor = Color.Crimson;
+            Btn20.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn20.FlatStyle = FlatStyle.Flat;
+            Btn20.ForeColor = Color.White;
+            Btn20.Location = new Point(17, 541);
+            Btn20.Name = "Btn20";
+            Btn20.Size = new Size(117, 32);
+            Btn20.TabIndex = 80;
+            Btn20.Text = "ذخیره اطلاعات";
+            Btn20.UseVisualStyleBackColor = false;
+            // 
+            // Btn19
+            // 
+            Btn19.BackColor = Color.Transparent;
+            Btn19.Cursor = Cursors.Hand;
+            Btn19.FlatAppearance.BorderColor = Color.FromArgb(192, 0, 0);
+            Btn19.FlatAppearance.CheckedBackColor = Color.Salmon;
+            Btn19.FlatAppearance.MouseDownBackColor = Color.Crimson;
+            Btn19.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn19.FlatStyle = FlatStyle.Flat;
+            Btn19.ForeColor = Color.White;
+            Btn19.Location = new Point(17, 503);
+            Btn19.Name = "Btn19";
+            Btn19.Size = new Size(117, 32);
+            Btn19.TabIndex = 79;
+            Btn19.Text = "ذخیره اطلاعات";
+            Btn19.UseVisualStyleBackColor = false;
+            // 
+            // Btn18
+            // 
+            Btn18.BackColor = Color.Transparent;
+            Btn18.Cursor = Cursors.Hand;
+            Btn18.FlatAppearance.BorderColor = Color.Red;
+            Btn18.FlatAppearance.CheckedBackColor = Color.Salmon;
+            Btn18.FlatAppearance.MouseDownBackColor = Color.Crimson;
+            Btn18.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn18.FlatStyle = FlatStyle.Flat;
+            Btn18.ForeColor = Color.White;
+            Btn18.Location = new Point(17, 465);
+            Btn18.Name = "Btn18";
+            Btn18.Size = new Size(117, 32);
+            Btn18.TabIndex = 78;
+            Btn18.Text = "ذخیره اطلاعات";
+            Btn18.UseVisualStyleBackColor = false;
+            // 
+            // Btn17
+            // 
+            Btn17.BackColor = Color.Transparent;
+            Btn17.Cursor = Cursors.Hand;
+            Btn17.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 128);
+            Btn17.FlatAppearance.CheckedBackColor = Color.Salmon;
+            Btn17.FlatAppearance.MouseDownBackColor = Color.Crimson;
+            Btn17.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn17.FlatStyle = FlatStyle.Flat;
+            Btn17.ForeColor = Color.White;
+            Btn17.Location = new Point(17, 427);
+            Btn17.Name = "Btn17";
+            Btn17.Size = new Size(117, 32);
+            Btn17.TabIndex = 77;
+            Btn17.Text = "ذخیره اطلاعات";
+            Btn17.UseVisualStyleBackColor = false;
+            // 
+            // Btn16
+            // 
+            Btn16.BackColor = Color.Transparent;
+            Btn16.Cursor = Cursors.Hand;
+            Btn16.FlatAppearance.BorderColor = Color.FromArgb(255, 192, 192);
+            Btn16.FlatAppearance.CheckedBackColor = Color.Salmon;
+            Btn16.FlatAppearance.MouseDownBackColor = Color.Crimson;
+            Btn16.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn16.FlatStyle = FlatStyle.Flat;
+            Btn16.ForeColor = Color.White;
+            Btn16.Location = new Point(17, 389);
+            Btn16.Name = "Btn16";
+            Btn16.Size = new Size(117, 32);
+            Btn16.TabIndex = 76;
+            Btn16.Text = "ذخیره اطلاعات";
+            Btn16.UseVisualStyleBackColor = false;
+            // 
+            // Btn5
+            // 
+            Btn5.BackColor = Color.Transparent;
+            Btn5.Cursor = Cursors.Hand;
+            Btn5.FlatAppearance.BorderColor = Color.FromArgb(128, 64, 0);
+            Btn5.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            Btn5.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            Btn5.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn5.FlatStyle = FlatStyle.Flat;
+            Btn5.ForeColor = Color.White;
+            Btn5.Location = new Point(1092, 541);
+            Btn5.Name = "Btn5";
+            Btn5.Size = new Size(117, 32);
+            Btn5.TabIndex = 75;
+            Btn5.Text = "2,000,000";
+            Btn5.UseVisualStyleBackColor = false;
+            Btn5.Click += Btn5_Click;
+            // 
+            // Btn4
+            // 
+            Btn4.BackColor = Color.Transparent;
+            Btn4.Cursor = Cursors.Hand;
+            Btn4.FlatAppearance.BorderColor = Color.FromArgb(192, 64, 0);
+            Btn4.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            Btn4.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            Btn4.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn4.FlatStyle = FlatStyle.Flat;
+            Btn4.ForeColor = Color.White;
+            Btn4.Location = new Point(1092, 503);
+            Btn4.Name = "Btn4";
+            Btn4.Size = new Size(117, 32);
+            Btn4.TabIndex = 74;
+            Btn4.Text = "1,000,000";
+            Btn4.UseVisualStyleBackColor = false;
+            Btn4.Click += Btn4_Click;
+            // 
+            // Btn3
+            // 
+            Btn3.BackColor = Color.Transparent;
+            Btn3.Cursor = Cursors.Hand;
+            Btn3.FlatAppearance.BorderColor = Color.FromArgb(255, 128, 0);
+            Btn3.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            Btn3.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            Btn3.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn3.FlatStyle = FlatStyle.Flat;
+            Btn3.ForeColor = Color.White;
+            Btn3.Location = new Point(1092, 465);
+            Btn3.Name = "Btn3";
+            Btn3.Size = new Size(117, 32);
+            Btn3.TabIndex = 73;
+            Btn3.Text = "500,000";
+            Btn3.UseVisualStyleBackColor = false;
+            Btn3.Click += Btn3_Click;
+            // 
+            // Btn2
+            // 
+            Btn2.BackColor = Color.Transparent;
+            Btn2.Cursor = Cursors.Hand;
+            Btn2.FlatAppearance.BorderColor = Color.FromArgb(255, 192, 128);
+            Btn2.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            Btn2.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            Btn2.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn2.FlatStyle = FlatStyle.Flat;
+            Btn2.ForeColor = Color.White;
+            Btn2.Location = new Point(1092, 427);
+            Btn2.Name = "Btn2";
+            Btn2.Size = new Size(117, 32);
+            Btn2.TabIndex = 72;
+            Btn2.Text = "200,000";
+            Btn2.UseVisualStyleBackColor = false;
+            Btn2.Click += Btn2_Click;
+            // 
+            // Btn1
+            // 
+            Btn1.BackColor = Color.Transparent;
+            Btn1.Cursor = Cursors.Hand;
+            Btn1.FlatAppearance.BorderColor = Color.FromArgb(255, 224, 192);
+            Btn1.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
+            Btn1.FlatAppearance.MouseDownBackColor = Color.FromArgb(192, 64, 0);
+            Btn1.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 128, 0);
+            Btn1.FlatStyle = FlatStyle.Flat;
+            Btn1.ForeColor = Color.White;
+            Btn1.Location = new Point(1092, 389);
+            Btn1.Name = "Btn1";
+            Btn1.Size = new Size(117, 32);
+            Btn1.TabIndex = 71;
+            Btn1.Text = "100,000";
+            Btn1.UseVisualStyleBackColor = false;
+            Btn1.Click += Btn1_Click;
             // 
             // TCustomerCombo
             // 
@@ -313,11 +743,11 @@
             // label13
             // 
             label13.ForeColor = Color.White;
-            label13.Location = new Point(286, 419);
+            label13.Location = new Point(339, 386);
             label13.Name = "label13";
             label13.Size = new Size(47, 32);
             label13.TabIndex = 64;
-            label13.Text = "تومان";
+            label13.Text = "ریال";
             label13.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label4
@@ -334,24 +764,25 @@
             // 
             CashTxt.BackColor = Color.FromArgb(240, 236, 150);
             CashTxt.BorderStyle = BorderStyle.FixedSingle;
-            CashTxt.Location = new Point(339, 421);
+            CashTxt.Location = new Point(339, 419);
             CashTxt.MaxLength = 15;
             CashTxt.Name = "CashTxt";
             CashTxt.PlaceholderText = "مبلغ مورد نظر را وارد کنید";
             CashTxt.Size = new Size(550, 32);
             CashTxt.TabIndex = 8;
             CashTxt.TextAlign = HorizontalAlignment.Center;
+            CashTxt.TextChanged += CashTxt_TextChanged;
             // 
             // DescTxt
             // 
             DescTxt.BackColor = Color.FromArgb(240, 236, 150);
             DescTxt.BorderStyle = BorderStyle.FixedSingle;
-            DescTxt.Location = new Point(21, 471);
+            DescTxt.Location = new Point(272, 471);
             DescTxt.MaxLength = 500;
             DescTxt.Multiline = true;
             DescTxt.Name = "DescTxt";
             DescTxt.PlaceholderText = "توضیحات مورد نظر را وارد کنید";
-            DescTxt.Size = new Size(1184, 64);
+            DescTxt.Size = new Size(682, 64);
             DescTxt.TabIndex = 9;
             DescTxt.TextAlign = HorizontalAlignment.Center;
             // 
@@ -703,5 +1134,27 @@
         private ComboBox FCustomerCombo;
         private ComboBox TCustomerCombo;
         private Label L6;
+        private Button Btn4;
+        private Button Btn3;
+        private Button Btn2;
+        private Button Btn1;
+        private Button Btn15;
+        private Button Btn14;
+        private Button Btn13;
+        private Button Btn12;
+        private Button Btn11;
+        private Button Btn10;
+        private Button Btn9;
+        private Button Btn8;
+        private Button Btn7;
+        private Button Btn6;
+        private Button Btn20;
+        private Button Btn19;
+        private Button Btn18;
+        private Button Btn17;
+        private Button Btn16;
+        private Button Btn5;
+        private Button SubBtn;
+        private Button SumBtn;
     }
 }
