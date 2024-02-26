@@ -9,7 +9,6 @@ using Account.Infrastructure.Library.BaseService;
 using Account.Infrastructure.Library.Repositories.BUS.Queries;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -194,7 +193,7 @@ namespace Account.Infrastructure.Library.Repositories.BUS
                 .Include(c => c.Bank)
                 .Include(c => c.Customer)
                 .Include(c => c.Blances)
-                .Where(x => !x.IsDeleted && x.IsActive && x.CartType == CartType.Main)
+                .Where(x => !x.IsDeleted && x.IsActive && x.CartType == CartType.Main && !x.Bank.BankName.Contains(":"))
                 .Select(res => new CartView
                 {
                     Id = res.ID,

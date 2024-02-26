@@ -8,6 +8,7 @@ using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using Account.Infrastructure.Library.Repositories.BUS.Queries;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace Account.Infrastructure.Library.Repositories.BUS
 
         public IEnumerable<KeyValue<long>> CustomerTitleValue()
         {
-            return Context.Customers.Where(x => !x.IsDeleted).Select(x => new KeyValue<long>
+            return Context.Customers.Include(c => c.Carts).Where(x => !x.IsDeleted && x.Carts.Any(c => c.CartType == CartType.Main)).Select(x => new KeyValue<long>
             {
                 Key = x.FullName,
                 Value = x.ID

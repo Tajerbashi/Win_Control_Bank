@@ -37,14 +37,8 @@
             button2 = new Button();
             button9 = new Button();
             FlowLayout = new FlowLayoutPanel();
-            button3 = new Button();
-            button4 = new Button();
-            button5 = new Button();
-            button6 = new Button();
-            button7 = new Button();
-            button8 = new Button();
             PanelCartBlance = new Panel();
-            CartCombo = new ComboBox();
+            CustomerCombo = new ComboBox();
             PageLbl = new Label();
             NextBtn = new Button();
             PrevBtn = new Button();
@@ -52,7 +46,6 @@
             SearchTxt = new TextBox();
             groupBox2.SuspendLayout();
             TableLayout.SuspendLayout();
-            FlowLayout.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -79,7 +72,7 @@
             AddBtn.Name = "AddBtn";
             AddBtn.Size = new Size(225, 32);
             AddBtn.TabIndex = 17;
-            AddBtn.Text = "جدید";
+            AddBtn.Text = "تازه سازی";
             AddBtn.UseVisualStyleBackColor = true;
             AddBtn.Click += AddBtn_Click;
             // 
@@ -89,7 +82,7 @@
             groupBox2.Controls.Add(TableLayout);
             groupBox2.Controls.Add(FlowLayout);
             groupBox2.Controls.Add(PanelCartBlance);
-            groupBox2.Controls.Add(CartCombo);
+            groupBox2.Controls.Add(CustomerCombo);
             groupBox2.Controls.Add(PageLbl);
             groupBox2.Controls.Add(NextBtn);
             groupBox2.Controls.Add(PrevBtn);
@@ -184,112 +177,10 @@
             // 
             // FlowLayout
             // 
-            FlowLayout.Controls.Add(button3);
-            FlowLayout.Controls.Add(button4);
-            FlowLayout.Controls.Add(button5);
-            FlowLayout.Controls.Add(button6);
-            FlowLayout.Controls.Add(button7);
-            FlowLayout.Controls.Add(button8);
             FlowLayout.Location = new Point(6, 60);
             FlowLayout.Name = "FlowLayout";
             FlowLayout.Size = new Size(582, 236);
             FlowLayout.TabIndex = 19;
-            // 
-            // button3
-            // 
-            button3.Cursor = Cursors.Hand;
-            button3.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
-            button3.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            button3.FlatAppearance.MouseDownBackColor = Color.Green;
-            button3.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(3, 3);
-            button3.Name = "button3";
-            button3.Size = new Size(187, 32);
-            button3.TabIndex = 20;
-            button3.Text = "جدید";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            button4.Cursor = Cursors.Hand;
-            button4.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
-            button4.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            button4.FlatAppearance.MouseDownBackColor = Color.Green;
-            button4.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.ForeColor = Color.White;
-            button4.Location = new Point(196, 3);
-            button4.Name = "button4";
-            button4.Size = new Size(187, 32);
-            button4.TabIndex = 21;
-            button4.Text = "جدید";
-            button4.UseVisualStyleBackColor = true;
-            // 
-            // button5
-            // 
-            button5.Cursor = Cursors.Hand;
-            button5.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
-            button5.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            button5.FlatAppearance.MouseDownBackColor = Color.Green;
-            button5.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.ForeColor = Color.White;
-            button5.Location = new Point(389, 3);
-            button5.Name = "button5";
-            button5.Size = new Size(187, 32);
-            button5.TabIndex = 22;
-            button5.Text = "جدید";
-            button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            button6.Cursor = Cursors.Hand;
-            button6.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
-            button6.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            button6.FlatAppearance.MouseDownBackColor = Color.Green;
-            button6.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.ForeColor = Color.White;
-            button6.Location = new Point(3, 41);
-            button6.Name = "button6";
-            button6.Size = new Size(187, 32);
-            button6.TabIndex = 23;
-            button6.Text = "جدید";
-            button6.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            button7.Cursor = Cursors.Hand;
-            button7.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
-            button7.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            button7.FlatAppearance.MouseDownBackColor = Color.Green;
-            button7.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.ForeColor = Color.White;
-            button7.Location = new Point(196, 41);
-            button7.Name = "button7";
-            button7.Size = new Size(187, 32);
-            button7.TabIndex = 24;
-            button7.Text = "جدید";
-            button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            button8.Cursor = Cursors.Hand;
-            button8.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
-            button8.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            button8.FlatAppearance.MouseDownBackColor = Color.Green;
-            button8.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.ForeColor = Color.White;
-            button8.Location = new Point(389, 41);
-            button8.Name = "button8";
-            button8.Size = new Size(187, 32);
-            button8.TabIndex = 25;
-            button8.Text = "جدید";
-            button8.UseVisualStyleBackColor = true;
             // 
             // PanelCartBlance
             // 
@@ -300,17 +191,17 @@
             PanelCartBlance.Size = new Size(543, 629);
             PanelCartBlance.TabIndex = 18;
             // 
-            // CartCombo
+            // CustomerCombo
             // 
-            CartCombo.BackColor = Color.FromArgb(240, 236, 229);
-            CartCombo.Cursor = Cursors.Hand;
-            CartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
-            CartCombo.FormattingEnabled = true;
-            CartCombo.Location = new Point(355, 21);
-            CartCombo.Name = "CartCombo";
-            CartCombo.RightToLeft = RightToLeft.Yes;
-            CartCombo.Size = new Size(782, 33);
-            CartCombo.TabIndex = 16;
+            CustomerCombo.BackColor = Color.FromArgb(240, 236, 229);
+            CustomerCombo.Cursor = Cursors.Hand;
+            CustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            CustomerCombo.FormattingEnabled = true;
+            CustomerCombo.Location = new Point(355, 21);
+            CustomerCombo.Name = "CustomerCombo";
+            CustomerCombo.RightToLeft = RightToLeft.Yes;
+            CustomerCombo.Size = new Size(782, 33);
+            CustomerCombo.TabIndex = 16;
             // 
             // PageLbl
             // 
@@ -391,10 +282,10 @@
             Margin = new Padding(4, 5, 4, 5);
             Name = "BlanceUC";
             Size = new Size(1146, 759);
+            Load += BlanceUC_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             TableLayout.ResumeLayout(false);
-            FlowLayout.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -403,24 +294,18 @@
         private Label label1;
         private Button AddBtn;
         private GroupBox groupBox2;
-        private ComboBox CartCombo;
         private Label PageLbl;
         private Button NextBtn;
         private Button PrevBtn;
-        private Button SearchBtn;
-        private TextBox SearchTxt;
         private TableLayoutPanel TableLayout;
         private FlowLayoutPanel FlowLayout;
         private Panel PanelCartBlance;
-        private Button button3;
-        private Button button4;
-        private Button button5;
-        private Button button6;
-        private Button button7;
-        private Button button8;
         private Button button10;
         private Button button9;
         private Button button1;
         private Button button2;
+        private ComboBox CustomerCombo;
+        private Button SearchBtn;
+        private TextBox SearchTxt;
     }
 }
