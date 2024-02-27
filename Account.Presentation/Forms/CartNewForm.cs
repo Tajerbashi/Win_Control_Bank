@@ -213,5 +213,11 @@ namespace Account.Presentation.Forms
         {
 
         }
+
+        private void AccountNumberTxt_TextChanged(object sender, EventArgs e)
+        {
+            if (AccountNumberTxt.Text == "" || AccountNumberTxt.Text == "0") return;
+            AccountNumberTxt = InputUtilities.FourNumericSpace(AccountNumberTxt);
+        }
     }
 }

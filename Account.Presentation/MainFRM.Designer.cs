@@ -86,8 +86,8 @@
             NewTransactionBtn.FlatAppearance.BorderColor = Color.FromArgb(192, 192, 255);
             NewTransactionBtn.FlatAppearance.BorderSize = 2;
             NewTransactionBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(250, 0, 0);
-            NewTransactionBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(100, 90, 180);
-            NewTransactionBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 80, 100);
+            NewTransactionBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(50, 120, 180);
+            NewTransactionBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 80, 150);
             NewTransactionBtn.FlatStyle = FlatStyle.Flat;
             NewTransactionBtn.Font = new Font("IRANSansWeb", 14.25F);
             NewTransactionBtn.ForeColor = Color.White;

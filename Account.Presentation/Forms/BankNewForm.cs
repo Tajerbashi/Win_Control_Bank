@@ -3,7 +3,6 @@ using Account.Application.Library.Repositories.BUS;
 using Account.Presentation.Extentions;
 using FluentValidation;
 using FluentValidation.Results;
-using Microsoft.VisualStudio.OLE.Interop;
 using System.Runtime.InteropServices;
 
 namespace Account.Presentation.Forms
@@ -51,7 +50,7 @@ namespace Account.Presentation.Forms
             if (!result.IsValid)
             {
                 MSG.Visible = true;
-                MSG.Text =  result.Errors.Select(x => ($"{x.ErrorMessage} : {x.AttemptedValue}")).FirstOrDefault();
+                MSG.Text = result.Errors.Select(x => ($"{x.ErrorMessage} : {x.AttemptedValue}")).FirstOrDefault();
                 return;
             }
             _bankRepository.Insert(BankDTO());

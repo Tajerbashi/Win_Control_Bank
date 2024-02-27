@@ -1,8 +1,9 @@
 ﻿using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;
-using Account.Infrastructure.Library.Patterns;
 using Account.Presentation.Extentions;
+using FluentValidation;
+using FluentValidation.Results;
 using Presentation.Extentions;
 using System.Runtime.InteropServices;
 
@@ -30,15 +31,15 @@ namespace Account.Presentation.Forms
 
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
         #endregion
-        private readonly ICustomerRepository _customerRepository;
+        private IValidator<CustomerDTO> _validator;
         private readonly IUnitOfWork _unitOfWork;
         public CustomerNewForm(
-            ICustomerRepository customerRepository,
-            IUnitOfWork unitOfWork
+            IUnitOfWork unitOfWork,
+            IValidator<CustomerDTO> validator
             )
         {
-            _customerRepository = customerRepository;
             _unitOfWork = unitOfWork;
+            _validator = validator;
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             MSG.Text = "";
@@ -53,7 +54,18 @@ namespace Account.Presentation.Forms
         }
         private void SaveBtn_Click(object sender, EventArgs e)
         {
+            var ll = CustomerDTO();
+            ValidationResult result = _validator.Validate(CustomerDTO());
+            if (!result.IsValid)
+            {
+                MSG.Visible = true;
+                MSG.Text = result.Errors.Select(x => ($"{x.ErrorMessage} : {x.AttemptedValue}\n")).FirstOrDefault();
+                return;
+            }
             SaveFormData();
+            FormExtentions.ClearTextBoxes(this.Controls);
+            MSG.Text = "";
+            this.Close();
         }
 
 

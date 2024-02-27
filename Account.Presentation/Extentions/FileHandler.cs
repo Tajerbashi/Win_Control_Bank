@@ -2,8 +2,12 @@
 {
     public static class FileHandler
     {
-        public static string SavePic(this String Name,OpenFileDialog ofd)
+        public static string SavePic(this string Name,OpenFileDialog ofd)
         {
+            if (Name == null || Name is null || string.IsNullOrEmpty(Name))
+            {
+                return null;
+            }
             string address = "";
             // محل که نرم افزار از آنجا اجرا میشود در متغییر ذخیره میکند
             var pp = Path.GetDirectoryName(Application.ExecutablePath).Split("\\");
@@ -25,6 +29,10 @@
             {
                 //  در داخل ترای کش ما عکس که فایل دیالوگ برمیگرداند نامش را ذخیره میکند
                 String PicPath = ofd.FileName;
+                if (PicPath is null || string.IsNullOrEmpty(PicPath))
+                {
+                    return null;
+                }
                 //  توسط تابع کپی ما عکس که از فایل دیالوگ گرفتیم را در آدرس پث که اول گرفتیم به اضافه نامی که در نظر گرفتیم ذخیره میکنیم
                 if (!Directory.Exists(path + PicName))
                 {

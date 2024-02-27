@@ -221,6 +221,7 @@
             AccountNumberTxt.Size = new Size(705, 32);
             AccountNumberTxt.TabIndex = 2;
             AccountNumberTxt.TextAlign = HorizontalAlignment.Center;
+            AccountNumberTxt.TextChanged += AccountNumberTxt_TextChanged;
             AccountNumberTxt.KeyPress += AccountNumberTxt_KeyPress;
             // 
             // label5
