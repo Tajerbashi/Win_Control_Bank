@@ -1,5 +1,6 @@
 ﻿using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
+using Account.Application.Library.Models.FilterModel;
 using Account.Application.Library.Models.Views.BUS;
 using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Entities.BUS;
@@ -204,6 +205,11 @@ namespace Account.Infrastructure.Library.Repositories.BUS
                 })
                 .ToList();
             return result;
+        }
+
+        public string SearchBlancingOfCart(GridFilter filter, string paging)
+        {
+            return CartQueries.SearchBlancingOfCart(filter, paging);
         }
     }
 }
