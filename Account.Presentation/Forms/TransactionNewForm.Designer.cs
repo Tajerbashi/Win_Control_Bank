@@ -772,6 +772,7 @@
             CashTxt.TabIndex = 8;
             CashTxt.TextAlign = HorizontalAlignment.Center;
             CashTxt.TextChanged += CashTxt_TextChanged;
+            CashTxt.KeyPress += CashTxt_KeyPress;
             // 
             // DescTxt
             // 

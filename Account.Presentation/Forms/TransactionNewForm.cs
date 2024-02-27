@@ -747,5 +747,10 @@ namespace Account.Presentation.Forms
         private void SubBtn_MouseDown(object sender, MouseEventArgs e) => InputHandler(-100000);
 
         private void SumBtn_MouseDown(object sender, MouseEventArgs e) => InputHandler(100000);
+
+        private void CashTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
     }
 }

@@ -81,13 +81,13 @@
             // 
             // NewTransactionBtn
             // 
-            NewTransactionBtn.BackColor = Color.FromArgb(255, 128, 0);
+            NewTransactionBtn.BackColor = Color.FromArgb(50, 90, 180);
             NewTransactionBtn.Cursor = Cursors.Hand;
-            NewTransactionBtn.FlatAppearance.BorderColor = Color.FromArgb(150, 0, 0);
+            NewTransactionBtn.FlatAppearance.BorderColor = Color.FromArgb(192, 192, 255);
             NewTransactionBtn.FlatAppearance.BorderSize = 2;
             NewTransactionBtn.FlatAppearance.CheckedBackColor = Color.FromArgb(250, 0, 0);
-            NewTransactionBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(150, 0, 0);
-            NewTransactionBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(200, 0, 0);
+            NewTransactionBtn.FlatAppearance.MouseDownBackColor = Color.FromArgb(100, 90, 180);
+            NewTransactionBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 80, 100);
             NewTransactionBtn.FlatStyle = FlatStyle.Flat;
             NewTransactionBtn.Font = new Font("IRANSansWeb", 14.25F);
             NewTransactionBtn.ForeColor = Color.White;
@@ -120,7 +120,7 @@
             // 
             // BankBtn
             // 
-            BankBtn.BackColor = Color.FromArgb(220, 50, 0);
+            BankBtn.BackColor = Color.FromArgb(230, 100, 40);
             BankBtn.Cursor = Cursors.Hand;
             BankBtn.FlatAppearance.BorderColor = Color.FromArgb(150, 0, 0);
             BankBtn.FlatAppearance.BorderSize = 2;
@@ -233,7 +233,7 @@
             BalanceBtn.Name = "BalanceBtn";
             BalanceBtn.Size = new Size(190, 40);
             BalanceBtn.TabIndex = 6;
-            BalanceBtn.Text = "موجودی";
+            BalanceBtn.Text = "موجودی حساب";
             BalanceBtn.UseVisualStyleBackColor = true;
             BalanceBtn.Click += BalanceBtn_Click;
             // 
@@ -269,7 +269,7 @@
             CashMoneyBtn.Name = "CashMoneyBtn";
             CashMoneyBtn.Size = new Size(190, 40);
             CashMoneyBtn.TabIndex = 4;
-            CashMoneyBtn.Text = "نقدی";
+            CashMoneyBtn.Text = "محاسبات نقدی";
             CashMoneyBtn.UseVisualStyleBackColor = true;
             CashMoneyBtn.Click += CashMoneyBtn_Click;
             // 
@@ -311,7 +311,7 @@
             // 
             // UserBtn
             // 
-            UserBtn.BackColor = Color.FromArgb(220, 50, 0);
+            UserBtn.BackColor = Color.FromArgb(240, 120, 30);
             UserBtn.Cursor = Cursors.Hand;
             UserBtn.FlatAppearance.BorderColor = Color.FromArgb(150, 0, 0);
             UserBtn.FlatAppearance.BorderSize = 2;
@@ -321,7 +321,7 @@
             UserBtn.FlatStyle = FlatStyle.Flat;
             UserBtn.Font = new Font("IRANSansWeb", 12F);
             UserBtn.ForeColor = Color.White;
-            UserBtn.Location = new Point(10, 182);
+            UserBtn.Location = new Point(76, 182);
             UserBtn.Name = "UserBtn";
             UserBtn.Size = new Size(105, 86);
             UserBtn.TabIndex = 1;
@@ -331,7 +331,7 @@
             // 
             // CartBtn
             // 
-            CartBtn.BackColor = Color.FromArgb(220, 50, 0);
+            CartBtn.BackColor = Color.FromArgb(250, 140, 20);
             CartBtn.Cursor = Cursors.Hand;
             CartBtn.FlatAppearance.BorderColor = Color.FromArgb(150, 0, 0);
             CartBtn.FlatAppearance.BorderSize = 2;
@@ -341,7 +341,7 @@
             CartBtn.FlatStyle = FlatStyle.Flat;
             CartBtn.Font = new Font("IRANSansWeb", 12F);
             CartBtn.ForeColor = Color.White;
-            CartBtn.Location = new Point(121, 182);
+            CartBtn.Location = new Point(10, 182);
             CartBtn.Name = "CartBtn";
             CartBtn.Size = new Size(60, 86);
             CartBtn.TabIndex = 0;

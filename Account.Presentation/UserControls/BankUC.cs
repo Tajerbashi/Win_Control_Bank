@@ -9,14 +9,17 @@ namespace Account.Presentation.UserControls
     {
         private IUnitOfWork _unitOfWork;
         private readonly IBankRepository _bankRepository;
+        private BankNewForm bankNewForm;
         public BankUC(
             IUnitOfWork unitOfWork,
-            IBankRepository bankRepository
+            IBankRepository bankRepository,
+            BankNewForm bankNewForm
             )
         {
             InitializeComponent();
             _unitOfWork = unitOfWork;
             _bankRepository = bankRepository;
+            this.bankNewForm = bankNewForm;
         }
         private void ShowDataGrid()
         {
@@ -38,7 +41,6 @@ namespace Account.Presentation.UserControls
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
-            BankNewForm bankNewForm = new BankNewForm(_bankRepository);
             bankNewForm.ShowDialog();
             ShowDataGrid();
         }

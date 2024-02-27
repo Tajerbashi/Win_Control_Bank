@@ -69,6 +69,7 @@ namespace Presentation
             services.AddDbContext(Configuration);
             //services.ServiceInjector();
             services.UserControlInjector();
+            services.UserFluentValidation();
             services.FormInjector();
         }
     }

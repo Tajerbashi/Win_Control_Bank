@@ -1,17 +1,21 @@
 ﻿using Account.Application.Library.IDatabaseContext.DatabaseContext;
+using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;
 using Account.Application.Library.Repositories.SEC;
+using Account.Application.Library.Validation.BUS;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.Patterns;
 using Account.Infrastructure.Library.Repositories.BUS;
 using Account.Presentation.Extentions;
 using Account.Presentation.Forms;
 using Account.Presentation.UserControls;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation;
+using System;
 using System.ComponentModel;
 
 namespace Account.Presentation.ServiceContainer
@@ -28,6 +32,7 @@ namespace Account.Presentation.ServiceContainer
         {
             services
                 .AddScoped(typeof(MainFRM))
+                .AddScoped(typeof(BankNewForm))
                 .AddScoped(typeof(CartNewForm))
                 .AddScoped(typeof(CustomerNewForm))
                 .AddScoped(typeof(TransactionNewForm))
@@ -46,6 +51,13 @@ namespace Account.Presentation.ServiceContainer
                 .AddScoped<ICustomerRepository, CustomerRepository>()
                 .AddScoped(typeof(LoggerProvider))
                 ;
+        }
+        public static void UserFluentValidation(this IServiceCollection services)
+        {
+            services.AddScoped<IValidator<BankDTO>, BankValidation>();
+            services.AddScoped<IValidator<CustomerDTO>, CustomerValidation>();
+            services.AddScoped<IValidator<CartDTO>, CartValidation>();
+            services.AddScoped<IValidator<BlanceDTO>, BlanceValidation>();
         }
         public static void UserControlInjector(this IServiceCollection services)
         {

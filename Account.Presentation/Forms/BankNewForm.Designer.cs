@@ -66,10 +66,10 @@
             // 
             // MSG
             // 
-            MSG.ForeColor = Color.Black;
+            MSG.ForeColor = Color.LightCoral;
             MSG.Location = new Point(10, 19);
             MSG.Name = "MSG";
-            MSG.Size = new Size(340, 32);
+            MSG.Size = new Size(370, 32);
             MSG.TabIndex = 23;
             MSG.TextAlign = ContentAlignment.MiddleCenter;
             MSG.Visible = false;
@@ -77,9 +77,9 @@
             // PageLbl
             // 
             PageLbl.ForeColor = Color.White;
-            PageLbl.Location = new Point(356, 20);
+            PageLbl.Location = new Point(386, 20);
             PageLbl.Name = "PageLbl";
-            PageLbl.Size = new Size(95, 32);
+            PageLbl.Size = new Size(65, 32);
             PageLbl.TabIndex = 17;
             PageLbl.Text = "نام بانک";
             PageLbl.TextAlign = ContentAlignment.MiddleRight;

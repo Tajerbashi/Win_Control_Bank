@@ -1,5 +1,9 @@
 ﻿using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Repositories.BUS;
+using Account.Presentation.Extentions;
+using FluentValidation;
+using FluentValidation.Results;
+using Microsoft.VisualStudio.OLE.Interop;
 using System.Runtime.InteropServices;
 
 namespace Account.Presentation.Forms
@@ -27,9 +31,11 @@ namespace Account.Presentation.Forms
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
         #endregion
         private readonly IBankRepository _bankRepository;
-        public BankNewForm(IBankRepository bankRepository)
+        private IValidator<BankDTO> _bankValidator;
+        public BankNewForm(IBankRepository bankRepository, IValidator<BankDTO> bankValidator)
         {
             _bankRepository = bankRepository;
+            _bankValidator = bankValidator;
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
@@ -41,7 +47,16 @@ namespace Account.Presentation.Forms
 
         private void SaveBtn_Click(object sender, EventArgs e)
         {
+            ValidationResult result = _bankValidator.Validate(BankDTO());
+            if (!result.IsValid)
+            {
+                MSG.Visible = true;
+                MSG.Text =  result.Errors.Select(x => ($"{x.ErrorMessage} : {x.AttemptedValue}")).FirstOrDefault();
+                return;
+            }
             _bankRepository.Insert(BankDTO());
+            FormExtentions.ClearTextBoxes(this.Controls);
+            MSG.Text = "";
             this.Close();
 
         }
