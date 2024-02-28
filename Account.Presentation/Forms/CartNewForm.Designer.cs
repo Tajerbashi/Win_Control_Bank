@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            MSG = new Label();
             label9 = new Label();
             ParentCartCombo = new ComboBox();
             ShabaCartNumber = new TextBox();
@@ -38,7 +39,6 @@
             label8 = new Label();
             BlanceTxt = new TextBox();
             label7 = new Label();
-            MSG = new Label();
             label6 = new Label();
             AccountNumberTxt = new TextBox();
             label5 = new Label();
@@ -55,6 +55,7 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(MSG);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(ParentCartCombo);
             groupBox1.Controls.Add(ShabaCartNumber);
@@ -64,7 +65,6 @@
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(BlanceTxt);
             groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(MSG);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(AccountNumberTxt);
             groupBox1.Controls.Add(label5);
@@ -79,6 +79,15 @@
             groupBox1.Size = new Size(717, 537);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
+            // 
+            // MSG
+            // 
+            MSG.ForeColor = Color.FromArgb(240, 236, 229);
+            MSG.Location = new Point(6, 17);
+            MSG.Name = "MSG";
+            MSG.Size = new Size(705, 32);
+            MSG.TabIndex = 40;
+            MSG.TextAlign = ContentAlignment.MiddleRight;
             // 
             // label9
             // 
@@ -151,7 +160,6 @@
             CartPic.Size = new Size(305, 139);
             CartPic.TabIndex = 35;
             CartPic.TabStop = false;
-            CartPic.Click += CartPic_Click;
             CartPic.DoubleClick += CartPic_DoubleClick;
             // 
             // label8
@@ -176,6 +184,7 @@
             BlanceTxt.Size = new Size(349, 32);
             BlanceTxt.TabIndex = 5;
             BlanceTxt.TextAlign = HorizontalAlignment.Center;
+            BlanceTxt.TextChanged += BlanceTxt_TextChanged;
             BlanceTxt.KeyPress += BlanceTxt_KeyPress;
             // 
             // label7
@@ -187,17 +196,6 @@
             label7.TabIndex = 32;
             label7.Text = "تاریخ انقضاء";
             label7.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // MSG
-            // 
-            MSG.BackColor = Color.FromArgb(22, 26, 30);
-            MSG.ForeColor = Color.Coral;
-            MSG.Location = new Point(6, 19);
-            MSG.Name = "MSG";
-            MSG.Size = new Size(705, 32);
-            MSG.TabIndex = 23;
-            MSG.TextAlign = ContentAlignment.MiddleCenter;
-            MSG.Visible = false;
             // 
             // label6
             // 
@@ -215,7 +213,7 @@
             AccountNumberTxt.BorderStyle = BorderStyle.FixedSingle;
             AccountNumberTxt.ForeColor = Color.Black;
             AccountNumberTxt.Location = new Point(6, 308);
-            AccountNumberTxt.MaxLength = 16;
+            AccountNumberTxt.MaxLength = 25;
             AccountNumberTxt.Name = "AccountNumberTxt";
             AccountNumberTxt.PlaceholderText = "- - - -     - - - -     - - - -     - - - -";
             AccountNumberTxt.Size = new Size(705, 32);
@@ -345,7 +343,6 @@
         #endregion
 
         private GroupBox groupBox1;
-        private Label MSG;
         private RichTextBox DescriptionTxt;
         private Label label2;
         private Button CloseBtn;
@@ -366,5 +363,6 @@
         private Label label1;
         private Label label9;
         private ComboBox ParentCartCombo;
+        private Label MSG;
     }
 }

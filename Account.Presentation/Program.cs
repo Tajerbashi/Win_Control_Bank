@@ -8,7 +8,6 @@ using log4net.Config;
 using log4net.Repository;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
 using System.Reflection;
 namespace Presentation
 {
@@ -36,7 +35,7 @@ namespace Presentation
     internal class Program
     {
         public static IServiceProvider ServiceProvider { get; private set; }
-        private static IConfiguration Configuration { get ; }
+        private static IConfiguration Configuration { get; }
         public static ILoggerRepository loggerRepository { get; set; }
 
         /// <summary>
@@ -67,7 +66,7 @@ namespace Presentation
             services.AddApplication();
             services.AddInfrastructure(Configuration);
             services.AddDbContext(Configuration);
-            //services.ServiceInjector();
+            services.ServiceInjector();
             services.UserControlInjector();
             services.UserFluentValidation();
             services.FormInjector();

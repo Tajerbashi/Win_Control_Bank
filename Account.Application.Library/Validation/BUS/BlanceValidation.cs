@@ -7,13 +7,35 @@ namespace Account.Application.Library.Validation.BUS
     {
         public BlanceValidation()
         {
-            RuleFor(x => x.TransactionID).NotEmpty().NotNull();
-            RuleFor(x => x.CartID).NotEmpty().NotNull();
-            RuleFor(x => x.BlanceType).NotEmpty().NotNull();
-            RuleFor(x => x.OldBlanceCash).NotEmpty().NotNull();
-            RuleFor(x => x.NewBlanceCash).NotEmpty().NotNull();
-            RuleFor(x => x.TransactionCash).NotEmpty().NotNull();
-            RuleFor(x => x.Description).NotEmpty().NotNull();
+            RuleFor(x => x.TransactionID)
+                .NotEmpty().WithMessage("کلید تراکنش ساخته نشده است")
+                .NotNull().WithMessage("کلید تراکنش موجود نیست")
+                ;
+            RuleFor(x => x.CartID)
+                .NotEmpty().WithMessage("کارت برای این تراکنش انتخاب نشده است")
+                .NotNull().WithMessage("کارت برای این تراکنش انتخاب نشده است")
+                ;
+            RuleFor(x => x.BlanceType)
+                .NotEmpty().WithMessage("نوع موجودی را انتخاب کنید")
+                .NotNull().WithMessage("نوع حساب را انتخاب کنید")
+                ;
+            RuleFor(x => x.OldBlanceCash)
+                .NotEmpty().WithMessage("موجودی قبلی وجود ندارد")
+                .NotNull().WithMessage("موجودی قبلی دریافت نشده است")
+                ;
+            RuleFor(x => x.NewBlanceCash)
+                .NotEmpty().WithMessage("موجودی جدید محاسبه نشده است")
+                .NotNull().WithMessage("محاسبه موجودی انجام نشده است")
+                ;
+            RuleFor(x => x.TransactionCash)
+                .NotEmpty().WithMessage("مبلغ برای این تراکنش را پر کنید")
+                .NotNull().WithMessage("مبلغ تراکنش را بنویسید")
+                ;
+            RuleFor(x => x.Description)
+                .NotEmpty().WithMessage("توضیحات برای این تراکنش را پر کنید")
+                .NotNull().WithMessage("توضیحات برای این تراکنش را پر کنید")
+                ;
+            
         }
 
     }

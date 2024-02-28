@@ -41,7 +41,6 @@ namespace Account.Presentation.ServiceContainer
         }
         public static void ServiceInjector(this IServiceCollection services)
         {
-
             services
                 .AddScoped<IUnitOfWork, UnitOfWork>()
                 .AddScoped<IBankRepository, BankRepository>()

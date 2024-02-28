@@ -1,4 +1,8 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Numerics;
+using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using String = System.String;
 
 namespace Account.Presentation.Extentions
 {
@@ -27,28 +31,24 @@ namespace Account.Presentation.Extentions
                     textBox.Text = "";
                 }
             }
-            
+
             return textBox;
         }
         public static TextBox FourNumericSpace(this TextBox textBox)
         {
-            var a = Regex.Split("1234123412341234", "(?<=\\G\\d{4})");
-            string number = textBox.Text;
-
-
             if (textBox.Text.Length > 0)
             {
                 if (textBox.Text.Split(",")[0] == "," || textBox.Text.Split(",")[0] == "")
                 {
-                    textBox.Text = number.ToString();
                     return textBox;
                 }
-                var checkNumber = Convert.ToDecimal(textBox.Text);
+                var process = textBox.Text.Replace(" ", "");
+                var checkNumber = Convert.ToDecimal(process);
                 if (checkNumber > 0)
                 {
-                    decimal price;
-                    price = decimal.Parse(textBox.Text, System.Globalization.NumberStyles.None);
-                    textBox.Text = price.ToString("4,#");
+                    decimal price = Convert.ToDecimal(process);
+                    var res = string.Format("{0:####   ####   ####   ####}", price);
+                    textBox.Text = res.ToString();
                     textBox.SelectionStart = textBox.Text.Length;
                 }
                 else

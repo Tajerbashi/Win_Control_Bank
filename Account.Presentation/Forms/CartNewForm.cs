@@ -5,6 +5,8 @@ using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Enums;
 using Account.Presentation.Extentions;
 using Account.Presentation.Generator;
+using FluentValidation;
+using FluentValidation.Results;
 using Presentation.Extentions;
 using stdole;
 using System.Runtime.InteropServices;
@@ -33,7 +35,8 @@ namespace Account.Presentation.Forms
 
         System.Windows.Forms.Timer Timer =new System.Windows.Forms.Timer();
         #endregion
-
+        private IValidator<CartDTO> _cartValidator;
+        private IValidator<BlanceDTO> _blanceValidator;
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICartRepository _cartRepository;
         private readonly IBlanceRepository _blanceRepository;
@@ -46,7 +49,9 @@ namespace Account.Presentation.Forms
             ICartRepository cartRepository,
             IBlanceRepository blanceRepository,
             IBankRepository bankRepository,
-            ICustomerRepository customerRepository
+            ICustomerRepository customerRepository,
+            IValidator<CartDTO> cartValidator,
+            IValidator<BlanceDTO> blanceValidator
             )
         {
             _unitOfWork = unitOfWork;
@@ -54,6 +59,8 @@ namespace Account.Presentation.Forms
             _blanceRepository = blanceRepository;
             _bankRepository = bankRepository;
             _customerRepository = customerRepository;
+            _cartValidator = cartValidator;
+            _blanceValidator = blanceValidator;
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
@@ -64,10 +71,6 @@ namespace Account.Presentation.Forms
         {
             TransactionID = Guid.NewGuid();
             SaveForm();
-
-            FormExtentions.ClearTextBoxes(this.Controls);
-            MSG.Text = "";
-
         }
 
         private void CartNewForm_Load(object sender, EventArgs e)
@@ -138,30 +141,40 @@ namespace Account.Presentation.Forms
 
         #region Fill DTO Model
 
-        private CartDTO CartDTO()
+        private (bool, CartDTO) CartDTO()
         {
-            var parent = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
+            var parent = ParentCartCombo.SelectedItem as KeyValue<long>;
             string accountNumber = $"{AccountNumberTxt.Text}";
-            if (parent != 0)
+            if (parent is not null)
             {
-                accountNumber = $"{AccountNumberTxt.Text} - {((KeyValue<long>)CustomerCombo.SelectedItem).Value}";
+                if (parent.Value != 0)
+                {
+                    accountNumber = $"{AccountNumberTxt.Text} - {((KeyValue<long>)CustomerCombo.SelectedItem).Value}";
+                }
             }
-            return new CartDTO
+            var model = new CartDTO
             {
                 AccountNumber = accountNumber,
                 ShabaAccountNumber = ShabaCartNumber.Text,
                 CartType = CartType.Main,
                 Key = Guid.NewGuid(),
                 ExpireDate = (DateTime)ExpireDate.Value,
-                ParentID = ((KeyValue<long>)ParentCartCombo.SelectedItem).Value == 0 ? null : ((KeyValue<long>)ParentCartCombo.SelectedItem).Value,
+                ParentID = parent == null ? null : parent.Value,
                 CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value,
                 BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value,
                 Picture = FileHandler.SavePic(ShabaCartNumber.Text, ofd),
             };
+            ValidationResult result = _cartValidator.Validate(model);
+            if (!result.IsValid)
+            {
+                MSG.Text = result.Errors.Select(x => ($"{x.ErrorMessage} : {x.AttemptedValue}")).FirstOrDefault();
+                return (false, null);
+            }
+            return (true, model);
         }
-        private BlanceDTO BlanceDTO(long cartID)
+        private (bool, BlanceDTO) BlanceDTO(long cartID)
         {
-            return new BlanceDTO
+            var model = new BlanceDTO
             {
                 CartID = cartID,
                 OldBlanceCash = 0,
@@ -171,25 +184,42 @@ namespace Account.Presentation.Forms
                 TransactionCash = Convert.ToDouble(BlanceTxt.Text),
                 TransactionID = TransactionID
             };
+            ValidationResult result = _blanceValidator.Validate(model);
+            if (!result.IsValid)
+            {
+                MSG.Visible = true;
+                MSG.Text = result.Errors.Select(x => ($"{x.ErrorMessage} : {x.AttemptedValue}")).FirstOrDefault();
+                return (false, null);
+            }
+            return (true, model);
         }
 
 
         private void SaveForm()
         {
-            _unitOfWork.BeginTransaction();
-            try
+            var Result = CartDTO();
+            if (Result.Item1)
             {
-                var cartId = _cartRepository.Insert(CartDTO());
-                var blance = BlanceDTO(cartId);
-                var blanceId = _blanceRepository.Insert(blance);
-                _unitOfWork.Commit();
-                CartPic.Image = null;
-                this.Close();
-            }
-            catch (Exception)
-            {
-                _unitOfWork.Rollback();
-                throw;
+                _unitOfWork.BeginTransaction();
+                try
+                {
+                    var cartId = _cartRepository.Insert(Result.Item2);
+                    var blance = BlanceDTO(cartId);
+                    if (blance.Item1)
+                        _blanceRepository.Insert(blance.Item2);
+                    else
+                        _unitOfWork.Rollback();
+                    _unitOfWork.Commit();
+                    CartPic.Image = null;
+                    MSG.Text = "";
+                    FormExtentions.ClearTextBoxes(this.Controls);
+                    this.Close();
+                }
+                catch (Exception)
+                {
+                    _unitOfWork.Rollback();
+                    throw;
+                }
             }
         }
 
@@ -209,15 +239,16 @@ namespace Account.Presentation.Forms
             }
         }
 
-        private void CartPic_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void AccountNumberTxt_TextChanged(object sender, EventArgs e)
         {
             if (AccountNumberTxt.Text == "" || AccountNumberTxt.Text == "0") return;
             AccountNumberTxt = InputUtilities.FourNumericSpace(AccountNumberTxt);
+        }
+
+        private void BlanceTxt_TextChanged(object sender, EventArgs e)
+        {
+            if (BlanceTxt.Text == "" || BlanceTxt.Text == "0") return;
+            BlanceTxt = InputUtilities.Thirth3Numeric(BlanceTxt);
         }
     }
 }
