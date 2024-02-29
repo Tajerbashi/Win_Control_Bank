@@ -44,5 +44,7 @@ namespace Account.Domain.Library.Entities.BUS
 
         //  Child
         public virtual List<Blance> Blances { get; set; }
+
+        public virtual ICollection<Settlemant>  Settlemants { get; set; }
     }
 }

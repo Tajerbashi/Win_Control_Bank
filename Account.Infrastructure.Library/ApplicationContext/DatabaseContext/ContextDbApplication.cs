@@ -28,6 +28,7 @@ namespace Account.Infrastructure.Library.ApplicationContext.DatabaseContext
         public DbSet<Cart> Carts => Set<Cart>();
         public DbSet<Bank> Banks => Set<Bank>();
         public DbSet<Blance> Blances => Set<Blance>();
+        public DbSet<Settlemant> Settlemants => Set<Settlemant>();
         #endregion
 
         #region CNT
@@ -73,6 +74,7 @@ namespace Account.Infrastructure.Library.ApplicationContext.DatabaseContext
 
             modelBuilder.ApplyConfiguration(new BankConfiguration());
             modelBuilder.ApplyConfiguration(new BlanceConfiguration());
+            modelBuilder.ApplyConfiguration(new SettlemantConfiguration());
             modelBuilder.ApplyConfiguration(new CartConfiguration());
             modelBuilder.ApplyConfiguration(new CustomerConfiguration());
             modelBuilder.ApplyConfiguration(new ConstVariableConfiguration());

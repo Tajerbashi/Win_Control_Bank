@@ -15,6 +15,9 @@
     <Compile Update="Forms\CustomerNewForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Forms\SettlemantForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Forms\TransactionNewForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -46,6 +49,9 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControls\SettingUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="UserControls\SettlemantUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="UserControls\TransactionUC.cs">

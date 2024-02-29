@@ -67,8 +67,16 @@ namespace Account.Application.Library.ApplicationContext.Configurations
             builder.HasOne(x => x.Cart)
                 .WithMany(y => y.Blances)
                 .HasForeignKey(z => z.CartID);
+        }
+    }
 
-
+    public class SettlemantConfiguration : IEntityTypeConfiguration<Settlemant>
+    {
+        public void Configure(EntityTypeBuilder<Settlemant> builder)
+        {
+            builder.HasOne(x => x.Cart)
+                 .WithMany(x => x.Settlemants)
+                 .HasForeignKey(x => x.CartID);
         }
     }
 

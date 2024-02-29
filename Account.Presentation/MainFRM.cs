@@ -20,6 +20,7 @@ namespace Presentation
         private CalculateUC _calculateUC;
         private CashMoneyUC _cashMoneyUC;
         private TransactionUC _transactionUC;
+        private SettlemantUC _settlemantUC;
         private SettingUC _settingUC;
         private BlanceUC _blanceUC;
         private TransactionNewForm _transactionForm;
@@ -55,6 +56,7 @@ namespace Presentation
             CalculateUC calculateUC,
             CashMoneyUC cashMoneyUC,
             TransactionUC transactionUC,
+            SettlemantUC settlemantUC,
             SettingUC settingUC,
             BlanceUC blanceUC,
             TransactionNewForm transactionForm
@@ -69,6 +71,7 @@ namespace Presentation
             _calculateUC = calculateUC;
             _cashMoneyUC = cashMoneyUC;
             _transactionUC = transactionUC;
+            _settlemantUC = settlemantUC;
             _settingUC = settingUC;
             _blanceUC = blanceUC;
             _transactionForm = transactionForm;
@@ -209,6 +212,15 @@ namespace Presentation
         private void NewTransactionBtn_Click(object sender, EventArgs e)
         {
             _transactionForm.ShowDialog();
+        }
+
+        private void SettlemantBtn_Click(object sender, EventArgs e)
+        {
+            if (MainPanel.Controls.Count > 0)
+            {
+                MainPanel.Controls.Clear();
+            }
+            MainPanel.Controls.Add(_settlemantUC);
         }
     }
 }

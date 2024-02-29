@@ -10,8 +10,8 @@ namespace Account.Application.Library.Validation.BUS
             RuleFor(x => x.AccountNumber)
                 .NotNull().WithMessage("شماره کارت خالی است")
                 .NotEmpty().WithMessage("شماره کارت پر نشده است")
-                .MaximumLength(25).WithMessage("شماره کارت حداکثر 16 عدد است")
-                .MinimumLength(25).WithMessage("شماره کارت حداقل 16 عدد است")
+                .MaximumLength(16).WithMessage("شماره کارت حداکثر 16 عدد است")
+                .MinimumLength(16).WithMessage("شماره کارت حداقل 16 عدد است")
                 ;
             RuleFor(x => x.ShabaAccountNumber)
                 .NotNull().WithMessage("شبا کارت خالی است")

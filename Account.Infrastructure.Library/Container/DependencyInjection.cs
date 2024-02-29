@@ -28,6 +28,7 @@ namespace Account.Infrastructure.Library.Container
                 .AddScoped<IBlanceRepository, BlanceRepository>()
                 .AddScoped<ICustomerRepository, CustomerRepository>()
                 .AddScoped<IConstVariableRepository, ConstVariableRepository>()
+                .AddScoped<ISettlemantRepository, SettlemantRepository>()
                 ;
 
 

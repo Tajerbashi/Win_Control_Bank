@@ -42,31 +42,17 @@ namespace Account.Presentation.UserControls
 
         private void CashMoneyUC_Load(object sender, EventArgs e)
         {
-            ShowDataGrid();
         }
 
         private void AddBtn_Click(object sender, EventArgs e)
         {
             this.CashableBlanceForm.ShowDialog();
-            ShowDataGrid();
         }
 
-        private void FillComboBoxes()
-        {
-
-        }
 
         private void CustomerCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             var customer = CustomerCombo.SelectedItem as KeyValue<long>;
-            if (customer is not null)
-            {
-                ShowDataGrid(customer.Value);
-            }
-            else
-            {
-                ShowDataGrid();
-            }
         }
     }
 }

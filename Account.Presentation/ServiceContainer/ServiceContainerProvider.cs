@@ -15,8 +15,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Presentation;
-using System;
-using System.ComponentModel;
 
 namespace Account.Presentation.ServiceContainer
 {
@@ -37,6 +35,7 @@ namespace Account.Presentation.ServiceContainer
                 .AddScoped(typeof(CustomerNewForm))
                 .AddScoped(typeof(TransactionNewForm))
                 .AddScoped(typeof(CashableBlanceForm))
+                .AddScoped(typeof(SettlemantForm))
                     ;
         }
         public static void ServiceInjector(this IServiceCollection services)
@@ -48,6 +47,7 @@ namespace Account.Presentation.ServiceContainer
                 .AddScoped<ICartRepository, CartRepository>()
                 .AddScoped<IBlanceRepository, BlanceRepository>()
                 .AddScoped<ICustomerRepository, CustomerRepository>()
+                .AddScoped<ISettlemantRepository, SettlemantRepository>()
                 .AddScoped(typeof(LoggerProvider))
                 ;
         }
@@ -56,6 +56,7 @@ namespace Account.Presentation.ServiceContainer
             services.AddScoped<IValidator<BankDTO>, BankValidation>();
             services.AddScoped<IValidator<CustomerDTO>, CustomerValidation>();
             services.AddScoped<IValidator<CartDTO>, CartValidation>();
+            services.AddScoped<IValidator<SettlemantDTO>, SettlemantValidation>();
             services.AddScoped<IValidator<BlanceDTO>, BlanceValidation>();
         }
         public static void UserControlInjector(this IServiceCollection services)
@@ -71,8 +72,9 @@ namespace Account.Presentation.ServiceContainer
                 .AddScoped(typeof(BlanceUC))
                 .AddScoped(typeof(CartUC))
                 .AddScoped(typeof(CashMoneyUC))
+                .AddScoped(typeof(SettlemantUC))
                 ;
         }
-       
+
     }
 }

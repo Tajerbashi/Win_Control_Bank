@@ -8,9 +8,7 @@ using Account.Presentation.Generator;
 using FluentValidation;
 using FluentValidation.Results;
 using Presentation.Extentions;
-using stdole;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
 namespace Account.Presentation.Forms
 {
     public partial class CartNewForm : Form
@@ -38,27 +36,15 @@ namespace Account.Presentation.Forms
         private IValidator<CartDTO> _cartValidator;
         private IValidator<BlanceDTO> _blanceValidator;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ICartRepository _cartRepository;
-        private readonly IBlanceRepository _blanceRepository;
-        private readonly IBankRepository _bankRepository;
-        private readonly ICustomerRepository _customerRepository;
         OpenFileDialog ofd = new OpenFileDialog();
         Image pic;
         public CartNewForm(
             IUnitOfWork unitOfWork,
-            ICartRepository cartRepository,
-            IBlanceRepository blanceRepository,
-            IBankRepository bankRepository,
-            ICustomerRepository customerRepository,
             IValidator<CartDTO> cartValidator,
             IValidator<BlanceDTO> blanceValidator
             )
         {
             _unitOfWork = unitOfWork;
-            _cartRepository = cartRepository;
-            _blanceRepository = blanceRepository;
-            _bankRepository = bankRepository;
-            _customerRepository = customerRepository;
             _cartValidator = cartValidator;
             _blanceValidator = blanceValidator;
             InitializeComponent();
@@ -75,8 +61,8 @@ namespace Account.Presentation.Forms
 
         private void CartNewForm_Load(object sender, EventArgs e)
         {
-            BankCombo = ComboBoxGenerator<long>.FillData(BankCombo, _bankRepository.BankTitleValue(), Convert.ToByte(BankCombo.Tag));
-            CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, _customerRepository.CustomerTitleValue(), Convert.ToByte(CustomerCombo.Tag));
+            BankCombo = ComboBoxGenerator<long>.FillData(BankCombo, _unitOfWork.BankRepository.BankTitleValue(), Convert.ToByte(BankCombo.Tag));
+            CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, _unitOfWork.CustomerRepository.CustomerTitleValue(), Convert.ToByte(CustomerCombo.Tag));
             ExpireDate.UsePersianFormat = true;
             ExpireDate.Value = DateTime.Now;
         }
@@ -106,7 +92,7 @@ namespace Account.Presentation.Forms
             var PId =  ((KeyValue<long>)ParentCartCombo.SelectedItem).Value;
             if (PId != 0)
             {
-                var cartModel = _cartRepository.GetById(PId);
+                var cartModel = _unitOfWork.CartRepository.GetById(PId);
                 AccountNumberTxt.Text = cartModel.AccountNumber;
                 AccountNumberTxt.Enabled = false;
                 ShabaCartNumber.Text = cartModel.ShabaAccountNumber;
@@ -131,7 +117,7 @@ namespace Account.Presentation.Forms
             var Id = ((KeyValue<long>)BankCombo.SelectedItem).Value;
             if (Id != 0)
             {
-                ParentCartCombo = ComboBoxGenerator<long>.FillData(ParentCartCombo, _cartRepository.TitleValuesCartByBankId(Id), Convert.ToByte(ParentCartCombo.Tag));
+                ParentCartCombo = ComboBoxGenerator<long>.FillData(ParentCartCombo, _unitOfWork.CartRepository.TitleValuesCartByBankId(Id), Convert.ToByte(ParentCartCombo.Tag));
             }
             else
             {
@@ -144,7 +130,7 @@ namespace Account.Presentation.Forms
         private (bool, CartDTO) CartDTO()
         {
             var parent = ParentCartCombo.SelectedItem as KeyValue<long>;
-            string accountNumber = $"{AccountNumberTxt.Text}";
+            string accountNumber = $"{AccountNumberTxt.Text}".Replace(" ","");
             if (parent is not null)
             {
                 if (parent.Value != 0)
@@ -159,7 +145,7 @@ namespace Account.Presentation.Forms
                 CartType = CartType.Main,
                 Key = Guid.NewGuid(),
                 ExpireDate = (DateTime)ExpireDate.Value,
-                ParentID = parent == null ? null : parent.Value,
+                ParentID = parent == null ? null : parent.Value == 0 ? null:parent.Value,
                 CustomerID = ((KeyValue<long>)CustomerCombo.SelectedItem).Value,
                 BankID = ((KeyValue<long>)BankCombo.SelectedItem).Value,
                 Picture = FileHandler.SavePic(ShabaCartNumber.Text, ofd),
@@ -182,7 +168,8 @@ namespace Account.Presentation.Forms
                 BlanceType = BlanceType.Banking,
                 TransactionType = TransactionType.Settlemant,
                 TransactionCash = Convert.ToDouble(BlanceTxt.Text),
-                TransactionID = TransactionID
+                TransactionID = TransactionID,
+                Description = "اولین تراکنش"
             };
             ValidationResult result = _blanceValidator.Validate(model);
             if (!result.IsValid)
@@ -203,17 +190,20 @@ namespace Account.Presentation.Forms
                 _unitOfWork.BeginTransaction();
                 try
                 {
-                    var cartId = _cartRepository.Insert(Result.Item2);
+                    var cartId = _unitOfWork.CartRepository.Insert(Result.Item2);
                     var blance = BlanceDTO(cartId);
                     if (blance.Item1)
-                        _blanceRepository.Insert(blance.Item2);
+                    {
+                        _unitOfWork.BlanceRepository.Insert(blance.Item2);
+                        _unitOfWork.Commit();
+                        CartPic.Image = null;
+                        MSG.Text = "";
+                        FormExtentions.ClearTextBoxes(this.Controls);
+                        this.Close();
+                    }
                     else
                         _unitOfWork.Rollback();
-                    _unitOfWork.Commit();
-                    CartPic.Image = null;
-                    MSG.Text = "";
-                    FormExtentions.ClearTextBoxes(this.Controls);
-                    this.Close();
+
                 }
                 catch (Exception)
                 {

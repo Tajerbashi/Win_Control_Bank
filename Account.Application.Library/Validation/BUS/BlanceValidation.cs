@@ -20,7 +20,6 @@ namespace Account.Application.Library.Validation.BUS
                 .NotNull().WithMessage("نوع حساب را انتخاب کنید")
                 ;
             RuleFor(x => x.OldBlanceCash)
-                .NotEmpty().WithMessage("موجودی قبلی وجود ندارد")
                 .NotNull().WithMessage("موجودی قبلی دریافت نشده است")
                 ;
             RuleFor(x => x.NewBlanceCash)
