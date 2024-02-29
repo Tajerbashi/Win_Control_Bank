@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             GridData = new DataGridView();
             AddBtn = new Button();
             label1 = new Label();
             groupBox2 = new GroupBox();
+            MonthCombo = new ComboBox();
+            YearCombo = new ComboBox();
+            AccountCombo = new ComboBox();
+            CustomerCombo = new ComboBox();
             PageLbl = new Label();
             NextBtn = new Button();
             PrevBtn = new Button();
             SearchBtn = new Button();
             SearchTxt = new TextBox();
-            CustomerCombo = new ComboBox();
-            CartCombo = new ComboBox();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -55,53 +55,53 @@
             GridData.AllowDrop = true;
             GridData.AllowUserToAddRows = false;
             GridData.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(18, 18, 18);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.Maroon;
-            GridData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(18, 18, 18);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Maroon;
+            GridData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             GridData.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             GridData.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             GridData.BackgroundColor = Color.FromArgb(39, 40, 41);
             GridData.BorderStyle = BorderStyle.None;
             GridData.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
             GridData.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(39, 40, 41);
-            dataGridViewCellStyle7.Font = new Font("IRANSansWeb", 11.25F);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.Black;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            GridData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(39, 40, 41);
+            dataGridViewCellStyle2.Font = new Font("IRANSansWeb", 11.25F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Black;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            GridData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             GridData.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             GridData.Cursor = Cursors.PanWest;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(39, 40, 41);
-            dataGridViewCellStyle8.Font = new Font("IRANSansWeb", 11.25F);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = Color.MidnightBlue;
-            dataGridViewCellStyle8.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            GridData.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(39, 40, 41);
+            dataGridViewCellStyle3.Font = new Font("IRANSansWeb", 11.25F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.MidnightBlue;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            GridData.DefaultCellStyle = dataGridViewCellStyle3;
             GridData.EditMode = DataGridViewEditMode.EditProgrammatically;
             GridData.GridColor = Color.FromArgb(224, 224, 224);
             GridData.Location = new Point(4, 60);
             GridData.Name = "GridData";
             GridData.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(39, 40, 41);
-            dataGridViewCellStyle9.Font = new Font("IRANSansWeb", 11.25F);
-            dataGridViewCellStyle9.ForeColor = Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = Color.MidnightBlue;
-            dataGridViewCellStyle9.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            GridData.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(39, 40, 41);
+            dataGridViewCellStyle4.Font = new Font("IRANSansWeb", 11.25F);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.MidnightBlue;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            GridData.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             GridData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = Color.FromArgb(39, 40, 41);
-            dataGridViewCellStyle10.ForeColor = Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = Color.MidnightBlue;
-            GridData.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(39, 40, 41);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = Color.MidnightBlue;
+            GridData.RowsDefaultCellStyle = dataGridViewCellStyle5;
             GridData.RowTemplate.DefaultCellStyle.SelectionBackColor = Color.OrangeRed;
             GridData.RowTemplate.ReadOnly = true;
             GridData.RowTemplate.Resizable = DataGridViewTriState.True;
@@ -141,9 +141,9 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.Transparent;
-            groupBox2.Controls.Add(comboBox2);
-            groupBox2.Controls.Add(comboBox1);
-            groupBox2.Controls.Add(CartCombo);
+            groupBox2.Controls.Add(MonthCombo);
+            groupBox2.Controls.Add(YearCombo);
+            groupBox2.Controls.Add(AccountCombo);
             groupBox2.Controls.Add(CustomerCombo);
             groupBox2.Controls.Add(GridData);
             groupBox2.Controls.Add(PageLbl);
@@ -156,6 +156,55 @@
             groupBox2.Size = new Size(1143, 731);
             groupBox2.TabIndex = 21;
             groupBox2.TabStop = false;
+            // 
+            // MonthCombo
+            // 
+            MonthCombo.BackColor = Color.FromArgb(240, 236, 229);
+            MonthCombo.Cursor = Cursors.Hand;
+            MonthCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            MonthCombo.FormattingEnabled = true;
+            MonthCombo.Location = new Point(302, 20);
+            MonthCombo.Name = "MonthCombo";
+            MonthCombo.RightToLeft = RightToLeft.Yes;
+            MonthCombo.Size = new Size(134, 33);
+            MonthCombo.TabIndex = 21;
+            // 
+            // YearCombo
+            // 
+            YearCombo.BackColor = Color.FromArgb(240, 236, 229);
+            YearCombo.Cursor = Cursors.Hand;
+            YearCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            YearCombo.FormattingEnabled = true;
+            YearCombo.Location = new Point(442, 21);
+            YearCombo.Name = "YearCombo";
+            YearCombo.RightToLeft = RightToLeft.Yes;
+            YearCombo.Size = new Size(136, 33);
+            YearCombo.TabIndex = 20;
+            // 
+            // AccountCombo
+            // 
+            AccountCombo.BackColor = Color.FromArgb(240, 236, 229);
+            AccountCombo.Cursor = Cursors.Hand;
+            AccountCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            AccountCombo.FormattingEnabled = true;
+            AccountCombo.Location = new Point(584, 20);
+            AccountCombo.Name = "AccountCombo";
+            AccountCombo.RightToLeft = RightToLeft.Yes;
+            AccountCombo.Size = new Size(386, 33);
+            AccountCombo.TabIndex = 19;
+            // 
+            // CustomerCombo
+            // 
+            CustomerCombo.BackColor = Color.FromArgb(240, 236, 229);
+            CustomerCombo.Cursor = Cursors.Hand;
+            CustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            CustomerCombo.FormattingEnabled = true;
+            CustomerCombo.Location = new Point(976, 21);
+            CustomerCombo.Name = "CustomerCombo";
+            CustomerCombo.RightToLeft = RightToLeft.Yes;
+            CustomerCombo.Size = new Size(159, 33);
+            CustomerCombo.TabIndex = 18;
+            CustomerCombo.SelectedIndexChanged += CustomerCombo_SelectedIndexChanged;
             // 
             // PageLbl
             // 
@@ -221,56 +270,8 @@
             SearchTxt.Name = "SearchTxt";
             SearchTxt.PlaceholderText = "جستجو کنید ...";
             SearchTxt.RightToLeft = RightToLeft.Yes;
-            SearchTxt.Size = new Size(262, 32);
+            SearchTxt.Size = new Size(206, 32);
             SearchTxt.TabIndex = 0;
-            // 
-            // CustomerCombo
-            // 
-            CustomerCombo.BackColor = Color.FromArgb(240, 236, 229);
-            CustomerCombo.Cursor = Cursors.Hand;
-            CustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
-            CustomerCombo.FormattingEnabled = true;
-            CustomerCombo.Location = new Point(923, 21);
-            CustomerCombo.Name = "CustomerCombo";
-            CustomerCombo.RightToLeft = RightToLeft.Yes;
-            CustomerCombo.Size = new Size(212, 33);
-            CustomerCombo.TabIndex = 18;
-            // 
-            // CartCombo
-            // 
-            CartCombo.BackColor = Color.FromArgb(240, 236, 229);
-            CartCombo.Cursor = Cursors.Hand;
-            CartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
-            CartCombo.FormattingEnabled = true;
-            CartCombo.Location = new Point(587, 21);
-            CartCombo.Name = "CartCombo";
-            CartCombo.RightToLeft = RightToLeft.Yes;
-            CartCombo.Size = new Size(327, 33);
-            CartCombo.TabIndex = 19;
-            // 
-            // comboBox1
-            // 
-            comboBox1.BackColor = Color.FromArgb(240, 236, 229);
-            comboBox1.Cursor = Cursors.Hand;
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(474, 21);
-            comboBox1.Name = "comboBox1";
-            comboBox1.RightToLeft = RightToLeft.Yes;
-            comboBox1.Size = new Size(104, 33);
-            comboBox1.TabIndex = 20;
-            // 
-            // comboBox2
-            // 
-            comboBox2.BackColor = Color.FromArgb(240, 236, 229);
-            comboBox2.Cursor = Cursors.Hand;
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(361, 21);
-            comboBox2.Name = "comboBox2";
-            comboBox2.RightToLeft = RightToLeft.Yes;
-            comboBox2.Size = new Size(104, 33);
-            comboBox2.TabIndex = 21;
             // 
             // SettlemantUC
             // 
@@ -284,6 +285,7 @@
             Margin = new Padding(4, 5, 4, 5);
             Name = "SettlemantUC";
             Size = new Size(1146, 759);
+            Load += SettlemantUC_Load;
             ((System.ComponentModel.ISupportInitialize)GridData).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
@@ -302,8 +304,8 @@
         private Button SearchBtn;
         private TextBox SearchTxt;
         private ComboBox CustomerCombo;
-        private ComboBox comboBox2;
-        private ComboBox comboBox1;
-        private ComboBox CartCombo;
+        private ComboBox MonthCombo;
+        private ComboBox YearCombo;
+        private ComboBox AccountCombo;
     }
 }

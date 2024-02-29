@@ -36,28 +36,35 @@ namespace Account.Presentation.Extentions
         }
         public static TextBox FourNumericSpace(this TextBox textBox)
         {
-            if (textBox.Text.Length > 0)
+            try
             {
-                if (textBox.Text.Split(",")[0] == "," || textBox.Text.Split(",")[0] == "")
+                if (textBox.Text.Length > 0)
                 {
-                    return textBox;
+                    if (textBox.Text.Split(",")[0] == "," || textBox.Text.Split(",")[0] == "")
+                    {
+                        return textBox;
+                    }
+                    var process = textBox.Text.Replace(" ", "");
+                    var checkNumber = Convert.ToDecimal(process);
+                    if (checkNumber > 0)
+                    {
+                        decimal price = Convert.ToDecimal(process);
+                        var res = string.Format("{0:####   ####   ####   ####}", price);
+                        textBox.Text = res.ToString();
+                        textBox.SelectionStart = textBox.Text.Length;
+                    }
+                    else
+                    {
+                        textBox.Text = "";
+                    }
                 }
-                var process = textBox.Text.Replace(" ", "");
-                var checkNumber = Convert.ToDecimal(process);
-                if (checkNumber > 0)
-                {
-                    decimal price = Convert.ToDecimal(process);
-                    var res = string.Format("{0:####   ####   ####   ####}", price);
-                    textBox.Text = res.ToString();
-                    textBox.SelectionStart = textBox.Text.Length;
-                }
-                else
-                {
-                    textBox.Text = "";
-                }
-            }
 
-            return textBox;
+                return textBox;
+            }
+            catch
+            {
+                return textBox;
+            }
         }
     }
 }

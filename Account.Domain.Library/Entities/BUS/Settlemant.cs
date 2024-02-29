@@ -8,7 +8,7 @@ namespace Account.Domain.Library.Entities.BUS
     public class Settlemant : BaseEntity
     {
         [Description("سال")]
-        public string Year { get; set; }
+        public int Year { get; set; }
         [Description("ماه")]
         public byte Month { get; set; }
         [Description("روز")]

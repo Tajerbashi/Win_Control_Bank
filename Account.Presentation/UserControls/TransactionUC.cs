@@ -57,5 +57,19 @@ namespace Account.Presentation.UserControls
         {
             ShowDataGrid();
         }
+
+        private void PrevBtn_Click(object sender, EventArgs e)
+        {
+            _blanceRepository.Paging.Prev();
+            ShowDataGrid();
+        }
+
+        private void NextBtn_Click(object sender, EventArgs e)
+        {
+            var count = (_blanceRepository.ExecuteQuery(_blanceRepository.GetCount())).Rows[0].Field<int>(0);
+            _blanceRepository.Paging.Next(20, count);
+            ShowDataGrid();
+
+        }
     }
 }

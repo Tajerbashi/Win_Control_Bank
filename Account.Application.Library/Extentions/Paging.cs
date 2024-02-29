@@ -19,7 +19,8 @@
 
         public void Next(int max, int count)
         {
-            if (count == max)
+            var res = count / max;
+            if (res > Page)
             {
                 Page++;
             }

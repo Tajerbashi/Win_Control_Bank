@@ -4,7 +4,7 @@ namespace Account.Application.Library.Models.Views.BUS
 {
     public class SettlemantView : BaseView
     {
-        public string Year { get; set; }
+        public int Year { get; set; }
         public byte Month { get; set; }
         public byte Day { get; set; }
         public Guid TransactionID { get; set; }

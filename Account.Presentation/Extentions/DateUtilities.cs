@@ -5,6 +5,24 @@ namespace Account.Presentation.Extentions
 {
     public static class DateUtilities
     {
+        /// <summary>
+        /// تبدیل تاریخ شمسی به میلادی
+        /// </summary>
+        /// <param name="year"></param>
+        /// <param name="month"></param>
+        /// <param name="day"></param>
+        /// <returns></returns>
+        public static DateTime ToGreGorianDateTime(this int year,byte month,byte day)
+        {
+            PersianCalendar pc = new PersianCalendar();
+            DateTime dt = new DateTime(year, month, day, pc);
+            var result = dt;//.ToString(CultureInfo.InvariantCulture)
+            return result;
+        }
+        /// /// <summary>
+        /// تاریخ کنونی فارسی
+        /// </summary>
+        /// <returns></returns>
         public static string PersianDate()
         {
             DateTime d = DateTime.Now;
@@ -15,7 +33,7 @@ namespace Account.Presentation.Extentions
             return $"{pc.GetYear(d)}/{pc.GetMonth(d)}/{pc.GetDayOfMonth(d)} {hover}:{pc.GetMinute(d)}:{pc.GetSecond(d)} {mode}";
         }
         /// <summary>
-        /// 
+        /// تبدیل تاریخ به میلادی
         /// </summary>
         /// <param name="date"></param>
         /// <param name="format"></param>
@@ -52,18 +70,18 @@ namespace Account.Presentation.Extentions
         public static IEnumerable<KeyValue<int>> TitleValueMonthPersian()
         {
             var result = new List<KeyValue<int>>{
-                new KeyValue<int>{ Key="فروردین", Value=1},
-                new KeyValue<int>{ Key="اردیبهشت", Value=2},
-                new KeyValue<int>{ Key="خرداد", Value=3},
-                new KeyValue<int>{ Key="تیر", Value=4},
-                new KeyValue<int>{ Key="مرداد", Value=5},
-                new KeyValue<int>{ Key="شهریور", Value=6},
-                new KeyValue<int>{ Key="مهر", Value=7},
-                new KeyValue<int>{ Key="آبان", Value=8},
-                new KeyValue<int>{ Key="آذر", Value=9},
-                new KeyValue<int>{ Key="دی", Value=10},
-                new KeyValue<int>{ Key="بهمن", Value=11},
-                new KeyValue<int>{ Key="اسفند", Value=12},
+                new KeyValue<int>{ Key="(1) فروردین", Value=1},
+                new KeyValue<int>{ Key="(2) اردیبهشت", Value=2},
+                new KeyValue<int>{ Key="(3) خرداد", Value=3},
+                new KeyValue<int>{ Key="(4) تیر", Value=4},
+                new KeyValue<int>{ Key="(5) مرداد", Value=5},
+                new KeyValue<int>{ Key="(6) شهریور", Value=6},
+                new KeyValue<int>{ Key="(7) مهر", Value=7},
+                new KeyValue<int>{ Key="(8) آبان", Value=8},
+                new KeyValue<int>{ Key="(9) آذر", Value=9},
+                new KeyValue<int>{ Key="(10) دی", Value=10},
+                new KeyValue<int>{ Key="(11) بهمن", Value=11},
+                new KeyValue<int>{ Key="(12) اسفند", Value=12},
             };
 
             return result.ToList();

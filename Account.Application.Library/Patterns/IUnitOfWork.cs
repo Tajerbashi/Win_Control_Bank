@@ -49,6 +49,7 @@ namespace Account.Application.Library.Patterns
         IBankRepository BankRepository { get; }
         IBlanceRepository BlanceRepository { get; }
         ICartRepository CartRepository { get; }
+        ISettlemantRepository SettlemantRepository { get; }
         #endregion
 
 

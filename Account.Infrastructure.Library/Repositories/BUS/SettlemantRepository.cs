@@ -5,6 +5,7 @@ using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Entities.BUS;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
+using Account.Infrastructure.Library.Repositories.BUS.Queries;
 using AutoMapper;
 using System.Collections.Generic;
 
@@ -18,27 +19,27 @@ namespace Account.Infrastructure.Library.Repositories.BUS
 
         public string GetCount()
         {
-            throw new System.NotImplementedException();
+            return SettlemantQueries.GetCount();
         }
 
         public string Search(string value)
         {
-            throw new System.NotImplementedException();
+            return SettlemantQueries.Search(value);
         }
 
         public string ShowAll(string paging)
         {
-            throw new System.NotImplementedException();
+            return SettlemantQueries.ShowAll(paging);
         }
 
         public string ShowFromTo(string from, string to)
         {
-            throw new System.NotImplementedException();
+            return SettlemantQueries.ShowFromTo(from,to);
         }
 
         public IEnumerable<KeyValue<byte>> TitleValue()
         {
-            throw new System.NotImplementedException();
+            return SettlemantQueries.TitleValue();
         }
     }
 }

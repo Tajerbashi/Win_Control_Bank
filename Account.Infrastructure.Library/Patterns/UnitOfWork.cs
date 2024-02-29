@@ -37,6 +37,8 @@ namespace Account.Infrastructure.Library.Patterns
 
         public IConstVariableRepository ConstVariableRepository { get; }
 
+        public ISettlemantRepository SettlemantRepository { get; }
+
         /// <summary>
         /// Dapper Service Injection
         /// </summary>
@@ -46,7 +48,8 @@ namespace Account.Infrastructure.Library.Patterns
             IBankRepository bankRepository,
             IBlanceRepository blanceRepository,
             ICartRepository cartRepository,
-            IConstVariableRepository constVariableRepository
+            IConstVariableRepository constVariableRepository,
+            ISettlemantRepository settlemantRepository
             )
         {
             Context = context;
@@ -55,6 +58,7 @@ namespace Account.Infrastructure.Library.Patterns
             BlanceRepository = blanceRepository;
             CartRepository = cartRepository;
             ConstVariableRepository = constVariableRepository;
+            SettlemantRepository = settlemantRepository;
 
         }
         public void BeginTransaction()

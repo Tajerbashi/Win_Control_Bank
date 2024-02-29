@@ -35,6 +35,9 @@ namespace Account.Application.Library.IDatabaseContext.AutoMapper
 
             CreateMap<Blance, BlanceDTO>().ReverseMap();
             CreateMap<Blance, BlanceView>().ReverseMap();
+
+            CreateMap<Settlemant, SettlemantDTO>().ReverseMap();
+            CreateMap<Settlemant, SettlemantView>().ReverseMap();
             #endregion
 
             #region LOG
