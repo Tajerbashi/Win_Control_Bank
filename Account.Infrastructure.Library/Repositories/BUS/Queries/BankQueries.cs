@@ -12,7 +12,7 @@
 SELECT        
 ID AS آیدی, 
 BankName AS [نام بانک], 
-FORMAT(CreateDate,'yyyy-mm-dd','fa') AS [تاریخ ثبت], 
+FORMAT(CreateDate,'yyyy-MM-dd','fa') AS [تاریخ ثبت], 
 UpdateDate AS [تاریخ ویرایش], 
 CASE IsActive WHEN 1 THEN N'فعال' ELSE N'غیر فعال' END AS وضعیت
 FROM BUS.Banks

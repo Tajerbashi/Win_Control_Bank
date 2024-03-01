@@ -78,8 +78,7 @@ namespace Account.Presentation.Forms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                _bankRepository.Insert(BankDTO());
-                this.Close();
+                SaveBtn_Click(sender, e);
             }
         }
     }

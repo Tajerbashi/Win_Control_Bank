@@ -1,7 +1,6 @@
 ﻿using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
-using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Enums;
 using Account.Presentation.Extentions;
 using Account.Presentation.Generator;
@@ -130,7 +129,7 @@ namespace Account.Presentation.Forms
         private (bool, CartDTO) CartDTO()
         {
             var parent = ParentCartCombo.SelectedItem as KeyValue<long>;
-            string accountNumber = $"{AccountNumberTxt.Text}".Replace(" ","");
+            string accountNumber = $"{AccountNumberTxt.Text}";//.Replace(" ","");
             if (parent is not null)
             {
                 if (parent.Value != 0)
@@ -205,10 +204,9 @@ namespace Account.Presentation.Forms
                         _unitOfWork.Rollback();
 
                 }
-                catch (Exception)
+                catch
                 {
                     _unitOfWork.Rollback();
-                    throw;
                 }
             }
         }

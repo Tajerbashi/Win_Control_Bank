@@ -54,7 +54,6 @@ namespace Account.Presentation.Forms
         }
         private void SaveBtn_Click(object sender, EventArgs e)
         {
-            var ll = CustomerDTO();
             ValidationResult result = _validator.Validate(CustomerDTO());
             if (!result.IsValid)
             {
@@ -74,7 +73,7 @@ namespace Account.Presentation.Forms
         {
             if (e.KeyChar == 13)
             {
-                SaveFormData();
+                SaveBtn_Click(sender,e);
             }
         }
 

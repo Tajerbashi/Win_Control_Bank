@@ -18,8 +18,8 @@ WHERE   IsDeleted = 0
 SELECT       
     CS.ID AS [آیدی], 
     CS.FullName AS [نام کامل], 
-    FORMAT(CS.CreateDate,'yyyy-mm-dd','fa') AS [تاریخ ثبت], 
-    CS.UpdateDate AS [آخرین ویرایش],   
+    FORMAT(CS.CreateDate,'yyyy-MM-dd','fa') AS [تاریخ ثبت], 
+    FORMAT(CS.UpdateDate,'yyyy-MM-dd','fa') AS [آخرین ویرایش],   
     CASE CS.IsActive WHEN 1 THEN N'فعال' ELSE N'غیر فعال' END AS [وضعیت],
     CS.Picture AS [تصویر]
 FROM BUS.Customers CS
@@ -35,8 +35,8 @@ ORDER BY CS.ID DESC
 SELECT       
     CS.ID AS [آیدی], 
     CS.FullName AS [نام کامل], 
-    FORMAT(CS.CreateDate,'yyyy-mm-dd','fa') AS [تاریخ ثبت], 
-    CS.UpdateDate AS [آخرین ویرایش],   
+    FORMAT(CS.CreateDate,'yyyy-MM-dd','fa') AS [تاریخ ثبت], 
+    FORMAT(CS.UpdateDate,'yyyy-MM-dd','fa') AS [آخرین ویرایش],  
     CASE CS.IsActive WHEN 1 THEN N'فعال' ELSE N'غیر فعال' END AS [وضعیت],
     CS.Picture AS [تصویر]
 FROM BUS.Customers CS
