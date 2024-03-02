@@ -296,7 +296,6 @@
             Btn15.Name = "Btn15";
             Btn15.Size = new Size(117, 32);
             Btn15.TabIndex = 90;
-            Btn15.Text = "ذخیره اطلاعات";
             Btn15.UseVisualStyleBackColor = false;
             // 
             // Btn14
@@ -313,7 +312,6 @@
             Btn14.Name = "Btn14";
             Btn14.Size = new Size(117, 32);
             Btn14.TabIndex = 89;
-            Btn14.Text = "ذخیره اطلاعات";
             Btn14.UseVisualStyleBackColor = false;
             // 
             // Btn13
@@ -330,7 +328,6 @@
             Btn13.Name = "Btn13";
             Btn13.Size = new Size(117, 32);
             Btn13.TabIndex = 88;
-            Btn13.Text = "ذخیره اطلاعات";
             Btn13.UseVisualStyleBackColor = false;
             // 
             // Btn12
@@ -347,8 +344,9 @@
             Btn12.Name = "Btn12";
             Btn12.Size = new Size(117, 32);
             Btn12.TabIndex = 87;
-            Btn12.Text = "ذخیره اطلاعات";
+            Btn12.Text = "آخرین تراکنش";
             Btn12.UseVisualStyleBackColor = false;
+            Btn12.Click += Btn12_Click;
             // 
             // Btn11
             // 
@@ -364,8 +362,9 @@
             Btn11.Name = "Btn11";
             Btn11.Size = new Size(117, 32);
             Btn11.TabIndex = 86;
-            Btn11.Text = "ذخیره اطلاعات";
+            Btn11.Text = "فرم جدید";
             Btn11.UseVisualStyleBackColor = false;
+            Btn11.Click += Btn11_Click;
             // 
             // Btn10
             // 
@@ -471,7 +470,6 @@
             Btn20.Name = "Btn20";
             Btn20.Size = new Size(117, 32);
             Btn20.TabIndex = 80;
-            Btn20.Text = "ذخیره اطلاعات";
             Btn20.UseVisualStyleBackColor = false;
             // 
             // Btn19
@@ -488,7 +486,6 @@
             Btn19.Name = "Btn19";
             Btn19.Size = new Size(117, 32);
             Btn19.TabIndex = 79;
-            Btn19.Text = "ذخیره اطلاعات";
             Btn19.UseVisualStyleBackColor = false;
             // 
             // Btn18
@@ -505,7 +502,6 @@
             Btn18.Name = "Btn18";
             Btn18.Size = new Size(117, 32);
             Btn18.TabIndex = 78;
-            Btn18.Text = "ذخیره اطلاعات";
             Btn18.UseVisualStyleBackColor = false;
             // 
             // Btn17
@@ -522,7 +518,6 @@
             Btn17.Name = "Btn17";
             Btn17.Size = new Size(117, 32);
             Btn17.TabIndex = 77;
-            Btn17.Text = "ذخیره اطلاعات";
             Btn17.UseVisualStyleBackColor = false;
             // 
             // Btn16
@@ -539,7 +534,6 @@
             Btn16.Name = "Btn16";
             Btn16.Size = new Size(117, 32);
             Btn16.TabIndex = 76;
-            Btn16.Text = "ذخیره اطلاعات";
             Btn16.UseVisualStyleBackColor = false;
             // 
             // Btn5

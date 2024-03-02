@@ -752,5 +752,16 @@ namespace Account.Presentation.Forms
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
+
+        private void Btn11_Click(object sender, EventArgs e)
+        {
+            FormExtentions.ClearTextBoxes(this.Controls);
+        }
+
+        private void Btn12_Click(object sender, EventArgs e)
+        {
+            var transaction = _unitOfWork.BlanceRepository.GetLastTransaction();
+            MSG.Text = "";
+        }
     }
 }

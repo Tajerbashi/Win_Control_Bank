@@ -41,6 +41,7 @@ namespace Account.Presentation.Forms
                 _unitOfWork.BeginTransaction();
                 try
                 {
+                    _unitOfWork.BlanceRepository.DisActiveLastBankingBlanceOfCartById(blanceDto.Item2.CartID);
                     _unitOfWork.BlanceRepository.Insert(blanceDto.Item2);
                     var settlemantDto = SettlemantDTO(blanceDto.Item2.CartID);
                     if (settlemantDto.Item1)

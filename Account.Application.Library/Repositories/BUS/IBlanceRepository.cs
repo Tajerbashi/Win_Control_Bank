@@ -98,8 +98,6 @@ namespace Account.Application.Library.Repositories.BUS
         /// </summary>
         /// <returns></returns>
         IEnumerable<KeyValue<byte>> TitleValueBlanceType();
-
-       
-
+        BlanceDTO GetLastTransaction();
     }
 }

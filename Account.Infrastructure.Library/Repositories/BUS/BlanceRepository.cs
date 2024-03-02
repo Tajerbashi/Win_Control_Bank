@@ -7,6 +7,7 @@ using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using Account.Infrastructure.Library.Repositories.BUS.Queries;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -134,6 +135,25 @@ namespace Account.Infrastructure.Library.Repositories.BUS
         public string ShowBankingTransactionsByCartID(long cartId, string paging)
         {
             return BlanceQueries.ShowBankingTransactionsByCartID(cartId, paging);
+        }
+
+        public BlanceDTO GetLastTransaction()
+        {
+            var result = from bl in Context.Blances
+                         join ct in Context.Carts
+                         on bl.CartID equals ct.ID
+                         orderby bl.ID descending
+                         where bl.IsActive
+                         select new
+                         {
+                             BlanceDTO = bl,
+                             CartDTO= ct,
+                         }
+                         ;
+            return new BlanceDTO
+            {
+                
+            };
         }
     }
 }
