@@ -37,7 +37,7 @@
             AddBtn = new Button();
             groupBox2 = new GroupBox();
             GridData = new DataGridView();
-            CartCombo = new ComboBox();
+            CustomerCombo = new ComboBox();
             PageLbl = new Label();
             NextBtn = new Button();
             PrevBtn = new Button();
@@ -55,7 +55,7 @@
             label1.Name = "label1";
             label1.Size = new Size(909, 32);
             label1.TabIndex = 16;
-            label1.Text = "اطلاعات موجودی های نقدی بر اساس مشترکین";
+            label1.Text = "اطلاعات کارت های مشترکین و نمایش جزییات";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // AddBtn
@@ -79,7 +79,7 @@
             // 
             groupBox2.BackColor = Color.Transparent;
             groupBox2.Controls.Add(GridData);
-            groupBox2.Controls.Add(CartCombo);
+            groupBox2.Controls.Add(CustomerCombo);
             groupBox2.Controls.Add(PageLbl);
             groupBox2.Controls.Add(NextBtn);
             groupBox2.Controls.Add(PrevBtn);
@@ -150,18 +150,18 @@
             GridData.TabIndex = 17;
             GridData.VirtualMode = true;
             // 
-            // CartCombo
+            // CustomerCombo
             // 
-            CartCombo.BackColor = Color.FromArgb(240, 236, 229);
-            CartCombo.Cursor = Cursors.Hand;
-            CartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
-            CartCombo.FormattingEnabled = true;
-            CartCombo.Location = new Point(355, 21);
-            CartCombo.Name = "CartCombo";
-            CartCombo.RightToLeft = RightToLeft.Yes;
-            CartCombo.Size = new Size(782, 33);
-            CartCombo.TabIndex = 16;
-            CartCombo.SelectedIndexChanged += CartCombo_SelectedIndexChanged;
+            CustomerCombo.BackColor = Color.FromArgb(240, 236, 229);
+            CustomerCombo.Cursor = Cursors.Hand;
+            CustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            CustomerCombo.FormattingEnabled = true;
+            CustomerCombo.Location = new Point(355, 21);
+            CustomerCombo.Name = "CustomerCombo";
+            CustomerCombo.RightToLeft = RightToLeft.Yes;
+            CustomerCombo.Size = new Size(782, 33);
+            CustomerCombo.TabIndex = 16;
+            CustomerCombo.SelectedIndexChanged += CustomerCombo_SelectedIndexChanged;
             // 
             // PageLbl
             // 
@@ -256,7 +256,7 @@
         private Button AddBtn;
         private GroupBox groupBox2;
         private DataGridView GridData;
-        private ComboBox CartCombo;
+        private ComboBox CustomerCombo;
         private Label PageLbl;
         private Button NextBtn;
         private Button PrevBtn;

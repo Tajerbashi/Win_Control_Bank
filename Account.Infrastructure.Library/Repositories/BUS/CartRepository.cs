@@ -211,5 +211,10 @@ namespace Account.Infrastructure.Library.Repositories.BUS
         {
             return CartQueries.SearchBlancingOfCart(filter, paging);
         }
+
+        public string SearchByCustomerId(long customerID, string paging)
+        {
+           return CartQueries.SearchByCustomerId(customerID, paging);
+        }
     }
 }

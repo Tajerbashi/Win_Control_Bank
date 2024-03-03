@@ -2,9 +2,7 @@
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
 using Account.Application.Library.Repositories.BUS;
-using Account.Domain.Library.Enums;
 using Account.Presentation.Generator;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace Account.Presentation.Forms
@@ -56,7 +54,6 @@ namespace Account.Presentation.Forms
             CustomerAccountCombo = ComboBoxGenerator<long>.FillData(CustomerAccountCombo, _unitOfWork.CustomerRepository.CustomerTitleValue(), Convert.ToByte(CustomerAccountCombo.Tag));
             TransactionTypeCombo = ComboBoxGenerator<byte>.FillData(TransactionTypeCombo, _unitOfWork.BlanceRepository.TitleValueTransactionType(), Convert.ToByte(TransactionTypeCombo.Tag));
             BlanceTypeCombo = ComboBoxGenerator<byte>.FillData(BlanceTypeCombo, _unitOfWork.BlanceRepository.TitleValueBlanceType(), Convert.ToByte(BlanceTypeCombo.Tag));
-            ActionTypeCombo = ComboBoxGenerator<byte>.FillData(ActionTypeCombo, _unitOfWork.BlanceRepository.TitleValueBlanceType(), Convert.ToByte(ActionTypeCombo.Tag));
             BlanceTypeCombo.SelectedIndex = 1;
             //UnitCombo = ComboBoxGenerator<long>.FillData(UnitCombo, _unitOfWork.CartRepository.TitleValue(), Convert.ToByte(UnitCombo.Tag));
         }

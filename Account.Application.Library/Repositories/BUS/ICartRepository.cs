@@ -71,7 +71,7 @@ namespace Account.Application.Library.Repositories.BUS
         /// <param name="cash"></param>
         /// <returns></returns>
         bool ValidBlancForTransaction(long cartId, double cash);
-      
+
         /// <summary>
         /// جستجو بر اساس کارت آیدی
         /// </summary>
@@ -79,6 +79,14 @@ namespace Account.Application.Library.Repositories.BUS
         /// <param name="paging"></param>
         /// <returns></returns>
         string SearchByCartId(long cartId, string paging);
+
+        /// <summary>
+        /// جستجو بر اساس آیدی مشترک
+        /// </summary>
+        /// <param name="customerID"></param>
+        /// <param name="paging"></param>
+        /// <returns></returns>
+        string SearchByCustomerId(long customerID, string paging);
 
         /// <summary>
         /// نمایش گردش کارت
