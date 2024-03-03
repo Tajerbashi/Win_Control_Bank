@@ -24,13 +24,6 @@ namespace Account.Application.Library.Repositories.BUS
         IEnumerable<KeyValue<long>> TitleValuesCashableParent();
 
         /// <summary>
-        /// دریافت حساب بر اساس کلید مشترک نوع حساب
-        /// </summary>
-        /// <param name="customerId"></param>
-        /// <returns></returns>
-        IEnumerable<KeyValue<long>> TitleValuesAccountByCustomerIDAndType(long customerId ,BlanceType blanceType);
-
-        /// <summary>
         /// دریافت مدل کارت بر اساس شماره کارت
         /// </summary>
         /// <param name="number"></param>

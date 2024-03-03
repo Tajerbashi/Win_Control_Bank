@@ -216,18 +216,5 @@ namespace Account.Infrastructure.Library.Repositories.BUS
         {
            return CartQueries.SearchByCustomerId(customerID, paging);
         }
-
-        public IEnumerable<KeyValue<long>> TitleValuesAccountByCustomerIDAndType(long customerId, BlanceType blanceType)
-        {
-            var result  = Context.Carts
-                .Include(ct => ct.Blances)
-                .Where(ct => ct.CustomerID == customerId && ct.Blances.Any(bl => bl.BlanceType == blanceType))
-                .Select(x => new KeyValue<long>
-                {
-                    Key=($"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
-                    Value= x.ID
-                }).ToList();
-            return result;
-        }
     }
 }
