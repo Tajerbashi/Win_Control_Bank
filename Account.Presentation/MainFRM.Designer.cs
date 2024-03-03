@@ -205,8 +205,8 @@
             SettingBtn.Cursor = Cursors.Hand;
             SettingBtn.FlatAppearance.BorderColor = Color.Gainsboro;
             SettingBtn.FlatAppearance.CheckedBackColor = Color.Gray;
-            SettingBtn.FlatAppearance.MouseDownBackColor = Color.MediumAquamarine;
-            SettingBtn.FlatAppearance.MouseOverBackColor = Color.DarkCyan;
+            SettingBtn.FlatAppearance.MouseDownBackColor = Color.Gray;
+            SettingBtn.FlatAppearance.MouseOverBackColor = Color.DarkSlateGray;
             SettingBtn.FlatStyle = FlatStyle.Flat;
             SettingBtn.ForeColor = Color.White;
             SettingBtn.Location = new Point(32, 632);

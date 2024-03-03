@@ -30,6 +30,9 @@
         {
             label3 = new Label();
             groupBox1 = new GroupBox();
+            FCCLbl = new Label();
+            FACLbl = new Label();
+            CACLbl = new Label();
             MSG = new Label();
             label7 = new Label();
             FromCustomerCombo = new ComboBox();
@@ -54,7 +57,7 @@
             // 
             label3.BackColor = Color.FromArgb(49, 48, 77);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(7, 6);
+            label3.Location = new Point(6, 6);
             label3.Name = "label3";
             label3.Size = new Size(717, 35);
             label3.TabIndex = 28;
@@ -64,6 +67,9 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(FCCLbl);
+            groupBox1.Controls.Add(FACLbl);
+            groupBox1.Controls.Add(CACLbl);
             groupBox1.Controls.Add(MSG);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(FromCustomerCombo);
@@ -82,11 +88,38 @@
             groupBox1.Controls.Add(CloseBtn);
             groupBox1.Controls.Add(SaveBtn);
             groupBox1.FlatStyle = FlatStyle.Popup;
-            groupBox1.Location = new Point(6, 38);
+            groupBox1.Location = new Point(5, 38);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(718, 446);
             groupBox1.TabIndex = 29;
             groupBox1.TabStop = false;
+            // 
+            // FCCLbl
+            // 
+            FCCLbl.ForeColor = Color.White;
+            FCCLbl.Location = new Point(8, 90);
+            FCCLbl.Name = "FCCLbl";
+            FCCLbl.Size = new Size(225, 32);
+            FCCLbl.TabIndex = 83;
+            FCCLbl.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // FACLbl
+            // 
+            FACLbl.ForeColor = Color.White;
+            FACLbl.Location = new Point(8, 162);
+            FACLbl.Name = "FACLbl";
+            FACLbl.Size = new Size(225, 32);
+            FACLbl.TabIndex = 82;
+            FACLbl.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // CACLbl
+            // 
+            CACLbl.ForeColor = Color.White;
+            CACLbl.Location = new Point(8, 18);
+            CACLbl.Name = "CACLbl";
+            CACLbl.Size = new Size(225, 32);
+            CACLbl.TabIndex = 81;
+            CACLbl.TextAlign = ContentAlignment.MiddleRight;
             // 
             // MSG
             // 
@@ -97,7 +130,6 @@
             MSG.Size = new Size(678, 32);
             MSG.TabIndex = 23;
             MSG.TextAlign = ContentAlignment.MiddleCenter;
-            MSG.Visible = false;
             // 
             // label7
             // 
@@ -115,10 +147,10 @@
             FromCustomerCombo.Cursor = Cursors.Hand;
             FromCustomerCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             FromCustomerCombo.FormattingEnabled = true;
-            FromCustomerCombo.Location = new Point(483, 126);
+            FromCustomerCombo.Location = new Point(561, 126);
             FromCustomerCombo.Name = "FromCustomerCombo";
             FromCustomerCombo.RightToLeft = RightToLeft.Yes;
-            FromCustomerCombo.Size = new Size(227, 33);
+            FromCustomerCombo.Size = new Size(149, 33);
             FromCustomerCombo.TabIndex = 79;
             FromCustomerCombo.SelectedIndexChanged += FromCustomerCombo_SelectedIndexChanged;
             // 
@@ -128,20 +160,20 @@
             BlanceTypeCombo.Cursor = Cursors.Hand;
             BlanceTypeCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             BlanceTypeCombo.FormattingEnabled = true;
-            BlanceTypeCombo.Location = new Point(8, 197);
+            BlanceTypeCombo.Location = new Point(561, 197);
             BlanceTypeCombo.Name = "BlanceTypeCombo";
             BlanceTypeCombo.RightToLeft = RightToLeft.Yes;
-            BlanceTypeCombo.Size = new Size(227, 33);
+            BlanceTypeCombo.Size = new Size(149, 33);
             BlanceTypeCombo.TabIndex = 76;
             // 
             // label2
             // 
             label2.ForeColor = Color.White;
-            label2.Location = new Point(77, 162);
+            label2.Location = new Point(618, 162);
             label2.Name = "label2";
-            label2.Size = new Size(159, 32);
+            label2.Size = new Size(94, 32);
             label2.TabIndex = 75;
-            label2.Text = "نوع موجودی";
+            label2.Text = "نوع حساب";
             label2.TextAlign = ContentAlignment.MiddleRight;
             // 
             // TransactionTypeCombo
@@ -150,19 +182,19 @@
             TransactionTypeCombo.Cursor = Cursors.Hand;
             TransactionTypeCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             TransactionTypeCombo.FormattingEnabled = true;
-            TransactionTypeCombo.Location = new Point(8, 53);
+            TransactionTypeCombo.Location = new Point(561, 53);
             TransactionTypeCombo.Name = "TransactionTypeCombo";
             TransactionTypeCombo.RightToLeft = RightToLeft.Yes;
-            TransactionTypeCombo.Size = new Size(227, 33);
+            TransactionTypeCombo.Size = new Size(149, 33);
             TransactionTypeCombo.TabIndex = 74;
             TransactionTypeCombo.SelectedIndexChanged += TransactionTypeCombo_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.ForeColor = Color.White;
-            label1.Location = new Point(77, 18);
+            label1.Location = new Point(613, 18);
             label1.Name = "label1";
-            label1.Size = new Size(159, 32);
+            label1.Size = new Size(98, 32);
             label1.TabIndex = 73;
             label1.Text = "جنس تراکنش";
             label1.TextAlign = ContentAlignment.MiddleRight;
@@ -173,18 +205,19 @@
             FromAccountCombo.Cursor = Cursors.Hand;
             FromAccountCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             FromAccountCombo.FormattingEnabled = true;
-            FromAccountCombo.Location = new Point(241, 197);
+            FromAccountCombo.Location = new Point(8, 197);
             FromAccountCombo.Name = "FromAccountCombo";
             FromAccountCombo.RightToLeft = RightToLeft.Yes;
-            FromAccountCombo.Size = new Size(469, 33);
+            FromAccountCombo.Size = new Size(547, 33);
             FromAccountCombo.TabIndex = 72;
+            FromAccountCombo.SelectedIndexChanged += FromAccountCombo_SelectedIndexChanged;
             // 
             // label6
             // 
             label6.ForeColor = Color.White;
-            label6.Location = new Point(552, 162);
+            label6.Location = new Point(483, 162);
             label6.Name = "label6";
-            label6.Size = new Size(159, 32);
+            label6.Size = new Size(72, 32);
             label6.TabIndex = 71;
             label6.Text = "از حساب";
             label6.TextAlign = ContentAlignment.MiddleRight;
@@ -192,7 +225,7 @@
             // label5
             // 
             label5.ForeColor = Color.White;
-            label5.Location = new Point(406, 91);
+            label5.Location = new Point(483, 91);
             label5.Name = "label5";
             label5.Size = new Size(72, 32);
             label5.TabIndex = 70;
@@ -208,7 +241,7 @@
             FromCartCombo.Location = new Point(8, 126);
             FromCartCombo.Name = "FromCartCombo";
             FromCartCombo.RightToLeft = RightToLeft.Yes;
-            FromCartCombo.Size = new Size(469, 33);
+            FromCartCombo.Size = new Size(547, 33);
             FromCartCombo.TabIndex = 69;
             FromCartCombo.SelectedIndexChanged += FromCartCombo_SelectedIndexChanged;
             // 
@@ -243,21 +276,21 @@
             CustomerAccountCombo.Cursor = Cursors.Hand;
             CustomerAccountCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             CustomerAccountCombo.FormattingEnabled = true;
-            CustomerAccountCombo.Location = new Point(241, 53);
+            CustomerAccountCombo.Location = new Point(8, 53);
             CustomerAccountCombo.Name = "CustomerAccountCombo";
             CustomerAccountCombo.RightToLeft = RightToLeft.Yes;
-            CustomerAccountCombo.Size = new Size(469, 33);
+            CustomerAccountCombo.Size = new Size(547, 33);
             CustomerAccountCombo.TabIndex = 24;
             CustomerAccountCombo.SelectedIndexChanged += CustomerAccountCombo_SelectedIndexChanged;
             // 
             // PageLbl
             // 
             PageLbl.ForeColor = Color.White;
-            PageLbl.Location = new Point(552, 18);
+            PageLbl.Location = new Point(483, 18);
             PageLbl.Name = "PageLbl";
-            PageLbl.Size = new Size(159, 32);
+            PageLbl.Size = new Size(72, 32);
             PageLbl.TabIndex = 17;
-            PageLbl.Text = "نام مالک حساب نقدی";
+            PageLbl.Text = "مشترک";
             PageLbl.TextAlign = ContentAlignment.MiddleRight;
             // 
             // CloseBtn
@@ -302,7 +335,7 @@
             AutoScaleDimensions = new SizeF(9F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(22, 26, 48);
-            ClientSize = new Size(731, 490);
+            ClientSize = new Size(729, 490);
             Controls.Add(label3);
             Controls.Add(groupBox1);
             Font = new Font("IRANSansWeb", 11.25F);
@@ -338,5 +371,8 @@
         private Label label1;
         private Label label7;
         private ComboBox FromCustomerCombo;
+        private Label CACLbl;
+        private Label FCCLbl;
+        private Label FACLbl;
     }
 }

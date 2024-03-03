@@ -1,14 +1,11 @@
-﻿using Account.Domain.Library.Enums;
-using Account.Application.Library.Exceptions;
-using Account.Application.Library.Models.Controls;
+﻿using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
+using Account.Application.Library.Patterns;
+using Account.Common.Library.Extentions;
+using Account.Domain.Library.Enums;
+using Account.Presentation.Extentions;
 using Account.Presentation.Generator;
 using System.Runtime.InteropServices;
-using Account.Common.Library.Extentions;
-using Account.Application.Library.Repositories.BUS;
-using Account.Application.Library.Patterns;
-using Account.Presentation.Extentions;
-using Microsoft.VisualStudio.Shell.Interop;
 
 namespace Account.Presentation.Forms
 {
