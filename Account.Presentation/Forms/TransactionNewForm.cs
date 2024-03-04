@@ -74,24 +74,29 @@ namespace Account.Presentation.Forms
                 return;
             switch (type.Value)
             {
-                case 1: //خرید از کارت
+                case 1: //  خرید از کارت
                     {
                         BuyFromCartTransaction();
                         break;
                     }
-                case 2: //خرید نقدی
+                case 2: //  خرید نقدی
                     {
                         CashableBuyTransaction();
                         break;
                     }
-                case 3: //کارت به کارت
+                case 3: //  کارت به کارت
                     {
                         CartToCartTransaction();
                         break;
                     }
-                case 4: //برداشت نقدی از کارت واریز به حساب نقدی
+                case 4: //  برداشت نقدی از کارت واریز به حساب نقدی
                     {
                         FromCartBankToCashBlanceTransaction();
+                        break;
+                    }
+                case 5: //  واریز به کارت
+                    {
+                        ToCartBankBlanceTransaction();
                         break;
                     }
                 default:
@@ -220,6 +225,15 @@ namespace Account.Presentation.Forms
                         TransactionKindCombo.SelectedIndex = 1;
                         DegreeAccountCombo.SelectedIndex = 1;
                         FromCartBankToCashBlance();
+                        break;
+                    }
+                case 5: //  واریز به کارت
+                    {
+                        MSG.Text = "واریز به کارت";
+                        BlanceTypeCombo.SelectedIndex = 2;
+                        TransactionKindCombo.SelectedIndex = 1;
+                        DegreeAccountCombo.SelectedIndex = 1;
+                        ToCartBankBlance();
                         break;
                     }
                 default:
@@ -539,6 +553,70 @@ namespace Account.Presentation.Forms
 
             L6.Visible = true;
             TCustomerCombo.Visible = true;
+        }
+       
+        /// <summary>
+        /// فعال و غیر فعال کردن کنترل های واریز به حساب
+        /// </summary>
+        /// <param name="SW"></param>
+        private void ToCartBankBlance()
+        {
+            //  For DisActive 
+            ToCustomerCombo.Visible = true;
+            ToCustomerLBL.Visible = true;
+            ToAccountCombo.Visible = true;
+            ToAccountLBL.Visible = true;
+
+            L3.Visible = true;
+            L4.Visible = true;
+            L5.Visible = true;
+            L6.Visible = true;
+
+
+
+            //  For Active 
+            NewDataBtn.Visible = false;
+            NewDataPanel.Visible = false;
+
+            FCustomerCombo.Visible = false;
+            TCustomerCombo.Visible = false;
+
+            L1.Visible = false;
+            L2.Visible = false;
+            L5.Visible = false;
+            L6.Visible = false;
+
+            FromCustomerCombo.Visible = false;
+            FromCustomerLBL.Visible = false;
+
+            FromAccountCombo.Visible = false;
+            FromAccountLBL.Visible = false;
+
+
+            TCustomerCombo.Visible = false;
+        }
+       
+        /// <summary>
+        /// تراکنش واریز به حساب
+        /// </summary>
+        private void ToCartBankBlanceTransaction()
+        {
+            var toAccount = ToAccountCombo.SelectedItem as KeyValue<long>;
+            _unitOfWork.BeginTransaction();
+            try
+            {
+                var lastBlance = _unitOfWork.BlanceRepository.GetBankingBlanceByCartId(toAccount.Value);
+                var cash = Convert.ToDouble(CashTxt.Text);
+                var blanceDTO = BlanceDTO(lastBlance,cash,toAccount.Value,TransactionType.Settlemant,BlanceType.Banking);
+                _unitOfWork.BlanceRepository.DisActiveLastBankingBlanceOfCartById(toAccount.Value);
+                _unitOfWork.BlanceRepository.Insert(blanceDTO);
+                _unitOfWork.Commit();
+                ClearCloseControl();
+            }
+            catch 
+            {
+                _unitOfWork.Rollback();
+            }
         }
 
         #region Extentions
