@@ -109,5 +109,21 @@ namespace Account.Application.Library.Repositories.BUS
         /// <returns></returns>
         IEnumerable<CartView> GetAllCartWithDetails();
 
+        /// <summary>
+        /// دریافت تمام اطلاعات فعلی حساب های بانکی
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<CartView> GetAllCartBankBlancesWithDetails();
+        /// <summary>
+        /// دریافت تمام اطلاعات فعلی حساب های نقدی مشترکین
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<CartView> GetAllCartCashableWithDetails();
+        /// <summary>
+        /// دریافت تمام اطلاعات فعلی زیر حساب های مشترکین
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<CartView> GetAllCartCustomeWithDetails();
+
     }
 }

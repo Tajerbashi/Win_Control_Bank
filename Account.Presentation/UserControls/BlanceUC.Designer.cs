@@ -31,13 +31,12 @@
             label1 = new Label();
             AddBtn = new Button();
             groupBox2 = new GroupBox();
-            TableLayout = new TableLayoutPanel();
-            button10 = new Button();
-            button1 = new Button();
+            button3 = new Button();
             button2 = new Button();
-            button9 = new Button();
-            FlowLayout = new FlowLayoutPanel();
-            PanelCartBlance = new Panel();
+            button1 = new Button();
+            BankingInfoPanel = new Panel();
+            CashableInfoPanel = new Panel();
+            CustomInfoPanel = new Panel();
             CustomerCombo = new ComboBox();
             PageLbl = new Label();
             NextBtn = new Button();
@@ -45,7 +44,6 @@
             SearchBtn = new Button();
             SearchTxt = new TextBox();
             groupBox2.SuspendLayout();
-            TableLayout.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -79,9 +77,12 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.Transparent;
-            groupBox2.Controls.Add(TableLayout);
-            groupBox2.Controls.Add(FlowLayout);
-            groupBox2.Controls.Add(PanelCartBlance);
+            groupBox2.Controls.Add(button3);
+            groupBox2.Controls.Add(button2);
+            groupBox2.Controls.Add(button1);
+            groupBox2.Controls.Add(BankingInfoPanel);
+            groupBox2.Controls.Add(CashableInfoPanel);
+            groupBox2.Controls.Add(CustomInfoPanel);
             groupBox2.Controls.Add(CustomerCombo);
             groupBox2.Controls.Add(PageLbl);
             groupBox2.Controls.Add(NextBtn);
@@ -94,102 +95,83 @@
             groupBox2.TabIndex = 18;
             groupBox2.TabStop = false;
             // 
-            // TableLayout
+            // button3
             // 
-            TableLayout.ColumnCount = 2;
-            TableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            TableLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            TableLayout.Controls.Add(button10, 0, 1);
-            TableLayout.Controls.Add(button1, 0, 0);
-            TableLayout.Controls.Add(button2, 1, 0);
-            TableLayout.Controls.Add(button9, 1, 1);
-            TableLayout.Location = new Point(6, 302);
-            TableLayout.Name = "TableLayout";
-            TableLayout.RowCount = 2;
-            TableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            TableLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            TableLayout.Size = new Size(582, 390);
-            TableLayout.TabIndex = 20;
-            // 
-            // button10
-            // 
-            button10.Cursor = Cursors.Hand;
-            button10.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
-            button10.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            button10.FlatAppearance.MouseDownBackColor = Color.Green;
-            button10.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
-            button10.FlatStyle = FlatStyle.Flat;
-            button10.ForeColor = Color.White;
-            button10.Location = new Point(3, 198);
-            button10.Name = "button10";
-            button10.Size = new Size(285, 189);
-            button10.TabIndex = 28;
-            button10.Text = "جدید";
-            button10.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
-            button1.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            button1.FlatAppearance.MouseDownBackColor = Color.Green;
-            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(3, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(285, 189);
-            button1.TabIndex = 25;
-            button1.Text = "جدید";
-            button1.UseVisualStyleBackColor = true;
+            button3.BackColor = Color.White;
+            button3.Cursor = Cursors.Hand;
+            button3.FlatAppearance.BorderColor = Color.White;
+            button3.FlatAppearance.CheckedBackColor = Color.PaleGreen;
+            button3.FlatAppearance.MouseDownBackColor = Color.Silver;
+            button3.FlatAppearance.MouseOverBackColor = Color.FromArgb(224, 224, 224);
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.ForeColor = Color.Black;
+            button3.Location = new Point(766, 65);
+            button3.Name = "button3";
+            button3.Size = new Size(370, 32);
+            button3.TabIndex = 21;
+            button3.Text = "وضعیت زیر حساب ها";
+            button3.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
+            button2.BackColor = Color.White;
             button2.Cursor = Cursors.Hand;
-            button2.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
-            button2.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            button2.FlatAppearance.MouseDownBackColor = Color.Green;
-            button2.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
+            button2.FlatAppearance.BorderColor = Color.White;
+            button2.FlatAppearance.CheckedBackColor = Color.PaleGreen;
+            button2.FlatAppearance.MouseDownBackColor = Color.Silver;
+            button2.FlatAppearance.MouseOverBackColor = Color.FromArgb(224, 224, 224);
             button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(294, 3);
+            button2.ForeColor = Color.Black;
+            button2.Location = new Point(386, 65);
             button2.Name = "button2";
-            button2.Size = new Size(282, 189);
-            button2.TabIndex = 26;
-            button2.Text = "جدید";
-            button2.UseVisualStyleBackColor = true;
+            button2.Size = new Size(370, 32);
+            button2.TabIndex = 20;
+            button2.Text = "وضعیت حساب های نقدی هر مشترک";
+            button2.UseVisualStyleBackColor = false;
             // 
-            // button9
+            // button1
             // 
-            button9.Cursor = Cursors.Hand;
-            button9.FlatAppearance.BorderColor = Color.FromArgb(0, 192, 0);
-            button9.FlatAppearance.CheckedBackColor = Color.FromArgb(255, 128, 0);
-            button9.FlatAppearance.MouseDownBackColor = Color.Green;
-            button9.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 192, 0);
-            button9.FlatStyle = FlatStyle.Flat;
-            button9.ForeColor = Color.White;
-            button9.Location = new Point(294, 198);
-            button9.Name = "button9";
-            button9.Size = new Size(282, 189);
-            button9.TabIndex = 27;
-            button9.Text = "جدید";
-            button9.UseVisualStyleBackColor = true;
+            button1.BackColor = Color.White;
+            button1.Cursor = Cursors.Hand;
+            button1.FlatAppearance.BorderColor = Color.White;
+            button1.FlatAppearance.CheckedBackColor = Color.PaleGreen;
+            button1.FlatAppearance.MouseDownBackColor = Color.Silver;
+            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(224, 224, 224);
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = Color.Black;
+            button1.Location = new Point(6, 65);
+            button1.Name = "button1";
+            button1.Size = new Size(370, 32);
+            button1.TabIndex = 19;
+            button1.Text = "وضعیت حساب های بانکی مشترکین";
+            button1.UseVisualStyleBackColor = false;
             // 
-            // FlowLayout
+            // BankingInfoPanel
             // 
-            FlowLayout.Location = new Point(6, 60);
-            FlowLayout.Name = "FlowLayout";
-            FlowLayout.Size = new Size(582, 236);
-            FlowLayout.TabIndex = 19;
+            BankingInfoPanel.AutoScroll = true;
+            BankingInfoPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BankingInfoPanel.Location = new Point(6, 95);
+            BankingInfoPanel.Name = "BankingInfoPanel";
+            BankingInfoPanel.Size = new Size(370, 594);
+            BankingInfoPanel.TabIndex = 19;
             // 
-            // PanelCartBlance
+            // CashableInfoPanel
             // 
-            PanelCartBlance.AutoScroll = true;
-            PanelCartBlance.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            PanelCartBlance.Location = new Point(594, 60);
-            PanelCartBlance.Name = "PanelCartBlance";
-            PanelCartBlance.Size = new Size(543, 629);
-            PanelCartBlance.TabIndex = 18;
+            CashableInfoPanel.AutoScroll = true;
+            CashableInfoPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            CashableInfoPanel.Location = new Point(386, 95);
+            CashableInfoPanel.Name = "CashableInfoPanel";
+            CashableInfoPanel.Size = new Size(370, 594);
+            CashableInfoPanel.TabIndex = 19;
+            // 
+            // CustomInfoPanel
+            // 
+            CustomInfoPanel.AutoScroll = true;
+            CustomInfoPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            CustomInfoPanel.Location = new Point(766, 95);
+            CustomInfoPanel.Name = "CustomInfoPanel";
+            CustomInfoPanel.Size = new Size(370, 594);
+            CustomInfoPanel.TabIndex = 18;
             // 
             // CustomerCombo
             // 
@@ -285,7 +267,6 @@
             Load += BlanceUC_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            TableLayout.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -297,15 +278,14 @@
         private Label PageLbl;
         private Button NextBtn;
         private Button PrevBtn;
-        private TableLayoutPanel TableLayout;
-        private FlowLayoutPanel FlowLayout;
-        private Panel PanelCartBlance;
-        private Button button10;
-        private Button button9;
-        private Button button1;
-        private Button button2;
+        private Panel CustomInfoPanel;
         private ComboBox CustomerCombo;
         private Button SearchBtn;
         private TextBox SearchTxt;
+        private Panel BankingInfoPanel;
+        private Panel CashableInfoPanel;
+        private Button button3;
+        private Button button2;
+        private Button button1;
     }
 }

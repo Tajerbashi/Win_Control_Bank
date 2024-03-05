@@ -67,9 +67,7 @@ namespace Account.Infrastructure.Library.Repositories.BUS
         {
             var cart = Context.Blances.Where(x => x.CartID == cartId && !x.IsDeleted && x.BlanceType == Domain.Library.Enums.BlanceType.Cashable && x.IsActive).OrderByDescending(x => x.ID).FirstOrDefault();
             if (cart == null)
-            {
                 return 0;
-            }
             return cart.NewBlanceCash;
         }
 
@@ -78,9 +76,7 @@ namespace Account.Infrastructure.Library.Repositories.BUS
             var cart = Context.Blances.Where(x => x.CartID == cartId && !x.IsDeleted && x.BlanceType == Domain.Library.Enums.BlanceType.Cashable && x.IsActive)
                 .OrderByDescending(x => x.ID).FirstOrDefault();
             if (cart == null)
-            {
                 return;
-            }
             cart.IsActive = false;
             base.Save();
         }
@@ -99,15 +95,15 @@ namespace Account.Infrastructure.Library.Repositories.BUS
         {
             var blance = Context.Blances.Where(x => x.CartID == cartId && x.BlanceType == Domain.Library.Enums.BlanceType.Banking && !x.IsDeleted && x.IsActive).OrderByDescending(x => x.ID).FirstOrDefault();
             if (blance is null)
-            {
                 return 0;
-            }
             return blance.NewBlanceCash;
         }
 
         public void DisActiveLastBankingBlanceOfCartById(long cartId)
         {
             var blance = Context.Blances.Where(x => x.CartID == cartId && !x.IsDeleted).OrderByDescending(x => x.ID).FirstOrDefault();
+            if (blance is null)
+                return;
             blance.UpdateDate = DateTime.Now;
             blance.IsActive = false;
             Context.SaveChanges();

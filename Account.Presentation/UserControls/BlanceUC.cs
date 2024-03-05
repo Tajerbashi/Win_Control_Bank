@@ -22,68 +22,80 @@ namespace Account.Presentation.UserControls
         private void AddBtn_Click(object sender, EventArgs e)
         {
             //var data = _userRepository.GetAll();
-            LoadPanelCartBlance();
-            LoadFlowPanelCartBlance();
-            LoadTablePanelCartBlance();
+            BankingInfoPanelLoading();
+            CashableInfoPanelLoading();
+            CustomeInfoPanelLoading();
         }
 
-        private void LoadPanelCartBlance()
+        private void BankingInfoPanelLoading()
         {
-            PanelCartBlance.Controls.Clear();
+            BankingInfoPanel.Controls.Clear();
             ButtonGenerator button = new ButtonGenerator();
-            var data = _cartRepository.GetAllCartWithDetails();
+            var data = _cartRepository.GetAllCartBankBlancesWithDetails();
             int x = 18,y= 18;
             foreach (var item in data)
             {
-                PanelCartBlance.Controls.Add(button.CreateButton(
+                BankingInfoPanel.Controls.Add(button.CreateButton(
                     x,
-                    y, 
-                    $"{item.CustomerName}\n{item.AccountNumber}\n{item.BankName}\n{(item.Blance.Value).ToString("#,#")}" 
-                    ,500
-                    ,118
+                    y,
+                    $"{item.CustomerName}\n{item.AccountNumber}\n{item.BankName}\n{(item.Blance is null ? 0 : item.Blance.Value).ToString("#,#")}"
+                    , 320
+                    , 120
+                    , Color.DarkBlue
+                    , Color.Wheat
                     ));
                 y = y + 128;
             }
         }
-        private void LoadFlowPanelCartBlance()
+        private void CashableInfoPanelLoading()
         {
-            FlowLayout.Controls.Clear();//187, 111
+            CashableInfoPanel.Controls.Clear();
             ButtonGenerator button = new ButtonGenerator();
-            var data = _cartRepository.GetAllCartWithDetails();
-            int x=3,y=3;
+            var data = _cartRepository.GetAllCartCashableWithDetails();
+            int x = 18,y= 18;
             foreach (var item in data)
             {
-                FlowLayout.Controls.Add(button.CreateButton(
+                CashableInfoPanel.Controls.Add(button.CreateButton(
                     x,
                     y,
-                    $"{item.CustomerName}\n{item.AccountNumber}\n{item.BankName}\n{(item.Blance.Value).ToString("#,#")}"
-                    , 187
-                    , 111
+                    $"{item.CustomerName}\n{item.AccountNumber}\n{item.BankName}\n{(item.Blance is null ? 0 : item.Blance.Value).ToString("#,#")}"
+                    , 320
+                    , 120
+                    , Color.GreenYellow
+                    , Color.Black
                     ));
+                y = y + 128;
             }
         }
-        private void LoadTablePanelCartBlance()
+        private void CustomeInfoPanelLoading()
         {
-            TableLayout.Controls.Clear();
+            CustomInfoPanel.Controls.Clear();
             ButtonGenerator button = new ButtonGenerator();
-            var data = _cartRepository.GetAllCartWithDetails();
-            int x=3,y=3;//282, 189
+            var data = _cartRepository.GetAllCartCustomeWithDetails();
+            int x = 18,y= 18;
             foreach (var item in data)
             {
-                TableLayout.Controls.Add(button.CreateButton(
+                CustomInfoPanel.Controls.Add(button.CreateButton(
                     x,
                     y,
-                    $"{item.CustomerName}\n{item.AccountNumber}\n{item.BankName}\n{(item.Blance.Value).ToString("#,#")}"
-                    , 282
-                    , 189
+                    $"{item.CustomerName}\n{item.AccountNumber}\n{item.BankName}\n{(item.Blance is null ? 0 : item.Blance.Value).ToString("#,#")}"
+                    , 320
+                    , 120
+                    , Color.MediumSpringGreen
+                    , Color.Black
                     ));
+                y = y + 128;
             }
 
         }
+
+
         private void BlanceUC_Load(object sender, EventArgs e)
         {
             CustomerCombo = ComboBoxGenerator<long>.FillData(CustomerCombo, _customerRepository.CustomerTitleValue(), Convert.ToByte(CustomerCombo.Tag));
-
+            BankingInfoPanelLoading();
+            CashableInfoPanelLoading();
+            CustomeInfoPanelLoading();
         }
     }
 }

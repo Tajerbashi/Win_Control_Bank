@@ -15,6 +15,10 @@ namespace Account.Domain.Library.Bases
     }
     public abstract class BaseEntity : BaseEntity<long>
     {
+        public BaseEntity()
+        {
+            ID = -1;
+        }
         public Guid Guid { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsActive { get; set; }
