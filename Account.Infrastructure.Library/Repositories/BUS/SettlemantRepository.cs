@@ -40,6 +40,10 @@ namespace Account.Infrastructure.Library.Repositories.BUS
         public IEnumerable<KeyValue<byte>> TitleValue()
         {
             return SettlemantQueries.TitleValue();
+        } 
+        public string GetSumOfSettlemant(long ID)
+        {
+            return SettlemantQueries.GetSumOfSettlemant(ID);
         }
     }
 }

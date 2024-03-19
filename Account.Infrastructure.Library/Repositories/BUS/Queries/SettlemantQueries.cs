@@ -72,6 +72,19 @@ WHERE BN.IsDeleted = 0
         {
             throw new NotImplementedException();
         }
+
+        internal static string GetSumOfSettlemant(long ID)
+        {
+            return ($@"
+SELECT 
+FORMAT(CAST(SUM(SS.Cash) as bigint),'###,###,###,###') AS [موجودی]
+FROM [BUS].[Settlemants] SS
+WHERE 
+	SS.IsDeleted = 0
+AND SS.IsActive = 1
+AND SS.CartID = {ID}
+");
+        }
     }
 
 }
