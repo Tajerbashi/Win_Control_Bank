@@ -238,18 +238,19 @@ namespace Account.Infrastructure.Library.Repositories.BUS
 
         public IEnumerable<CartView> GetAllCartCashableWithDetails()
         {
-            var result = Context.Carts
-                .Include(c => c.Bank)
-                .Include(c => c.Customer)
-                .Include(c => c.Blances)
-                .Where(x => !x.IsDeleted && x.IsActive && x.CartType == CartType.Main && !x.Bank.BankName.Contains(":") && x.ParentID == null)
+            var result = Context.Blances
+                .Include(c => c.Cart).ThenInclude(x => x.Bank)
+                .Where(x => 
+                !x.IsDeleted &&
+                x.IsActive && 
+                x.BlanceType == BlanceType.Cashable && 
+                x.Cart.ParentID == null)
                 .Select(res => new CartView
                 {
                     Id = res.ID,
-                    AccountNumber = res.AccountNumber,
                     BankName = "حساب نقدی",
-                    CustomerName = res.Customer.FullName,
-                    Blance=res.Blances.Where(x => x.IsActive && !x.IsDeleted && x.BlanceType == BlanceType.Cashable).OrderByDescending(x => x.ID).FirstOrDefault().NewBlanceCash,
+                    CustomerName = res.Cart.Customer.FullName,
+                    Blance = res.Cart.Blances.Where(x => x.IsActive && !x.IsDeleted && x.BlanceType == BlanceType.Cashable).OrderByDescending(x => x.ID).FirstOrDefault().NewBlanceCash,
                 })
                 .ToList();
             return result;

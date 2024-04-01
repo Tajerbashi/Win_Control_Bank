@@ -58,7 +58,7 @@ namespace Account.Presentation.UserControls
                 CashableInfoPanel.Controls.Add(button.CreateButton(
                     x,
                     y,
-                    $"{item.CustomerName}\n{item.AccountNumber}\n{item.BankName}\n{(item.Blance is null ? 0 : item.Blance.Value).ToString("#,#")}"
+                    $"نام مشترک : {item.CustomerName}\n نوع : {item.BankName}\n موجودی : {(item.Blance is null ? 0 : item.Blance.Value).ToString("#,#")}"
                     , 320
                     , 120
                     , Color.GreenYellow
