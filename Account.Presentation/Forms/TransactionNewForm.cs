@@ -421,6 +421,7 @@ namespace Account.Presentation.Forms
                 else
                 {
                     MSG.Text = MessageProject.NotEnughBlance();
+                    _unitOfWork.Rollback();
                     return;
                 }
                 _unitOfWork.Commit();
