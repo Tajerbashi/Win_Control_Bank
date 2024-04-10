@@ -10,13 +10,13 @@ namespace Account.Application.Library.Repositories.BUS
 {
     public interface ICartRepository : IGenericRepository<Cart, CartDTO, CartView>, IBaseQueries
     {
-     
+
         /// <summary>
         /// دریافت کلید و مقدار کارت های بانکی که سر شاخه هستند
         /// </summary>
         /// <returns></returns>
         IEnumerable<KeyValue<long>> TitleValuesBankingParent();
-       
+
         /// <summary>
         /// دریافت کلید و مقدار کارت های نقدی که سر شاخه هستند
         /// </summary>
@@ -29,41 +29,41 @@ namespace Account.Application.Library.Repositories.BUS
         /// <param name="number"></param>
         /// <returns></returns>
         CartDTO GetCartByAccountNumber(string number);
-        
+
         /// <summary>
         /// دریافت تمام کارت ها
         /// </summary>
         /// <returns></returns>
         IEnumerable<KeyValue<long>> TitleValuesAllCart();
-        
+
         /// <summary>
         /// دریافت تمام کارت ها بر اساس بانک آیذی
         /// </summary>
         /// <param name="bankID"></param>
         /// <returns></returns>
         IEnumerable<KeyValue<long>> TitleValuesCartByBankId(long bankID);
-        
+
         /// <summary>
         /// دریافت کارت های زیر شاخه ها بر اساس کلید کارت سرشاخه
         /// </summary>
         /// <param name="cartID"></param>
         /// <returns></returns>
         IEnumerable<KeyValue<long>> TitleValuesChild(long cartID);
-        
+
         /// <summary>
         /// دریافت کارت های یک کاربر بر اساس کلید کاریر
         /// </summary>
         /// <param name="userID"></param>
         /// <returns></returns>
-        IEnumerable<KeyValue<long>> TitleValueByUserID(long customerID);
-        
+        IEnumerable<KeyValue<long>> TitleValueByUserID(long customerID, BlanceType blance);
+
         /// <summary>
         /// دریافت کلید و مقدار کارت های که حساب مشترک یا حساب اصلی هستند
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
         IEnumerable<KeyValue<long>> TitleValuesMainCarts(long Id);
-     
+
         /// <summary>
         /// بررسی معتبر بودن مقدار تراکنش و موجودی کارت
         /// </summary>
@@ -108,6 +108,13 @@ namespace Account.Application.Library.Repositories.BUS
         /// </summary>
         /// <returns></returns>
         IEnumerable<CartView> GetAllCartWithDetails();
+
+        /// <summary>
+        /// دریافت حساب نقدی مشترک
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        CartView GetCashAccountByUserId(long userId);
 
         /// <summary>
         /// دریافت تمام اطلاعات فعلی حساب های بانکی

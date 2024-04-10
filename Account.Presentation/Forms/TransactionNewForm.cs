@@ -32,24 +32,12 @@ namespace Account.Presentation.Forms
         public static extern bool ReleaseCapture();
         #endregion
         private readonly IUnitOfWork _unitOfWork;
-        //private readonly ICartRepository _cartRepository;
-        //private readonly IBlanceRepository _blanceRepository;
-        //private readonly ICustomerRepository _customerRepository;
-        //private readonly IBankRepository _bankRepository;
-        public TransactionNewForm(
-            IUnitOfWork unitOfWork//,
-                                  //ICartRepository cartRepository,
-                                  //IBlanceRepository blanceRepository,
-                                  //ICustomerRepository customerRepository,
-                                  //IBankRepository bankRepository
 
+        public TransactionNewForm(
+            IUnitOfWork unitOfWork
             )
         {
             _unitOfWork = unitOfWork;
-            //_cartRepository = cartRepository;
-            //_blanceRepository = blanceRepository;
-            //_customerRepository = customerRepository;
-            //_bankRepository = bankRepository;
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
@@ -555,7 +543,7 @@ namespace Account.Presentation.Forms
             L6.Visible = true;
             TCustomerCombo.Visible = true;
         }
-       
+
         /// <summary>
         /// فعال و غیر فعال کردن کنترل های واریز به حساب
         /// </summary>
@@ -596,7 +584,7 @@ namespace Account.Presentation.Forms
 
             TCustomerCombo.Visible = false;
         }
-       
+
         /// <summary>
         /// تراکنش واریز به حساب
         /// </summary>
@@ -614,7 +602,7 @@ namespace Account.Presentation.Forms
                 _unitOfWork.Commit();
                 ClearCloseControl();
             }
-            catch 
+            catch
             {
                 _unitOfWork.Rollback();
             }

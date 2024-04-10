@@ -1,5 +1,6 @@
 ﻿using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Patterns;
+using Account.Domain.Library.Enums;
 using Account.Infrastructure.Library.Patterns;
 using Account.Presentation.Extentions;
 using Account.Presentation.Forms;
@@ -47,7 +48,7 @@ namespace Account.Presentation.UserControls
             {
                 if (CustomerId.Value != 0)
                 {
-                    AccountCombo = ComboBoxGenerator<long>.FillData(AccountCombo, _unitOfWork.CartRepository.TitleValueByUserID(CustomerId.Value), Convert.ToByte(AccountCombo.Tag));
+                    AccountCombo = ComboBoxGenerator<long>.FillData(AccountCombo, _unitOfWork.CartRepository.TitleValueByUserID(CustomerId.Value,BlanceType.Banking), Convert.ToByte(AccountCombo.Tag));
                 }
                 else
                 {

@@ -1,6 +1,7 @@
 ﻿using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Patterns;
+using Account.Domain.Library.Enums;
 using Account.Infrastructure.Library.Repositories.BUS.Queries;
 using Account.Presentation.Extentions;
 using Account.Presentation.Generator;
@@ -139,7 +140,7 @@ namespace Account.Presentation.Forms
             {
                 if (CustomerId.Value != 0)
                 {
-                    AccountCombo = ComboBoxGenerator<long>.FillData(AccountCombo, _unitOfWork.CartRepository.TitleValueByUserID(CustomerId.Value), Convert.ToByte(AccountCombo.Tag));
+                    AccountCombo = ComboBoxGenerator<long>.FillData(AccountCombo, _unitOfWork.CartRepository.TitleValueByUserID(CustomerId.Value,BlanceType.Cashable), Convert.ToByte(AccountCombo.Tag));
                 }
                 else
                 {

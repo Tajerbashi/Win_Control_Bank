@@ -159,13 +159,28 @@ namespace Account.Infrastructure.Library.Repositories.BUS
             return result;
         }
 
-        public IEnumerable<KeyValue<long>> TitleValueByUserID(long customerID)
+        public IEnumerable<KeyValue<long>> TitleValueByUserID(long customerID, BlanceType blanceType)
         {
-            var result = Context.Carts.Include(ct => ct.Customer).Include(bn => bn.Bank).Where(x => x.CustomerID == customerID && x.IsActive && !x.IsDeleted).Select(x => new KeyValue<long>
-            {
-                Key=($"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
-                Value= x.ID
-            }).ToList();
+            var result = Context.Carts
+                .Include(ct => ct.Customer)
+                .Include(bn => bn.Bank)
+                .Where(x => x.CustomerID == customerID 
+                            && x.IsActive 
+                            && !x.IsDeleted 
+                            && 
+                            (
+                            blanceType == BlanceType.Banking
+                            ?
+                            !x.ShabaAccountNumber.Contains("IR-Cashable")
+                            :
+                            x.ShabaAccountNumber.Contains("IR-Cashable")
+                            )
+                            )
+                .Select(x => new KeyValue<long>
+                {
+                    Key=($"{x.Bank.BankName} - {x.Customer.FullName} - {x.AccountNumber}"),
+                    Value= x.ID
+                }).ToList();
             return result;
         }
 
@@ -240,10 +255,10 @@ namespace Account.Infrastructure.Library.Repositories.BUS
         {
             var result = Context.Blances
                 .Include(c => c.Cart).ThenInclude(x => x.Bank)
-                .Where(x => 
+                .Where(x =>
                 !x.IsDeleted &&
-                x.IsActive && 
-                x.BlanceType == BlanceType.Cashable && 
+                x.IsActive &&
+                x.BlanceType == BlanceType.Cashable &&
                 x.Cart.ParentID == null)
                 .Select(res => new CartView
                 {
@@ -273,6 +288,13 @@ namespace Account.Infrastructure.Library.Repositories.BUS
                 })
                 .ToList();
             return result;
+        }
+
+        public CartView GetCashAccountByUserId(long userId)
+        {
+            var result = Context.Carts
+                .Where(item => item.CustomerID == userId && item.ShabaAccountNumber.Contains("IR-Cashable")).SingleOrDefault();
+            return Mapper.Map<CartView>(result);
         }
     }
 }
