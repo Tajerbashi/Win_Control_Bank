@@ -1,5 +1,6 @@
 ﻿using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Repositories.BUS;
+using Account.Domain.Library.Enums;
 using Account.Presentation.Extentions;
 using Account.Presentation.Forms;
 using Account.Presentation.Generator;
@@ -13,6 +14,7 @@ namespace Account.Presentation.UserControls
         private readonly ICartRepository _cartRepository;
         private readonly ICustomerRepository _customerRepository;
         private CashableBlanceForm CashableBlanceForm;
+        private byte TransactionType;
         public CashMoneyUC(
             IBlanceRepository blanceRepository,
             ICartRepository cartRepository,
@@ -36,7 +38,7 @@ namespace Account.Presentation.UserControls
             }
             else
             {
-                GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.ShowCashableTransactionsByCartID(customerID, _blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
+                GridData.DataSource = _blanceRepository.ExecuteQuery(_blanceRepository.ShowCashableTransactionsByCartID(customerID, (TransactionType)TransactionType, _blanceRepository.Paging.Order(_blanceRepository.Paging.Page)));
                 var count = (_blanceRepository.ExecuteQuery(_blanceRepository.GetCount())).Rows[0].Field<int>(0); ;
                 PageLbl.Text = $"تعداد کل {count} | تعداد ردیف {GridData.Rows.Count} | صفحه {_blanceRepository.Paging.Page + 1}";
             }

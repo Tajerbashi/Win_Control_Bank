@@ -3,11 +3,11 @@ using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Models.Views.BUS;
 using Account.Application.Library.Repositories.BUS;
 using Account.Domain.Library.Entities.BUS;
+using Account.Domain.Library.Enums;
 using Account.Infrastructure.Library.ApplicationContext.DatabaseContext;
 using Account.Infrastructure.Library.BaseService;
 using Account.Infrastructure.Library.Repositories.BUS.Queries;
 using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,9 +58,9 @@ namespace Account.Infrastructure.Library.Repositories.BUS
             return BlanceQueries.ShowAllCashableBlances(paging);
         }
 
-        public string Show50LastCashableTransactions(string paging)
+        public string Show50LastCashableTransactions(TransactionType? type, string paging)
         {
-            return BlanceQueries.Show50LastCashableTransactions(paging);
+            return BlanceQueries.Show50LastCashableTransactions(type, paging);
         }
 
         public double? GetCashableBlanceByCartId(long cartId)
@@ -81,9 +81,9 @@ namespace Account.Infrastructure.Library.Repositories.BUS
             base.Save();
         }
 
-        public string Show50LastBankingTransactions(string paging)
+        public string Show50LastBankingTransactions(TransactionType? type, string paging)
         {
-            return BlanceQueries.Show50LastBankingTransactions(paging);
+            return BlanceQueries.Show50LastBankingTransactions(type, paging);
         }
 
         public string ShowAllBankingBlances(string paging)
@@ -124,14 +124,14 @@ namespace Account.Infrastructure.Library.Repositories.BUS
             return BlanceQueries.ShowFromTo(from, to);
         }
 
-        public string ShowCashableTransactionsByCartID(long cartId, string paging)
+        public string ShowCashableTransactionsByCartID(long cartId, TransactionType? type, string paging)
         {
-            return BlanceQueries.ShowCashableTransactionsByCartID(cartId, paging);
+            return BlanceQueries.ShowCashableTransactionsByCartID(cartId,type, paging);
         }
 
-        public string ShowBankingTransactionsByCartID(long cartId, string paging)
+        public string ShowBankingTransactionsByCartID(long cartId, TransactionType? type, string paging)
         {
-            return BlanceQueries.ShowBankingTransactionsByCartID(cartId, paging);
+            return BlanceQueries.ShowBankingTransactionsByCartID(cartId,type, paging);
         }
 
         public BlanceDTO GetLastTransaction()
@@ -149,7 +149,7 @@ namespace Account.Infrastructure.Library.Repositories.BUS
                          ;
             return new BlanceDTO
             {
-                
+
             };
         }
     }

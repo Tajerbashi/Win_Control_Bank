@@ -3,6 +3,7 @@ using Account.Application.Library.Models.Controls;
 using Account.Application.Library.Models.DTOs.BUS;
 using Account.Application.Library.Models.Views.BUS;
 using Account.Domain.Library.Entities.BUS;
+using Account.Domain.Library.Enums;
 
 namespace Account.Application.Library.Repositories.BUS
 {
@@ -15,7 +16,7 @@ namespace Account.Application.Library.Repositories.BUS
         /// </summary>
         /// <param name="paging"></param>
         /// <returns></returns>
-        string Show50LastCashableTransactions(string paging);
+        string Show50LastCashableTransactions(TransactionType? type, string paging);
 
         /// <summary>
         /// نمایش تراکنش های نقدی بر اساس کارت آیدی
@@ -23,7 +24,7 @@ namespace Account.Application.Library.Repositories.BUS
         /// <param name="cartId"></param>
         /// <param name="paging"></param>
         /// <returns></returns>
-        string ShowCashableTransactionsByCartID(long cartId, string paging);
+        string ShowCashableTransactionsByCartID(long cartId, TransactionType? type, string paging);
 
         /// <summary>
         /// دریافت تمام تراکنش های نقدی
@@ -55,7 +56,7 @@ namespace Account.Application.Library.Repositories.BUS
         /// </summary>
         /// <param name="paging"></param>
         /// <returns></returns>
-        string Show50LastBankingTransactions(string paging);
+        string Show50LastBankingTransactions(TransactionType? type,string paging);
 
         /// <summary>
         /// نمایش تراکنش های بانکی بر اساس کارت آیدی
@@ -63,7 +64,7 @@ namespace Account.Application.Library.Repositories.BUS
         /// <param name="cartId"></param>
         /// <param name="paging"></param>
         /// <returns></returns>
-        string ShowBankingTransactionsByCartID(long cartId, string paging);
+        string ShowBankingTransactionsByCartID(long cartId, TransactionType? type, string paging);
 
         /// <summary>
         /// نمایش تمام تراکنش های بانکی

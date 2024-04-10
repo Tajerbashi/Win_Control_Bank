@@ -43,6 +43,7 @@
             PrevBtn = new Button();
             SearchBtn = new Button();
             SearchTxt = new TextBox();
+            TransactionKindCombo = new ComboBox();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridData).BeginInit();
             SuspendLayout();
@@ -78,6 +79,7 @@
             // groupBox2
             // 
             groupBox2.BackColor = Color.Transparent;
+            groupBox2.Controls.Add(TransactionKindCombo);
             groupBox2.Controls.Add(GridData);
             groupBox2.Controls.Add(CartCombo);
             groupBox2.Controls.Add(PageLbl);
@@ -157,10 +159,10 @@
             CartCombo.Cursor = Cursors.Hand;
             CartCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             CartCombo.FormattingEnabled = true;
-            CartCombo.Location = new Point(355, 21);
+            CartCombo.Location = new Point(598, 20);
             CartCombo.Name = "CartCombo";
             CartCombo.RightToLeft = RightToLeft.Yes;
-            CartCombo.Size = new Size(782, 33);
+            CartCombo.Size = new Size(539, 33);
             CartCombo.TabIndex = 16;
             CartCombo.SelectedIndexChanged += CartCombo_SelectedIndexChanged;
             // 
@@ -216,7 +218,7 @@
             SearchBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(128, 128, 255);
             SearchBtn.FlatStyle = FlatStyle.Flat;
             SearchBtn.ForeColor = Color.White;
-            SearchBtn.Location = new Point(6, 21);
+            SearchBtn.Location = new Point(6, 20);
             SearchBtn.Name = "SearchBtn";
             SearchBtn.Size = new Size(75, 32);
             SearchBtn.TabIndex = 1;
@@ -226,12 +228,25 @@
             // SearchTxt
             // 
             SearchTxt.BackColor = Color.FromArgb(240, 236, 229);
-            SearchTxt.Location = new Point(87, 21);
+            SearchTxt.Location = new Point(87, 20);
             SearchTxt.Name = "SearchTxt";
             SearchTxt.PlaceholderText = "جستجو کنید ...";
             SearchTxt.RightToLeft = RightToLeft.Yes;
             SearchTxt.Size = new Size(262, 32);
             SearchTxt.TabIndex = 0;
+            // 
+            // TransactionKindCombo
+            // 
+            TransactionKindCombo.BackColor = Color.FromArgb(240, 236, 229);
+            TransactionKindCombo.Cursor = Cursors.Hand;
+            TransactionKindCombo.DropDownStyle = ComboBoxStyle.DropDownList;
+            TransactionKindCombo.FormattingEnabled = true;
+            TransactionKindCombo.Location = new Point(355, 19);
+            TransactionKindCombo.Name = "TransactionKindCombo";
+            TransactionKindCombo.RightToLeft = RightToLeft.Yes;
+            TransactionKindCombo.Size = new Size(237, 33);
+            TransactionKindCombo.TabIndex = 18;
+            TransactionKindCombo.SelectedIndexChanged += TransactionKindCombo_SelectedIndexChanged;
             // 
             // TransactionUC
             // 
@@ -263,5 +278,6 @@
         private Button PrevBtn;
         private Button SearchBtn;
         private TextBox SearchTxt;
+        private ComboBox TransactionKindCombo;
     }
 }

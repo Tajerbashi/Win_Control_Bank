@@ -1,4 +1,6 @@
-﻿namespace Account.Infrastructure.Library.Repositories.BUS.Queries
+﻿using Account.Domain.Library.Enums;
+
+namespace Account.Infrastructure.Library.Repositories.BUS.Queries
 {
     public static class BlanceQueries
     {
@@ -53,7 +55,7 @@ INNER JOIN BUS.Carts CT ON BL.CartID = CT.ID AND CT.IsDeleted = 0
 INNER JOIN BUS.Customers CS ON CT.CustomerID = CS.ID AND CS.IsDeleted = 0
 INNER JOIN BUS.Banks BN ON CT.BankID = BN.ID AND BN.IsDeleted = 0
 WHERE BL.IsDeleted = 0
-AND BL.NewBlanceCash > 0
+AND BL.NewBlanceCash >= 0
 ORDER BY BL.ID DESC
 {paging}
 ");
@@ -91,7 +93,7 @@ INNER JOIN BUS.Carts CT ON BL.CartID = CT.ID AND CT.IsDeleted = 0
 INNER JOIN BUS.Customers CS ON CT.CustomerID = CS.ID AND CS.IsDeleted = 0
 INNER JOIN BUS.Banks BN ON CT.BankID = BN.ID AND BN.IsDeleted = 0
 WHERE BL.IsDeleted = 0
-AND BL.NewBlanceCash > 0
+AND BL.NewBlanceCash >= 0
 AND ( 
 	CT.AccountNumber LIKE N'%'+{value}+'%'  
 OR
@@ -135,7 +137,7 @@ INNER JOIN BUS.Carts CT ON BL.CartID = CT.ID AND CT.IsDeleted = 0
 INNER JOIN BUS.Customers CS ON CT.CustomerID = CS.ID AND CS.IsDeleted = 0
 INNER JOIN BUS.Banks BN ON CT.BankID = BN.ID AND BN.IsDeleted = 0
 WHERE BL.IsDeleted = 0
-AND BL.NewBlanceCash > 0
+AND BL.NewBlanceCash >= 0
 AND BL.CreateDate BETWEEN {from} AND {to}
 ORDER BY BL.ID DESC
 ");
@@ -143,8 +145,13 @@ ORDER BY BL.ID DESC
 
 
         #region Cashable
-		public static string Show50LastCashableTransactions(string paging)
+		public static string Show50LastCashableTransactions(TransactionType? type,string paging)
         {
+            var typeWhere = "";
+            if (type != 0)
+            {
+                typeWhere = $" AND (BL.TransactionType = {(byte)type}) ";
+            }
             return ($@"
 SELECT 
 	BL.ID AS آیدی, 
@@ -175,8 +182,8 @@ INNER JOIN BUS.Carts CT ON BL.CartID = CT.ID AND CT.IsDeleted = 0
 INNER JOIN BUS.Customers CS ON CT.CustomerID = CS.ID AND CS.IsDeleted = 0
 INNER JOIN BUS.Banks BN ON CT.BankID = BN.ID AND BN.IsDeleted = 0
 WHERE BL.IsDeleted = 0
-AND BL.NewBlanceCash > 0
-AND BL.BlanceType = 2
+AND BL.NewBlanceCash >= 0
+{typeWhere}
 ORDER BY BL.ID DESC
 {paging}
 ");
@@ -223,7 +230,7 @@ ORDER BY BL.ID DESC
 ");
         }
         
-		public static string ShowCashableTransactionsByCartID(long cartId, string paging)
+		public static string ShowCashableTransactionsByCartID(long cartId, TransactionType? type, string paging)
         {
             return ($@"
 SELECT 
@@ -255,7 +262,7 @@ INNER JOIN BUS.Carts CT ON BL.CartID = CT.ID AND CT.IsDeleted = 0 AND CT.ID = {c
 INNER JOIN BUS.Customers CS ON CT.CustomerID = CS.ID AND CS.IsDeleted = 0
 INNER JOIN BUS.Banks BN ON CT.BankID = BN.ID AND BN.IsDeleted = 0
 WHERE BL.IsDeleted = 0
-AND BL.NewBlanceCash > 0
+AND BL.NewBlanceCash >= 0
 AND BL.BlanceType = 1
 ORDER BY BL.ID DESC
 {paging}
@@ -266,8 +273,13 @@ ORDER BY BL.ID DESC
 
 
         #region Banking
-        public static string Show50LastBankingTransactions(string paging)
+        public static string Show50LastBankingTransactions(TransactionType? type,string paging)
         {
+			var typeWhere = "";
+			if (type != 0)
+			{
+				typeWhere = $" AND (BL.TransactionType = {(byte)type}) ";
+            }
             return ($@"
 SELECT   
 	BL.ID AS آیدی, 
@@ -303,14 +315,20 @@ WHERE
 AND (B.BankName NOT LIKE N'%:%')
 AND (CT.IsDeleted = 0) 
 AND (CS.IsDeleted = 0) 
-AND (BL.IsDeleted = 0)
+AND (BL.IsDeleted = 0) 
+{typeWhere} 
 ORDER BY BL.ID DESC
 {paging}
 ");
         }
         
-        public static string ShowBankingTransactionsByCartID(long cartId, string paging)
+        public static string ShowBankingTransactionsByCartID(long cartId, TransactionType? type, string paging)
         {
+            var typeWhere = "";
+            if (type != 0)
+            {
+                typeWhere = $" AND (BL.TransactionType = {(byte)type}) ";
+            }
             return ($@"
 SELECT 
 	BL.ID AS آیدی, 
@@ -341,8 +359,9 @@ INNER JOIN BUS.Carts CT ON BL.CartID = CT.ID AND CT.IsDeleted = 0 AND CT.ID = {c
 INNER JOIN BUS.Customers CS ON CT.CustomerID = CS.ID AND CS.IsDeleted = 0
 INNER JOIN BUS.Banks BN ON CT.BankID = BN.ID AND BN.IsDeleted = 0
 WHERE BL.IsDeleted = 0
-AND BL.NewBlanceCash > 0
+AND BL.NewBlanceCash >= 0
 AND BL.BlanceType = 2
+{typeWhere}
 ORDER BY BL.ID DESC
 {paging}
 ");
@@ -380,7 +399,7 @@ INNER JOIN BUS.Carts CT ON BL.CartID = CT.ID AND CT.IsDeleted = 0
 INNER JOIN BUS.Customers CS ON CT.CustomerID = CS.ID AND CS.IsDeleted = 0
 INNER JOIN BUS.Banks BN ON CT.BankID = BN.ID AND BN.IsDeleted = 0
 WHERE BL.IsDeleted = 0
-AND BL.NewBlanceCash > 0
+AND BL.NewBlanceCash >= 0
 AND BL.BlanceType = 2
 ORDER BY BL.ID DESC
 {paging}
