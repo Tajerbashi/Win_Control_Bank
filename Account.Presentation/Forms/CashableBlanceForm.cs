@@ -179,7 +179,7 @@ namespace Account.Presentation.Forms
         {
             var CustomerID = (CustomerAccountCombo.SelectedItem as KeyValue<long>).Value;
             var AccountID = (_unitOfWork.CartRepository.GetCashAccountByUserId(CustomerID)).Id;
-            var Cash = Convert.ToInt64(CashTxt.Text);
+            var Cash = Convert.ToDouble(CashTxt.Text);
             if (_unitOfWork.CartRepository.ValidBlancForTransaction(AccountID, Cash))
             {
                 _unitOfWork.BeginTransaction();
