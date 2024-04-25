@@ -47,6 +47,7 @@
             progressBar2 = new ProgressBar();
             progressBar3 = new ProgressBar();
             MainPanel = new Panel();
+            button1 = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -54,6 +55,7 @@
             // 
             groupBox1.BackColor = Color.Transparent;
             groupBox1.BackgroundImageLayout = ImageLayout.None;
+            groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(SettlemantBtn);
             groupBox1.Controls.Add(ExitBtn);
             groupBox1.Controls.Add(BankBtn);
@@ -89,7 +91,7 @@
             SettlemantBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             SettlemantBtn.FlatStyle = FlatStyle.Flat;
             SettlemantBtn.ForeColor = Color.White;
-            SettlemantBtn.Location = new Point(32, 406);
+            SettlemantBtn.Location = new Point(32, 363);
             SettlemantBtn.Name = "SettlemantBtn";
             SettlemantBtn.Size = new Size(190, 40);
             SettlemantBtn.TabIndex = 5;
@@ -131,7 +133,7 @@
             BankBtn.ForeColor = Color.White;
             BankBtn.Location = new Point(187, 182);
             BankBtn.Name = "BankBtn";
-            BankBtn.Size = new Size(57, 107);
+            BankBtn.Size = new Size(57, 63);
             BankBtn.TabIndex = 0;
             BankBtn.Text = "بانک";
             BankBtn.UseVisualStyleBackColor = false;
@@ -209,7 +211,7 @@
             SettingBtn.FlatAppearance.MouseOverBackColor = Color.DarkSlateGray;
             SettingBtn.FlatStyle = FlatStyle.Flat;
             SettingBtn.ForeColor = Color.White;
-            SettingBtn.Location = new Point(32, 632);
+            SettingBtn.Location = new Point(32, 633);
             SettingBtn.Name = "SettingBtn";
             SettingBtn.Size = new Size(190, 40);
             SettingBtn.TabIndex = 10;
@@ -227,7 +229,7 @@
             BalanceBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             BalanceBtn.FlatStyle = FlatStyle.Flat;
             BalanceBtn.ForeColor = Color.White;
-            BalanceBtn.Location = new Point(32, 496);
+            BalanceBtn.Location = new Point(32, 498);
             BalanceBtn.Name = "BalanceBtn";
             BalanceBtn.Size = new Size(190, 40);
             BalanceBtn.TabIndex = 7;
@@ -245,7 +247,7 @@
             TaransactionBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             TaransactionBtn.FlatStyle = FlatStyle.Flat;
             TaransactionBtn.ForeColor = Color.White;
-            TaransactionBtn.Location = new Point(32, 361);
+            TaransactionBtn.Location = new Point(32, 318);
             TaransactionBtn.Name = "TaransactionBtn";
             TaransactionBtn.Size = new Size(190, 40);
             TaransactionBtn.TabIndex = 4;
@@ -263,7 +265,7 @@
             CashMoneyBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             CashMoneyBtn.FlatStyle = FlatStyle.Flat;
             CashMoneyBtn.ForeColor = Color.White;
-            CashMoneyBtn.Location = new Point(32, 451);
+            CashMoneyBtn.Location = new Point(32, 408);
             CashMoneyBtn.Name = "CashMoneyBtn";
             CashMoneyBtn.Size = new Size(190, 40);
             CashMoneyBtn.TabIndex = 6;
@@ -281,7 +283,7 @@
             CalculateBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             CalculateBtn.FlatStyle = FlatStyle.Flat;
             CalculateBtn.ForeColor = Color.White;
-            CalculateBtn.Location = new Point(32, 541);
+            CalculateBtn.Location = new Point(32, 543);
             CalculateBtn.Name = "CalculateBtn";
             CalculateBtn.Size = new Size(190, 40);
             CalculateBtn.TabIndex = 8;
@@ -299,7 +301,7 @@
             ReportBtn.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
             ReportBtn.FlatStyle = FlatStyle.Flat;
             ReportBtn.ForeColor = Color.White;
-            ReportBtn.Location = new Point(32, 586);
+            ReportBtn.Location = new Point(32, 588);
             ReportBtn.Name = "ReportBtn";
             ReportBtn.Size = new Size(190, 40);
             ReportBtn.TabIndex = 9;
@@ -322,7 +324,7 @@
             UserBtn.ForeColor = Color.White;
             UserBtn.Location = new Point(76, 182);
             UserBtn.Name = "UserBtn";
-            UserBtn.Size = new Size(105, 107);
+            UserBtn.Size = new Size(105, 63);
             UserBtn.TabIndex = 1;
             UserBtn.Text = "مشترکین";
             UserBtn.UseVisualStyleBackColor = false;
@@ -343,7 +345,7 @@
             CartBtn.ForeColor = Color.White;
             CartBtn.Location = new Point(10, 182);
             CartBtn.Name = "CartBtn";
-            CartBtn.Size = new Size(60, 107);
+            CartBtn.Size = new Size(60, 63);
             CartBtn.TabIndex = 2;
             CartBtn.Text = "کارت";
             CartBtn.UseVisualStyleBackColor = false;
@@ -381,6 +383,23 @@
             MainPanel.Name = "MainPanel";
             MainPanel.Size = new Size(1146, 759);
             MainPanel.TabIndex = 19;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Transparent;
+            button1.Cursor = Cursors.Hand;
+            button1.FlatAppearance.BorderColor = Color.LightSteelBlue;
+            button1.FlatAppearance.CheckedBackColor = Color.CornflowerBlue;
+            button1.FlatAppearance.MouseDownBackColor = Color.MidnightBlue;
+            button1.FlatAppearance.MouseOverBackColor = Color.RoyalBlue;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(32, 453);
+            button1.Name = "button1";
+            button1.Size = new Size(190, 40);
+            button1.TabIndex = 18;
+            button1.Text = "بدهکاری";
+            button1.UseVisualStyleBackColor = false;
             // 
             // MainFRM
             // 
@@ -427,5 +446,6 @@
         private ProgressBar progressBar3;
         private Panel MainPanel;
         private Button SettlemantBtn;
+        private Button button1;
     }
 }
