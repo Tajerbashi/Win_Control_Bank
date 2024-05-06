@@ -140,7 +140,7 @@ namespace Account.Presentation.Forms
             {
                 if (CustomerId.Value != 0)
                 {
-                    AccountCombo = ComboBoxGenerator<long>.FillData(AccountCombo, _unitOfWork.CartRepository.TitleValueByUserID(CustomerId.Value,BlanceType.Cashable), Convert.ToByte(AccountCombo.Tag));
+                    AccountCombo = ComboBoxGenerator<long>.FillData(AccountCombo, _unitOfWork.CartRepository.TitleValueByUserID(CustomerId.Value,BlanceType.Banking), Convert.ToByte(AccountCombo.Tag));
                 }
                 else
                 {
