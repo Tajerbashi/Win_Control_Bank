@@ -45,6 +45,7 @@
             MSG = new Label();
             CloseBtn = new Button();
             SaveBtn = new Button();
+            label10 = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -62,6 +63,7 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(label10);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(AccountCombo);
             groupBox1.Controls.Add(CashTxt);
@@ -283,6 +285,16 @@
             SaveBtn.UseVisualStyleBackColor = false;
             SaveBtn.Click += SaveBtn_Click;
             // 
+            // label10
+            // 
+            label10.ForeColor = Color.White;
+            label10.Location = new Point(188, 180);
+            label10.Name = "label10";
+            label10.Size = new Size(37, 32);
+            label10.TabIndex = 87;
+            label10.Text = "ریال";
+            label10.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // SettlemantForm
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
@@ -323,5 +335,6 @@
         private TextBox DescTxt;
         private ComboBox AccountCombo;
         private Label label5;
+        private Label label10;
     }
 }

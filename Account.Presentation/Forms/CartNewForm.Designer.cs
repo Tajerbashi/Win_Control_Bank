@@ -48,6 +48,7 @@
             CloseBtn = new Button();
             SaveBtn = new Button();
             label3 = new Label();
+            label10 = new Label();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CartPic).BeginInit();
             SuspendLayout();
@@ -55,6 +56,7 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(label10);
             groupBox1.Controls.Add(MSG);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(ParentCartCombo);
@@ -319,6 +321,16 @@
             label3.Text = "ثبت اطلاعات کارت بانکی";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // label10
+            // 
+            label10.ForeColor = Color.White;
+            label10.Location = new Point(6, 483);
+            label10.Name = "label10";
+            label10.Size = new Size(37, 32);
+            label10.TabIndex = 41;
+            label10.Text = "ریال";
+            label10.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // CartNewForm
             // 
             AutoScaleDimensions = new SizeF(9F, 25F);
@@ -364,5 +376,6 @@
         private Label label9;
         private ComboBox ParentCartCombo;
         private Label MSG;
+        private Label label10;
     }
 }
